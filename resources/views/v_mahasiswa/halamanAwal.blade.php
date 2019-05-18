@@ -163,13 +163,13 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                            <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
                                     <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">kelas inpirasi</h5>
@@ -263,7 +263,7 @@
     <div class="bg-berita">
         <div class="container">
             <div class="row">
-                <div class="col col-md-6">
+                <div class="col-sm-12 col-md-6">
                     <div class="hovereffect-berita">
                         <img class="img-fluid img-responsive" src="{{asset('img/berita/kartini.png')}}" alt="">
                         <div class="overlay">
@@ -272,9 +272,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-6">
+                <div class="col-sm-12 col-md-6">
                     <div class="row">
-                        <div class="col col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="hovereffect-berita">
                                 <img class="img-responsive" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
                                 <div class="overlay">
@@ -283,7 +283,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="hovereffect-berita">
                                 <img class="img-responsive" src="{{asset('img/berita/IMG_0069_birukuning.png')}}"
                                     alt="">
@@ -293,7 +293,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="hovereffect-berita">
                                 <img class="img-responsive" src="{{asset('img/berita/IMG_0069_birukuning.png')}}"
                                     alt="">
@@ -303,7 +303,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="hovereffect-berita">
                                 <img class="img-responsive" src="{{asset('img/berita/line1.png')}}" alt="">
                                 <div class="overlay">
