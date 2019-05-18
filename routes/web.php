@@ -12,7 +12,10 @@
  */
 
 Route::get('/', function () {
-    return view('landing-page');
+    return view('v_mahasiswa/halamanAwal');
+});
+Route::get('/berita', function () {
+    return view('v_mahasiswa/detailBerita');
 });
 
 Route::get('/login', 'AuthController@index');

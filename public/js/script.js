@@ -1,12 +1,4 @@
 $(document).ready(function() {
-    // Sesuaikan Tinggi Window
-    // console.log($(window).height() - 169)
-    // $('.pk2-jb1').css('height',($(window).height() - 6)+'px');
-    // $('.pk2-jb2').css('height',($(window).height() - 175)+'px');
-    // $(window).resize(function() {
-    //     $('.pk2-jb1').css('height',($(window).height() - 6)+'px');
-    // });
-
     // Paralex fixNavbar
     $(window).scroll(function(){
         let navScroll = $(this).scrollTop();
