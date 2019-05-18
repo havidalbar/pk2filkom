@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use App\Artikel;
 use App\Pengguna;
 use App\Mahasiswa;
 use App\NilaiKKM;
