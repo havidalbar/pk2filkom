@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 });
+Route::get('/isi-data-diri', function () {
+    return view('v_mahasiswa/formDataDiri');
+});
 Route::get('/berita', function () {
     return view('v_mahasiswa/detailBerita');
 });

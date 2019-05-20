@@ -273,6 +273,12 @@ body ::-webkit-scrollbar-thumb:hover {
   }
 }
 
+/* Font Weight */
+.font-semibold {
+  font-family: 'Esphimere-SemiBold';
+  color:#053d58;
+}
+
 /* Elemen CSS */
 html,body{
   font-family: 'Esphimere-Light';
@@ -1192,3 +1198,35 @@ figure,figure img {
     content: '';
   }
 }
+/* Form Data Diri */
+.bg-form-data-diri{
+  background-image: url(../img/form-data-diri/bg\ form\ data\ diri.svg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+@media (max-width: 767.98px) { 
+  .bg-form-data-diri{
+    height: 100%;
+    padding-bottom:60px;
+  }
+}
+@media (min-width: 767.98px) { 
+  .bg-form{
+    background-color:rgba(0, 0, 0, 0.4);
+  }
+}
+.form-data-diri{
+  background-color:rgba(234, 227, 201);
+  height: 55px;
+  border:none;
+}
+
+.form-input{
+  background-color:rgb(234, 227, 201);
+}
+
+.lanjutkan{
+  background-color:#92d6e6;
+}
+/* Form Data Diri */
