@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        {!! $post->konten !!}
+        <?php print_r($artikel); ?>
     </div>
 </body>
 

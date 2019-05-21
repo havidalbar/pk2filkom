@@ -21,13 +21,11 @@ Route::get('/isi-biodata', 'AuthController@getBiodata');
 Route::post('/isi-biodata', 'AuthController@postBiodata');
 Route::get('/logout', 'AuthController@logout');
 
-Route::get('/buat-pos-baru', function () {
-    return view('new-post');
-});
-Route::post('/buat-pos-baru', 'PostController@postPost');
-Route::post('/edit-pos/{id}', 'PostController@postPost');
-Route::get('/edit-pos/{id}', 'PostController@editPost');
-Route::get('/pos/{id}', 'PostController@showPost');
+Route::get('/buat-artikel', 'ArtikelController@createArtikel');
+Route::post('/buat-artikel', 'ArtikelController@postArtikel');
+Route::get('/artikel/{slug}/edit', 'ArtikelController@createArtikel');
+Route::post('/artikel/{slug}/edit', 'ArtikelController@postArtikel');
+Route::get('/artikel/{slug}', 'ArtikelController@showArtikel');
 
 Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
