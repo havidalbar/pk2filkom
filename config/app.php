@@ -175,6 +175,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+		/*
+         * Laravel SAML2
+         */
+		Aacotroneo\Saml2\Saml2ServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +231,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+		/*
+         * Laravel SAML2
+         */
+		'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
     ],
 
 ];
