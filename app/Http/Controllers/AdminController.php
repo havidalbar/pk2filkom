@@ -2,62 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
-use Validator;
-use App\Artikel;
-use App\Pengguna;
+use App\Faq;
+use App\Kategori;
+use App\Kegiatan;
 use App\Mahasiswa;
 use App\NilaiKKM;
+use App\Pengguna;
 use App\Penugasan;
-use App\Kategori;
-use App\Faq;
 use App\Pk2mAbsen;
 use App\Pk2mKeaktifan;
 use App\Pk2mPelanggaran;
 use App\Pk2mRekapnilai;
+use App\Pk2mTourAbsen;
+use App\Pk2mTourKeaktifan;
+use App\Pk2mTourPelanggaran;
+use App\Rangkaian;
 use App\StartupAbsen;
 use App\StartupKeaktifan;
 use App\StartupPelanggaran;
 use App\StartupRekapNilai;
-use App\Pk2mTourAbsen;
-use App\Pk2mTourKeaktifan;
-use App\Pk2mTourPelanggaran;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Validator;
 
 class AdminController extends Controller
 {
-    public function getLoginAdmin()
+    public function getLogin()
     {
-        return view('loginAdmin');
+        return view('login-admin');
     }
-    public function loginAdmin(Request $request)
+
+    public function login(Request $request)
     {
         $username = $request->username;
         $password = $request->password;
-        $data = Pengguna::where('username', $username)->first();
-        echo $data;
-        if (!($data == null)) {
+        $data = Pengguna::find($username);
+        if ($data) {
             if (Hash::check($password, $data->password)) {
-                Session::put('id', $data->id);
                 Session::put('username', $data->username);
                 Session::put('divisi', $data->divisi);
 
-                return redirect('/')->with('alert', 'Anda telah login');
+                return redirect()->route('panel.dashboard');
             } else {
                 return redirect()->back()->with('alert', 'Password salah!');
             }
         } else {
-            return redirect()->back()->with('alert', 'Username atau Password salah!');
+            return redirect()->back()->with('alert', 'Username tidak ditemukan');
         }
     }
 
-    public function logoutAdmin()
+    public function logout()
     {
         Session::flush();
-        return redirect('/')->with('alert', 'Anda telah keluar');
-    }
+        return redirect()->route('panel.')->with('alert', 'Anda telah keluar');
+	}
+	
+	public function getDashboard() {
+		return view('panel-admin.isiDashboard');
+	}
 
     //Pengguna
     public function getPengguna()
@@ -92,7 +95,7 @@ class AdminController extends Controller
         } else {
             $data = new Pengguna();
             $data->username = $request->username;
-            $data->password = bcrypt($request->password);
+            $data->password = Hash::make($request->password);
             $data->divisi = $request->divisi;
             $data->save();
             return redirect('/daftar-pengguna')->with('alert', 'Berhasil mendaftar pengguna');

@@ -19,7 +19,7 @@
                                     Sign In To Admin
                                 </h3>
                             </div>
-                            <form action="/loginCheck" class="m-form m-form--state m-login__form" method="POST">
+							<form class="m-form m-form--state m-login__form" method="POST">
                                 @csrf
                                 <div class="form-group m-form__group {{ $errors->has('username') ? 'has-danger' : '' }}">
                                     <input class="form-control m-input {{ $errors->has('username') ? 'form-control-danger' : '' }}" type="text" name="username" placeholder="username" autocomplete="off" value="{{ old('username') }}">

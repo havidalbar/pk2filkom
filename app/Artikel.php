@@ -8,6 +8,7 @@ class Artikel extends Model
 {
     protected $table = 'artikel';
 
-    protected $primaryKey = 'slug';
-    public $incrementing = false;
+	protected $primaryKey = 'slug';
+	protected $keyType = 'string';
+	public $incrementing = false;
 }

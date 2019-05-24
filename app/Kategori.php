@@ -9,5 +9,6 @@ class Kategori extends Model
     protected $table = 'kategori';
 
     protected $primaryKey = 'slug';
-    public $incrementing = false;
+	protected $keyType = 'string';
+	public $incrementing = false;
 }

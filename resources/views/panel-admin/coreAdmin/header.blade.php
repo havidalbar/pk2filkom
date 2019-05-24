@@ -64,9 +64,9 @@
                                                 </li>
                                                 <li class="m-nav__separator m-nav__separator--fit"></li>
                                                 <li class="m-nav__item">
-                                                    <a href="#" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                    <a onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                         Logout
-                                                    </a>
+													</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -129,10 +129,13 @@
                                                     </li>
                                                     <li class="m-nav__separator m-nav__separator--fit"></li>
                                                     <li class="m-nav__item">
-                                                        <a href="#" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
-                                                            Logout
-                                                        </a>
-                                                    </li>
+														<a onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+															Logout
+														</a>
+														<form action="{{route('panel.logout')}}" id="logout_form" method="POST">
+															{{ csrf_field() }}
+														</form>
+													</li>
                                                 </ul>
                                             </div>
                                         </div>
