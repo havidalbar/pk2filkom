@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    TAMBAH 
+                    TAMBAH
                     <small>
                         PENGGUNA
                     </small>
@@ -18,14 +18,14 @@
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body pt-1">
-
-                <form action="/addPengguna" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+                @if(strtoupper(Session::get('divisi'))=="PIT" || strtoupper(Session::get('divisi'))=="BPI" || strtoupper(Session::get('divisi'))=="SQC")
+                <form action="{{route('panel.full.tambah-pengguna')}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
                     @csrf
                     @method('POST')
-                    @include('panel-admin.coreAdmin.formPengguna',['ketForm' => 'tambah'])
+                    @include('panel-admin.coreAdmin.formTambahPengguna',['ketForm' => 'tambah'])
                 </form>
-
-            </div>    
+                @endif
+            </div>
         </div>
     </div>
 </div>

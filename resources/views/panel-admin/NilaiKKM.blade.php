@@ -16,7 +16,7 @@
                         <i class="m-menu__section-icon flaticon-more-v3"></i>
                     </li>
                     <li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-                        <a href="/addNilaiKKM" class="m-menu__link ">
+                        <a href="{{route('panel.full.show-add-nilai-kkm')}}" class="m-menu__link ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
                             </i>
@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-                        <a href="/NilaiKKM" class="m-menu__link ">
+                        <a href="{{route('panel.full.show-nilai-kkm')}}" class="m-menu__link ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
                             </i>

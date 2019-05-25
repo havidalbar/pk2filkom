@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    DATA 
+                    DATA
                     <small>
                         NILAI KKM
                     </small>
@@ -57,31 +57,34 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @for($i=0;$i<count($nilaikkms);$i++)
                     <tr>
                         <td>
-                            1
+                            {{$nilaikkms[$i]->id}}
                         </td>
                         <td>
-                            1
+                            {{$nilaikkms[$i]->kegiatan}}
                         </td>
                         <td>
-                            1
+                            {{$nilaikkms[$i]->nilai}}
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="First group">
-                                <a href="/editNilaiKKM" class="m-btn btn btn-warning">
+                                <a href="{{route('panel.full.show-edit-nilai-kkm',$nilaikkms[$i]->id)}}" class="m-btn btn btn-warning">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="m-btn btn btn-danger">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
+                                <form action="{{route('panel.full.hapus-nilai-kkm',$nilaikkms[$i]->id)}}" class="m-btn btn btn-danger" method="POST">
+                                    {{csrf_field()}}
+                                    <button class="fa fa-trash-o"></button>
+                                </form>
                             </div>
                         </td>
                     </tr>
+                    @endfor
                 </tbody>
             </table>
             <!--end: Datatable -->
-        </div>    
+        </div>
     </div>
 </div>
 </div>

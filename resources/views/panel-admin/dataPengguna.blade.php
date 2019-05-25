@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    DATA 
+                    DATA
                     <small>
                         PENGGUNA
                     </small>
@@ -43,16 +43,16 @@
                 <thead>
                     <tr>
                         <th title="Field #1">
-                            ID
+                            No
                         </th>
                         <th title="Field #2">
-                            Terakhir Akses
+                            Terakhir Edit
                         </th>
                         <th title="Field #3">
                             Username
                         </th>
                         <th title="Field #4">
-                            Desivi
+                            Divisi
                         </th>
                         <th title="Field #5">
                             Action
@@ -60,34 +60,45 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @for($i=0;$i<count($penggunas);$i++)
                     <tr>
                         <td>
-                            1
+                            {{$i+1}}
                         </td>
                         <td>
-                            1
+                            {{strftime("%d %b %Y",strtotime($penggunas[$i]->updated_at))}}
                         </td>
                         <td>
-                            1
+                            {{$penggunas[$i]->username}}
                         </td>
                         <td>
-                            1
+                            {{$penggunas[$i]->divisi}}
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="First group">
-                                <a href="/editPengguna" class="m-btn btn btn-warning">
+                                @if(strtoupper(Session::get('divisi'))=="PIT" || strtoupper(Session::get('divisi'))=="BPI" || strtoupper(Session::get('divisi'))=="SQC")
+                                <a href="{{route('panel.full.show-edit-pengguna',$penggunas[$i]->username)}}" class="m-btn btn btn-warning">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="m-btn btn btn-danger">
-                                    <i class="fa fa-trash-o"></i>
+                                @else
+                                <a href="{{route('panel.pengguna.show-ganti-password',$penggunas[$i]->username)}}" class="m-btn btn btn-warning">
+                                    <i class="fa fa-edit"></i>
                                 </a>
+                                @endif
+                                @if(strtoupper(Session::get('divisi'))=="PIT" || strtoupper(Session::get('divisi'))=="BPI" || strtoupper(Session::get('divisi'))=="SQC")
+                                <form action="{{route('panel.full.hapus-pengguna',$penggunas[$i]->username)}}" class="m-btn btn btn-danger" method="POST">
+                                    {{csrf_field()}}
+                                    <button class="fa fa-trash-o"></button>
+                                </form>
+                                @endif
                             </div>
                         </td>
                     </tr>
+                    @endfor
                 </tbody>
             </table>
             <!--end: Datatable -->
-        </div>    
+        </div>
     </div>
 </div>
 </div>
