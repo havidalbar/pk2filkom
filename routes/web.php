@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 });
+
 Route::get('/berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
@@ -23,12 +24,6 @@ Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
 Route::get('/isi-biodata', 'AuthController@getBiodata');
 Route::post('/isi-biodata', 'AuthController@postBiodata');
 Route::get('/logout', 'AuthController@logout');
-
-Route::get('/buat-artikel', 'ArtikelController@createArtikel');
-Route::post('/buat-artikel', 'ArtikelController@postArtikel');
-Route::get('/artikel/{slug}/edit', 'ArtikelController@createArtikel');
-Route::post('/artikel/{slug}/edit', 'ArtikelController@postArtikel');
-Route::get('/artikel/{slug}', 'ArtikelController@showArtikel');
 
 Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
@@ -59,31 +54,20 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 			Route::post('ganti-password', 'adminPanel@dataPengguna')->name('ganti-password');
         });
 
-        // DIVISI HUMAS
-        Route::group(['middleware' => ['admin.publikasi']], function () {
-            Route::group(['prefix' => 'kategori', 'as' => 'kategori.'], function () {
-                Route::get('/', 'adminPanel@dataKategori')->name('index');
-                Route::get('add', 'adminPanel@tambahKategori')->name('add');
-                Route::post('add', 'adminPanel@prosesTambahKategori');
-                Route::get('{slug}/edit', 'adminPanel@editKategori')->name('edit');
-                Route::put('{slug}/edit', 'adminPanel@prosesEditKategori');
-            });
+		// DIVISI HUMAS
+		Route::group(['middleware' => ['admin.publikasi']], function () {
+			// UNUSED FUNCTION : [Fadhil]
+            // Route::resource('kategori', 'KategoriController')->parameters([
+			// 	'kategori' => 'slug'
+			// ])->except(['show']);
 
-            Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
-                Route::get('/', 'adminPanel@dataKategori')->name('index');
-                Route::get('add', 'adminPanel@tambahArtikel')->name('add');
-                Route::post('add', 'adminPanel@prosesTambahArtikel');
-                Route::get('{slug}/edit', 'adminPanel@editArtikel')->name('edit');
-                Route::put('{slug}/edit', 'adminPanel@prosesEditArtikel');
-            });
+			Route::resource('artikel', 'ArtikelController')->parameters([
+				'artikel' => 'slug'
+			])->except(['show']);
 
-            Route::group(['prefix' => 'faq', 'as' => 'faq.'], function () {
-                Route::get('/', 'adminPanel@dataFaq')->name('index');
-                Route::get('add', 'adminPanel@tambahFaq')->name('add');
-                Route::post('add', 'adminPanel@prosesTambahFaq');
-                Route::get('{id}/edit', 'adminPanel@editFaq')->name('edit');
-                Route::put('{id}/edit', 'adminPanel@prosesEditFaq');
-            });
+			Route::resource('faq', 'FaqController')->parameters([
+				'faq' => 'id'
+			])->except(['show']);
         });
 
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
