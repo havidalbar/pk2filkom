@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    DATA 
+                    DATA
                     <small>
                         Rekap total PK2MABA
                     </small>
@@ -52,18 +52,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @for($i=0;$i<count($pk2mabaRekapNilai);$i++)
+                    <?php
+                    $total = $pk2mabaRekapNilai[$i]->aktif_rangkaian1+$pk2mabaRekapNilai[$i]->penerapan_nilai_rangkaian1+
+                    $pk2mabaRekapNilai[$i]->aktif_rangkaian2+$pk2mabaRekapNilai[$i]->penerapan_nilai_rangkaian2-
+                    $pk2mabaRekapNilai[$i]->ringan-$pk2mabaRekapNilai[$i]->sedang-
+                    $pk2mabaRekapNilai[$i]->berat;
+                    ?>
                     <tr>
                         <td>
-                            1
+                            {{$pk2mabaRekapNilai[$i]->nim}}
                         </td>
                         <td>
-                            1
+                            {{$total}}
                         </td>
                     </tr>
+                    @endfor
                 </tbody>
             </table>
             <!--end: Datatable -->
-        </div>    
+        </div>
     </div>
 </div>
 </div>

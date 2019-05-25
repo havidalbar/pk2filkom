@@ -15,8 +15,9 @@
                         </h4>
                         <i class="m-menu__section-icon flaticon-more-v3"></i>
                     </li>
+                    @if(strtoupper(Session::get('divisi'))=="PIT" || strtoupper(Session::get('divisi'))=="BPI" || strtoupper(Session::get('divisi'))=="SQC")
                     <li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-                        <a href="/addPengguna" class="m-menu__link ">
+                        <a href="{{route('panel.full.show-tambah-pengguna')}}" class="m-menu__link ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
                             </i>
@@ -25,8 +26,9 @@
                             </span>
                         </a>
                     </li>
+                    @endif
                     <li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-                        <a href="/Pengguna" class="m-menu__link ">
+                        <a href="{{route('panel.pengguna.index')}}" class="m-menu__link ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                 <span></span>
                             </i>

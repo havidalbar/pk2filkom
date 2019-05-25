@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    TAMBAH 
+                    TAMBAH
                     <small>
                         NilaiKKM
                     </small>
@@ -19,13 +19,13 @@
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body pt-1">
 
-                <form action="/addNilaiKKM" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+                <form action="{{route('panel.full.add-nilai-kkm')}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
                     @csrf
                     @method('POST')
-                    @include('panel-admin.coreAdmin.formNilaiKKM',['ketForm' => 'tambah'])
+                    @include('panel-admin.coreAdmin.formTambahNilaiKKM',['ketForm' => 'tambah'])
                 </form>
 
-            </div>    
+            </div>
         </div>
     </div>
 </div>

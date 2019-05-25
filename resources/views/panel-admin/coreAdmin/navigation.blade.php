@@ -9,7 +9,7 @@
             <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
                 <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
                     <li class="m-menu__item  m-menu__item--active"  aria-haspopup="true">
-                        <a  href="/dashboard" class="m-menu__link ">
+                        <a  href="{{route('panel.dashboard')}}" class="m-menu__link ">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
                                 Dashboard
@@ -53,7 +53,7 @@
                         <a  href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
-                                Publikasi	
+                                Publikasi
                             </span>
                             <i class="m-menu__hor-arrow la la-angle-down"></i>
                             <i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -62,7 +62,7 @@
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/kategori" class="m-menu__link ">
+                                    <a  href="{{route('panel.kategori.index')}}" class="m-menu__link ">
                                         <i class="m-menu__link-icon la la-tags"></i>
                                         <span class="m-menu__link-text">
                                             KATEGORI
@@ -70,7 +70,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/artikel" class="m-menu__link ">
+                                    <a  href="{{route('panel.artikel.index')}}" class="m-menu__link ">
                                         <i class="m-menu__link-icon la la-pencil-square-o"></i>
                                         <span class="m-menu__link-text">
                                             ARTIKEL
@@ -78,7 +78,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/Faq" class="m-menu__link ">
+                                    <a  href="{{route('panel.faq.index')}}" class="m-menu__link ">
                                         <i class="m-menu__link-icon flaticon-info"></i>
                                         <span class="m-menu__link-text">
                                             FAQ
@@ -88,7 +88,7 @@
                             </ul>
                         </div>
                     </li>
-                    
+
                     <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
                         <a  href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
@@ -114,7 +114,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pk2Absensi" class="m-menu__link ">
+                                            <a  href="{{route('panel.full.show-pk2-absensi')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Absensi
@@ -122,7 +122,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pk2Keaktifan" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-pk2-keaktifan')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Keaktifan
@@ -138,7 +138,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pk2Pelanggaran" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-pk2-pelanggaran')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Pelanggaran
@@ -146,7 +146,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pk2Total" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-pk2-rekap')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Total
@@ -169,7 +169,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stAbsensi" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-stAbsensi')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         ABSENSI
@@ -177,7 +177,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stKeaktifan" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-stKeaktifan')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         KEAKTIFAN
@@ -401,10 +401,10 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/Pengguna" class="m-menu__link ">
+                                                <a  href="{{route('panel.pengguna.index')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-user-settings"></i>
                                                     <span class="m-menu__link-text">
-                                                        DAFTER PENGGUNA
+                                                        DAFTAR PENGGUNA
                                                     </span>
                                                 </a>
                                             </li>
@@ -412,7 +412,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/NilaiKKM" class="m-menu__link ">
+                                    <a  href="{{route('panel.full.show-nilai-kkm')}}" class="m-menu__link ">
                                         <i class="m-menu__link-icon la la-bar-chart-o"></i>
                                         <span class="m-menu__link-text">
                                             NILAI KKM
@@ -425,6 +425,6 @@
                 </ul>
             </div>
         </div>
-        <!-- end::Horizontal Menu -->       
+        <!-- end::Horizontal Menu -->
     </div>
 </div>

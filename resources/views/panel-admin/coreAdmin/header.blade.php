@@ -12,7 +12,7 @@
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
-                
+
                         <!-- begin::Responsive Header Menu Toggler-->
                         <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
                             <span></span>
@@ -28,7 +28,7 @@
                             <i class="flaticon-more"></i>
                         </a> --}}
                         <!--end::Topbar Toggler-->
-                        
+
                         <div class="m-brand__icon m--visible-tablet-and-mobile-inline-block m-dropdown m-dropdown--medium" data-dropdown-toggle="click" aria-expanded="true">
                             <a href="#" class="m-brand__icon m-dropdown__toggle">
                                 <i class="flaticon-more"></i>
@@ -43,10 +43,10 @@
                                             </div>
                                             <div class="m-card-user__details">
                                                 <span class="m-card-user__name m--font-weight-500 mb-3">
-                                                    Username
+                                                    {{ucwords(Session::get('username'))}}
                                                 </span>
                                                 <a href="#" class="m-card-user__email m--font-weight-300 m-link">
-                                                    Nama Devisi
+                                                    {{strtoupper(Session::get('divisi'))}}
                                                 </a>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end::Brand -->                                        					
+            <!-- end::Brand -->
             <!-- begin::Topbar -->
             <div class="m-grid__item m-grid__item--fluid m-header-head" id="m_header_nav">
                 <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
@@ -91,7 +91,7 @@
                                     </span>
                                     <span class="m-topbar__username m--hidden-tablet m--hidden-mobile m--padding-right-15">
                                         <span class="m-link">
-                                            Username
+                                            {{ucwords(Session::get('username'))}}
                                         </span>
                                     </span>
                                     <span class="m-topbar__userpic">
@@ -108,10 +108,10 @@
                                                 </div>
                                                 <div class="m-card-user__details">
                                                     <span class="m-card-user__name m--font-weight-500">
-                                                        Username
+                                                        {{ucwords(Session::get('username'))}}
                                                     </span>
                                                     <a href="#" class="m-card-user__email m--font-weight-300 m-link">
-                                                        Nama Devisi
+                                                        {{strtoupper(Session::get('divisi'))}}
                                                     </a>
                                                 </div>
                                             </div>
@@ -120,7 +120,7 @@
                                             <div class="m-dropdown__content">
                                                 <ul class="m-nav m-nav--skin-light">
                                                     <li class="m-nav__item">
-                                                        <a href="/Faq" class="m-nav__link">
+                                                        <a href="{{route('panel.faq.index')}}" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-info"></i>
                                                             <span class="m-nav__link-text">
                                                                 FAQ

@@ -49,9 +49,9 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         Route::get('kesehatan-mahasiswa', 'adminPanel@dataKesehatanMahasiswa');
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
-            Route::get('/', 'adminPanel@dataPengguna')->name('index');
-			Route::get('ganti-password', 'adminPanel@dataPengguna')->name('ganti-password');
-			Route::post('ganti-password', 'adminPanel@dataPengguna')->name('ganti-password');
+            Route::get('/', 'AdminController@getPengguna')->name('index');
+			Route::get('{username}/ganti-password', 'AdminController@getEditPengguna')->name('show-ganti-password');
+            Route::post('{username}/ganti-password', 'AdminController@editPengguna')->name('ganti-password');
         });
 
 		// DIVISI HUMAS
@@ -71,47 +71,63 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         });
 
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
-        Route::group(['middleware' => ['admin.full']], function () {
-            Route::get('/NilaiKKM', 'adminPanel@dataNilaiKKM');
-            Route::get('/addNilaiKKM', 'adminPanel@tambahNilaiKKM');
-            Route::post('/addNilaiKKM', 'adminPanel@prosesTambahNilaiKKM');
-            Route::get('/editNilaiKKM', 'adminPanel@editNilaiKKM');
-            Route::put('/editNilaiKKM', 'adminPanel@prosesEditNilaiKKM');
-            Route::get('/addPengguna', 'adminPanel@tambahPengguna');
-            Route::post('/addPengguna', 'adminPanel@prosesTambahPengguna');
-            Route::get('/editPengguna', 'adminPanel@editPengguna');
-            Route::put('/editPengguna', 'adminPanel@prosesEditPengguna');
+        Route::group(['middleware' => ['admin.full'], 'prefix' =>'full' ,'as' =>'full.'], function () {
+            Route::get('/NilaiKKM', 'AdminController@getNilaiKKM')->name('show-nilai-kkm');
+            Route::get('/addNilaiKKM', 'AdminController@getTambahNilaiKKM')->name('show-add-nilai-kkm');
+            Route::post('/addNilaiKKM', 'AdminController@tambahNilaiKKM')->name('add-nilai-kkm');
+            Route::get('{id}/edit-nilaiKKM', 'AdminController@getEditNilaiKKM')->name('show-edit-nilai-kkm');
+            Route::post('{id}/edit-nilaiKKM', 'AdminController@editNilaiKKM')->name('edit-nilai-kkm');
+            Route::post('{id}/hapus-nilaiKKM', 'AdminController@hapusNilaiKKM')->name('hapus-nilai-kkm');
+
+            Route::get('/addPengguna', 'AdminController@getTambahPengguna')->name('show-tambah-pengguna');
+            Route::post('/addPengguna', 'AdminController@tambahPengguna')->name('tambah-pengguna');
+            Route::get('{username}/edit-pengguna', 'AdminController@getEditPengguna')->name('show-edit-pengguna');
+            Route::post('{username}/edit-pengguna', 'AdminController@editPenggunaFull')->name('edit-pengguna');
+            Route::post('{username}/hapus-pengguna', 'AdminController@hapusPengguna')->name('hapus-pengguna');
+
             Route::get('/editBiodataMahasiswa', 'adminPanel@editBiodataMahasiswa');
             Route::put('/editBiodataMahasiswa', 'adminPanel@prosesEditBiodataMahasiswa');
 
             // TODO : PK2Controller
-            Route::get('/pk2Absensi', 'adminPanel@dataPk2Absensi');
+            Route::get('/pk2Absensi', 'AdminController@getPk2mabaAbsen')->name('show-pk2-absensi');
             Route::post('/pk2Absensi', 'adminPanel@importPk2Absensi');
-            Route::get('/editPk2Absensi', 'adminPanel@editPk2Absensi');
-            Route::put('/editPk2Absensi', 'adminPanel@prosesEditPk2Absensi');
-            Route::get('/pk2Keaktifan', 'adminPanel@dataPk2Keaktifan');
+            Route::get('{nim}/edit-Pk2Absensi', 'AdminController@getEditPk2mabaAbsensi')->name('show-edit-pk2-absensi');
+            Route::post('{nim}/edit-Pk2Absensi', 'AdminController@editPk2mabamabaAbsen')->name('edit-pk2-absensi');
+            Route::post('{nim}/hapus-Pk2Absensi', 'AdminController@hapusPk2mabaAbsen')->name('hapus-pk2-absensi');
+
+            Route::get('/pk2Keaktifan', 'AdminController@getPk2mabaKeaktifan')->name('show-pk2-keaktifan');
             Route::post('/pk2Keaktifan', 'adminPanel@importPk2Keaktifan');
-            Route::get('/editPk2Keaktifan', 'adminPanel@editPk2Keaktifan');
-            Route::put('/editPk2Keaktifan', 'adminPanel@prosesEditPk2Keaktifan');
+            Route::get('{nim}/edit-Pk2Keaktifan', 'AdminController@getEditPk2mabaKeaktifan')->name('show-edit-pk2-keaktifan');
+            Route::post('{nim}/edit-Pk2Keaktifan', 'AdminController@editPk2mabaKeaktifan')->name('edit-pk2-keaktifan');
+            Route::post('{nim}/hapus-Pk2Keaktifan', 'AdminController@hapusPk2mabaKeaktifan')->name('hapus-pk2-keaktifan');
+
             Route::get('/pk2Tugas', 'adminPanel@dataPk2Tugas');
             Route::post('/pk2Tugas', 'adminPanel@importPk2Tugas');
             Route::get('/editPk2Tugas', 'adminPanel@editPk2Tugas');
             Route::put('/editPk2Tugas', 'adminPanel@prosesEditPk2Tugas');
             Route::get('/lihatEsaiPk2Tugas', 'adminPanel@lihatEsaiPk2tugas');
-            Route::get('/pk2Pelanggaran', 'adminPanel@dataPk2Pelanggaran');
-            Route::post('/pk2Pelanggaran', 'adminPanel@importPk2Pelanggaran');
-            Route::get('/editPk2Pelanggaran', 'adminPanel@editPk2Pelanggaran');
-            Route::put('/editPk2Pelanggaran', 'adminPanel@prosesEditPk2Pelanggaran');
-            Route::get('/pk2Total', 'adminPanel@dataPk2Total');
 
-            Route::get('/stAbsensi', 'adminPanel@dataStAbsensi');
+            Route::get('/pk2Pelanggaran', 'AdminController@getPk2mabaPelanggaran')->name('show-pk2-pelanggaran');
+            Route::post('/pk2Pelanggaran', 'adminPanel@importPk2Pelanggaran');
+            Route::get('{nim}/edit-Pk2Pelanggaran', 'AdminController@getEditPk2mabaPelanggaran')->name('show-edit-pk2-pelanggaran');
+            Route::post('{nim}/edit-Pk2Pelanggaran', 'AdminController@editPk2mabaPelanggaran')->name('edit-pk2-pelanggaran');
+            Route::post('{nim}/hapus-Pk2Pelanggaran', 'AdminController@hapusPk2mabaPelanggaran')->name('hapus-pk2-pelanggaran');
+
+
+            Route::get('/pk2Total', 'AdminController@getPk2mabaRekapNilai')->name('show-pk2-rekap');
+
+            Route::get('/st-Absensi', 'AdminController@getStartupAbsen')->name('show-stAbsensi');
             Route::post('/stAbsensi', 'adminPanel@importStAbsensi');
-            Route::get('/editStAbsensi', 'adminPanel@editStAbsensi');
-            Route::put('/editStAbsensi', 'adminPanel@prosesEditStAbsensi');
-            Route::get('/stKeaktifan', 'adminPanel@dataStKeaktifan');
+            Route::get('{nim}/edit-StAbsensi', 'AdminController@getEditStartupAbsen')->name('show-edit-stAbsensi');
+            Route::post('{nim}/edit-StAbsensi', 'AdminController@editStartupAbsen')->name('edit-stAbsensi');
+            Route::post('{nim}/hapus-StAbsensi', 'AdminController@hapusStartupAbsen')->name('hapus-stAbsensi');
+
+            Route::get('/st-Keaktifan', 'AdminController@getStartupKeaktifan')->name('show-stKeaktifan');
             Route::post('/stKeaktifan', 'adminPanel@importStKeaktifan');
-            Route::get('/editStKeaktifan', 'adminPanel@editStKeaktifan');
-            Route::put('/editStKeaktifan', 'adminPanel@prosesEditStKeaktifan');
+            Route::get('{nim}/edit-StKeaktifan', 'AdminController@getEditStartupKeaktifan')->name('show-edit-stKeaktifan');
+            Route::post('{nim}/editStKeaktifan', 'AdminController@editStartupKeaktifan')->name('edit-stKeaktifan');
+            Route::post('{nim}/hapus-StKeaktifan', 'AdminController@hapusStartupKeaktifan')->name('hapus-stKeaktifan');
+
             Route::get('/stTugas', 'adminPanel@dataStTugas');
             Route::post('/stTugas', 'adminPanel@importStTugas');
             Route::get('/stTugasDeepTalk', 'adminPanel@datastTugasDeepTalk');
@@ -148,10 +164,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::get('/editPkmPelanggaran', 'adminPanel@editPkmPelanggaran');
             Route::put('/editPkmPelanggaran', 'adminPanel@prosesEditPkmPelanggaran');
 
-            Route::get('/prodiFinal', 'adminPanel@dataProdiFinal');
+            Route::get('/prodiFinal', 'AdminController@dataProdiFinal')->name('show-prodi-final');
             Route::post('/prodiFinal', 'adminPanel@importProdiFinal');
-            Route::get('/editProdiFinal', 'adminPanel@editProdiFinal');
-            Route::put('/editProdiFinal', 'adminPanel@prosesEditProdiFinal');
+            Route::get('{nim}/editProdiFinal', 'AdminController@getEditProdiFinal')->name('show-edit-prodi-final');
+            Route::put('{nim}/editProdiFinal', 'AdminController@EditProdiFinal')->name('edit-prodi-final');
         });
     });
 });
