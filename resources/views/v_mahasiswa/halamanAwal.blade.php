@@ -3,7 +3,7 @@
 
 @section('content')
 <!-- Navbar atas -->
-<nav class="navbar nav-home navbar-expand-md navbar-light fixed-top">
+<nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
     <div class="container">
         <a class="navbar-brand " data-item-ojb="pk2-jb1" href="#"><img src="{{asset('img/bg-section/simaba2@4x.svg')}}"
                 class="imgCover"></a>
@@ -57,9 +57,11 @@
                         allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
+            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">                     
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
-                <a href="#"><span class="spanAfterText">LIHAT VIDEO LAINNYA</span></a>
+                <a href="#">
+                    <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
+                </a>
             </div>
         </div>
     </div>
@@ -79,6 +81,7 @@
 <!-- EndTitle -->
 
 <!-- tentangPK2Maba -->
+<!-- <div style="height:100vh;border:1px solid yellow"> -->
 <div class="jumbotron jumbotron-fluid imgCover pk2-jb3">
     <div class="container">
         <div class="row h-100 align-items-center">
@@ -136,6 +139,8 @@
         </div>
     </div>
 </div>
+<!-- </div> -->
+
 <!-- endTentangPK2Maba -->
 
 <!-- Title -->
@@ -163,13 +168,13 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
                                     <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">kelas inpirasi</h5>
@@ -193,7 +198,7 @@
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">Media heading</h5>
@@ -217,7 +222,7 @@
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">Media heading</h5>
@@ -259,64 +264,71 @@
 <!-- EndTitle -->
 
 <!-- berita -->
-<div class="jumbotron jumbotron-fluid pk2-jb6">
-    <div class="bg-berita">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <div class="hovereffect-berita">
-                        <img class="img-fluid img-responsive" src="{{asset('img/berita/kartini.png')}}" alt="">
-                        <div class="overlay">
-                            <h2>Hover effect 1</h2>
-                            <a class="info" href="#">link here</a>
+<div class="jumbotron jumbotron-fluid pk2-jb6">    
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-sm-12 col-md-6">
+                <div class="hovereffect-berita">
+                    <img class="img1" src="{{asset('img/berita/kartini.png')}}" alt="">
+                    <div class="overlay">
+                        <h2>Selamat Hari Kartini 2019</h2>
+                        <div class="h-100 d-flex align-items-center justify-content-center">
+                            <a class="info" href="#">Lihat Berita</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita">
-                                <img class="img-responsive" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
-                                <div class="overlay">
-                                    <h2>Hover effect 1</h2>
-                                    <a class="info" href="#">link here</a>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita">
+                            <img class="img2" src="{{asset('img/berita/myhome.jpg')}}" alt="">
+                            <div class="overlay">
+                            <h2>Selamat Hari Buruh 2019</h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="#">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita">
-                                <img class="img-responsive" src="{{asset('img/berita/IMG_0069_birukuning.png')}}"
-                                    alt="">
-                                <div class="overlay">
-                                    <h2>Hover effect 1</h2>
-                                    <a class="info" href="#">link here</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita">
+                            <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
+                            <div class="overlay">
+                            <h2>Atribut dan Barang Bawaan</h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="#">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita">
-                                <img class="img-responsive" src="{{asset('img/berita/IMG_0069_birukuning.png')}}"
-                                    alt="">
-                                <div class="overlay">
-                                    <h2>Hover effect 1</h2>
-                                    <a class="info" href="#">link here</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita">
+                            <img class="img2" src="{{asset('img/berita/IMG_0069_birukuning.png')}}" alt="">
+                            <div class="overlay">
+                            <h2>Atribut dan Barang Bawaan</h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="#">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita">
-                                <img class="img-responsive" src="{{asset('img/berita/line1.png')}}" alt="">
-                                <div class="overlay">
-                                    <h2>Hover effect 1</h2>
-                                    <a class="info" href="#">link here</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita">
+                            <img class="img2" src="{{asset('img/berita/line1.png')}}" alt="">
+                            <div class="overlay">
+                                <h2>Selamat Datang Mahasiswa Baru</h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="#">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
         </div>
-    </div>
+    </div>    
 </div>
 <!-- endBerita -->
 
