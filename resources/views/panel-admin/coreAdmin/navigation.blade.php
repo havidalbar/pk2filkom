@@ -47,10 +47,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
-
-                    <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-                        <a  href="#" class="m-menu__link m-menu__toggle">
+					</li> --}}
+					
+                    <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+                        <a href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
                                 Publikasi
@@ -58,27 +58,28 @@
                             <i class="m-menu__hor-arrow la la-angle-down"></i>
                             <i class="m-menu__ver-arrow la la-angle-right"></i>
                         </a>
-                        <div class="m-menu__submenu  m-menu__submenu--classic m-menu__submenu--left">
+                        <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
-                                <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.kategori.index')}}" class="m-menu__link ">
+								{{-- UNUSED FUNCTION : [Fadhil] 
+									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+                                    <a href="{{ route('panel.kategori.index') }}" class="m-menu__link ">
                                         <i class="m-menu__link-icon la la-tags"></i>
                                         <span class="m-menu__link-text">
                                             KATEGORI
                                         </span>
                                     </a>
-                                </li>
-                                <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.artikel.index')}}" class="m-menu__link ">
+                                </li> --}}
+                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+									<a href="{{ route('panel.artikel.index') }}" class="m-menu__link">
                                         <i class="m-menu__link-icon la la-pencil-square-o"></i>
                                         <span class="m-menu__link-text">
                                             ARTIKEL
                                         </span>
                                     </a>
                                 </li>
-                                <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.faq.index')}}" class="m-menu__link ">
+                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                    <a href="{{ route('panel.faq.index') }}" class="m-menu__link">
                                         <i class="m-menu__link-icon flaticon-info"></i>
                                         <span class="m-menu__link-text">
                                             FAQ
@@ -89,7 +90,7 @@
                         </div>
                     </li>
 
-                    <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+                    <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" aria-haspopup="true">
                         <a  href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
@@ -101,7 +102,7 @@
                         <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
-                                <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
+                                <li class="m-menu__item  m-menu__item--submenu" data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
                                     <a  href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-list-alt"></i>
                                         <span class="m-menu__link-text">
@@ -398,10 +399,10 @@
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </a>
                                     <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-                                        <span class="m-menu__arrow "></span>
+                                        <span class="m-menu__arrow"></span>
                                         <ul class="m-menu__subnav">
-                                            <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.pengguna.index')}}" class="m-menu__link ">
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a  href="{{route('panel.pengguna.index')}}" class="m-menu__link">
                                                     <i class="m-menu__link-icon flaticon-user-settings"></i>
                                                     <span class="m-menu__link-text">
                                                         DAFTAR PENGGUNA
@@ -411,8 +412,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.full.show-nilai-kkm')}}" class="m-menu__link ">
+                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                    <a  href="{{route('panel.full.show-nilai-kkm')}}" class="m-menu__link">
                                         <i class="m-menu__link-icon la la-bar-chart-o"></i>
                                         <span class="m-menu__link-text">
                                             NILAI KKM

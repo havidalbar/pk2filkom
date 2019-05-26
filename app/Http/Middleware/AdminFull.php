@@ -16,8 +16,7 @@ class AdminFull
      */
     public function handle($request, Closure $next)
     {
-        $access = ['BPI', 'PIT', 'SQC'];
-        if (in_array(Session::get('divisi'), $access)) {
+        if (Session::get('is_full_access')) {
             return $next($request);
         } else {
 			return redirect()->route('panel.index')->with('alert', 'Anda tidak memiliki akses');

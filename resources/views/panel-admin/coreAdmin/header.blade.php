@@ -7,8 +7,8 @@
             <div class="m-grid__item m-brand">
                 <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="/dashboard" class="m-brand__logo-wrapper">
-                            <img alt="" src="{{asset('img/logo/simaba4@4x.png')}}" style="height: 60px;width: 120px;"/>
+                        <a href="{{ route('panel.index') }}" class="m-brand__logo-wrapper">
+                            <img alt="SiMaba!" src="{{ asset('img/logo/simaba4@4x.png') }}" style="height: 60px;width: 120px;"/>
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
@@ -39,14 +39,14 @@
                                     <div class="m-dropdown__header m--align-center" style="background: url({{asset('admin/user_profile_bg.jpg')}}); background-size: cover;">
                                         <div class="m-card-user m-card-user--skin-dark">
                                             <div class="m-card-user__pic">
-                                                <img src="{{asset('admin/avatar.jpg')}}" class="m--img-rounded m--marginless" alt=""/>
+                                                <img src="{{ asset('admin/avatar.jpg') }}" class="m--img-rounded m--marginless" alt=""/>
                                             </div>
                                             <div class="m-card-user__details">
                                                 <span class="m-card-user__name m--font-weight-500 mb-3">
-                                                    {{ucwords(Session::get('username'))}}
+                                                    {{ Session::get('username') }}
                                                 </span>
                                                 <a href="#" class="m-card-user__email m--font-weight-300 m-link">
-                                                    {{strtoupper(Session::get('divisi'))}}
+                                                    {{ Session::get('divisi') }}
                                                 </a>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                 </li>
                                                 <li class="m-nav__separator m-nav__separator--fit"></li>
                                                 <li class="m-nav__item">
-                                                    <a onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                    <a href="javascript:void(0)" onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                         Logout
 													</a>
                                                 </li>
@@ -91,11 +91,11 @@
                                     </span>
                                     <span class="m-topbar__username m--hidden-tablet m--hidden-mobile m--padding-right-15">
                                         <span class="m-link">
-                                            {{ucwords(Session::get('username'))}}
+                                            {{ Session::get('username') }}
                                         </span>
                                     </span>
                                     <span class="m-topbar__userpic">
-                                        <img src="{{asset('admin/avatar.jpg')}}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+                                        <img src="{{ asset('admin/avatar.jpg') }}" class="m--img-rounded m--marginless m--img-centered" alt=""/>
                                     </span>
                                 </a>
                                 <div class="m-dropdown__wrapper">
@@ -108,10 +108,10 @@
                                                 </div>
                                                 <div class="m-card-user__details">
                                                     <span class="m-card-user__name m--font-weight-500">
-                                                        {{ucwords(Session::get('username'))}}
+                                                        {{ Session::get('username') }}
                                                     </span>
                                                     <a href="#" class="m-card-user__email m--font-weight-300 m-link">
-                                                        {{strtoupper(Session::get('divisi'))}}
+                                                        {{ Session::get('divisi') }}
                                                     </a>
                                                 </div>
                                             </div>
@@ -129,7 +129,7 @@
                                                     </li>
                                                     <li class="m-nav__separator m-nav__separator--fit"></li>
                                                     <li class="m-nav__item">
-														<a onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+														<a href="javascript:void(0)" onclick="document.getElementById('logout_form').submit()" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
 															Logout
 														</a>
 														<form action="{{route('panel.logout')}}" id="logout_form" method="POST">

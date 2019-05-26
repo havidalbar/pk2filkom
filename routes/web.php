@@ -45,33 +45,48 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         Route::get('dashboard', 'AdminController@getDashboard')->name('dashboard');
 
         // DIVISI UMUM
+        Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
+            Route::get('/', function ($id) {
+                return redirect()->route('panel.mahasiswa.biodata');
+            })->name('index');
+            Route::get('biodata', 'MahasiswaController@getBiodata')->name('biodata');
+            Route::get('kesehatan', 'MahasiswaController@getKesehatan')->name('kesehatan');
+        });
         Route::get('biodata-mahasiswa', 'adminPanel@dataBiodataMahasiswa');
         Route::get('kesehatan-mahasiswa', 'adminPanel@dataKesehatanMahasiswa');
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
             Route::get('/', 'AdminController@getPengguna')->name('index');
-			Route::get('{username}/ganti-password', 'AdminController@getEditPengguna')->name('show-ganti-password');
-            Route::post('{username}/ganti-password', 'AdminController@editPengguna')->name('ganti-password');
+            // TODO : View Ganti Password
+            Route::get('ganti-password', 'AdminController@getEditPengguna')->name('show-ganti-password');
+            Route::post('ganti-password', 'AdminController@editPengguna')->name('ganti-password');
         });
 
-		// DIVISI HUMAS
-		Route::group(['middleware' => ['admin.publikasi']], function () {
-			// UNUSED FUNCTION : [Fadhil]
+        // DIVISI HUMAS
+        Route::group(['middleware' => ['admin.publikasi']], function () {
+            // UNUSED FUNCTION : [Fadhil]
             // Route::resource('kategori', 'KategoriController')->parameters([
-			// 	'kategori' => 'slug'
-			// ])->except(['show']);
+            //     'kategori' => 'slug'
+            // ])->except(['show']);
 
-			Route::resource('artikel', 'ArtikelController')->parameters([
-				'artikel' => 'slug'
-			])->except(['show']);
+            Route::resource('artikel', 'ArtikelController')->parameters([
+                'artikel' => 'slug',
+            ])->except(['show']);
 
-			Route::resource('faq', 'FaqController')->parameters([
-				'faq' => 'id'
-			])->except(['show']);
+            Route::resource('faq', 'FaqController')->parameters([
+                'faq' => 'id',
+            ])->except(['show']);
         });
 
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
-        Route::group(['middleware' => ['admin.full'], 'prefix' =>'full' ,'as' =>'full.'], function () {
+        Route::group(['middleware' => ['admin.full']], function () {
+            Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
+                Route::get('/editBiodataMahasiswa', 'adminPanel@editBiodataMahasiswa')->name('edit-biodata');
+                Route::put('/editBiodataMahasiswa', 'adminPanel@prosesEditBiodataMahasiswa');
+            });
+		});
+		
+        Route::group(['middleware' => ['admin.full'], 'prefix' => 'full', 'as' => 'full.'], function () {
             Route::get('/NilaiKKM', 'AdminController@getNilaiKKM')->name('show-nilai-kkm');
             Route::get('/addNilaiKKM', 'AdminController@getTambahNilaiKKM')->name('show-add-nilai-kkm');
             Route::post('/addNilaiKKM', 'AdminController@tambahNilaiKKM')->name('add-nilai-kkm');
@@ -84,9 +99,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::get('{username}/edit-pengguna', 'AdminController@getEditPengguna')->name('show-edit-pengguna');
             Route::post('{username}/edit-pengguna', 'AdminController@editPenggunaFull')->name('edit-pengguna');
             Route::post('{username}/hapus-pengguna', 'AdminController@hapusPengguna')->name('hapus-pengguna');
-
-            Route::get('/editBiodataMahasiswa', 'adminPanel@editBiodataMahasiswa');
-            Route::put('/editBiodataMahasiswa', 'adminPanel@prosesEditBiodataMahasiswa');
 
             // TODO : PK2Controller
             Route::get('/pk2Absensi', 'AdminController@getPk2mabaAbsen')->name('show-pk2-absensi');
@@ -112,7 +124,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::get('{nim}/edit-Pk2Pelanggaran', 'AdminController@getEditPk2mabaPelanggaran')->name('show-edit-pk2-pelanggaran');
             Route::post('{nim}/edit-Pk2Pelanggaran', 'AdminController@editPk2mabaPelanggaran')->name('edit-pk2-pelanggaran');
             Route::post('{nim}/hapus-Pk2Pelanggaran', 'AdminController@hapusPk2mabaPelanggaran')->name('hapus-pk2-pelanggaran');
-
 
             Route::get('/pk2Total', 'AdminController@getPk2mabaRekapNilai')->name('show-pk2-rekap');
 
