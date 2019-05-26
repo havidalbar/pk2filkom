@@ -37,7 +37,7 @@
                                         <div class="input-group-text form-input"><i class="icon-ttl-biru fa-lg"></i>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control form-data-diri" placeholder="Apr 27, 1999"
+                                    <input type="date" class="form-control form-data-diri" placeholder="Apr 27, 1999"
                                         style="box-shadow:none">
                                 </div>
                             </div>
