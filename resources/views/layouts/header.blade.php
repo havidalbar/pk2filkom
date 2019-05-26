@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light sticky-top sticky-dekstop">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top sticky-dekstop">
     <div class="container">
         <a class="navbar-brand" data-item-ojb="pk2-jb1" href="#"><img src="{{asset('img/bg-section/simaba2@4x.svg')}}"
                 class="imgCover"></a>
