@@ -16,11 +16,10 @@ class AdminPublikasi
      */
     public function handle($request, Closure $next)
     {
-        $access = ['BPI', 'PIT', 'SQC', 'HUMAS'];
-        if (in_array(Session::get('divisi'), $access)) {
+        if (Session::get('is_full_access') || Session::get('divisi') == 'HUMAS') {
             return $next($request);
         } else {
-			return redirect()->route('panel.index')->with('alert', 'Anda tidak memiliki akses');
+            return redirect()->route('panel.index')->with('alert', 'Anda tidak memiliki akses');
         }
     }
 }

@@ -15,11 +15,11 @@ use App\Pk2mRekapnilai;
 use App\Pk2mTourAbsen;
 use App\Pk2mTourKeaktifan;
 use App\Pk2mTourPelanggaran;
+use App\ProdiFinal;
 use App\StartupAbsen;
 use App\StartupKeaktifan;
 use App\StartupPelanggaran;
 use App\StartupRekapNilai;
-use App\ProdiFinal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -27,6 +27,130 @@ use Validator;
 
 class AdminController extends Controller
 {
+
+    private static $pilihanDivisi = [
+        'BPI',
+        'DDM',
+        'HUMAS',
+        'KESTARI',
+        'KOMKES',
+        'PENDAMPING',
+        'PIT',
+        'SQC',
+    ];
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $penggunas = Pengguna::all();
+        return view('panel-admin.pengguna.index', ['penggunas' => $penggunas]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('panel-admin.pengguna.create', ['pilihanDivisi' => static::$pilihanDivisi]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|min:3|max:100',
+            'password' => 'required|min:6|max:20',
+            'divisi' => 'required|min:3|max:20',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $data = new Pengguna();
+            $data->username = $request->username;
+            $data->password = Hash::make($request->password);
+            $data->divisi = $request->divisi;
+            $data->save();
+            return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mendaftar pengguna');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function show($username)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        return view('panel-admin.pengguna.edit', [
+            'dataPengguna' => $dataPengguna,
+            'pilihanDivisi' => static::$pilihanDivisi,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        $dataPengguna->username = $request->username;
+        $dataPengguna->divisi = $request->divisi;
+        $dataPengguna->save();
+
+        if (Session::get('username') == $username) {
+            Session::put('username', $request->username);
+            Session::put('divisi', $request->divisi);
+            Session::put('is_full_access', $dataPengguna->is_full_access);
+        }
+        return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mengedit pengguna');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        $dataPengguna->delete();
+        if (Session::get('username') == $username) {
+            logout();
+        } else {
+            return redirect()->back()->with('alert', 'Berhasil menghapus pengguna');
+        }
+    }
+
     public function getLogin()
     {
         return view('login-admin');
@@ -41,8 +165,13 @@ class AdminController extends Controller
             if (Hash::check($password, $data->password)) {
                 Session::put('username', $data->username);
                 Session::put('divisi', $data->divisi);
+                Session::put('is_full_access', $data->is_full_access);
 
-                return redirect()->route('panel.dashboard');
+                if ($request->redirectTo) {
+                    return redirect($request->redirectTo);
+                } else {
+                    return redirect()->route('panel.dashboard');
+                }
             } else {
                 return redirect()->back()->with('alert', 'Password salah!');
             }
@@ -54,7 +183,26 @@ class AdminController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect()->route('panel.')->with('alert', 'Anda telah keluar');
+        return redirect()->route('panel.login')->with('alert', 'Anda telah keluar');
+    }
+
+    public function getGantiPassword()
+    {
+        return view('panel-admin.pengguna.ganti-password');
+    }
+
+    public function gantiPassword(Request $request)
+    {
+        $pengguna = Pengguna::find(Session::get('username'));
+
+        if (Hash::check($request->password_lama, $pengguna->password)) {
+            $pengguna->password = Hash::make($request->password_baru);
+            $pengguna->save();
+
+            return redirect()->back()->with('alert', 'Password berhasil diubah');
+        } else {
+            return redirect()->back()->with('alert', 'Password salah');
+        }
     }
 
     public function getDashboard()
@@ -189,7 +337,7 @@ class AdminController extends Controller
         $dataNilai = NilaiKKM::where('id', $id)->update(
             [
                 'kegiatan' => $request->kegiatan,
-                'nilai' => $request->nilai
+                'nilai' => $request->nilai,
             ]
         );
         return redirect()->route('panel.full.show-nilai-kkm')->with('alert', 'Berhasil mengubah data nilai kkm');
@@ -358,9 +506,9 @@ class AdminController extends Controller
     {
         $dataKeaktifan = Pk2mKeaktifan::where('nim', $nim)->update(
             ['aktif_rangkaian1' => $request->aktif_rangkaian1,
-            'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
-            'aktif_rangkaian2' => $request->aktif_rangkaian2,
-            'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2]
+                'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
+                'aktif_rangkaian2' => $request->aktif_rangkaian2,
+                'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2]
         );
         return redirect()->route('panel.full.show-pk2-keaktifan')->with('alert', 'Berhasil mengubah data pk2maba Keaktifan');
     }
@@ -390,8 +538,8 @@ class AdminController extends Controller
     {
         $dataPelanggaran = Pk2mPelanggaran::where('nim', $nim)->update(
             ['ringan' => $request->ringan,
-            'sedang' => $request->sedang,
-            'berat' => $request->berat]
+                'sedang' => $request->sedang,
+                'berat' => $request->berat]
         );
         return redirect()->route('panel.full.show-pk2-pelanggaran')->with('alert', 'Berhasil mengubah data pk2maba Pelanggaran');
     }
@@ -411,7 +559,7 @@ class AdminController extends Controller
         $pk2mabaRekapNilais = Pk2mRekapNilai::all();
         $pk2mabaRekapNilai = array();
         for ($i = 0; $i < count($pk2mabaRekapNilais); $i++) {
-            $pk2mabaRekapNilai[$i] = Pk2mRekapNilai::where('nim', $pk2mabaKeaktifans[$i]->nim)->where('nim',$pk2mabaPelanggarans[$i]->nim)->first();
+            $pk2mabaRekapNilai[$i] = Pk2mRekapNilai::where('nim', $pk2mabaKeaktifans[$i]->nim)->where('nim', $pk2mabaPelanggarans[$i]->nim)->first();
             $pk2mabaRekapNilai[$i]->aktif_rangkaian1 = $pk2mabaKeaktifans[$i]->aktif_rangkaian1;
             $pk2mabaRekapNilai[$i]->penerapan_nilai_rangkaian1 = $pk2mabaKeaktifans[$i]->penerapan_nilai_rangkaian1;
             $pk2mabaRekapNilai[$i]->aktif_rangkaian2 = $pk2mabaKeaktifans[$i]->aktif_rangkaian2;
@@ -422,9 +570,9 @@ class AdminController extends Controller
         }
         $mahasiswas = array();
         for ($i = 0; $i < count($pk2mabaRekapNilai); $i++) {
-        $mahasiswas[$i] = Mahasiswa::where('nim', $pk2mabaRekapNilai)->first();
+            $mahasiswas[$i] = Mahasiswa::where('nim', $pk2mabaRekapNilai)->first();
         }
-        return view('panel-admin.pk2Total', ['mahasiswas' => $mahasiswas,'pk2mabaRekapNilai' => $pk2mabaRekapNilai]);
+        return view('panel-admin.pk2Total', ['mahasiswas' => $mahasiswas, 'pk2mabaRekapNilai' => $pk2mabaRekapNilai]);
     }
 
     public function getEditPk2mabaRekapNilai($nim)
@@ -438,12 +586,12 @@ class AdminController extends Controller
     {
         $dataRekapNilai = Pk2mRekapNilai::where('nim', $nim)->update(
             ['aktif_rangkaian1' => $request->aktif_rangkaian1,
-            'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
-            'aktif_rangkaian2' => $request->aktif_rangkaian2,
-            'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2,
-            'ringan' => $request->ringan,
-            'sedang' => $request->sedang,
-            'berat' => $request->berat]
+                'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
+                'aktif_rangkaian2' => $request->aktif_rangkaian2,
+                'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2,
+                'ringan' => $request->ringan,
+                'sedang' => $request->sedang,
+                'berat' => $request->berat]
         );
         return redirect('/daftar-pk2mRekapNilai')->with('alert', 'Berhasil mengubah data pk2maba Rekap Nilai');
     }
@@ -466,8 +614,8 @@ class AdminController extends Controller
     {
         $dataAbsen = StartupAbsen::where('nim', $nim)->update(
             ['nilai_rangkaian3' => $request->nilai_rangkaian3,
-            'nilai_rangkaian4' => $request->nilai_rangkaian4,
-            'nilai_rangkaian5' => $request->nilai_rangkaian5]
+                'nilai_rangkaian4' => $request->nilai_rangkaian4,
+                'nilai_rangkaian5' => $request->nilai_rangkaian5]
         );
         return redirect()->route('panel.full.show-stAbsensi')->with('alert', 'Berhasil mengubah data startup Absensi');
     }
@@ -498,11 +646,11 @@ class AdminController extends Controller
     {
         $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->update(
             ['aktif_rangkaian3' => $request->aktif_rangkaian3,
-            'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
-            'aktif_rangkaian4' => $request->aktif_rangkaian4,
-            'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
-            'aktif_rangkaian5' => $request->aktif_rangkaian5,
-            'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
+                'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
+                'aktif_rangkaian4' => $request->aktif_rangkaian4,
+                'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
+                'aktif_rangkaian5' => $request->aktif_rangkaian5,
+                'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
         );
         return redirect()->route('panel.full.show-stKeaktifan')->with('alert', 'Berhasil mengubah data startup Keaktifan');
     }
@@ -532,8 +680,8 @@ class AdminController extends Controller
     {
         $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->update(
             ['ringan' => $request->ringan,
-            'sedang' => $request->sedang,
-            'berat' => $request->berat]
+                'sedang' => $request->sedang,
+                'berat' => $request->berat]
         );
         return redirect()->route('panel.full.show-stPelanggaran')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
     }
@@ -575,11 +723,11 @@ class AdminController extends Controller
     {
         $dataRekapNilai = StartupRekapNilai::where('nim', $nim)->update(
             ['aktif_rangkaian3' => $request->aktif_rangkaian3,
-            'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
-            'aktif_rangkaian4' => $request->aktif_rangkaian4,
-            'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
-            'aktif_rangkaian5' => $request->aktif_rangkaian5,
-            'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
+                'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
+                'aktif_rangkaian4' => $request->aktif_rangkaian4,
+                'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
+                'aktif_rangkaian5' => $request->aktif_rangkaian5,
+                'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
         );
 
         return redirect('/daftar-startupRekapNilai')->with('alert', 'Berhasil mengubah data startup Rekap Nilai');
@@ -603,8 +751,8 @@ class AdminController extends Controller
     {
         $dataAbsen = Pk2mTourAbsen::where('nim', $nim)->update(
             ['nilai_rangkaian6' => $request->nilai_rangkaian6,
-            'nilai_rangkaian7' => $request->nilai_rangkaian7,
-            'nilai_rangkaian8' => $request->nilai_rangkaian8]
+                'nilai_rangkaian7' => $request->nilai_rangkaian7,
+                'nilai_rangkaian8' => $request->nilai_rangkaian8]
         );
         return redirect()->route('panel.full.show-pkm-absensi')->with('alert', 'Berhasil mengubah data pk2mabaTour Absensi');
     }
@@ -634,11 +782,11 @@ class AdminController extends Controller
     {
         $dataKeaktifan = Pk2mTourKeaktifan::where('nim', $nim)->update(
             ['aktif_rangkaian6' => $request->aktif_rangkaian6,
-            'penerapan_nilai_rangkaian6' => $request->penerapan_nilai_rangkaian6,
-            'aktif_rangkaian7' => $request->aktif_rangkaian7,
-            'penerapan_nilai_rangkaian7' => $request->penerapan_nilai_rangkaian7,
-            'aktif_rangkaian8' => $request->aktif_rangkaian8,
-            'penerapan_nilai_rangkaian8' => $request->penerapan_nilai_rangkaian8]
+                'penerapan_nilai_rangkaian6' => $request->penerapan_nilai_rangkaian6,
+                'aktif_rangkaian7' => $request->aktif_rangkaian7,
+                'penerapan_nilai_rangkaian7' => $request->penerapan_nilai_rangkaian7,
+                'aktif_rangkaian8' => $request->aktif_rangkaian8,
+                'penerapan_nilai_rangkaian8' => $request->penerapan_nilai_rangkaian8]
         );
         return redirect()->route('panel.full.show-pkm-keaktifan')->with('alert', 'Berhasil mengubah data pk2mabaTour Keaktifan');
     }
@@ -668,8 +816,8 @@ class AdminController extends Controller
     {
         $dataPelanggaran = Pk2mTourPelanggaran::where('nim', $nim)->update(
             ['ringan' => $request->ringan,
-            'sedang' => $request->sedang,
-            'berat' => $request->berat]
+                'sedang' => $request->sedang,
+                'berat' => $request->berat]
         );
         return redirect('/daftar-pk2mabaTourPelanggaran')->with('alert', 'Berhasil mengubah data pk2mabaTour Pelanggaran');
     }
