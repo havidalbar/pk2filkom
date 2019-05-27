@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    DATA 
+                    DATA
                     <small>
                         Rekap pelanggaran STARTUP ACADEMY
                     </small>
@@ -80,34 +80,37 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @for($i=0;$i<count($startupPelanggarans);$i++)
                     <tr>
                         <td>
-                            1
+                            {{$startupPelanggarans[$i]->nim}}
                         </td>
                         <td>
-                            1
+                            {{$startupPelanggarans[$i]->ringan}}
                         </td>
                         <td>
-                            1
+                            {{$startupPelanggarans[$i]->sedang}}
                         </td>
                         <td>
-                            1
+                            {{$startupPelanggarans[$i]->berat}}
                         </td>
                         <td>
                             <div class="btn-group" role="group" aria-label="First group">
-                                <a href="/editStPelanggaran" class="m-btn btn btn-warning">
+                                <a href="{{route('panel.full.show-edit-stPelanggaran',$startupPelanggarans[$i]->nim)}}" class="m-btn btn btn-warning">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="#" class="m-btn btn btn-danger">
-                                    <i class="fa fa-trash-o"></i>
-                                </a>
+                                <form action="{{route('panel.full.hapus-stPelanggaran',$startupPelanggarans[$i]->nim)}}" class="m-btn btn btn-danger" method="POST">
+                                    {{csrf_field()}}
+                                    <button class="fa fa-trash-o"></button>
+                                </form>
                             </div>
                         </td>
                     </tr>
+                    @endfor
                 </tbody>
             </table>
             <!--end: Datatable -->
-        </div>    
+        </div>
     </div>
 </div>
 </div>
@@ -136,7 +139,7 @@
                             </label>
                             <div></div>
                             <div class="col-8">
-                                <input type="file" name="pelanggaran" required="true"> 
+                                <input type="file" name="pelanggaran" required="true">
                             </div>
                         </div>
                     </div>

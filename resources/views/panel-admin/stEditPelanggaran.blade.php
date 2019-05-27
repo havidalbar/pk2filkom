@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    EDIT 
+                    EDIT
                     <small>
                         PELANGGARAN STARTUP ACADEMY
                     </small>
@@ -19,9 +19,9 @@
     <div class="m-content">
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body pt-1">
-            <form action="/editStPelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+            <form action="{{route('panel.full.edit-stPelanggaran',$startupPelanggaran->nim)}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
                 @csrf
-                @method("PUT")
+                @method("POST")
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -33,7 +33,7 @@
                             NIM
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="nim mahasiswa" type="text" id="nim-text-input" readonly="true">
+                            <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="{{$startupPelanggaran->nim}}" type="text" id="nim-text-input" readonly="true">
                             {!! $errors->first('nim','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             Ringan
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('ringan') ? 'form-control-danger' : '' }}" name="ringan" placeholder="ringan" value="Nilai Rangkaian Ke 1" type="text" id="ringan-text-input">
+                            <input class="form-control m-input {{ $errors->has('ringan') ? 'form-control-danger' : '' }}" name="ringan" placeholder="ringan" value="{{$startupPelanggaran->ringan}}" type="text" id="ringan-text-input">
                             {!! $errors->first('ringan','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             Sedang
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('sedang') ? 'form-control-danger' : '' }}" name="sedang" placeholder="sedang" value="Nilai Rangkaian Ke 2" type="text" id="sedang-text-input">
+                            <input class="form-control m-input {{ $errors->has('sedang') ? 'form-control-danger' : '' }}" name="sedang" placeholder="sedang" value="{{$startupPelanggaran->sedang}}" type="text" id="sedang-text-input">
                             {!! $errors->first('sedang','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -60,12 +60,13 @@
                             Berat
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('berat') ? 'form-control-danger' : '' }}" name="berat" placeholder="berat" value="Nilai Rangkaian Ke 2" type="text" id="berat-text-input">
+                            <input class="form-control m-input {{ $errors->has('berat') ? 'form-control-danger' : '' }}" name="berat" placeholder="berat" value="{{$startupPelanggaran->berat}}" type="text" id="berat-text-input">
                             {!! $errors->first('berat','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions">
+                            {{csrf_field()}}
                             <button type="submit" class="btn btn-primary">
                                 Submit
                             </button>
@@ -76,7 +77,7 @@
                     </div>
                 </div>
             </form>
-        </div>    
+        </div>
     </div>
     </div>
 </div>

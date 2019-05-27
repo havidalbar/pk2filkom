@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    EDIT 
+                    EDIT
                     <small>
                         PKM TOUR ABSENSI
                     </small>
@@ -19,9 +19,9 @@
     <div class="m-content">
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body pt-1">
-            <form action="/editPkmAbsensi" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+            <form action="{{route('panel.full.edit-pkm-absensi',$pk2mabaTourAbsen->nim)}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
                 @csrf
-                @method("PUT")
+                @method("POST")
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -33,7 +33,7 @@
                             NIM
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="nim mahasiswa" type="text" id="nim-text-input" readonly="true">
+                            <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="{{$pk2mabaTourAbsen->nim}}" type="text" id="nim-text-input" readonly="true">
                             {!! $errors->first('nim','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             Nilai Rangkaian Ke - 1
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nilaiR1') ? 'form-control-danger' : '' }}" name="nilaiR1" placeholder="nilaiR1" value="Nilai Rangkaian Ke 1" type="text" id="nilaiR1-text-input">
+                            <input class="form-control m-input {{ $errors->has('nilaiR1') ? 'form-control-danger' : '' }}" name="nilai_rangkaian6" placeholder="nilaiR1" value="{{$pk2mabaTourAbsen->nilai_rangkaian6}}" type="text" id="nilaiR1-text-input">
                             {!! $errors->first('nilaiR1','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                             Nilai Rangkaian Ke - 2
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nilaiR2') ? 'form-control-danger' : '' }}" name="nilaiR2" placeholder="nilaiR2" value="Nilai Rangkaian Ke 2" type="text" id="nilaiR2-text-input">
+                            <input class="form-control m-input {{ $errors->has('nilaiR2') ? 'form-control-danger' : '' }}" name="nilai_rangkaian7" placeholder="nilaiR2" value="{{$pk2mabaTourAbsen->nilai_rangkaian7}}" type="text" id="nilaiR2-text-input">
                             {!! $errors->first('nilaiR2','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -60,12 +60,13 @@
                             Nilai Rangkaian Ke - 3
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nilaiR3') ? 'form-control-danger' : '' }}" name="nilaiR3" placeholder="nilaiR3" value="Nilai Rangkaian Ke 2" type="text" id="nilaiR3-text-input">
+                            <input class="form-control m-input {{ $errors->has('nilaiR3') ? 'form-control-danger' : '' }}" name="nilai_rangkaian8" placeholder="nilaiR3" value="{{$pk2mabaTourAbsen->nilai_rangkaian8}}" type="text" id="nilaiR3-text-input">
                             {!! $errors->first('nilaiR3','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions">
+                            {{csrf_field()}}
                             <button type="submit" class="btn btn-primary">
                                 Submit
                             </button>
@@ -76,7 +77,7 @@
                     </div>
                 </div>
             </form>
-        </div>    
+        </div>
     </div>
     </div>
 </div>

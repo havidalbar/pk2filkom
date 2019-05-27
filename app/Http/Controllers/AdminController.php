@@ -472,6 +472,13 @@ class AdminController extends Controller
         return redirect()->route('panel.full.show-stAbsensi')->with('alert', 'Berhasil mengubah data startup Absensi');
     }
 
+    public function hapusStartupAbsen($nim)
+    {
+        $dataAbsen = StartupAbsen::where('nim', $nim)->first();
+        $dataAbsen->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data startup absensi');
+    }
+
     //startup keaktifan
     public function getStartupKeaktifan()
     {
@@ -500,18 +507,25 @@ class AdminController extends Controller
         return redirect()->route('panel.full.show-stKeaktifan')->with('alert', 'Berhasil mengubah data startup Keaktifan');
     }
 
+    public function hapusStartupKeaktifan($nim)
+    {
+        $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->first();
+        $dataKeaktifan->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data startup keaktifan');
+    }
+
     //startup pelanggaran
     public function getStartupPelanggaran()
     {
         $startupPelanggarans = StartupPelanggaran::all();
-        return view('startupPelanggarans', ['startupPelanggarans' => $startupPelanggarans]);
+        return view('panel-admin.stPelanggaran', ['startupPelanggarans' => $startupPelanggarans]);
     }
 
     public function getEditStartupPelanggaran($nim)
     {
         $mahasiswa = Mahasiswa::where('nim', $nim)->first();
         $startupPelanggaran = StartupPelanggaran::where('nim', $mahasiswa->nim)->first();
-        return view('editStartupPelanggaran', ['mahasiswa' => $mahasiswa, 'startupPelanggaran' => $startupPelanggaran]);
+        return view('panel-admin.stEditPelanggaran', ['mahasiswa' => $mahasiswa, 'startupPelanggaran' => $startupPelanggaran]);
     }
 
     public function editStartupPelanggaran(Request $request, $nim)
@@ -521,7 +535,14 @@ class AdminController extends Controller
             'sedang' => $request->sedang,
             'berat' => $request->berat]
         );
-        return redirect('/daftar-startupPelanggaran')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
+        return redirect()->route('panel.full.show-stPelanggaran')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
+    }
+
+    public function hapusStartupPelanggaran($nim)
+    {
+        $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->first();
+        $dataPelanggaran->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data startup pelanggaran');
     }
 
     //startup rekap nilai
@@ -568,14 +589,14 @@ class AdminController extends Controller
     public function getPk2mabaTourAbsen()
     {
         $pk2mabaTourAbsens = StartupAbsen::all();
-        return view('pk2mabaTourAbsens', ['pk2mabaTourAbsens' => $pk2mabaTourAbsens]);
+        return view('panel-admin.Pkmabsensi', ['pk2mabaTourAbsens' => $pk2mabaTourAbsens]);
     }
 
     public function getEditPk2mabaTourAbsen($nim)
     {
         $mahasiswa = Mahasiswa::where('nim', $nim)->first();
         $pk2mabaTourAbsen = Pk2mTourAbsen::where('nim', $mahasiswa->nim)->first();
-        return view('editPk2mabaTourAbsen', ['mahasiswa' => $mahasiswa, 'pk2mabaTourAbsen' => $pk2mabaTourAbsen]);
+        return view('panel-admin.pkmEditAbsensi', ['mahasiswa' => $mahasiswa, 'pk2mabaTourAbsen' => $pk2mabaTourAbsen]);
     }
 
     public function editPk2mabaTourAbsen(Request $request, $nim)
@@ -585,21 +606,28 @@ class AdminController extends Controller
             'nilai_rangkaian7' => $request->nilai_rangkaian7,
             'nilai_rangkaian8' => $request->nilai_rangkaian8]
         );
-        return redirect('/daftar-pk2mabaTourAbsen')->with('alert', 'Berhasil mengubah data pk2mabaTour Absensi');
+        return redirect()->route('panel.full.show-pkm-absensi')->with('alert', 'Berhasil mengubah data pk2mabaTour Absensi');
+    }
+
+    public function hapusPk2mabaTourAbsen($nim)
+    {
+        $dataAbsen = Pk2mTourAbsen::where('nim', $nim)->first();
+        $dataAbsen->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data pk2mabaTour Absensi');
     }
 
     //pk2mabaTour keaktifan
     public function getPk2mabaTourKeaktifan()
     {
         $pk2mabaTourKeaktifans = Pk2mTourKeaktifan::all();
-        return view('pk2mabaTourKeaktifans', ['pk2mabaTourKeaktifans' => $pk2mabaTourKeaktifans]);
+        return view('panel-admin.pkmKeaktifan', ['pk2mabaTourKeaktifans' => $pk2mabaTourKeaktifans]);
     }
 
     public function getEditPk2mabaTourKeaktifan($nim)
     {
         $mahasiswa = Mahasiswa::where('nim', $nim)->first();
         $pk2mabaTourKeaktifan = Pk2mTourKeaktifan::where('nim', $mahasiswa->nim)->first();
-        return view('editPk2mabaTourKeaktifan', ['mahasiswa' => $mahasiswa, 'pk2mabaTourKeaktifan' => $pk2mabaTourKeaktifan]);
+        return view('panel-admin.pkmEditKeaktifan', ['mahasiswa' => $mahasiswa, 'pk2mabaTourKeaktifan' => $pk2mabaTourKeaktifan]);
     }
 
     public function editPk2mabaTourKeaktifan(Request $request, $nim)
@@ -612,7 +640,14 @@ class AdminController extends Controller
             'aktif_rangkaian8' => $request->aktif_rangkaian8,
             'penerapan_nilai_rangkaian8' => $request->penerapan_nilai_rangkaian8]
         );
-        return redirect('/daftar-pk2mabaTourKeaktifan')->with('alert', 'Berhasil mengubah data pk2mabaTour Keaktifan');
+        return redirect()->route('panel.full.show-pkm-keaktifan')->with('alert', 'Berhasil mengubah data pk2mabaTour Keaktifan');
+    }
+
+    public function hapusPk2mabaTourKeaktifan($nim)
+    {
+        $dataKeaktifan = Pk2mTourKeaktifan::where('nim', $nim)->first();
+        $dataKeaktifan->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data pk2mabaTour Keaktifan');
     }
 
     //pk2mabaTour pelanggaran
@@ -637,6 +672,13 @@ class AdminController extends Controller
             'berat' => $request->berat]
         );
         return redirect('/daftar-pk2mabaTourPelanggaran')->with('alert', 'Berhasil mengubah data pk2mabaTour Pelanggaran');
+    }
+
+    public function hapusPk2mabaTourPelanggaran($nim)
+    {
+        $dataPelanggaran = Pk2mTourPelanggaran::where('nim', $nim)->first();
+        $dataPelanggaran->delete();
+        return redirect()->back()->with('alert', 'Berhasil menghapus data pk2mabaTour Pelanggaran');
     }
 
     //prodi final

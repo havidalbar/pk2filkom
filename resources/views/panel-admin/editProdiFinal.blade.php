@@ -7,7 +7,7 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    EDIT 
+                    EDIT
                     <small>
                         Rekap Prodi
                     </small>
@@ -19,9 +19,9 @@
     <div class="m-content">
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body pt-1">
-            <form action="/editProdiFinal" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+            <form action="{{route('panel.full.edit-prodi-final',$prodiFinal->nim)}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
                 @csrf
-                @method("PUT")
+                @method("POST")
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group m--margin-top-10">
                         <div class="alert m-alert m-alert--default" role="alert">
@@ -33,7 +33,7 @@
                             NIM
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="nim mahasiswa" type="text" id="nim-text-input" readonly="true">
+                        <input class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}" name="nim" placeholder="Nim" value="{{$prodiFinal->nim}}" type="text" id="nim-text-input" readonly="true">
                             {!! $errors->first('nim','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
@@ -42,12 +42,13 @@
                             Nilai Keseluruhan
                         </label>
                         <div class="col-9">
-                            <input class="form-control m-input {{ $errors->has('nilaiProdi') ? 'form-control-danger' : '' }}" name="nilaiProdi" placeholder="nilaiProdi" value="Nilai Rangkaian Ke 1" type="text" id="nilaiProdi-text-input">
+                            <input class="form-control m-input {{ $errors->has('nilaiProdi') ? 'form-control-danger' : '' }}" name="nilaiFull" placeholder="nilaiProdi" value="{{$prodiFinal->nilaiFull}}" type="text" id="nilaiProdi-text-input">
                             {!! $errors->first('nilaiProdi','<div class="form-control-feedback">:message</div>') !!}
                         </div>
                     </div>
                     <div class="m-portlet__foot m-portlet__foot--fit">
                         <div class="m-form__actions">
+                            {{csrf_field()}}
                             <button type="submit" class="btn btn-primary">
                                 Submit
                             </button>
@@ -58,7 +59,7 @@
                     </div>
                 </div>
             </form>
-        </div>    
+        </div>
     </div>
     </div>
 </div>

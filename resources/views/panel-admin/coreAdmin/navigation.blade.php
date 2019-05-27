@@ -209,7 +209,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stPelanggaran" class="m-menu__link ">
+                                                <a  href="{{route('panel.full.show-stPelanggaran')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Pelanggaran
