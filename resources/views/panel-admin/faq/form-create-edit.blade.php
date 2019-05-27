@@ -2,7 +2,7 @@
                     <div class="m-portlet__body">
                         <div class="form-group m-form__group m--margin-top-10">
                             <div class="alert m-alert m-alert--default" role="alert">
-                                Form {{ $ketForm }} data Faq.
+                                Form {{ $ketForm }} data FAQ.
                             </div>
                         </div>
                         <div class="form-group m-form__group row {{ $errors->has('pertanyaan') ? 'has-danger' : '' }}">

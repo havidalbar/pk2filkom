@@ -27,6 +27,130 @@ use Validator;
 
 class AdminController extends Controller
 {
+
+    private static $pilihanDivisi = [
+        'BPI',
+        'DDM',
+        'HUMAS',
+        'KESTARI',
+        'KOMKES',
+        'PENDAMPING',
+        'PIT',
+        'SQC',
+    ];
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $penggunas = Pengguna::all();
+        return view('panel-admin.pengguna.index', ['penggunas' => $penggunas]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('panel-admin.pengguna.create', ['pilihanDivisi' => static::$pilihanDivisi]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|min:3|max:100',
+            'password' => 'required|min:6|max:20',
+            'divisi' => 'required|min:3|max:20',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $data = new Pengguna();
+            $data->username = $request->username;
+            $data->password = Hash::make($request->password);
+            $data->divisi = $request->divisi;
+            $data->save();
+            return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mendaftar pengguna');
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function show($username)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        return view('panel-admin.pengguna.edit', [
+            'dataPengguna' => $dataPengguna,
+            'pilihanDivisi' => static::$pilihanDivisi,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        $dataPengguna->username = $request->username;
+        $dataPengguna->divisi = $request->divisi;
+        $dataPengguna->save();
+
+        if (Session::get('username') == $username) {
+            Session::put('username', $request->username);
+            Session::put('divisi', $request->divisi);
+            Session::put('is_full_access', $dataPengguna->is_full_access);
+        }
+        return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mengedit pengguna');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($username)
+    {
+        $dataPengguna = Pengguna::where('username', $username)->first();
+        $dataPengguna->delete();
+        if (Session::get('username') == $username) {
+            logout();
+        } else {
+            return redirect()->back()->with('alert', 'Berhasil menghapus pengguna');
+        }
+    }
+
     public function getLogin()
     {
         return view('login-admin');
@@ -60,6 +184,25 @@ class AdminController extends Controller
     {
         Session::flush();
         return redirect()->route('panel.login')->with('alert', 'Anda telah keluar');
+    }
+
+    public function getGantiPassword()
+    {
+        return view('panel-admin.pengguna.ganti-password');
+    }
+
+    public function gantiPassword(Request $request)
+    {
+        $pengguna = Pengguna::find(Session::get('username'));
+
+        if (Hash::check($request->password_lama, $pengguna->password)) {
+            $pengguna->password = Hash::make($request->password_baru);
+            $pengguna->save();
+
+            return redirect()->back()->with('alert', 'Password berhasil diubah');
+        } else {
+            return redirect()->back()->with('alert', 'Password salah');
+        }
     }
 
     public function getDashboard()

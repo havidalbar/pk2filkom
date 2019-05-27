@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Faq;
+use App\NilaiKKM;
 use Illuminate\Http\Request;
 
-class FaqController extends Controller
+class NilaiKkmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::all();
-        return view('panel-admin.faq.index', compact('faqs'));
+        $nilaikkms = NilaiKKM::all();
+        return view('panel-admin.nilai-kkm.index', ['nilaikkms' => $nilaikkms]);
     }
 
     /**
@@ -25,7 +25,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        return view('panel-admin.faq.create');
+        return view('panel-admin.nilai-kkm.create');
     }
 
     /**
@@ -36,12 +36,11 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        $faq = new Faq;
-        $faq->tanya = $request->tanya;
-        $faq->jawab = $request->jawab;
-        $faq->save();
-
-        return redirect()->route('panel.faq.index')->with('alert', 'FAQ berhasil diubah');
+        $data = new NilaiKKM();
+        $data->kegiatan = $request->kegiatan;
+        $data->nilai = $request->nilai;
+        $data->save();
+        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil menambah penilaian');
     }
 
     /**
@@ -52,7 +51,7 @@ class FaqController extends Controller
      */
     public function show($id)
     {
-        // TODO : Halaman FAQ [Fadhil]
+        //
     }
 
     /**
@@ -63,8 +62,8 @@ class FaqController extends Controller
      */
     public function edit($id)
     {
-        $faq = Faq::find($id);
-        return view('panel-admin.faq.edit', compact('faq', 'id'));
+        $dataNilai = NilaiKKM::find($id);
+        return view('panel-admin.nilai-kkm.edit', ['dataNilai' => $dataNilai]);
     }
 
     /**
@@ -76,17 +75,11 @@ class FaqController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $faq = Faq::find($id);
-
-        if ($faq) {
-            $faq->tanya = $request->tanya;
-            $faq->jawab = $request->jawab;
-            $faq->save();
-
-            return redirect()->route('panel.faq.index')->with('alert', 'FAQ berhasil diubah');
-        } else {
-            abort(404);
-        }
+        $dataNilai = NilaiKKM::where('id', $id)->update([
+            'kegiatan' => $request->kegiatan,
+            'nilai' => $request->nilai,
+        ]);
+        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil mengubah data nilai kkm');
     }
 
     /**
@@ -97,14 +90,8 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        $faq = Faq::find($id);
-
-        if ($faq) {
-            $faq->delete();
-
-            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
-        } else {
-            abort(404);
-        }
+        $dataNilai = NilaiKKM::where('id', $id)->first();
+        $dataNilai->delete();
+        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil menghapus penilaian');
     }
 }

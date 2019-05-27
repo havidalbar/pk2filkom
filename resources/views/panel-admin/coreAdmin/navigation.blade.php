@@ -48,47 +48,48 @@
                             </ul>
                         </div>
 					</li> --}}
-					
-                    <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-                        <a href="#" class="m-menu__link m-menu__toggle">
-                            <span class="m-menu__item-here"></span>
-                            <span class="m-menu__link-text">
-                                Publikasi
-                            </span>
-                            <i class="m-menu__hor-arrow la la-angle-down"></i>
-                            <i class="m-menu__ver-arrow la la-angle-right"></i>
-                        </a>
-                        <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
-                            <span class="m-menu__arrow m-menu__arrow--adjust"></span>
-                            <ul class="m-menu__subnav">
+					@if (Session::get('is_full_access') || Session::get('divisi') == 'HUMAS')
+					<li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+						<a href="#" class="m-menu__link m-menu__toggle">
+							<span class="m-menu__item-here"></span>
+							<span class="m-menu__link-text">
+								Publikasi
+							</span>
+							<i class="m-menu__hor-arrow la la-angle-down"></i>
+							<i class="m-menu__ver-arrow la la-angle-right"></i>
+						</a>
+						<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+							<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+							<ul class="m-menu__subnav">
 								{{-- UNUSED FUNCTION : [Fadhil] 
 									<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-                                    <a href="{{ route('panel.kategori.index') }}" class="m-menu__link ">
-                                        <i class="m-menu__link-icon la la-tags"></i>
-                                        <span class="m-menu__link-text">
-                                            KATEGORI
-                                        </span>
-                                    </a>
-                                </li> --}}
-                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+									<a href="{{ route('panel.kategori.index') }}" class="m-menu__link ">
+										<i class="m-menu__link-icon la la-tags"></i>
+										<span class="m-menu__link-text">
+											KATEGORI
+										</span>
+									</a>
+								</li> --}}
+								<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 									<a href="{{ route('panel.artikel.index') }}" class="m-menu__link">
-                                        <i class="m-menu__link-icon la la-pencil-square-o"></i>
-                                        <span class="m-menu__link-text">
-                                            ARTIKEL
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-                                    <a href="{{ route('panel.faq.index') }}" class="m-menu__link">
-                                        <i class="m-menu__link-icon flaticon-info"></i>
-                                        <span class="m-menu__link-text">
-                                            FAQ
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+										<i class="m-menu__link-icon la la-pencil-square-o"></i>
+										<span class="m-menu__link-text">
+											ARTIKEL
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+									<a href="{{ route('panel.faq.index') }}" class="m-menu__link">
+										<i class="m-menu__link-icon flaticon-info"></i>
+										<span class="m-menu__link-text">
+											FAQ
+										</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					@endif
 
                     <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" aria-haspopup="true">
                         <a  href="#" class="m-menu__link m-menu__toggle">
@@ -332,7 +333,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/biodataMahasiswa" class="m-menu__link ">
+												<a href="{{route('panel.mahasiswa.biodata')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-user"></i>
                                                     <span class="m-menu__link-text">
                                                         BIODATA
@@ -340,7 +341,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/kesehatanMahasiswa" class="m-menu__link ">
+                                                <a  href="{{route('panel.mahasiswa.kesehatan')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-user-md"></i>
                                                     <span class="m-menu__link-text">
                                                         KESEHATAN
@@ -390,7 +391,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-user-secret"></i>
                                         <span class="m-menu__link-text">
                                             PENGGUNA
@@ -413,7 +414,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.full.show-nilai-kkm')}}" class="m-menu__link">
+                                    <a  href="{{route('panel.nilai-kkm.index')}}" class="m-menu__link">
                                         <i class="m-menu__link-icon la la-bar-chart-o"></i>
                                         <span class="m-menu__link-text">
                                             NILAI KKM

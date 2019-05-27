@@ -14,8 +14,8 @@ class ArtikelController extends Controller
      */
     public function index()
     {
-        $artikel = Artikel::all();
-        return view('panel-admin.artikel.index', compact('artikel'));
+        $artikels = Artikel::all();
+        return view('panel-admin.artikel.index', compact('artikels'));
     }
 
     /**

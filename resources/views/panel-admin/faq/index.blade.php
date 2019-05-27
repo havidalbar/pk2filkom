@@ -43,42 +43,46 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th>
+							<th title="ID">
 								ID
 							</th>
-							<th title="Field #2">
+							<th title="Pertanyaan">
 								Pertanyaan
 							</th>
-							<th title="Field #3">
+							<th title="Jawaban">
 								Jawaban
 							</th>
-							<th title="Field #5">
+							<th title="Action">
 								Action
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						foreach ($faq as $f) {
-							printf('<tr><td>%s</td><td>%s</td><td>%s</td>
-								<td>
-									<div class="btn-group" role="group" aria-label="First group">
-										<a href="%s" class="m-btn btn btn-warning">
-											<i class="fa fa-edit"></i>
-										</a>
-										<form id="delete-artikel-form-%s" action="%s" method="POST">%s</form>
-										<a href="javascript:void(0)" onclick="document.getElementById(`delete-artikel-form-%s`).submit()" class="m-btn btn btn-danger">
-                                    		<i class="fa fa-trash-o"></i>
-                                		</a>
-									</div>
-								</td>
-								</tr>', $f->id, $f->tanya, $f->jawab,
-								route('panel.faq.edit', ['id' => $f->id]), $f->id,
-								route('panel.faq.destroy', ['id' => $f->id]),
-								method_field('DELETE') . csrf_field(), $f->id
-							);
-						}
-						?>
+						@foreach ($faqs as $faq)
+						<tr>
+							<td>{{$faq->id}}</td>
+							<td>{{$faq->tanya}}</td>
+							<td>{{$faq->jawab}}</td>
+							<td>
+								<div class="btn-group" role="group" aria-label="First group">
+									<a href="{{route('panel.faq.edit', ['id' => $faq->id])}}"
+										class="m-btn btn btn-warning">
+										<i class="fa fa-edit"></i>
+									</a>
+									<form id="delete-faq-form-{{$faq->id}}"
+										action="{{route('panel.faq.destroy', ['id' => $faq->id])}}" method="POST">
+										@csrf
+										@method('DELETE')
+									</form>
+									<a href="javascript:void(0)"
+										onclick="document.getElementById(`delete-faq-form-{{$faq->id}}`).submit()"
+										class="m-btn btn btn-danger">
+										<i class="fa fa-trash-o"></i>
+									</a>
+								</div>
+							</td>
+						</tr>
+						@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

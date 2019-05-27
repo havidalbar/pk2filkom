@@ -43,45 +43,51 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="Field #1">
+							<th title="ID">
 								ID
 							</th>
-							<th title="Field #2">
+							<th title="Judul">
 								Judul
 							</th>
-							<th title="Field #3">
+							<th title="Dibuat pada">
 								Dibuat pada
 							</th>
-							<th title="Field #4">
+							<th title="Diubah pada">
 								Diubah pada
 							</th>
-							<th title="Field #5">
+							<th title="Action">
 								Action
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						foreach ($artikel as $a) {
-							printf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
-								<td>
-									<div class="btn-group" role="group" aria-label="First group">
-										<a href="%s" class="m-btn btn btn-warning">
-											<i class="fa fa-edit"></i>
-										</a>
-										<form id="delete-artikel-form-%s" action="%s" method="POST">%s</form>
-										<a href="javascript:void(0)" onclick="document.getElementById(`delete-artikel-form-%s`).submit()" class="m-btn btn btn-danger">
-                                    		<i class="fa fa-trash-o"></i>
-                                		</a>
-									</div>
-								</td>
-								</tr>', $a->id, $a->judul, $a->created_at, $a->updated_at,
-								route('panel.artikel.edit', ['slug' => $a->slug]), $a->id,
-								route('panel.artikel.destroy', ['slug' => $a->slug]),
-								method_field('DELETE') . csrf_field(), $a->id
-							);
-						}
-						?>
+						@foreach ($artikels as $artikel)
+						<tr>
+							<td>{{$artikel->id}}</td>
+							<td>{{$artikel->judul}}</td>
+							<td>{{$artikel->created_at}}</td>
+							<td>{{$artikel->updated_at}}</td>
+							<td>
+								<div class="btn-group" role="group" aria-label="First group">
+									<a href="{{route('panel.artikel.edit', ['slug' => $artikel->slug])}}"
+										class="m-btn btn btn-warning">
+										<i class="fa fa-edit"></i>
+									</a>
+									<form id="delete-artikel-form-{{$artikel->id}}"
+										action="{{route('panel.artikel.destroy', ['slug' => $artikel->slug])}}"
+										method="POST">
+										@csrf
+										@method('DELETE')
+									</form>
+									<a href="javascript:void(0)"
+										onclick="document.getElementById(`delete-artikel-form-{{$artikel->id}}`).submit()"
+										class="m-btn btn btn-danger">
+										<i class="fa fa-trash-o"></i>
+									</a>
+								</div>
+							</td>
+						</tr>
+						@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

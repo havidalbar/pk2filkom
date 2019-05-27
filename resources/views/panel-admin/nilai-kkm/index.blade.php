@@ -1,4 +1,4 @@
-@extends('panel-admin.mahasiswa.core')
+@extends('panel-admin.nilai-kkm.core')
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
@@ -8,7 +8,7 @@
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
 					DATA
 					<small>
-						Biodata Mahasiswa
+						NILAI KKM
 					</small>
 				</h3>
 			</div>
@@ -36,17 +36,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 order-1 order-xl-1 m--align-right">
-							<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon">
-								<span>
-									<i class="la la-cloud-download"></i>
-									<span>
-										Ekspor Data
-									</span>
-								</span>
-							</a>
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
-						</div>
 					</div>
 				</div>
 				<!--end: Search Form -->
@@ -54,56 +43,50 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="NIM">
-								NIM
+							<th title="ID">
+								ID
 							</th>
-							<th title="Nama">
-								Nama
+							<th title="Kegiatan">
+								Kegiatan
 							</th>
-							<th title="Jenis Kelamin">
-								Jenis Kelamin
+							<th title="Nilai">
+								Nilai
 							</th>
-							<th title="Program Studi">
-								Program Studi
-							</th>
-							<th title="Agama">
-								Agama
-							</th>
-							<th title="Kelompok">
-								Kelompok
-							</th>
-							<th title="Cluster">
-								Cluster
-							</th>
-							@if (Session::get('is_full_access'))
 							<th title="Action">
 								Action
 							</th>
-							@endif
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($mahasiswas as $mahasiswa)
-						<tr>
-							<td>{{$mahasiswa->nim}}</td>
-							<td>{{$mahasiswa->nama}}</td>
-							<td>{{$mahasiswa->jenis_kelamin}}</td>
-							<td>{{$mahasiswa->prodi}}</td>
-							<td>{{$mahasiswa->agama}}</td>
-							<td>{{$mahasiswa->kelompok}}</td>
-							<td>{{$mahasiswa->cluster}}</td>
-							@if (Session::get('is_full_access'))
+						@for($i=0;$i<count($nilaikkms);$i++) <tr>
+							<td>
+								{{$nilaikkms[$i]->id}}
+							</td>
+							<td>
+								{{$nilaikkms[$i]->kegiatan}}
+							</td>
+							<td>
+								{{$nilaikkms[$i]->nilai}}
+							</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="{{route('panel.mahasiswa.biodata.edit', ['nim' => $mahasiswa->nim])}}"
+									<a href="{{route('panel.nilai-kkm.edit', $nilaikkms[$i]->id)}}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
+									<form action="{{route('panel.nilai-kkm.destroy', $nilaikkms[$i]->id)}}"
+										id="form-delete-nilai-kkm-{{$nilaikkms[$i]->id}}" method="POST">
+										{{csrf_field()}}
+										{{method_field('DELETE')}}
+									</form>
+									<a href="javascript:void(0)" class="m-btn btn btn-danger"
+										onclick="document.getElementById('form-delete-nilai-kkm-{{$nilaikkms[$i]->id}}').submit()">
+										<i class="fa fa-trash-o"></i>
+									</a>
 								</div>
 							</td>
-							@endif
-						</tr>
-						@endforeach
+							</tr>
+							@endfor
 					</tbody>
 				</table>
 				<!--end: Datatable -->
