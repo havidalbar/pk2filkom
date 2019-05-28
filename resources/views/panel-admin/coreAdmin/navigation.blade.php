@@ -171,7 +171,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.full.show-stAbsensi')}}" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.absensi.index')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         ABSENSI
@@ -179,7 +179,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.full.show-stKeaktifan')}}" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.keaktifan.index')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         KEAKTIFAN
@@ -187,7 +187,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stTugas" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.tugas.index')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS
@@ -195,7 +195,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stTugasDeepTalk" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.tugas.deep-talk')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS DEEP TALK
@@ -203,7 +203,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stTugasFilkomTv" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.tugas.filkom-tv')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS FILKOM TV
@@ -211,7 +211,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/stPelanggaran" class="m-menu__link ">
+                                                <a  href="{{route('panel.kegiatan.startup.pelanggaran.index')}}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Pelanggaran

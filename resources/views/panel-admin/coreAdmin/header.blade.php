@@ -45,7 +45,7 @@
 										style="background: url({{asset('admin/user_profile_bg.jpg')}}); background-size: cover;">
 										<div class="m-card-user m-card-user--skin-dark">
 											<div class="m-card-user__pic">
-												<img src="https://dummyimage.com/800x800/000000/fff&text=+{{Session::get('divisi')}}"
+												<img src="https://dummyimage.com/200x200/000000/fff&text=+{{Session::get('divisi')}}"
 													class="m--img-rounded m--marginless"
 													alt="{{Session::get('divisi')}}" />
 											</div>
@@ -107,7 +107,7 @@
 										</span>
 									</span>
 									<span class="m-topbar__userpic">
-										<img src="https://dummyimage.com/800x800/000000/fff&text=+{{Session::get('divisi')}}"
+										<img src="https://dummyimage.com/200x200/000000/fff&text=+{{Session::get('divisi')}}"
 											class="m--img-rounded m--marginless m--img-centered"
 											alt="{{Session::get('divisi')}}" />
 									</span>
@@ -119,7 +119,7 @@
 											style="background: url({{asset('admin/user_profile_bg.jpg')}}); background-size: cover;">
 											<div class="m-card-user m-card-user--skin-dark">
 												<div class="m-card-user__pic">
-													<img src="https://dummyimage.com/800x800/000000/fff&text=+{{Session::get('divisi')}}"
+													<img src="https://dummyimage.com/200x200/000000/fff&text=+{{Session::get('divisi')}}"
 														class="m--img-rounded m--marginless"
 														alt="{{Session::get('divisi')}}" />
 												</div>

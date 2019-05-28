@@ -57,7 +57,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
             Route::get('/', 'AdminController@index')->name('index');
-            // TODO : View Ganti Password
             Route::get('ganti-password', 'AdminController@getGantiPassword')->name('ganti-password');
             Route::post('ganti-password', 'AdminController@gantiPassword');
         });
@@ -87,11 +86,37 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::resource('nilai-kkm', 'NilaiKkmController')->parameters([
                 'nilai-kkm' => 'id',
-			])->except(['show']);
-			
-			Route::resource('pengguna', 'AdminController')->parameters([
+            ])->except(['show']);
+
+            Route::resource('pengguna', 'AdminController')->parameters([
                 'pengguna' => 'username',
             ])->except(['show', 'index']);
+
+            Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
+                Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
+                    Route::resource('absensi', 'StartupAbsensiController')->parameters([
+                        'absensi' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('keaktifan', 'StartupKeaktifanController')->parameters([
+                        'keaktifan' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('pelanggaran', 'StartupPelanggaranController')->parameters([
+                        'pelanggaran' => 'nim',
+                    ])->except(['create', 'show', 'destroy']);
+
+                    Route::resource('tugas', 'StartupTugasController')->parameters([
+                        'tugas' => 'nim',
+                    ])->except(['create', 'show', 'destroy']);
+                    Route::group(['prefix' => 'tugas', 'as' => 'tugas.'], function () {
+                        Route::get('deep-talk', 'StartupTugasController@dataDeepTalk')->name('deep-talk');
+                        Route::post('deep-talk', 'StartupTugasController@importDeepTalk')->name('import-deep-talk');
+                        Route::get('filkom-tv', 'StartupTugasController@dataFilkomTv')->name('filkom-tv');
+                        Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
+                    });
+                });
+            });
         });
 
         Route::group(['middleware' => ['admin.full'], 'prefix' => 'full', 'as' => 'full.'], function () {
@@ -135,30 +160,30 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::get('/pk2Total', 'AdminController@getPk2mabaRekapNilai')->name('show-pk2-rekap');
 
-            Route::get('/st-Absensi', 'AdminController@getStartupAbsen')->name('show-stAbsensi');
-            Route::post('/stAbsensi', 'adminPanel@importStAbsensi');
-            Route::get('{nim}/edit-StAbsensi', 'AdminController@getEditStartupAbsen')->name('show-edit-stAbsensi');
-            Route::post('{nim}/edit-StAbsensi', 'AdminController@editStartupAbsen')->name('edit-stAbsensi');
-            Route::post('{nim}/hapus-StAbsensi', 'AdminController@hapusStartupAbsen')->name('hapus-stAbsensi');
+            // Route::get('/st-Absensi', 'AdminController@getStartupAbsen')->name('show-stAbsensi');
+            // Route::post('/stAbsensi', 'adminPanel@importStAbsensi');
+            // Route::get('{nim}/edit-StAbsensi', 'AdminController@getEditStartupAbsen')->name('show-edit-stAbsensi');
+            // Route::post('{nim}/edit-StAbsensi', 'AdminController@editStartupAbsen')->name('edit-stAbsensi');
+            // Route::post('{nim}/hapus-StAbsensi', 'AdminController@hapusStartupAbsen')->name('hapus-stAbsensi');
 
-            Route::get('/st-Keaktifan', 'AdminController@getStartupKeaktifan')->name('show-stKeaktifan');
-            Route::post('/stKeaktifan', 'adminPanel@importStKeaktifan');
-            Route::get('{nim}/edit-StKeaktifan', 'AdminController@getEditStartupKeaktifan')->name('show-edit-stKeaktifan');
-            Route::post('{nim}/editStKeaktifan', 'AdminController@editStartupKeaktifan')->name('edit-stKeaktifan');
-            Route::post('{nim}/hapus-StKeaktifan', 'AdminController@hapusStartupKeaktifan')->name('hapus-stKeaktifan');
+            // Route::get('/st-Keaktifan', 'AdminController@getStartupKeaktifan')->name('show-stKeaktifan');
+            // Route::post('/stKeaktifan', 'adminPanel@importStKeaktifan');
+            // Route::get('{nim}/edit-StKeaktifan', 'AdminController@getEditStartupKeaktifan')->name('show-edit-stKeaktifan');
+            // Route::post('{nim}/editStKeaktifan', 'AdminController@editStartupKeaktifan')->name('edit-stKeaktifan');
+            // Route::post('{nim}/hapus-StKeaktifan', 'AdminController@hapusStartupKeaktifan')->name('hapus-stKeaktifan');
 
-            Route::get('/stTugas', 'adminPanel@dataStTugas');
-            Route::post('/stTugas', 'adminPanel@importStTugas');
-            Route::get('/stTugasDeepTalk', 'adminPanel@datastTugasDeepTalk');
-            Route::post('/stTugasDeepTalk', 'adminPanel@importstTugasDeepTalk');
-            Route::get('/stTugasFilkomTv', 'adminPanel@datastTugasFilkomTv');
-            Route::post('/stTugasFilkomTv', 'adminPanel@importstTugasFilkomTv');
-            Route::get('/editStTugas', 'adminPanel@editStTugas');
-            Route::put('/editStTugas', 'adminPanel@prosesEditStTugas');
-            Route::get('/stPelanggaran', 'adminPanel@dataStPelanggaran');
-            Route::post('/stPelanggaran', 'adminPanel@importStPelanggaran');
-            Route::get('/editStPelanggaran', 'adminPanel@editStPelanggaran');
-            Route::put('/editStPelanggaran', 'adminPanel@prosesEditStPelanggaran');
+            // Route::get('/stTugas', 'adminPanel@dataStTugas');
+            // Route::post('/stTugas', 'adminPanel@importStTugas');
+            // Route::get('/stTugasDeepTalk', 'adminPanel@datastTugasDeepTalk');
+            // Route::post('/stTugasDeepTalk', 'adminPanel@importstTugasDeepTalk');
+            // Route::get('/stTugasFilkomTv', 'adminPanel@datastTugasFilkomTv');
+            // Route::post('/stTugasFilkomTv', 'adminPanel@importstTugasFilkomTv');
+            // Route::get('/editStTugas', 'adminPanel@editStTugas');
+            // Route::put('/editStTugas', 'adminPanel@prosesEditStTugas');
+            // Route::get('/stPelanggaran', 'adminPanel@dataStPelanggaran');
+            // Route::post('/stPelanggaran', 'adminPanel@importStPelanggaran');
+            // Route::get('/editStPelanggaran', 'adminPanel@editStPelanggaran');
+            // Route::put('/editStPelanggaran', 'adminPanel@prosesEditStPelanggaran');
 
             Route::get('/pkmAbsensi', 'adminPanel@dataPkmAbsensi');
             Route::post('/pkmAbsensi', 'adminPanel@importPkmAbsensi');
