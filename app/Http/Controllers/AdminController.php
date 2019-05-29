@@ -280,68 +280,68 @@ class AdminController extends Controller
     }
 
     //Mahasiswa
-    public function getBioMahasiswa()
-    {
-        $mahasiswas = Mahasiswa::all();
-        return view('daftar-Mahasiswa', ['mahasiswas' => $mahasiswas]);
-    }
+    // public function getBioMahasiswa()
+    // {
+    //     $mahasiswas = Mahasiswa::all();
+    //     return view('daftar-Mahasiswa', ['mahasiswas' => $mahasiswas]);
+    // }
 
-    public function getEditMahasiswa($nim)
-    {
-        $dataMahasiswa = Mahasiswa::where('nim', $nim)->first();
-        return view('editMahasiswa', ['dataMahasiswa' => $dataMahasiswa]);
-    }
+    // public function getEditMahasiswa($nim)
+    // {
+    //     $dataMahasiswa = Mahasiswa::where('nim', $nim)->first();
+    //     return view('editMahasiswa', ['dataMahasiswa' => $dataMahasiswa]);
+    // }
 
-    public function editMahasiswa(Request $request, $nim)
-    {
-        $dataMahasiswa = Mahasiswa::where('nim', $nim)->update(['kelompok' => $request->kelompok], ['cluster' => $request->cluster]);
-        return redirect('/')->with('alert', 'Berhasil mengubah data mahasiswa');
-    }
+    // public function editMahasiswa(Request $request, $nim)
+    // {
+    //     $dataMahasiswa = Mahasiswa::where('nim', $nim)->update(['kelompok' => $request->kelompok], ['cluster' => $request->cluster]);
+    //     return redirect('/')->with('alert', 'Berhasil mengubah data mahasiswa');
+    // }
 
     //nilaikkm
-    public function getNilaiKKM()
-    {
-        $nilaikkms = NilaiKKM::all();
-        return view('panel-admin.dataNilaiKKM', ['nilaikkms' => $nilaikkms]);
-    }
+    // public function getNilaiKKM()
+    // {
+    //     $nilaikkms = NilaiKKM::all();
+    //     return view('panel-admin.dataNilaiKKM', ['nilaikkms' => $nilaikkms]);
+    // }
 
-    public function getTambahNilaiKKM()
-    {
-        return view('panel-admin.tambahNilaiKKM');
-    }
+    // public function getTambahNilaiKKM()
+    // {
+    //     return view('panel-admin.tambahNilaiKKM');
+    // }
 
-    public function tambahNilaiKKM(Request $request)
-    {
-        $data = new NilaiKKM();
-        $data->kegiatan = $request->kegiatan;
-        $data->nilai = $request->nilai;
-        $data->save();
-        return redirect()->route('panel.full.show-nilai-kkm')->with('alert', 'Berhasil menambah penilaian');
-    }
+    // public function tambahNilaiKKM(Request $request)
+    // {
+    //     $data = new NilaiKKM();
+    //     $data->kegiatan = $request->kegiatan;
+    //     $data->nilai = $request->nilai;
+    //     $data->save();
+    //     return redirect()->route('panel.full.show-nilai-kkm')->with('alert', 'Berhasil menambah penilaian');
+    // }
 
-    public function hapusNilaiKKM(Request $request, $id)
-    {
-        $dataNilai = NilaiKKM::where('id', $id)->first();
-        $dataNilai->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus penilaian');
-    }
+    // public function hapusNilaiKKM(Request $request, $id)
+    // {
+    //     $dataNilai = NilaiKKM::where('id', $id)->first();
+    //     $dataNilai->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus penilaian');
+    // }
 
-    public function getEditNilaiKKM($id)
-    {
-        $dataNilai = NilaiKKM::where('id', $id)->first();
-        return view('panel-admin.editNilaiKKM', ['dataNilai' => $dataNilai]);
-    }
+    // public function getEditNilaiKKM($id)
+    // {
+    //     $dataNilai = NilaiKKM::where('id', $id)->first();
+    //     return view('panel-admin.editNilaiKKM', ['dataNilai' => $dataNilai]);
+    // }
 
-    public function editNilaiKKM(Request $request, $id)
-    {
-        $dataNilai = NilaiKKM::where('id', $id)->update(
-            [
-                'kegiatan' => $request->kegiatan,
-                'nilai' => $request->nilai,
-            ]
-        );
-        return redirect()->route('panel.full.show-nilai-kkm')->with('alert', 'Berhasil mengubah data nilai kkm');
-    }
+    // public function editNilaiKKM(Request $request, $id)
+    // {
+    //     $dataNilai = NilaiKKM::where('id', $id)->update(
+    //         [
+    //             'kegiatan' => $request->kegiatan,
+    //             'nilai' => $request->nilai,
+    //         ]
+    //     );
+    //     return redirect()->route('panel.full.show-nilai-kkm')->with('alert', 'Berhasil mengubah data nilai kkm');
+    // }
 
     //penugasan
     public function getPenugasan()
@@ -383,83 +383,83 @@ class AdminController extends Controller
     }
 
     //kategori
-    public function getKategori()
-    {
-        $kategoris = Kategori::all();
-        return view('kategori', ['kategoris' => $kategoris]);
-    }
+    // public function getKategori()
+    // {
+    //     $kategoris = Kategori::all();
+    //     return view('kategori', ['kategoris' => $kategoris]);
+    // }
 
-    public function getTambahKategori()
-    {
-        return view('tambahKategori');
-    }
+    // public function getTambahKategori()
+    // {
+    //     return view('tambahKategori');
+    // }
 
-    public function tambahKategori(Request $request)
-    {
-        $data = new Kategori();
-        $data->jenis = $request->jenis;
-        $data->save();
-        return redirect('/daftar-kategori')->with('alert', 'Berhasil menambah kategori');
-    }
+    // public function tambahKategori(Request $request)
+    // {
+    //     $data = new Kategori();
+    //     $data->jenis = $request->jenis;
+    //     $data->save();
+    //     return redirect('/daftar-kategori')->with('alert', 'Berhasil menambah kategori');
+    // }
 
-    public function hapusKategori(Request $request)
-    {
-        $dataKategori = Kategori::where('id', $request->input('id'))->first();
-        $dataKategori->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus kategori');
-    }
+    // public function hapusKategori(Request $request)
+    // {
+    //     $dataKategori = Kategori::where('id', $request->input('id'))->first();
+    //     $dataKategori->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus kategori');
+    // }
 
-    public function getEditKategori($id)
-    {
-        $dataKategori = Kategori::where('id', $id)->first();
-        return view('editKategori', ['dataKategori' => $dataKategori]);
-    }
+    // public function getEditKategori($id)
+    // {
+    //     $dataKategori = Kategori::where('id', $id)->first();
+    //     return view('editKategori', ['dataKategori' => $dataKategori]);
+    // }
 
-    public function editKategori(Request $request, $id)
-    {
-        $dataKategori = Kategori::where('id', $id)->update(['jenis' => $request->jenis]);
-        return redirect('/daftar-kategori')->with('alert', 'Berhasil mengubah data kategori');
-    }
+    // public function editKategori(Request $request, $id)
+    // {
+    //     $dataKategori = Kategori::where('id', $id)->update(['jenis' => $request->jenis]);
+    //     return redirect('/daftar-kategori')->with('alert', 'Berhasil mengubah data kategori');
+    // }
 
     //faq
-    public function getFaq()
-    {
-        $faqs = Faq::all();
-        return view('panel-admin.dataFaq', ['faqs' => $faqs]);
-    }
+    // public function getFaq()
+    // {
+    //     $faqs = Faq::all();
+    //     return view('panel-admin.dataFaq', ['faqs' => $faqs]);
+    // }
 
-    public function getTambahFaq()
-    {
-        return view('tambahFaq');
-    }
+    // public function getTambahFaq()
+    // {
+    //     return view('tambahFaq');
+    // }
 
-    public function tambahFaq(Request $request)
-    {
-        $data = new Faq();
-        $data->tanya = $request->tanya;
-        $data->jawab = $request->jawab;
-        $data->save();
-        return redirect('/daftar-faq')->with('alert', 'Berhasil menambah faq');
-    }
+    // public function tambahFaq(Request $request)
+    // {
+    //     $data = new Faq();
+    //     $data->tanya = $request->tanya;
+    //     $data->jawab = $request->jawab;
+    //     $data->save();
+    //     return redirect('/daftar-faq')->with('alert', 'Berhasil menambah faq');
+    // }
 
-    public function hapusFaq(Request $request)
-    {
-        $dataFaq = Faq::where('id', $request->input('id'))->first();
-        $dataFaq->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus faq');
-    }
+    // public function hapusFaq(Request $request)
+    // {
+    //     $dataFaq = Faq::where('id', $request->input('id'))->first();
+    //     $dataFaq->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus faq');
+    // }
 
-    public function getEditFaq($id)
-    {
-        $dataFaq = Faq::where('id', $id)->first();
-        return view('panel-admin.editArtikel', ['dataFaq' => $dataFaq]);
-    }
+    // public function getEditFaq($id)
+    // {
+    //     $dataFaq = Faq::where('id', $id)->first();
+    //     return view('panel-admin.editArtikel', ['dataFaq' => $dataFaq]);
+    // }
 
-    public function editFaq(Request $request, $id)
-    {
-        $dataFaq = Faq::where('id', $id)->update(['tanya' => $request->tanya], ['jawab' => $request->jawab]);
-        return redirect('/daftar-faq')->with('alert', 'Berhasil mengubah data faq');
-    }
+    // public function editFaq(Request $request, $id)
+    // {
+    //     $dataFaq = Faq::where('id', $id)->update(['tanya' => $request->tanya], ['jawab' => $request->jawab]);
+    //     return redirect('/daftar-faq')->with('alert', 'Berhasil mengubah data faq');
+    // }
 
     //pk2maba absensi
     public function getPk2mabaAbsen()
@@ -596,102 +596,102 @@ class AdminController extends Controller
         return redirect('/daftar-pk2mRekapNilai')->with('alert', 'Berhasil mengubah data pk2maba Rekap Nilai');
     }
 
-    //startup absensi
-    public function getStartupAbsen()
-    {
-        $startupAbsens = StartupAbsen::all();
-        return view('panel-admin.stabsensi', ['startupAbsens' => $startupAbsens]);
-    }
+    // //startup absensi
+    // public function getStartupAbsen()
+    // {
+    //     $startupAbsens = StartupAbsen::all();
+    //     return view('panel-admin.stabsensi', ['startupAbsens' => $startupAbsens]);
+    // }
 
-    public function getEditStartupAbsen($nim)
-    {
-        $mahasiswa = Mahasiswa::where('nim', $nim)->first();
-        $startupAbsen = StartupAbsen::where('nim', $mahasiswa->nim)->first();
-        return view('panel-admin.stEditAbsensi', ['mahasiswa' => $mahasiswa, 'startupAbsen' => $startupAbsen]);
-    }
+    // public function getEditStartupAbsen($nim)
+    // {
+    //     $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+    //     $startupAbsen = StartupAbsen::where('nim', $mahasiswa->nim)->first();
+    //     return view('panel-admin.stEditAbsensi', ['mahasiswa' => $mahasiswa, 'startupAbsen' => $startupAbsen]);
+    // }
 
-    public function editStartupAbsen(Request $request, $nim)
-    {
-        $dataAbsen = StartupAbsen::where('nim', $nim)->update(
-            ['nilai_rangkaian3' => $request->nilai_rangkaian3,
-                'nilai_rangkaian4' => $request->nilai_rangkaian4,
-                'nilai_rangkaian5' => $request->nilai_rangkaian5]
-        );
-        return redirect()->route('panel.full.show-stAbsensi')->with('alert', 'Berhasil mengubah data startup Absensi');
-    }
+    // public function editStartupAbsen(Request $request, $nim)
+    // {
+    //     $dataAbsen = StartupAbsen::where('nim', $nim)->update(
+    //         ['nilai_rangkaian3' => $request->nilai_rangkaian3,
+    //             'nilai_rangkaian4' => $request->nilai_rangkaian4,
+    //             'nilai_rangkaian5' => $request->nilai_rangkaian5]
+    //     );
+    //     return redirect()->route('panel.full.show-stAbsensi')->with('alert', 'Berhasil mengubah data startup Absensi');
+    // }
 
-    public function hapusStartupAbsen($nim)
-    {
-        $dataAbsen = StartupAbsen::where('nim', $nim)->first();
-        $dataAbsen->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus data startup absensi');
-    }
+    // public function hapusStartupAbsen($nim)
+    // {
+    //     $dataAbsen = StartupAbsen::where('nim', $nim)->first();
+    //     $dataAbsen->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus data startup absensi');
+    // }
 
-    //startup keaktifan
-    public function getStartupKeaktifan()
-    {
-        $startupKeaktifans = StartupKeaktifan::all();
-        return view('panel-admin.stKeaktifan', ['startupKeaktifans' => $startupKeaktifans]);
-    }
+    // //startup keaktifan
+    // public function getStartupKeaktifan()
+    // {
+    //     $startupKeaktifans = StartupKeaktifan::all();
+    //     return view('panel-admin.stKeaktifan', ['startupKeaktifans' => $startupKeaktifans]);
+    // }
 
-    public function getEditStartupKeaktifan($nim)
-    {
-        $mahasiswa = Mahasiswa::where('nim', $nim)->first();
-        $startupKeaktifan = StartupKeaktifan::where('nim', $mahasiswa->nim)->first();
-        return view('panel-admin.stEditKeaktifan', ['mahasiswa' => $mahasiswa, 'startupKeaktifan' => $startupKeaktifan]);
+    // public function getEditStartupKeaktifan($nim)
+    // {
+    //     $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+    //     $startupKeaktifan = StartupKeaktifan::where('nim', $mahasiswa->nim)->first();
+    //     return view('panel-admin.stEditKeaktifan', ['mahasiswa' => $mahasiswa, 'startupKeaktifan' => $startupKeaktifan]);
 
-    }
+    // }
 
-    public function editStartupKeaktifan(Request $request, $nim)
-    {
-        $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->update(
-            ['aktif_rangkaian3' => $request->aktif_rangkaian3,
-                'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
-                'aktif_rangkaian4' => $request->aktif_rangkaian4,
-                'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
-                'aktif_rangkaian5' => $request->aktif_rangkaian5,
-                'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
-        );
-        return redirect()->route('panel.full.show-stKeaktifan')->with('alert', 'Berhasil mengubah data startup Keaktifan');
-    }
+    // public function editStartupKeaktifan(Request $request, $nim)
+    // {
+    //     $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->update(
+    //         ['aktif_rangkaian3' => $request->aktif_rangkaian3,
+    //             'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
+    //             'aktif_rangkaian4' => $request->aktif_rangkaian4,
+    //             'penerapan_nilai_rangkaian4' => $request->penerapan_nilai_rangkaian4,
+    //             'aktif_rangkaian5' => $request->aktif_rangkaian5,
+    //             'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5]
+    //     );
+    //     return redirect()->route('panel.full.show-stKeaktifan')->with('alert', 'Berhasil mengubah data startup Keaktifan');
+    // }
 
-    public function hapusStartupKeaktifan($nim)
-    {
-        $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->first();
-        $dataKeaktifan->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus data startup keaktifan');
-    }
+    // public function hapusStartupKeaktifan($nim)
+    // {
+    //     $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->first();
+    //     $dataKeaktifan->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus data startup keaktifan');
+    // }
 
-    //startup pelanggaran
-    public function getStartupPelanggaran()
-    {
-        $startupPelanggarans = StartupPelanggaran::all();
-        return view('panel-admin.stPelanggaran', ['startupPelanggarans' => $startupPelanggarans]);
-    }
+    // //startup pelanggaran
+    // public function getStartupPelanggaran()
+    // {
+    //     $startupPelanggarans = StartupPelanggaran::all();
+    //     return view('panel-admin.stPelanggaran', ['startupPelanggarans' => $startupPelanggarans]);
+    // }
 
-    public function getEditStartupPelanggaran($nim)
-    {
-        $mahasiswa = Mahasiswa::where('nim', $nim)->first();
-        $startupPelanggaran = StartupPelanggaran::where('nim', $mahasiswa->nim)->first();
-        return view('panel-admin.stEditPelanggaran', ['mahasiswa' => $mahasiswa, 'startupPelanggaran' => $startupPelanggaran]);
-    }
+    // public function getEditStartupPelanggaran($nim)
+    // {
+    //     $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+    //     $startupPelanggaran = StartupPelanggaran::where('nim', $mahasiswa->nim)->first();
+    //     return view('panel-admin.stEditPelanggaran', ['mahasiswa' => $mahasiswa, 'startupPelanggaran' => $startupPelanggaran]);
+    // }
 
-    public function editStartupPelanggaran(Request $request, $nim)
-    {
-        $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->update(
-            ['ringan' => $request->ringan,
-                'sedang' => $request->sedang,
-                'berat' => $request->berat]
-        );
-        return redirect()->route('panel.full.show-stPelanggaran')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
-    }
+    // public function editStartupPelanggaran(Request $request, $nim)
+    // {
+    //     $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->update(
+    //         ['ringan' => $request->ringan,
+    //             'sedang' => $request->sedang,
+    //             'berat' => $request->berat]
+    //     );
+    //     return redirect()->route('panel.full.show-stPelanggaran')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
+    // }
 
-    public function hapusStartupPelanggaran($nim)
-    {
-        $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->first();
-        $dataPelanggaran->delete();
-        return redirect()->back()->with('alert', 'Berhasil menghapus data startup pelanggaran');
-    }
+    // public function hapusStartupPelanggaran($nim)
+    // {
+    //     $dataPelanggaran = StartupPelanggaran::where('nim', $nim)->first();
+    //     $dataPelanggaran->delete();
+    //     return redirect()->back()->with('alert', 'Berhasil menghapus data startup pelanggaran');
+    // }
 
     //startup rekap nilai
     public function getStartupRekapNilai()
