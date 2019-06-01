@@ -37,4 +37,11 @@ $(document).ready(function() {
         }
     });
     // endScrollAnimate
+    $(".tanggal").datepicker({
+        language: "id",
+        format: 'dd/mm/yyyy',
+        autoclose: true,        
+        orientation: "bottom left",
+        defaultViewDate: { year: 2001}
+    });    
 });
