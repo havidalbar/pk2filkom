@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -85,17 +85,17 @@
 					<tbody>
 						@foreach ($mahasiswas as $mahasiswa)
 						<tr>
-							<td>{{$mahasiswa->nim}}</td>
-							<td>{{$mahasiswa->nama}}</td>
-							<td>{{$mahasiswa->jenis_kelamin}}</td>
-							<td>{{$mahasiswa->prodi}}</td>
-							<td>{{$mahasiswa->agama}}</td>
-							<td>{{$mahasiswa->kelompok}}</td>
-							<td>{{$mahasiswa->cluster}}</td>
+							<td>{{ $mahasiswa->nim }}</td>
+							<td>{{ $mahasiswa->nama }}</td>
+							<td>{{ $mahasiswa->jenis_kelamin }}</td>
+							<td>{{ $mahasiswa->prodi }}</td>
+							<td>{{ $mahasiswa->agama }}</td>
+							<td>{{ $mahasiswa->kelompok }}</td>
+							<td>{{ $mahasiswa->cluster }}</td>
 							@if (Session::get('is_full_access'))
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="{{route('panel.mahasiswa.biodata.edit', ['nim' => $mahasiswa->nim])}}"
+									<a href="{{ route('panel.mahasiswa.biodata.edit', ['nim' => $mahasiswa->nim]) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>

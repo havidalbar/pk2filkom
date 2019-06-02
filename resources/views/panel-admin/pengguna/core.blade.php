@@ -18,7 +18,7 @@
 				</li>
 				@if(Session::get('is_full_access'))
 				<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-					<a href="{{route('panel.pengguna.create')}}" class="m-menu__link">
+					<a href="{{ route('panel.pengguna.create') }}" class="m-menu__link">
 						<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 							<span></span>
 						</i>
@@ -29,7 +29,7 @@
 				</li>
 				@endif
 				<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-					<a href="{{route('panel.pengguna.index')}}" class="m-menu__link">
+					<a href="{{ route('panel.pengguna.index') }}" class="m-menu__link">
 						<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 							<span></span>
 						</i>
@@ -39,7 +39,7 @@
 					</a>
 				</li>
 				<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-					<a href="{{route('panel.pengguna.ganti-password')}}" class="m-menu__link">
+					<a href="{{ route('panel.pengguna.ganti-password') }}" class="m-menu__link">
 						<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 							<span></span>
 						</i>

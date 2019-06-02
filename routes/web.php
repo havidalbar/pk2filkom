@@ -93,6 +93,26 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             ])->except(['show', 'index']);
 
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
+                Route::group(['prefix' => 'pk2-maba', 'as' => 'pk2-maba.'], function () {
+                    Route::get('total', 'AdminController@getPK2MabaTotal')->name('total');
+
+                    Route::resource('absensi', 'PK2MabaAbsensiController')->parameters([
+                        'absensi' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('keaktifan', 'PK2MabaKeaktifanController')->parameters([
+                        'keaktifan' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('pelanggaran', 'PK2MabaPelanggaranController')->parameters([
+                        'pelanggaran' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('tugas', 'PK2MabaTugasController')->parameters([
+                        'tugas' => 'nim',
+                    ])->except(['create', 'destroy']);
+                });
+
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',

@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper" style="width: 100vh">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -19,7 +19,8 @@
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__body pt-1">
 
-				<form action="{{route('panel.mahasiswa.biodata.update', ['nim' => $dataMahasiswa->nim ])}}" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+				<form action="{{ route('panel.mahasiswa.biodata.update', ['nim' => $dataMahasiswa->nim ]) }}"
+					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 					@csrf
 					@method('PUT')
 					<div class="m-portlet__body">
@@ -34,7 +35,7 @@
 							</label>
 							<div class="col-10">
 								<input class="form-control m-input" name="nim" placeholder="NIM Mahasiswa"
-									value="{{$dataMahasiswa->nim}}" type="text" id="nim-text-input" readonly="true">
+									value="{{ $dataMahasiswa->nim }}" type="text" id="nim-text-input" readonly="true">
 							</div>
 						</div>
 						<div class="form-group m-form__group row {{ $errors->has('kelompok') ? 'has-danger' : '' }}">
@@ -45,7 +46,7 @@
 								<input
 									class="form-control m-input {{ $errors->has('kelompok') ? 'form-control-danger' : '' }}"
 									name="kelompok" placeholder="Kelompok mahasiswa"
-									value="{{$dataMahasiswa->kelompok ?? ''}}" type="text" id="kelompok-text-input">
+									value="{{ $dataMahasiswa->kelompok ?? '' }}" type="text" id="kelompok-text-input">
 								{!! $errors->first('kelompok','<div class="form-control-feedback">:message</div>') !!}
 							</div>
 						</div>
@@ -57,7 +58,7 @@
 								<input
 									class="form-control m-input {{ $errors->has('cluster') ? 'form-control-danger' : '' }}"
 									name="cluster" placeholder="Cluster mahasiswa"
-									value="{{$dataMahasiswa->cluster ?? ''}}" type="text" id="cluster-text-input">
+									value="{{ $dataMahasiswa->cluster ?? '' }}" type="text" id="cluster-text-input">
 								{!! $errors->first('cluster','<div class="form-control-feedback">:message</div>') !!}
 							</div>
 						</div>

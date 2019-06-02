@@ -11,7 +11,7 @@
 		<div class="col-10">
 			<input class="form-control m-input {{ $errors->has('kegiatan') ? 'form-control-danger' : '' }}"
 				name="kegiatan" placeholder="Kegiatan" value="{{ old('kegiatan') ?? ($dataNilai->kegiatan ?? '') }}"
-				type="text" id="kegiatan-text-input">
+				type="text" id="kegiatan-text-input" required>
 			{!! $errors->first('kegiatan','<div class="form-control-feedback">:message</div>') !!}
 		</div>
 	</div>
@@ -22,13 +22,12 @@
 		<div class="col-10">
 			<input class="form-control m-input {{ $errors->has('nilai') ? 'form-control-danger' : '' }}" name="nilai"
 				placeholder="Nilai" value="{{ old('nilai') ?? ($dataNilai->nilai ?? '') }}" type="text"
-				id="kegiatan-text-input">
+				id="kegiatan-text-input" required>
 			{!! $errors->first('nilai','<div class="form-control-feedback">:message</div>') !!}
 		</div>
 	</div>
 	<div class="m-portlet__foot m-portlet__foot--fit">
 		<div class="m-form__actions">
-			{{csrf_field()}}
 			<button type="submit" class="btn btn-primary">
 				Submit
 			</button>

@@ -25,15 +25,16 @@
 								Form ganti password.
 							</div>
 						</div>
-						<div
-							class="form-group m-form__group row {{ $errors->has('password_lama') ? 'has-danger' : '' }}">
-							<label for="password-lama-input" class="col-2 col-form-label">
+						<div class="form-group m-form__group row {{ $errors->has('password') ? 'has-danger' : '' }}">
+							<label for="password-input" class="col-2 col-form-label">
 								Password Lama
 							</label>
 							<div class="col-10">
-								<input class="form-control m-input" name="password_lama" placeholder="Password lama..."
-									type="password" id="password-lama-input">
-								{!! $errors->first('password_lama','<div class="form-control-feedback">:message</div>')
+								<input
+									class="form-control m-input {{ $errors->has('password') ? 'form-control-danger' : '' }}"
+									name="password" placeholder="Password lama..." type="password"
+									id="password-input" required>
+								{!! $errors->first('password','<div class="form-control-feedback">:message</div>')
 								!!}
 							</div>
 						</div>
@@ -46,22 +47,22 @@
 								<input
 									class="form-control m-input {{ $errors->has('password_baru') ? 'form-control-danger' : '' }}"
 									name="password_baru" placeholder="Password baru..." type="password"
-									id="password-baru-input">
+									id="password-baru-input" required>
 								{!! $errors->first('password_baru','<div class="form-control-feedback">:message</div>')
 								!!}
 							</div>
 						</div>
 						<div
-							class="form-group m-form__group row {{ $errors->has('konfirmasi_password_baru') ? 'has-danger' : '' }}">
+							class="form-group m-form__group row {{ $errors->has('password_baru_confirmation') ? 'has-danger' : '' }}">
 							<label for="konfirmasi-password-baru-input" class="col-2 col-form-label">
 								Konfirmasi Password Baru
 							</label>
 							<div class="col-10">
 								<input
-									class="form-control m-input {{ $errors->has('konfirmasi_password_baru') ? 'form-control-danger' : '' }}"
-									name="konfirmasi_password_baru" placeholder="Konfirmasi password baru..."
-									type="password" id="konfirmasi-password-baru-input">
-								{!! $errors->first('konfirmasi_password_baru','<div class="form-control-feedback">
+									class="form-control m-input {{ $errors->has('password_baru_confirmation') ? 'form-control-danger' : '' }}"
+									name="password_baru_confirmation" placeholder="Konfirmasi password baru..."
+									type="password" id="konfirmasi-password-baru-input" required>
+								{!! $errors->first('password_baru_confirmation','<div class="form-control-feedback">
 									:message</div>')
 								!!}
 							</div>

@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -58,35 +58,35 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=0;$i<count($nilaikkms);$i++) <tr>
+						@for ($i = 0; $i < count($nilaikkms); $i++) <tr>
 							<td>
-								{{$nilaikkms[$i]->id}}
+								{{ $nilaikkms[$i]->id }}
 							</td>
 							<td>
-								{{$nilaikkms[$i]->kegiatan}}
+								{{ $nilaikkms[$i]->kegiatan }}
 							</td>
 							<td>
-								{{$nilaikkms[$i]->nilai}}
+								{{ $nilaikkms[$i]->nilai }}
 							</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="{{route('panel.nilai-kkm.edit', $nilaikkms[$i]->id)}}"
+									<a href="{{ route('panel.nilai-kkm.edit', $nilaikkms[$i]->id) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
-									<form action="{{route('panel.nilai-kkm.destroy', $nilaikkms[$i]->id)}}"
-										id="form-delete-nilai-kkm-{{$nilaikkms[$i]->id}}" method="POST">
-										{{csrf_field()}}
-										{{method_field('DELETE')}}
+									<form action="{{ route('panel.nilai-kkm.destroy', $nilaikkms[$i]->id) }}"
+										id="form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}" method="POST">
+										@csrf
+										@method('DELETE')
 									</form>
 									<a href="javascript:void(0)" class="m-btn btn btn-danger"
-										onclick="document.getElementById('form-delete-nilai-kkm-{{$nilaikkms[$i]->id}}').submit()">
+										onclick="document.getElementById('form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}').submit()">
 										<i class="fa fa-trash-o"></i>
 									</a>
 								</div>
 							</td>
 							</tr>
-							@endfor
+						@endfor
 					</tbody>
 				</table>
 				<!--end: Datatable -->

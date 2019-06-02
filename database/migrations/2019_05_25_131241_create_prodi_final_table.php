@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProdiFinalTable extends Migration
 {
@@ -14,10 +14,9 @@ class CreateProdiFinalTable extends Migration
     public function up()
     {
         Schema::create('prodi_final', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nim');
-            $table->foreign('nim')->references('nim')->on('mahasiswa')->unsigned()->nullable();
-            $table->integer('nilaiFull')->default('0');
+            $table->unsignedBigInteger('nim')->primary();
+            $table->foreign('nim')->references('nim')->on('mahasiswa');
+            $table->integer('nilai_full')->default(0);
             $table->timestamps();
         });
     }

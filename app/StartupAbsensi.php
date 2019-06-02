@@ -4,18 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StartupKeaktifan extends Model
+class StartupAbsensi extends Model
 {
-	protected $table = 'startup_academy_keaktifan';
-	
-	protected $primaryKey = 'nim';
+    protected $table = 'startup_academy_absensi';
+
+    protected $primaryKey = 'nim';
     public $incrementing = false;
 
     protected $with = [
         'mahasiswa:nim,nama',
-	];
-	
-	protected $hidden = [
+    ];
+
+    protected $hidden = [
         'editor', 'created_at', 'updated_at',
     ];
 

@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -43,8 +43,8 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="ID">
-								ID
+							<th title="No">
+								No
 							</th>
 							<th title="Judul">
 								Judul
@@ -61,26 +61,26 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($artikels as $artikel)
+						@foreach ($artikels as $i => $artikel)
 						<tr>
-							<td>{{$artikel->id}}</td>
-							<td>{{$artikel->judul}}</td>
-							<td>{{$artikel->created_at}}</td>
-							<td>{{$artikel->updated_at}}</td>
+							<td>{{ $i + 1 }}</td>
+							<td>{{ $artikel->judul }}</td>
+							<td>{{ $artikel->created_at }}</td>
+							<td>{{ $artikel->updated_at }}</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="{{route('panel.artikel.edit', ['slug' => $artikel->slug])}}"
+									<a href="{{ route('panel.artikel.edit', ['slug' => $artikel->slug]) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
-									<form id="delete-artikel-form-{{$artikel->id}}"
-										action="{{route('panel.artikel.destroy', ['slug' => $artikel->slug])}}"
+									<form id="delete-artikel-form-{{ $artikel->id }}"
+										action="{{ route('panel.artikel.destroy', ['slug' => $artikel->slug]) }}"
 										method="POST">
 										@csrf
 										@method('DELETE')
 									</form>
 									<a href="javascript:void(0)"
-										onclick="document.getElementById(`delete-artikel-form-{{$artikel->id}}`).submit()"
+										onclick="document.getElementById(`delete-artikel-form-{{ $artikel->id }}`).submit()"
 										class="m-btn btn btn-danger">
 										<i class="fa fa-trash-o"></i>
 									</a>

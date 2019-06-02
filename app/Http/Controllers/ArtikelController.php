@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Artikel;
+use App\Http\Requests\ArtikelRequest;
 use Illuminate\Http\Request;
 
 class ArtikelController extends Controller
@@ -31,10 +32,10 @@ class ArtikelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ArtikelRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArtikelRequest $request)
     {
         $artikel = new Artikel;
 
@@ -133,11 +134,11 @@ class ArtikelController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ArtikelRequest  $request
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(ArtikelRequest $request, $slug)
     {
         $artikel = Artikel::where('slug', $slug)->first();
 
@@ -205,8 +206,8 @@ class ArtikelController extends Controller
                 $artikel->thumbnail = $thumbnailFileName;
             }
 
-			$artikel->save();
-			return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
+            $artikel->save();
+            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
         } else {
             return abort(404);
         }

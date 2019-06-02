@@ -19,7 +19,11 @@ class CheckAdmin
         if (Session::get('divisi')) {
             return $next($request);
         } else {
-            return redirect()->route('panel.login', ['redirectTo' => $request->getRequestUri()])->with('alert', 'Anda belum login');
+            if ($request->getRequestUri() == '/panel/dashboard') {
+                return redirect()->route('panel.login')->with('alert', 'Anda belum login');
+            } else {
+                return redirect()->route('panel.login', ['redirectTo' => $request->getRequestUri()])->with('alert', 'Anda belum login');
+            }
         }
     }
 }

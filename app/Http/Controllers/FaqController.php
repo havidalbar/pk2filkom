@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Faq;
+use App\Http\Requests\FaqRequest;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -31,10 +32,10 @@ class FaqController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FaqRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FaqRequest $request)
     {
         $faq = new Faq;
         $faq->tanya = $request->tanya;
@@ -70,11 +71,11 @@ class FaqController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FaqRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FaqRequest $request, $id)
     {
         $faq = Faq::find($id);
 

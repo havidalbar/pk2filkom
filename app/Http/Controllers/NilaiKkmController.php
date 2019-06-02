@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\NilaiKKM;
+use App\Http\Requests\NilaiKkmRequest;
 use Illuminate\Http\Request;
 
 class NilaiKkmController extends Controller
@@ -31,10 +32,10 @@ class NilaiKkmController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\NilaiKkmRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NilaiKkmRequest $request)
     {
         $data = new NilaiKKM();
         $data->kegiatan = $request->kegiatan;
@@ -69,11 +70,11 @@ class NilaiKkmController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\NilaiKkmRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NilaiKkmRequest $request, $id)
     {
         $dataNilai = NilaiKKM::where('id', $id)->update([
             'kegiatan' => $request->kegiatan,

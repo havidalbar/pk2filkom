@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Faq;
-use App\Kategori;
+use App\Http\Requests\PenggunaRequest;
 use App\Mahasiswa;
-use App\NilaiKKM;
 use App\Pengguna;
 use App\Penugasan;
 use App\Pk2mAbsen;
@@ -63,27 +61,17 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PenggunaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PenggunaRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|min:3|max:100',
-            'password' => 'required|min:6|max:20',
-            'divisi' => 'required|min:3|max:20',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        } else {
-            $data = new Pengguna();
-            $data->username = $request->username;
-            $data->password = Hash::make($request->password);
-            $data->divisi = $request->divisi;
-            $data->save();
-            return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mendaftar pengguna');
-        }
+        $data = new Pengguna();
+        $data->username = $request->username;
+        $data->password = Hash::make($request->password);
+        $data->divisi = $request->divisi;
+        $data->save();
+        return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mendaftar pengguna');
     }
 
     /**
@@ -115,11 +103,11 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PenggunaRequest  $request
      * @param  string  $username
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $username)
+    public function update(PenggunaRequest $request, $username)
     {
         $dataPengguna = Pengguna::where('username', $username)->first();
         $dataPengguna->username = $request->username;

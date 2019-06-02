@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -63,32 +63,33 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i=0;$i<count($penggunas);$i++) <tr>
+						@for($i = 0; $i < count($penggunas); $i++) <tr>
 							<td>
-								{{$i+1}}
+								{{ $i+1 }}
 							</td>
 							<td>
-								{{$penggunas[$i]->username}}
+								{{ $penggunas[$i]->username }}
 							</td>
 							<td>
-								{{$penggunas[$i]->divisi}}
+								{{ $penggunas[$i]->divisi }}
 							</td>
 							<td>
-								{{strftime("%d %b %Y",strtotime($penggunas[$i]->updated_at))}}
+								{{ strftime("%d %b %Y", strtotime($penggunas[$i]->updated_at)) }}
 							</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
 									@if(Session::get('is_full_access'))
-									<a href="{{route('panel.pengguna.edit',$penggunas[$i]->username)}}"
+									<a href="{{ route('panel.pengguna.edit', $penggunas[$i]->username) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
-									<form action="{{route('panel.pengguna.destroy',$penggunas[$i]->username)}}"
-										id="form-delete-pengguna-{{$penggunas[$i]->username}}" method="POST">
-										{{csrf_field()}}
-										{{method_field('DELETE')}}
+									<form action="{{ route('panel.pengguna.destroy', $penggunas[$i]->username) }}"
+										id="form-delete-pengguna-{{ $penggunas[$i]->username }}" method="POST">
+										@csrf
+										@method('DELETE')
 									</form>
-									<a href="javascript:void(0)" onclick="document.getElementById('form-delete-pengguna-{{$penggunas[$i]->username}}').submit()"
+									<a href="javascript:void(0)"
+										onclick="document.getElementById('form-delete-pengguna-{{ $penggunas[$i]->username }}').submit()"
 										class="m-btn btn btn-danger">
 										<i class="fa fa-trash-o"></i>
 									</a>

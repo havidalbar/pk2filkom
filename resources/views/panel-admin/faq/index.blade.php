@@ -2,7 +2,7 @@
 @section('assideKontent')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
+	<div class="m-subheader">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title" style="transform: translateY(10px);">
@@ -43,8 +43,8 @@
 				<table class="m-datatable" id="html_table" width="100%">
 					<thead>
 						<tr>
-							<th title="ID">
-								ID
+							<th title="No">
+								No
 							</th>
 							<th title="Pertanyaan">
 								Pertanyaan
@@ -58,24 +58,24 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($faqs as $faq)
+						@foreach ($faqs as $i => $faq)
 						<tr>
-							<td>{{$faq->id}}</td>
-							<td>{{$faq->tanya}}</td>
-							<td>{{$faq->jawab}}</td>
+							<td>{{ $i + 1 }}</td>
+							<td>{{ $faq->tanya }}</td>
+							<td>{{ $faq->jawab }}</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="{{route('panel.faq.edit', ['id' => $faq->id])}}"
+									<a href="{{ route('panel.faq.edit', ['id' => $faq->id]) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
-									<form id="delete-faq-form-{{$faq->id}}"
-										action="{{route('panel.faq.destroy', ['id' => $faq->id])}}" method="POST">
+									<form id="delete-faq-form-{{ $faq->id }}"
+										action="{{ route('panel.faq.destroy', ['id' => $faq->id]) }}" method="POST">
 										@csrf
 										@method('DELETE')
 									</form>
 									<a href="javascript:void(0)"
-										onclick="document.getElementById(`delete-faq-form-{{$faq->id}}`).submit()"
+										onclick="document.getElementById(`delete-faq-form-{{ $faq->id }}`).submit()"
 										class="m-btn btn btn-danger">
 										<i class="fa fa-trash-o"></i>
 									</a>

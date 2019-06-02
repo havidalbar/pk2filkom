@@ -11,28 +11,30 @@
 		<div class="col-10">
 			<input class="form-control m-input {{ $errors->has('username') ? 'form-control-danger' : '' }}"
 				name="username" placeholder="Username pengguna"
-				value="{{$old->username ?? ($dataPengguna->username ?? '')}}" type="text" id="username-text-input">
+				value="{{ old('username') ?? ($dataPengguna->username ?? '') }}" type="text" id="username-text-input"
+				required>
 			{!! $errors->first('username','<div class="form-control-feedback">:message</div>') !!}
 		</div>
 	</div>
-	<div class="form-group m-form__group row {{ $errors->has('jpengguna') ? 'has-danger' : '' }}">
+	<div class="form-group m-form__group row {{ $errors->has('divisi') ? 'has-danger' : '' }}">
 		<label for="jenispenggunaSelect" class="col-2 col-form-label">
 			Divisi
 		</label>
 		<div class="col-10">
-			<select class="form-control m-input {{ $errors->has('jPengguna') ? 'form-control-danger' : '' }}"
+			<select class="form-control m-input {{ $errors->has('divisi') ? 'form-control-danger' : '' }}"
 				id="jenispenggunaSelect" name="divisi" required>
-				<option value="" disabled {{empty($dataPengguna) ? 'selected' : ''}}>
+				<option value="" disabled {{ empty($dataPengguna) ? 'selected' : '' }}>
 					Pilih divisi
 				</option>
 				@foreach ($pilihanDivisi as $pilihanDiv)
-				<option {{isset($dataPengguna) && $pilihanDiv == $dataPengguna->divisi ? 'selected' : ''}}>
-					{{$pilihanDiv}}
+				<option
+					{{ ((isset($dataPengguna) && $pilihanDiv == $dataPengguna->divisi) || old('divisi') == $pilihanDiv) ? 'selected' : '' }}>
+					{{ $pilihanDiv }}
 				</option>
 				@endforeach
 			</select>
 		</div>
-		{!! $errors->first('jPengguna','<div class="form-control-feedback">:message</div>') !!}
+		{!! $errors->first('divisi','<div class="form-control-feedback">:message</div>') !!}
 	</div>
 	@if (empty($dataPengguna))
 	<div class="form-group m-form__group row {{ $errors->has('password') ? 'has-danger' : '' }}">
@@ -41,14 +43,13 @@
 		</label>
 		<div class="col-10">
 			<input class="form-control m-input {{ $errors->has('password') ? 'form-control-danger' : '' }}"
-				name="password" placeholder="Password" type="password" id="password-text-input">
+				name="password" placeholder="Password" type="password" id="password-text-input" required>
 			{!! $errors->first('password','<div class="form-control-feedback">:message</div>') !!}
 		</div>
 	</div>
 	@endif
 	<div class="m-portlet__foot m-portlet__foot--fit">
 		<div class="m-form__actions">
-			{{csrf_field()}}
 			<button type="submit" class="btn btn-primary">
 				Submit
 			</button>

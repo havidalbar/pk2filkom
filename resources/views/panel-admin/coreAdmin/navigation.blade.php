@@ -9,7 +9,7 @@
             <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
                 <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
                     <li class="m-menu__item  m-menu__item--active"  aria-haspopup="true">
-                        <a  href="{{route('panel.dashboard')}}" class="m-menu__link ">
+                        <a href="{{ route('panel.dashboard') }}" class="m-menu__link ">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
                                 Dashboard
@@ -18,7 +18,7 @@
                     </li>
 
                     {{-- <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
-                        <a  href="#" class="m-menu__link m-menu__toggle">
+                        <a href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
                                 Agenda
@@ -30,7 +30,7 @@
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/kegiatan" class="m-menu__link ">
+                                    <a href="/kegiatan" class="m-menu__link ">
                                         <i class="m-menu__link-icon flaticon-users"></i>
                                         <span class="m-menu__link-text">
                                             KEGIATAN
@@ -38,7 +38,7 @@
                                     </a>
                                 </li>
                                 <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                    <a  href="/rangkaian" class="m-menu__link ">
+                                    <a href="/rangkaian" class="m-menu__link ">
                                         <i class="m-menu__link-icon flaticon-users"></i>
                                         <span class="m-menu__link-text">
                                             RANGKAIAN
@@ -92,7 +92,7 @@
 					@endif
 
                     <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click" aria-haspopup="true">
-                        <a  href="#" class="m-menu__link m-menu__toggle">
+                        <a href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
                                 Rekap Kegiatan
@@ -104,7 +104,7 @@
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item  m-menu__item--submenu" data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-list-alt"></i>
                                         <span class="m-menu__link-text">
                                             PK2MABA
@@ -116,7 +116,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                            <a  href="{{route('panel.full.show-pk2-absensi')}}" class="m-menu__link ">
+                                            <a href="{{ route('panel.full.show-pk2-absensi') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Absensi
@@ -124,7 +124,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.full.show-pk2-keaktifan')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.full.show-pk2-keaktifan') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Keaktifan
@@ -132,7 +132,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pk2Tugas" class="m-menu__link ">
+                                                <a href="/pk2Tugas" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Tugas
@@ -140,7 +140,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.full.show-pk2-pelanggaran')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.full.show-pk2-pelanggaran') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Pelanggaran
@@ -148,7 +148,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.full.show-pk2-rekap')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.full.show-pk2-rekap') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Total
@@ -159,7 +159,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-list-alt"></i>
                                         <span class="m-menu__link-text">
                                             STARTUP ACADEMY
@@ -171,7 +171,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.absensi.index')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.absensi.index') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         ABSENSI
@@ -179,7 +179,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.keaktifan.index')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.keaktifan.index') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         KEAKTIFAN
@@ -187,7 +187,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.tugas.index')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.index') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS
@@ -195,7 +195,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.tugas.deep-talk')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.deep-talk') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS DEEP TALK
@@ -203,7 +203,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.tugas.filkom-tv')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.filkom-tv') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS FILKOM TV
@@ -211,7 +211,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.kegiatan.startup.pelanggaran.index')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.kegiatan.startup.pelanggaran.index') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         Pelanggaran
@@ -222,7 +222,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-list-alt"></i>
                                         <span class="m-menu__link-text">
                                             PK2KM TOUR
@@ -234,7 +234,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmAbsensi" class="m-menu__link ">
+                                                <a href="/pkmAbsensi" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         ABSENSI
@@ -242,7 +242,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmKeaktifan" class="m-menu__link ">
+                                                <a href="/pkmKeaktifan" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         KEAKTIFAN
@@ -250,7 +250,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmKelompok" class="m-menu__link ">
+                                                <a href="/pkmKelompok" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         KELOMPOK
@@ -258,7 +258,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmTugas" class="m-menu__link ">
+                                                <a href="/pkmTugas" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS
@@ -266,7 +266,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmTugasAbstraksi" class="m-menu__link ">
+                                                <a href="/pkmTugasAbstraksi" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         TUGAS ABSTRAKSI
@@ -274,7 +274,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/pkmPelanggaran" class="m-menu__link ">
+                                                <a href="/pkmPelanggaran" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         PELANGGARAN
@@ -285,7 +285,7 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-list-alt"></i>
                                         <span class="m-menu__link-text">
                                             TINGKAT PRODI
@@ -297,7 +297,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="/prodiFinal" class="m-menu__link ">
+                                                <a href="/prodiFinal" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-file-text-o"></i>
                                                     <span class="m-menu__link-text">
                                                         FINAL
@@ -312,7 +312,7 @@
                     </li>
 
                     <li class="m-menu__item  m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-                        <a  href="#" class="m-menu__link m-menu__toggle">
+                        <a href="#" class="m-menu__link m-menu__toggle">
                             <span class="m-menu__item-here"></span>
                             <i class="m-menu__link-icon flaticon-more-v3"></i>
                             <span class="m-menu__link-text"></span>
@@ -321,7 +321,7 @@
                             <span class="m-menu__arrow m-menu__arrow--adjust"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon la la-users"></i>
                                         <span class="m-menu__link-text">
                                             MAHASISWA
@@ -333,7 +333,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-												<a href="{{route('panel.mahasiswa.biodata')}}" class="m-menu__link ">
+												<a href="{{ route('panel.mahasiswa.biodata') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-user"></i>
                                                     <span class="m-menu__link-text">
                                                         BIODATA
@@ -341,7 +341,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.mahasiswa.kesehatan')}}" class="m-menu__link ">
+                                                <a href="{{ route('panel.mahasiswa.kesehatan') }}" class="m-menu__link ">
                                                     <i class="m-menu__link-icon la la-user-md"></i>
                                                     <span class="m-menu__link-text">
                                                         KESEHATAN
@@ -352,10 +352,10 @@
                                     </div>
                                 </li>
                                 <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a  href="#" class="m-menu__link m-menu__toggle">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
                                         <i class="m-menu__link-icon flaticon-chat-1"></i>
                                         <span class="m-menu__link-text">
-                                            PENUGASAAN
+                                            PENUGASAN
                                         </span>
                                         <i class="m-menu__hor-arrow la la-angle-right"></i>
                                         <i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -364,7 +364,7 @@
                                         <span class="m-menu__arrow "></span>
                                         <ul class="m-menu__subnav">
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="inner.html" class="m-menu__link ">
+                                                <a href="inner.html" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-chat-1"></i>
                                                     <span class="m-menu__link-text">
                                                         DAFTAR PENUGASAAN
@@ -372,7 +372,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="inner.html" class="m-menu__link ">
+                                                <a href="inner.html" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-chat-1"></i>
                                                     <span class="m-menu__link-text">
                                                         PILIHAN GANDA SESI 1
@@ -380,7 +380,7 @@
                                                 </a>
                                             </li>
                                             <li class="m-menu__item "  data-redirect="true" aria-haspopup="true">
-                                                <a  href="inner.html" class="m-menu__link ">
+                                                <a href="inner.html" class="m-menu__link ">
                                                     <i class="m-menu__link-icon flaticon-chat-1"></i>
                                                     <span class="m-menu__link-text">
                                                         PILIHAN GANDA SESI 2
@@ -390,31 +390,16 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="hover" data-redirect="true" aria-haspopup="true">
-                                    <a href="#" class="m-menu__link m-menu__toggle">
+                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                    <a href="{{ route('panel.pengguna.index') }}" class="m-menu__link">
                                         <i class="m-menu__link-icon la la-user-secret"></i>
                                         <span class="m-menu__link-text">
                                             PENGGUNA
                                         </span>
-                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
-                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
                                     </a>
-                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-                                        <span class="m-menu__arrow"></span>
-                                        <ul class="m-menu__subnav">
-                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-                                                <a  href="{{route('panel.pengguna.index')}}" class="m-menu__link">
-                                                    <i class="m-menu__link-icon flaticon-user-settings"></i>
-                                                    <span class="m-menu__link-text">
-                                                        DAFTAR PENGGUNA
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-                                    <a  href="{{route('panel.nilai-kkm.index')}}" class="m-menu__link">
+                                    <a href="{{ route('panel.nilai-kkm.index') }}" class="m-menu__link">
                                         <i class="m-menu__link-icon la la-bar-chart-o"></i>
                                         <span class="m-menu__link-text">
                                             NILAI KKM

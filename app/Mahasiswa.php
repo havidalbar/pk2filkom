@@ -8,6 +8,13 @@ class Mahasiswa extends Model
 {
     protected $table = 'mahasiswa';
 
+    protected $primaryKey = 'nim';
+	public $incrementing = false;
+	
+    protected $casts = [
+        'nim' => 'string',
+    ];
+
     public function getJenisKelaminAttribute($value)
     {
         switch ($value) {
@@ -38,9 +45,9 @@ class Mahasiswa extends Model
             default:
                 return 'Tidak diketahui';
         }
-	}
-	
-	public function getAgamaAttribute($value)
+    }
+
+    public function getAgamaAttribute($value)
     {
         switch ($value) {
             case 1:
@@ -50,8 +57,8 @@ class Mahasiswa extends Model
             case 3:
                 return 'Islam';
             case 4:
-				return 'Katolik';
-			case 5:
+                return 'Katolik';
+            case 5:
                 return 'Kristen Protestan';
             case 6:
                 return 'Kong Hu Cu';
