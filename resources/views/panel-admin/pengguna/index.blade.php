@@ -55,7 +55,7 @@
 							<th title="Terakhir Edit">
 								Terakhir Edit
 							</th>
-							@if(Session::get('is_full_access'))
+							@if (Session::get('is_full_access'))
 							<th title="Action">
 								Action
 							</th>
@@ -63,7 +63,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@for($i = 0; $i < count($penggunas); $i++) <tr>
+						@for ($i = 0; $i < count($penggunas); $i++) <tr>
 							<td>
 								{{ $i+1 }}
 							</td>
@@ -78,7 +78,7 @@
 							</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									@if(Session::get('is_full_access'))
+									@if (Session::get('is_full_access'))
 									<a href="{{ route('panel.pengguna.edit', $penggunas[$i]->username) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>

@@ -9,7 +9,7 @@
 					<h3 class="m-subheader__title" style="transform: translateY(10px);">
 						DATA
 						<small>
-							Rekap keaktifan STARTUP ACADEMY
+							Rekap pelanggaran PK2MABA
 						</small>
 					</h3>
 				</div>
@@ -70,23 +70,14 @@
 								<th title="Nama">
 									Nama
 								</th>
-								<th title="Nilai Keaktifan Rangkaian STARTUP ACADEMY Ke - 3">
-									Nilai k Ke-3
+								<th title="Pelanggaran Ringan">
+									Ringan
 								</th>
-								<th title="Nilai Penerapan Rangkaian STARTUP ACADEMY Ke - 3">
-									Nilai p Ke-3
+								<th title="Pelanggaran Sedang">
+									Sedang
 								</th>
-								<th title="Nilai Keaktifan Rangkaian STARTUP ACADEMY Ke - 4">
-									Nilai k Ke-4
-								</th>
-								<th title="Nilai Penerapan Rangkaian STARTUP ACADEMY Ke - 4">
-									Nilai p Ke-4
-								</th>
-								<th title="Nilai Keaktifan Rangkaian STARTUP ACADEMY Ke - 5">
-									Nilai k Ke-5
-								</th>
-								<th title="Nilai Penerapan Rangkaian STARTUP ACADEMY Ke - 5">
-									Nilai p Ke-5
+								<th title="Pelanggaran Berat">
+									Berat
 								</th>
 								<th title="Action">
 									Action
@@ -94,46 +85,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							@for ($i = 0; $i < count($startupKeaktifans); $i++) <tr>
+							@for ($i = 0; $i < count($pk2mabaPelanggarans); $i++) <tr>
 								<td>
-									{{ $startupKeaktifans[$i]->nim }}
+									{{ $pk2mabaPelanggarans[$i]->nim }}
 								</td>
 								<td>
-									{{ $startupKeaktifans[$i]->mahasiswa->nama }}
+									{{ $pk2mabaPelanggarans[$i]->mahasiswa->nama }}
 								</td>
 								<td>
-									{{ $startupKeaktifans[$i]->aktif_rangkaian3 }}
+									{{ $pk2mabaPelanggarans[$i]->ringan }}
 								</td>
 								<td>
-									{{ $startupKeaktifans[$i]->penerapan_nilai_rangkaian3 }}
+									{{ $pk2mabaPelanggarans[$i]->sedang }}
 								</td>
 								<td>
-									{{ $startupKeaktifans[$i]->aktif_rangkaian4 }}
-								</td>
-								<td>
-									{{ $startupKeaktifans[$i]->penerapan_nilai_rangkaian4 }}
-								</td>
-								<td>
-									{{ $startupKeaktifans[$i]->aktif_rangkaian5 }}
-								</td>
-								<td>
-									{{ $startupKeaktifans[$i]->penerapan_nilai_rangkaian5 }}
+									{{ $pk2mabaPelanggarans[$i]->berat }}
 								</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="First group">
-										<a href="{{ route('panel.kegiatan.startup.keaktifan.edit', $startupKeaktifans[$i]->nim) }}"
+										<a href="{{ route('panel.kegiatan.pk2maba.pelanggaran.edit', $pk2mabaPelanggarans[$i]->nim) }}"
 											class="m-btn btn btn-warning">
 											<i class="fa fa-edit"></i>
 										</a>
 										<form
-											action="{{ route('panel.kegiatan.startup.keaktifan.destroy', $startupKeaktifans[$i]->nim) }}"
-											id="delete-startup-keaktifan-{{ $startupKeaktifans[$i]->nim }}"
+											action="{{ route('panel.kegiatan.pk2maba.pelanggaran.destroy', $pk2mabaPelanggarans[$i]->nim) }}"
+											id="delete-pk2maba-pelanggaran-{{ $pk2mabaPelanggarans[$i]->nim }}"
 											method="POST">
 											@csrf
 											@method('DELETE')
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-startup-keaktifan-{{ $startupKeaktifans[$i]->nim }}').submit()"
+											onclick="document.getElementById('delete-pk2maba-pelanggaran-{{ $pk2mabaPelanggarans[$i]->nim }}').submit()"
 											class="m-btn btn btn-danger">
 											<i class="fa fa-trash-o"></i>
 										</a>
@@ -155,7 +137,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					Import data keatifan STARTUP ACADEMY
+					Import data pelanggaran PK2MABA
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -163,18 +145,18 @@
 					</span>
 				</button>
 			</div>
-			<form action="/stKeaktifan" class="m-form m-form--state m-form--fit m-form--label-align-right"
+			<form action="/pk2Pelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right"
 				method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
 					<div class="form-group m-form__group row ">
 						<label for="Thumbnail" class="col-4 col-form-label">
-							File STARTUP ACADEMY KEAKTIFAN
+							File PK2PELANGGARAN
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="keatifan" required="true">
+							<input type="file" name="pelanggaran" required="true">
 						</div>
 					</div>
 				</div>

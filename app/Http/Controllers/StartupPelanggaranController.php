@@ -76,7 +76,7 @@ class StartupPelanggaranController extends Controller
             'sedang' => $request->sedang,
             'berat' => $request->berat,
         ]);
-        return redirect()->route('panel.kegiatan.startup.pelanggaran.index')->with('alert', 'Berhasil mengubah data Startup Pelanggaran');
+        return redirect()->route('panel.kegiatan.startup.pelanggaran.index')->with('alert', 'Berhasil mengubah data pelanggaran Startup Academy');
     }
 
     /**
@@ -92,6 +92,6 @@ class StartupPelanggaranController extends Controller
             'sedang' => 0,
             'berat' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.startup.pelanggaran.index')->with('alert', 'Berhasil menghapus data startup pelanggaran');
+        return redirect()->route('panel.kegiatan.startup.pelanggaran.index')->with('alert', 'Berhasil menghapus data pelanggaran Startup Academy');
     }
 }

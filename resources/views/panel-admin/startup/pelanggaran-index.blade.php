@@ -85,7 +85,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@for($i = 0; $i < count($startupPelanggarans); $i++) <tr>
+							@for ($i = 0; $i < count($startupPelanggarans); $i++) <tr>
 								<td>
 									{{ $startupPelanggarans[$i]->nim }}
 								</td>

@@ -76,7 +76,7 @@ class StartupAbsensiController extends Controller
             'nilai_rangkaian4' => $request->nilai_rangkaian4,
             'nilai_rangkaian5' => $request->nilai_rangkaian5,
         ]);
-        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil mengubah data startup Absensi');
+        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil mengubah data absensi Startup Academy');
     }
 
     /**
@@ -92,6 +92,6 @@ class StartupAbsensiController extends Controller
             'nilai_rangkaian4' => 0,
             'nilai_rangkaian5' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil menghapus data startup absensi');
+        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil menghapus data absensi Startup Academy');
     }
 }

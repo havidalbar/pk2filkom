@@ -41,43 +41,49 @@
 									{!! $errors->first('nim','<div class="form-control-feedback">:message</div>') !!}
 								</div>
 							</div>
-							<div class="form-group m-form__group row {{ $errors->has('nilaiR3') ? 'has-danger' : '' }}">
-								<label for="nilaiR3-text-input" class="col-3 col-form-label">
+							<div
+								class="form-group m-form__group row {{ $errors->has('nilai_rangkaian3') ? 'has-danger' : '' }}">
+								<label for="nilai-rangkaian3-text-input" class="col-3 col-form-label">
 									Nilai Rangkaian Ke - 3
 								</label>
 								<div class="col-9">
 									<input
-										class="form-control m-input {{ $errors->has('nilaiR3') ? 'form-control-danger' : '' }}"
-										name="nilai_rangkaian3" placeholder="nilaiR3"
-										value="{{ $startupAbsensi->nilai_rangkaian3 }}" type="text" id="nilaiR3-text-input">
-									{!! $errors->first('nilaiR3','<div class="form-control-feedback">:message</div>')
-									!!}
+										class="form-control m-input {{ $errors->has('nilai_rangkaian3') ? 'form-control-danger' : '' }}"
+										name="nilai_rangkaian3" placeholder="Nilai Rangkaian Ke - 3"
+										value="{{ $startupAbsensi->nilai_rangkaian3 }}" type="text"
+										id="nilai-rangkaian3-text-input">
+									{!! $errors->first('nilai_rangkaian3','<div class="form-control-feedback">:message
+									</div>') !!}
 								</div>
 							</div>
-							<div class="form-group m-form__group row {{ $errors->has('nilaiR4') ? 'has-danger' : '' }}">
-								<label for="nilaiR4-text-input" class="col-3 col-form-label">
+							<div
+								class="form-group m-form__group row {{ $errors->has('nilai_rangkaian4') ? 'has-danger' : '' }}">
+								<label for="nilai-rangkaian4-text-input" class="col-3 col-form-label">
 									Nilai Rangkaian Ke - 4
 								</label>
 								<div class="col-9">
 									<input
-										class="form-control m-input {{ $errors->has('nilaiR4') ? 'form-control-danger' : '' }}"
-										name="nilai_rangkaian4" placeholder="nilaiR4"
-										value="{{ $startupAbsensi->nilai_rangkaian4 }}" type="text" id="nilaiR4-text-input">
-									{!! $errors->first('nilaiR4','<div class="form-control-feedback">:message</div>')
-									!!}
+										class="form-control m-input {{ $errors->has('nilai_rangkaian4') ? 'form-control-danger' : '' }}"
+										name="nilai_rangkaian4" placeholder="Nilai Rangkaian Ke - 4"
+										value="{{ $startupAbsensi->nilai_rangkaian4 }}" type="text"
+										id="nilai-rangkaian4-text-input">
+									{!! $errors->first('nilai_rangkaian4','<div class="form-control-feedback">:message
+									</div>') !!}
 								</div>
 							</div>
-							<div class="form-group m-form__group row {{ $errors->has('nilaiR5') ? 'has-danger' : '' }}">
-								<label for="nilaiR5-text-input" class="col-3 col-form-label">
+							<div
+								class="form-group m-form__group row {{ $errors->has('nilai_rangkaian5') ? 'has-danger' : '' }}">
+								<label for="nilai-rangkaian5-text-input" class="col-3 col-form-label">
 									Nilai Rangkaian Ke - 5
 								</label>
 								<div class="col-9">
 									<input
-										class="form-control m-input {{ $errors->has('nilaiR5') ? 'form-control-danger' : '' }}"
-										name="nilai_rangkaian5" placeholder="nilaiR5"
-										value="{{ $startupAbsensi->nilai_rangkaian5 }}" type="text" id="nilaiR5-text-input">
-									{!! $errors->first('nilaiR5','<div class="form-control-feedback">:message</div>')
-									!!}
+										class="form-control m-input {{ $errors->has('nilai_rangkaian5') ? 'form-control-danger' : '' }}"
+										name="nilai_rangkaian5" placeholder="Nilai Rangkaian Ke - 5"
+										value="{{ $startupAbsensi->nilai_rangkaian5 }}" type="text"
+										id="nilai-rangkaian5-text-input">
+									{!! $errors->first('nilai_rangkaian5','<div class="form-control-feedback">:message
+									</div>') !!}
 								</div>
 							</div>
 							<div class="m-portlet__foot m-portlet__foot--fit">

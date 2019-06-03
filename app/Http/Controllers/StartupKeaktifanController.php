@@ -79,7 +79,7 @@ class StartupKeaktifanController extends Controller
             'aktif_rangkaian5' => $request->aktif_rangkaian5,
             'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5,
         ]);
-        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil mengubah data startup Keaktifan');
+        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan Startup Academy');
     }
 
     /**
@@ -98,6 +98,6 @@ class StartupKeaktifanController extends Controller
             'aktif_rangkaian5' => 0,
             'penerapan_nilai_rangkaian5' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil menghapus data startup keaktifan');
+        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan Startup Academy');
     }
 }

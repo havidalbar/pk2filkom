@@ -93,7 +93,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             ])->except(['show', 'index']);
 
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
-                Route::group(['prefix' => 'pk2-maba', 'as' => 'pk2-maba.'], function () {
+                Route::group(['prefix' => 'pk2maba', 'as' => 'pk2maba.'], function () {
                     Route::get('total', 'AdminController@getPK2MabaTotal')->name('total');
 
                     Route::resource('absensi', 'PK2MabaAbsensiController')->parameters([

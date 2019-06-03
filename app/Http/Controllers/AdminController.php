@@ -198,6 +198,12 @@ class AdminController extends Controller
         return view('panel-admin.isiDashboard');
     }
 
+    public function getPK2MabaTotal()
+    {
+        $mahasiswas = Mahasiswa::get(['nim', 'nama']);
+        return view('panel-admin.pk2maba.total', compact('mahasiswas'));
+    }
+
     //Pengguna
     public function getPengguna()
     {

@@ -9,10 +9,15 @@ class Mahasiswa extends Model
     protected $table = 'mahasiswa';
 
     protected $primaryKey = 'nim';
-	public $incrementing = false;
-	
+    public $incrementing = false;
+
     protected $casts = [
         'nim' => 'string',
+    ];
+
+    protected $appends = [
+        'rekap_nilai_pk2maba',
+        'rekap_nilai_startup',
     ];
 
     public function getJenisKelaminAttribute($value)
@@ -67,5 +72,23 @@ class Mahasiswa extends Model
             default:
                 return 'Tidak diketahui';
         }
+    }
+
+    public function getRekapNilaiPk2mabaAttribute()
+    {
+        return [
+            'absensi' => PK2MabaAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'keaktifan' => PK2MabaKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'pelanggaran' => PK2MabaPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+        ];
+    }
+
+    public function getRekapNilaiStartupAttribute()
+    {
+        return [
+            'absensi' => StartupAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'keaktifan' => StartupKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'pelanggaran' => StartupPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+        ];
     }
 }
