@@ -37,4 +37,48 @@ $(document).ready(function() {
         }
     });
     // endScrollAnimate
+    $('.center.slider').slick({
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 5,
+        slidesToScroll: 3,
+        dots: true,
+        swipe: false,
+        centerPadding: '80px',
+        prevArrow: `
+            <a class="slickArrow carousel-control-prev" style="width: 5%;">
+                <span class="berita-prev" aria-hidden="true"><i class="far fa-chevron-left"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+        `,
+        nextArrow: `
+            <a class="slickArrow carousel-control-next" style="width: 5%;">
+                <span class="berita-next" aria-hidden="true"><i class="far fa-chevron-right"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
+        `,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              arrows: false,
+              swipe: true,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              arrows: false,
+              swipe: true,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 1
+            }
+          }
+        ]
+    });
+    $('.zoom').zoom();
 });

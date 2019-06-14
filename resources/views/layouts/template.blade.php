@@ -8,6 +8,8 @@
     <title>@yield('title')</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     @yield('css')
@@ -15,8 +17,12 @@
     <script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/popper.min.js')}}"></script>
+    <!-- Slick JS -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- Zoom JS -->
+    <script type="text/javascript" src="{{asset('js/jquery.zoom.min.js')}}"></script>
     <!-- Javascript -->
-    <script src="{{asset('js/script.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
     @yield('js')
 </head>
 

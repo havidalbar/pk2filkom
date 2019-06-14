@@ -370,7 +370,13 @@ html,body{
   overflow: hidden;
   margin-bottom: 0;
 }
-.jumbotron::after{
+
+.jumbotron:not(.pk2-dtBerita)::after{
+  /* clear: both;
+  content: "";
+  display: block;
+}
+.jumbotron::after{ */
   content: '';
   display: block;
   width: 100%;
@@ -973,23 +979,23 @@ figure,figure img {
   margin-top: 16px;
 }
 .footerLogo {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 21px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 21px;
 }
 .linkSosmed {
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 6px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 .linkSosmed p {
-    font-family: 'Esphimere-Bold';
-    margin-bottom: 18px;
-    font-size: 18px;
+  font-family: 'Esphimere-Bold';
+  margin-bottom: 18px;
+  font-size: 18px;
 }
 /* Media ICON */
 [data-icon]:before {
@@ -1004,9 +1010,151 @@ figure,figure img {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.pk2-dtBerita{
+  background-image: url(../img/bg-section/bgBerita.png);  
+}
+.vdBerita {
+  min-height: 240px;
+}
+.detailBerita .titleSection {
+  color: #fff;
+  letter-spacing: 10px;
+  text-align: center;
+}
+.detailBerita .titleSection::after{
+  width: 140%;
+  transform: translateX(-14%);
+}
+.jumbotron.pk2-dtBerita::after{
+  clear: both;
+  content: "";
+  display: block;
+}
+.slick-slide img{
+  width: 100%;
+  height: 100%;
+}
+.slick-slide {
+  margin: 0 10px !important;
+}
+.berita-prev, .berita-next {
+  color: #fff;
+  font-size: 60px;
+  cursor: pointer;
+}
+.slick-dots{
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  left: 0;
+  z-index: 15;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+  }
+.slick-dots li {
+  box-sizing: content-box;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 3px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
+}
+.slick-dots  li {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.slick-dots li.slick-active{
+  opacity: 1;
+}
+.slick-slide img{
+  transform: translate(1%, 0) scale(.9);
+}
+.slick-slide.slick-center img {
+  transform: scale(1);
+}
+.infoBerita {
+  text-align: center;
+  color: #033C58;
+  margin: 1.5rem;
+}
+
+.infoBerita .titleBerita {
+  font-family: 'Esphimere-semiBold';
+  text-transform: uppercase;
+  font-size: 32px;
+  background-color: #f2bc4b;
+  padding: 6px 40px;
+}
+.zoom {
+  display:inline-block;
+  position: relative;
+}
+.zoom img{
+  width: 100%;
+  height: 100%;
+}
+.gradientBerita{
+  height: auto;
+  color: #fff;
+  background-color: #fff;
+  background-image: linear-gradient(to bottom, rgba(3,60,88,1),rgba(85,85,85,1));
+}
+.commentBerita{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.commentImg {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #DEE1E6;
+}
+.btn.btn-comment {
+  color: #6c757d;
+}
+.media-body p{
+  margin: 0;
+}
+.media-title strong {
+  font-size: 18px;
+  color: #1d387b;
+}
+.media-title .sub-title {
+  font-size: 14px;
+  color: #6c757d;
+}
+.commentEvent h1{
+  font-family: 'Esphimere-semiBold';
+  font-size: 32px;
+  color: #223b6e;
+  margin: 1rem 0;
+}
 /* endMedia ICON */
 /* Desktop Version */
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
   #swipUp {
     bottom: -65px;
   }  
@@ -1018,6 +1166,9 @@ figure,figure img {
   }
   .btn-berita{
     font-size: 14px;
+  } 
+  .slick-dots {
+    bottom: -48px;
   }
 }
 @media (max-width: 767.98px) {
