@@ -53,7 +53,7 @@ class PK2MabaPelanggaranController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function edit($nim)
@@ -66,7 +66,7 @@ class PK2MabaPelanggaranController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $nim)
@@ -82,7 +82,7 @@ class PK2MabaPelanggaranController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function destroy($nim)

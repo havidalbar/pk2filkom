@@ -314,7 +314,7 @@
 										<span class="m-menu__arrow"></span>
 										<ul class="m-menu__subnav">
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/prodiFinal" class="m-menu__link">
+												<a href="{{ route('panel.kegiatan.prodi.index') }}" class="m-menu__link">
 													<i class="m-menu__link-icon la la-file-text-o"></i>
 													<span class="m-menu__link-text">
 														FINAL

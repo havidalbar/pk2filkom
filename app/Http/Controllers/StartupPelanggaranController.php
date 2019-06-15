@@ -53,20 +53,20 @@ class StartupPelanggaranController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function edit($nim)
     {
         $startupPelanggaran = StartupPelanggaran::where('nim', $nim)->first();
-        return view('panel-admin.startup.pelanggaran-edit', ['mahasiswa' => $mahasiswa, 'startupPelanggaran' => $startupPelanggaran]);
+        return view('panel-admin.startup.pelanggaran-edit', compact('startupPelanggaran'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $nim)
@@ -82,7 +82,7 @@ class StartupPelanggaranController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function destroy($nim)

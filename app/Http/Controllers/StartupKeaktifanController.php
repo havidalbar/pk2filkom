@@ -53,20 +53,20 @@ class StartupKeaktifanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function edit($nim)
     {
         $startupKeaktifan = StartupKeaktifan::where('nim', $nim)->first();
-        return view('panel-admin.startup.keaktifan-edit', ['mahasiswa' => $mahasiswa, 'startupKeaktifan' => $startupKeaktifan]);
+        return view('panel-admin.startup.keaktifan-edit', compact('startupKeaktifan'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $nim)
@@ -85,7 +85,7 @@ class StartupKeaktifanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $nim
      * @return \Illuminate\Http\Response
      */
     public function destroy($nim)

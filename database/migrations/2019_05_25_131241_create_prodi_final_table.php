@@ -17,6 +17,8 @@ class CreateProdiFinalTable extends Migration
             $table->unsignedBigInteger('nim')->primary();
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->integer('nilai_full')->default(0);
+            $table->string('editor', 30)->nullable();
+            $table->foreign('editor')->references('username')->on('pengguna');
             $table->timestamps();
         });
     }

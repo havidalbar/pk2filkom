@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PK2MabaAbsensi;
+use App\ProdiFinal;
 use Illuminate\Http\Request;
 
-class PK2MabaAbsensiController extends Controller
+class ProdiFinalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PK2MabaAbsensiController extends Controller
      */
     public function index()
     {
-        $pk2mabaAbsensis = PK2MabaAbsensi::all();
-        return view('panel-admin.pk2maba.absensi-index', compact('pk2mabaAbsensis'));
+        $prodiFinals = ProdiFinal::all();
+        return view('panel-admin.prodi-final.index', ['prodiFinals' => $prodiFinals]);
     }
 
     /**
@@ -58,8 +58,8 @@ class PK2MabaAbsensiController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaAbsensi = PK2MabaAbsensi::where('nim', $nim)->first();
-        return view('panel-admin.pk2maba.absensi-edit', compact('pk2mabaAbsensi'));
+        $prodiFinal = ProdiFinal::where('nim', $nim)->first();
+        return view('panel-admin.prodi-final.edit', compact('prodiFinal'));
     }
 
     /**
@@ -71,11 +71,10 @@ class PK2MabaAbsensiController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataAbsen = PK2MabaAbsensi::where('nim', $nim)->update([
-            'nilai_rangkaian1' => $request->nilai_rangkaian1,
-            'nilai_rangkaian2' => $request->nilai_rangkaian2,
+        $prodiFinal = ProdiFinal::where('nim', $nim)->update([
+            'nilai_full' => $request->nilai_prodi,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert', 'Berhasil mengubah data absensi PK2Maba');
+        return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');
     }
 
     /**
@@ -86,10 +85,9 @@ class PK2MabaAbsensiController extends Controller
      */
     public function destroy($nim)
     {
-        $dataAbsen = PK2MabaAbsensi::where('nim', $nim)->update([
-            'nilai_rangkaian1' => 0,
-            'nilai_rangkaian2' => 0,
+        $prodiFinal = ProdiFinal::where('nim', $nim)->update([
+            'nilai_full' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert', 'Berhasil menghapus data absensi PK2Maba');
+        return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');
     }
 }

@@ -9,7 +9,7 @@
 					<h3 class="m-subheader__title" style="transform: translateY(10px);">
 						DATA
 						<small>
-							Rekap pelanggaran STARTUP ACADEMY
+							Rekap Prodi
 						</small>
 					</h3>
 				</div>
@@ -70,14 +70,8 @@
 								<th title="Nama">
 									Nama
 								</th>
-								<th title="Ringan">
-									Ringan
-								</th>
-								<th title="Sedang">
-									Sedang
-								</th>
-								<th title="Berat">
-									Berat
+								<th title="Nilai Rangkaian Prodi">
+									Nilai Keseluruhan
 								</th>
 								<th title="Action">
 									Action
@@ -85,43 +79,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							@for ($i = 0; $i < count($startupPelanggarans); $i++) <tr>
+							@foreach ($prodiFinals as $prodiFinal)
+							<tr>
 								<td>
-									{{ $startupPelanggarans[$i]->nim }}
+									{{ $prodiFinal->nim }}
 								</td>
 								<td>
-									{{ $startupPelanggarans[$i]->mahasiswa->nama }}
+									{{ $prodiFinal->mahasiswa->nama }}
 								</td>
 								<td>
-									{{ $startupPelanggarans[$i]->ringan }}
-								</td>
-								<td>
-									{{ $startupPelanggarans[$i]->sedang }}
-								</td>
-								<td>
-									{{ $startupPelanggarans[$i]->berat }}
+									{{ $prodiFinal->nilai_full }}
 								</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="First group">
-										<a href="{{ route('panel.kegiatan.startup.pelanggaran.edit', $startupPelanggarans[$i]->nim) }}"
+										<a href="{{ route('panel.kegiatan.prodi.edit', $prodiFinal->nim) }}"
 											class="m-btn btn btn-warning">
 											<i class="fa fa-edit"></i>
 										</a>
-										<form
-											action="{{ route('panel.kegiatan.startup.pelanggaran.destroy', $startupPelanggarans[$i]->nim) }}"
-											id="delete-startup-pelanggaran-{{ $startupPelanggarans[$i]->nim }}" method="POST">
+										<form action="{{ route('panel.kegiatan.prodi.destroy', $prodiFinal->nim) }}"
+											id="delete-prodi-{{ $prodiFinal->nim }}" method="POST">
 											@csrf
 											@method('DELETE')
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-startup-pelanggaran-{{ $startupPelanggarans[$i]->nim }}').submit()"
+											onclick="document.getElementById('delete-prodi-{{ $prodiFinal->nim }}').submit()"
 											class="m-btn btn btn-danger">
 											<i class="fa fa-trash-o"></i>
 										</a>
 									</div>
 								</td>
-								</tr>
-								@endfor
+							</tr>
+							@endforeach
 						</tbody>
 					</table>
 					<!--end: Datatable -->
@@ -136,7 +124,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					Import data pelanggaran ACADEMY KEAKTIFAN
+					Import data Prodi
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -144,18 +132,17 @@
 					</span>
 				</button>
 			</div>
-			<form action="/stPelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+			<form action="/prodiFinal" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
 					<div class="form-group m-form__group row ">
 						<label for="Thumbnail" class="col-4 col-form-label">
-							File ACADEMY KEAKTIFAN PELANGGARAN
+							File PRODIFINAL
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="pelanggaran" required="true">
+							<input type="file" name="prodifinal" required="true">
 						</div>
 					</div>
 				</div>
