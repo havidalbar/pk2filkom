@@ -137,6 +137,20 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     });
                 });
 
+                Route::group(['prefix' => 'pkm', 'as' => 'pkm.'], function () {
+                    Route::resource('absensi', 'P2KMTourAbsensiController')->parameters([
+                        'absensi' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('keaktifan', 'P2KMTourKeaktifanController')->parameters([
+                        'keaktifan' => 'nim',
+                    ])->except(['create', 'show']);
+
+                    Route::resource('pelanggaran', 'P2KMTourPelanggaranController')->parameters([
+                        'pelanggaran' => 'nim',
+                    ])->except(['create', 'show']);
+                });
+
                 Route::resource('prodi', 'ProdiFinalController')->parameters([
                     'prodi' => 'nim',
                 ])->except(['create', 'show']);
