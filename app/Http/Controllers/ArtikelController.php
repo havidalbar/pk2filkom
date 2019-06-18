@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Artikel;
 use App\Http\Requests\ArtikelRequest;
+use App\SubArtikel;
 use Illuminate\Http\Request;
 
 class ArtikelController extends Controller
@@ -60,36 +61,73 @@ class ArtikelController extends Controller
 
         $uploadPath = public_path() . '/uploads/';
 
-        $dom = new \domdocument();
-        $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $images = $dom->getelementsbytagname('img');
+        for ($i = 0; $i < count($request->sub_konten); $i++) {
+            $sub_konten = new SubArtikel;
 
-        //loop over img elements, decode their base64 src and save them to public folder,
-        //and then replace base64 src with stored image URL.
-        foreach ($images as $k => $img) {
-            $data = $img->getattribute('src');
+            if ($request->gambar_sub[$i]) {
+                $gambar_sub = $request->gambar_sub[$i];
+                $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
+                $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+                $sub_konten->thumbnail = $gambar_sub_name;
+            }
 
-            list($type, $data) = explode(';', $data);
-            list(, $data) = explode(',', $data);
+            $dom = new \domdocument();
+            $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $images = $dom->getelementsbytagname('img');
 
-            $data = base64_decode($data);
-            // $image_name = time() . $k . '.png';
-            $image_extension = str_replace('data:image/', '', $type);
-            $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
+            //loop over img elements, decode their base64 src and save them to public folder,
+            //and then replace base64 src with stored image URL.
+            foreach ($images as $k => $img) {
+                $data = $img->getattribute('src');
 
-            file_put_contents($uploadPath . $image_name, $data);
+                list($type, $data) = explode(';', $data);
+                list(, $data) = explode(',', $data);
 
-            $img->removeattribute('src');
-            $img->setattribute('src', asset('/uploads/' . $image_name));
+                $data = base64_decode($data);
+                // $image_name = time() . $k . '.png';
+                $image_extension = str_replace('data:image/', '', $type);
+                $image_name = uniqid() . '.' . $image_extension;
+
+                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+
+                $img->removeattribute('src');
+                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+            }
+
+			$sub_konten->deskripsi = $dom->savehtml();
+			$sub_konten->save();
         }
 
-        $artikel->deskripsi = $dom->savehtml();
+        // $dom = new \domdocument();
+        // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        // $images = $dom->getelementsbytagname('img');
+
+        // //loop over img elements, decode their base64 src and save them to public folder,
+        // //and then replace base64 src with stored image URL.
+        // foreach ($images as $k => $img) {
+        //     $data = $img->getattribute('src');
+
+        //     list($type, $data) = explode(';', $data);
+        //     list(, $data) = explode(',', $data);
+
+        //     $data = base64_decode($data);
+        //     // $image_name = time() . $k . '.png';
+        //     $image_extension = str_replace('data:image/', '', $type);
+        //     $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
+
+        //     file_put_contents($uploadPath . $image_name, $data);
+
+        //     $img->removeattribute('src');
+        //     $img->setattribute('src', asset('/uploads/' . $image_name));
+        // }
+
+        // $artikel->deskripsi = $dom->savehtml();
 
         //thumbnail
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
-            $thumbnailFileName = uniqid('thumbnail-') . '.' . $thumbnail->getClientOriginalExtension();
-            $thumbnail->move($uploadPath, $thumbnailFileName);
+            $thumbnailFileName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move($uploadPath . 'thumbnail/', $thumbnailFileName);
             $artikel->thumbnail = $thumbnailFileName;
         }
 
