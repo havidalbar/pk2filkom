@@ -24,6 +24,7 @@
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
+                    $('.toast').toast('show');
                 }
                 form.classList.add('was-validated');
             }, false);
@@ -36,8 +37,8 @@
 @section('content')
 
 <div class="bg-form-data-diri">
-    <div class="container-fluid h-100">
-        <div class="row h-100">
+    <div class="container-fluid">
+        <div class="row full-height">
             <div class="col-sm">
                 <div class="container h-100 d-flex justify-content-center align-items-center animasi slideKeAtas">
                     <img src="{{asset('img/bg-section/simaba4@4x.svg')}}" class="img pk2content">
@@ -45,7 +46,7 @@
             </div>
             <div class="col-sm bg-form">
                 <div class="row h-100 justify-content-center align-items-center">
-                    <form class="col-sm-12 col-md-9 needs-validation" novalidate>
+                    <form class="col-sm-12 col-md-9 needs-validation" method="POST" action="blabla.php" novalidate>
                         <h1 class="text-center text-white font-italic">Form Data Diri</h1>
                         <div class="form-row pt-2">
                             <div class="form-group col-md-6 pt-3">
@@ -57,9 +58,6 @@
                                     </div>
                                     <input type="text" id="coba" class="form-control form-data-diri shadow-none"
                                         name="tempatLahir" placeholder="Tempat Lahir" required>
-                                    <!-- <div class="invalid-feedback">
-                                        Silahkan isi tempat lahir anda.
-                                    </div> -->
                                 </label>
                             </div>
                             <div class="form-group col-md-6 pt-3">
@@ -70,9 +68,6 @@
                                     </div>
                                     <input class="tanggal form-control form-data-diri shadow-none" name="tanggalLahir"
                                         placeholder="08/08/1999" onkeydown="return false" required>
-                                    <!-- <div class="invalid-feedback">
-                                        Silahkan pilih tanggal lahir anda.
-                                    </div> -->
                                 </label>
                             </div>
                         </div>
@@ -80,7 +75,7 @@
                             <label class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text icon-input"><i class="icon-agama-biru fa-lg"></i></div>
-                                </div>                                
+                                </div>
                                 <select class="custom-select form-data-diri shadow-none" name="agama" required>
                                     <option value="" selected disabled>Agama</option>
                                     <option value="Islam">Islam</option>
@@ -90,9 +85,6 @@
                                     <option value="Buddha">Buddha</option>
                                     <option value="Kong Hu Cu">Kong Hu Cu</option>
                                 </select>
-                                <!-- <div class="invalid-feedback">
-                                    Silahkan pilih agama anda.
-                                </div> -->
                             </label>
                         </div>
                         <div class="form-row">
@@ -108,9 +100,6 @@
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
-                                    <!-- <div class="invalid-feedback">
-                                        Silahkan pilih jenis kelamin anda.
-                                    </div> -->
                                 </label>
                             </div>
                             <div class="form-group col-md-6 pt-3">
@@ -126,9 +115,6 @@
                                         <option value="B">B</option>
                                         <option value="AB">AB</option>
                                     </select>
-                                    <!-- <div class="invalid-feedback">
-                                        Silahkan pilih golongan darah anda.
-                                    </div> -->
                                 </label>
                             </div>
                         </div>
@@ -139,9 +125,6 @@
                                 </div>
                                 <input type="text" class="form-control form-data-diri shadow-none" name="penyakit"
                                     placeholder="Riwayat Penyakit" required>
-                                <!-- <div class="invalid-feedback">
-                                    Silahkan isi riwayat penyakit anda. Jika tidak ada beri tanda "-"
-                                </div> -->
                             </label>
                         </div>
                         <div class="form-group pt-3">
@@ -152,9 +135,6 @@
                                 </div>
                                 <input type="text" class="form-control form-data-diri shadow-none" name="alergi"
                                     placeholder="Alergi" required>
-                                <!-- <div class="invalid-feedback">
-                                    Silahkan isi alergi yang anda miliki. Jika tidak ada beri tanda "-"
-                                </div> -->
                             </label>
                         </div>
                         <div class="form-group pt-3 pb-4">
@@ -166,16 +146,23 @@
                                 </div>
                                 <input type="number" class="form-control form-data-diri shadow-none" name="telepon"
                                     placeholder="Nomor Telepon" required>
-                                <!-- <div class="invalid-feedback">
-                                    Silahkan isi nomor telepon anda.
-                                </div> -->
                             </label>
                         </div>
-                        <!-- <div class="info text-white hidden">
-                            Silahkan isi nomor telepon anda.
-                        </div> -->
                         <button type="submit" class="btn btn-lg btn-block lanjutkan font-semibold">Lanjutkan</button>
                     </form>
+                </div>
+            </div>
+            <div class="alert-form position-fixed">
+                <div class="toast" role="alert" data-animation="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Bootstrap</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        Silahkan lengkapi terlebih dahulu semua data yang dibutuhkan.
+                    </div>
                 </div>
             </div>
         </div>
