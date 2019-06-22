@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\PK2MabaKeaktifan;
+use App\PK2MTourAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
-class PK2MabaKeaktifanController extends Controller
+class PK2MTourAbsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function index()
     {
-		$pk2mabaKeaktifans = PK2MabaKeaktifan::all();
-        return view('panel-admin.pk2maba.keaktifan-index', ['pk2mabaKeaktifans' => $pk2mabaKeaktifans]);
+        $pk2mTourAbsensis = PK2MTourAbsensi::all();
+        return view('panel-admin.pkm.absensi-index', compact('pk2mTourAbsensis'));
     }
 
     /**
@@ -37,11 +37,11 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function store(Request $request)
     {
-        $uploadedExcel = $request->file('import_pk2maba_keaktifan');
+        $uploadedExcel = $request->file('import_pk2m_tour_absensi');
 
         $reader = new PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $reader->setLoadSheetsOnly('pk2maba_keaktifan');
+        $reader->setLoadSheetsOnly('pk2m_tour_absensi');
 
         /** Load $inputFileName to a Spreadsheet Object  **/
         $spreadsheet = $reader->load($uploadedExcel->getPathName());
@@ -52,23 +52,19 @@ class PK2MabaKeaktifanController extends Controller
                 case 'NIM':
                     $nim_index = $column_index;
                     break;
-                case 'aktif_rangkaian1':
-                    $aktif_rangkaian1_index = $column_index;
+                case 'nilai_rangkaian6':
+                    $nilai_rangkaian6_index = $column_index;
                     break;
-                case 'penerapan_nilai_rangkaian1':
-                    $penerapan_nilai_rangkaian1_index = $column_index;
+                case 'nilai_rangkaian7':
+                    $nilai_rangkaian7_index = $column_index;
                     break;
-                case 'aktif_rangkaian2':
-                    $aktif_rangkaian2_index = $column_index;
-                    break;
-                case 'penerapan_nilai_rangkaian2':
-                    $penerapan_nilai_rangkaian2_index = $column_index;
+                case 'nilai_rangkaian8':
+                    $nilai_rangkaian8_index = $column_index;
                     break;
             }
         }
 
-        if (isset($nim_index) && isset($aktif_rangkaian1_index) && isset($penerapan_nilai_rangkaian1_index)
-        && isset($aktif_rangkaian2_index) && isset($penerapan_nilai_rangkaian2_index)) {
+        if (isset($nim_index) && isset($nilai_rangkaian6_index) && isset($nilai_rangkaian7_index) && isset($nilai_rangkaian8_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
@@ -77,8 +73,8 @@ class PK2MabaKeaktifanController extends Controller
                     $data_row = $spreadsheetArray[$i];
 					$error_row = $i;
 
-                    $affected = DB::update('update pk2maba_keaktifan set aktif_rangkaian1 = ?, penerapan_nilai_rangkaian1 = ?, aktif_rangkaian2 = ?, penerapan_nilai_rangkaian2 = ? where nim = ?',
-                        [$data_row[$aktif_rangkaian1_index], $data_row[$penerapan_nilai_rangkaian1_index], $data_row[$aktif_rangkaian2_index], $data_row[$penerapan_nilai_rangkaian2_index], $data_row[$nim_index]]);
+                    $affected = DB::update('update pk2maba_tour_absensi set nilai_rangkaian6 = ?, nilai_rangkaian7 = ?, nilai_rangkaian8 = ? where nim = ?',
+                        [$data_row[$nilai_rangkaian6_index], $data_row[$nilai_rangkaian7_index], $data_row[$nilai_rangkaian8_index], $data_row[$nim_index]]);
                 }
                 DB::commit();
                 $error_row = null;
@@ -116,8 +112,8 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->first();
-        return view('panel-admin.pk2maba.keaktifan-edit', compact('pk2mabaKeaktifan'));
+        $pk2mTourAbsensi = PK2MTourAbsensi::where('nim', $nim)->first();
+        return view('panel-admin.pkm.absensi-edit', compact('pk2mTourAbsensi'));
     }
 
     /**
@@ -129,13 +125,12 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
-            'aktif_rangkaian1' => $request->aktif_rangkaian1,
-            'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
-            'aktif_rangkaian2' => $request->aktif_rangkaian2,
-            'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2,
+        $dataAbsen = PK2MTourAbsensi::where('nim', $nim)->update([
+            'nilai_rangkaian6' => $request->nilai_rangkaian6,
+            'nilai_rangkaian7' => $request->nilai_rangkaian7,
+            'nilai_rangkaian8' => $request->nilai_rangkaian8,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert', 'Berhasil mengubah data absensi PK2M Tour');
     }
 
     /**
@@ -146,12 +141,11 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function destroy($nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
-            'aktif_rangkaian1' => 0,
-            'penerapan_nilai_rangkaian1' => 0,
-            'aktif_rangkaian2' => 0,
-            'penerapan_nilai_rangkaian2' => 0,
+        $dataAbsen = PK2MTourAbsensi::where('nim', $nim)->update([
+            'nilai_rangkaian6' => 0,
+            'nilai_rangkaian7' => 0,
+            'nilai_rangkaian8' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert', 'Berhasil menghapus data absensi PK2M Tour');
     }
 }

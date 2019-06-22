@@ -94,46 +94,46 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($p2kmTourKeaktifans as $p2kmTourKeaktifan)
+							@foreach ($pk2mTourKeaktifans as $pk2mTourKeaktifan)
 							<tr>
 								<td>
-									{{ $p2kmTourKeaktifan->nim }}
+									{{ $pk2mTourKeaktifan->nim }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->mahasiswa->nama }}
+									{{ $pk2mTourKeaktifan->mahasiswa->nama }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->aktif_rangkaian6 }}
+									{{ $pk2mTourKeaktifan->aktif_rangkaian6 }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian6 }}
+									{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian6 }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->aktif_rangkaian7 }}
+									{{ $pk2mTourKeaktifan->aktif_rangkaian7 }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian7 }}
+									{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian7 }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->aktif_rangkaian8 }}
+									{{ $pk2mTourKeaktifan->aktif_rangkaian8 }}
 								</td>
 								<td>
-									{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian8 }}
+									{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian8 }}
 								</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="First group">
-										<a href="{{ route('panel.kegiatan.pkm.keaktifan.edit', $p2kmTourKeaktifan->nim) }}"
+										<a href="{{ route('panel.kegiatan.pkm.keaktifan.edit', $pk2mTourKeaktifan->nim) }}"
 											class="m-btn btn btn-warning">
 											<i class="fa fa-edit"></i>
 										</a>
 										<form
-											action="{{ route('panel.kegiatan.pkm.keaktifan.destroy', $p2kmTourKeaktifan->nim) }}"
-											id="delete-pkm-keaktifan-{{ $p2kmTourKeaktifan->nim }}" method="POST">
+											action="{{ route('panel.kegiatan.pkm.keaktifan.destroy', $pk2mTourKeaktifan->nim) }}"
+											id="delete-pkm-keaktifan-{{ $pk2mTourKeaktifan->nim }}" method="POST">
 											@csrf
 											@method('DELETE')
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-pkm-keaktifan-{{ $p2kmTourKeaktifan->nim }}').submit()"
+											onclick="document.getElementById('delete-pkm-keaktifan-{{ $pk2mTourKeaktifan->nim }}').submit()"
 											class="m-btn btn btn-danger">
 											<i class="fa fa-trash-o"></i>
 										</a>
@@ -163,8 +163,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/pkmKeaktifan" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+			<form action="{{ route('panel.kegiatan.pkm.keaktifan.store') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -174,7 +174,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="keatifan" required="true">
+							<input type="file" id="import_pk2m_tour_keaktifan" name="import_pk2m_tour_keaktifan" required="true"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

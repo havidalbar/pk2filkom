@@ -19,7 +19,7 @@
 		<div class="m-content">
 			<div class="m-portlet m-portlet--mobile">
 				<div class="m-portlet__body pt-1">
-					<form action="{{ route('panel.kegiatan.pkm.keaktifan.update', $p2kmTourKeaktifan->nim) }}"
+					<form action="{{ route('panel.kegiatan.pkm.keaktifan.update', $pk2mTourKeaktifan->nim) }}"
 						class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 						@csrf
 						@method('PUT')
@@ -36,7 +36,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}"
-										name="nim" placeholder="NIM" value="{{$p2kmTourKeaktifan->nim}}" type="text"
+										name="nim" placeholder="NIM" value="{{$pk2mTourKeaktifan->nim}}" type="text"
 										id="nim-text-input" readonly="true">
 									{!! $errors->first('nim', '<div class="form-control-feedback">:message</div>') !!}
 								</div>
@@ -50,7 +50,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('aktif_rangkaian6') ? 'form-control-danger' : '' }}"
 										name="aktif_rangkaian6" placeholder="Nilai Keaktifan Ke - 1"
-										value="{{ $p2kmTourKeaktifan->aktif_rangkaian6 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->aktif_rangkaian6 }}" type="text"
 										id="aktif-rangkaian6-text-input">
 									{!! $errors->first('aktif_rangkaian6', '<div class="form-control-feedback">:message
 									</div>') !!}
@@ -65,7 +65,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('penerapan_nilai_rangkaian6') ? 'form-control-danger' : '' }}"
 										name="penerapan_nilai_rangkaian6" placeholder="Nilai Penerapan Ke - 1"
-										value="{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian6 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian6 }}" type="text"
 										id="penerapan-nilai-rangkaian6-text-input">
 									{!! $errors->first('penerapan_nilai_rangkaian6', '<div
 										class="form-control-feedback">:message</div>') !!}
@@ -80,7 +80,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('aktif_rangkaian7') ? 'form-control-danger' : '' }}"
 										name="aktif_rangkaian7" placeholder="Nilai Keaktifan Ke - 2"
-										value="{{ $p2kmTourKeaktifan->aktif_rangkaian7 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->aktif_rangkaian7 }}" type="text"
 										id="aktif-rangkaian7-text-input">
 									{!! $errors->first('aktif_rangkaian7', '<div class="form-control-feedback">:message
 									</div>') !!}
@@ -95,7 +95,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('penerapan_nilai_rangkaian7') ? 'form-control-danger' : '' }}"
 										name="penerapan_nilai_rangkaian7" placeholder="Nilai Penerapan Ke - 2"
-										value="{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian7 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian7 }}" type="text"
 										id="penerapan-nilai-rangkaian7-text-input">
 									{!! $errors->first('penerapan_nilai_rangkaian7', '<div
 										class="form-control-feedback">:message</div>') !!}
@@ -110,7 +110,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('aktif_rangkaian8') ? 'form-control-danger' : '' }}"
 										name="aktif_rangkaian8" placeholder="Nilai Keaktifan Ke - 3"
-										value="{{ $p2kmTourKeaktifan->aktif_rangkaian8 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->aktif_rangkaian8 }}" type="text"
 										id="aktif-rangkaian8-text-input">
 									{!! $errors->first('aktif_rangkaian8', '<div class="form-control-feedback">:message
 									</div>') !!}
@@ -125,7 +125,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('penerapan_nilai_rangkaian8') ? 'form-control-danger' : '' }}"
 										name="penerapan_nilai_rangkaian8" placeholder="Nilai Penerapan Ke - 3"
-										value="{{ $p2kmTourKeaktifan->penerapan_nilai_rangkaian8 }}" type="text"
+										value="{{ $pk2mTourKeaktifan->penerapan_nilai_rangkaian8 }}" type="text"
 										id="penerapan-nilai-rangkaian8-text-input">
 									{!! $errors->first('penerapan_nilai_rangkaian8', '<div
 										class="form-control-feedback">:message</div>') !!}

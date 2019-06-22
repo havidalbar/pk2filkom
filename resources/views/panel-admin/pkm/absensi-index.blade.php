@@ -85,37 +85,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($p2kmTourAbsensis as $p2kmTourAbsensi)
+							@foreach ($pk2mTourAbsensis as $pk2mTourAbsensi)
 							<tr>
 								<td>
-									{{ $p2kmTourAbsensi->nim }}
+									{{ $pk2mTourAbsensi->nim }}
 								</td>
 								<td>
-									{{ $p2kmTourAbsensi->mahasiswa->nama }}
+									{{ $pk2mTourAbsensi->mahasiswa->nama }}
 								</td>
 								<td>
-									{{ $p2kmTourAbsensi->nilai_rangkaian6 }}
+									{{ $pk2mTourAbsensi->nilai_rangkaian6 }}
 								</td>
 								<td>
-									{{ $p2kmTourAbsensi->nilai_rangkaian7 }}
+									{{ $pk2mTourAbsensi->nilai_rangkaian7 }}
 								</td>
 								<td>
-									{{ $p2kmTourAbsensi->nilai_rangkaian8 }}
+									{{ $pk2mTourAbsensi->nilai_rangkaian8 }}
 								</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="First group">
-										<a href="{{ route('panel.kegiatan.pkm.absensi.edit', $p2kmTourAbsensi->nim) }}"
+										<a href="{{ route('panel.kegiatan.pkm.absensi.edit', $pk2mTourAbsensi->nim) }}"
 											class="m-btn btn btn-warning">
 											<i class="fa fa-edit"></i>
 										</a>
 										<form
-											action="{{ route('panel.kegiatan.pkm.absensi.destroy', $p2kmTourAbsensi->nim) }}"
-											id="delete-pkm-absensi-{{ $p2kmTourAbsensi->nim }}" method="POST">
+											action="{{ route('panel.kegiatan.pkm.absensi.destroy', $pk2mTourAbsensi->nim) }}"
+											id="delete-pkm-absensi-{{ $pk2mTourAbsensi->nim }}" method="POST">
 											@csrf
 											@method('DELETE')
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-pkm-absensi-{{ $p2kmTourAbsensi->nim }}').submit()"
+											onclick="document.getElementById('delete-pkm-absensi-{{ $pk2mTourAbsensi->nim }}').submit()"
 											class="m-btn btn btn-danger">
 											<i class="fa fa-trash-o"></i>
 										</a>
@@ -145,7 +145,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/pkmAbsensi" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+			<form action="{{ route('panel.kegiatan.pkm.absensi.store') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -155,7 +156,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="absensi" required="true">
+                            <input type="file" id="import_pk2m_tour_absensi" name="import_pk2m_tour_absensi" required="true"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

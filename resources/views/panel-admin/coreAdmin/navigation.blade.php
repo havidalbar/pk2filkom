@@ -241,7 +241,7 @@
 									<a href="#" class="m-menu__link m-menu__toggle">
 										<i class="m-menu__link-icon la la-list-alt"></i>
 										<span class="m-menu__link-text">
-											PK2KM TOUR
+											PK2M TOUR
 										</span>
 										<i class="m-menu__hor-arrow la la-angle-right"></i>
 										<i class="m-menu__ver-arrow la la-angle-right"></i>
@@ -250,7 +250,7 @@
 										<span class="m-menu__arrow"></span>
 										<ul class="m-menu__subnav">
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmAbsensi" class="m-menu__link">
+												<a href="{{ route('panel.kegiatan.pkm.absensi.index') }}" class="m-menu__link">
 													<i class="m-menu__link-icon la la-file-text-o"></i>
 													<span class="m-menu__link-text">
 														ABSENSI
@@ -258,7 +258,7 @@
 												</a>
 											</li>
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmKeaktifan" class="m-menu__link">
+												<a href="{{ route('panel.kegiatan.pkm.keaktifan.index') }}" class="m-menu__link">
 													<i class="m-menu__link-icon la la-file-text-o"></i>
 													<span class="m-menu__link-text">
 														KEAKTIFAN
@@ -290,7 +290,7 @@
 												</a>
 											</li>
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmPelanggaran" class="m-menu__link">
+												<a href="{{ route('panel.kegiatan.pkm.pelanggaran.index') }}" class="m-menu__link">
 													<i class="m-menu__link-icon la la-file-text-o"></i>
 													<span class="m-menu__link-text">
 														PELANGGARAN

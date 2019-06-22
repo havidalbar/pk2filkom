@@ -19,7 +19,7 @@
 		<div class="m-content">
 			<div class="m-portlet m-portlet--mobile">
 				<div class="m-portlet__body pt-1">
-					<form action="{{ route('panel.kegiatan.pkm.absensi.update', $p2kmTourAbsensi->nim) }}"
+					<form action="{{ route('panel.kegiatan.pkm.absensi.update', $pk2mTourAbsensi->nim) }}"
 						class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 						@csrf
 						@method('PUT')
@@ -36,7 +36,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}"
-										name="nim" placeholder="NIM" value="{{ $p2kmTourAbsensi->nim }}" type="text"
+										name="nim" placeholder="NIM" value="{{ $pk2mTourAbsensi->nim }}" type="text"
 										id="nim-text-input" readonly="true">
 									{!! $errors->first('nim', '<div class="form-control-feedback">:message</div>') !!}
 								</div>
@@ -50,7 +50,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('nilai_rangkaian6') ? 'form-control-danger' : '' }}"
 										name="nilai_rangkaian6" placeholder="Nilai Rangkaian Ke - 1"
-										value="{{ $p2kmTourAbsensi->nilai_rangkaian6 }}" type="text"
+										value="{{ $pk2mTourAbsensi->nilai_rangkaian6 }}" type="text"
 										id="nilai-rangkaian6-text-input">
 									{!! $errors->first('nilai_rangkaian6', '<div class="form-control-feedback">:message
 									</div>') !!}
@@ -65,7 +65,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('nilai_rangkaian7') ? 'form-control-danger' : '' }}"
 										name="nilai_rangkaian7" placeholder="Nilai Rangkaian Ke - 2"
-										value="{{ $p2kmTourAbsensi->nilai_rangkaian7 }}" type="text"
+										value="{{ $pk2mTourAbsensi->nilai_rangkaian7 }}" type="text"
 										id="nilai-rangkaian7-text-input">
 									{!! $errors->first('nilai_rangkaian7', '<div class="form-control-feedback">:message
 									</div>') !!}
@@ -80,7 +80,7 @@
 									<input
 										class="form-control m-input {{ $errors->has('nilai_rangkaian8') ? 'form-control-danger' : '' }}"
 										name="nilai_rangkaian8" placeholder="Nilai Rangkaian Ke - 1"
-										value="{{ $p2kmTourAbsensi->nilai_rangkaian8 }}" type="text"
+										value="{{ $pk2mTourAbsensi->nilai_rangkaian8 }}" type="text"
 										id="nilai-rangkaian8-text-input">
 									{!! $errors->first('nilai_rangkaian8', '<div class="form-control-feedback">:message
 									</div>') !!}

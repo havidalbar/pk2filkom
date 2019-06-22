@@ -144,8 +144,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/stPelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+			<form action="{{ route('panel.kegiatan.startup.pelanggaran.store') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -155,7 +155,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="pelanggaran" required="true">
+                            <input type="file" id="import_startup_pelanggaran" name="import_startup_pelanggaran" required="true"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

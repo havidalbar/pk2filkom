@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\PK2MabaKeaktifan;
+use App\PK2MTourPelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
-class PK2MabaKeaktifanController extends Controller
+
+class PK2MTourPelanggaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function index()
     {
-		$pk2mabaKeaktifans = PK2MabaKeaktifan::all();
-        return view('panel-admin.pk2maba.keaktifan-index', ['pk2mabaKeaktifans' => $pk2mabaKeaktifans]);
+        $pk2mTourPelanggarans = PK2MTourPelanggaran::all();
+        return view('panel-admin.pkm.pelanggaran-index', compact('pk2mTourPelanggarans'));
     }
 
     /**
@@ -37,11 +38,11 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function store(Request $request)
     {
-        $uploadedExcel = $request->file('import_pk2maba_keaktifan');
+        $uploadedExcel = $request->file('import_pk2m_tour_pelanggaran');
 
         $reader = new PhpSpreadsheet\Reader\Xlsx();
         $reader->setReadDataOnly(true);
-        $reader->setLoadSheetsOnly('pk2maba_keaktifan');
+        $reader->setLoadSheetsOnly('pk2m_tour_pelanggaran');
 
         /** Load $inputFileName to a Spreadsheet Object  **/
         $spreadsheet = $reader->load($uploadedExcel->getPathName());
@@ -52,23 +53,19 @@ class PK2MabaKeaktifanController extends Controller
                 case 'NIM':
                     $nim_index = $column_index;
                     break;
-                case 'aktif_rangkaian1':
-                    $aktif_rangkaian1_index = $column_index;
+                case 'ringan':
+                    $ringan_index = $column_index;
                     break;
-                case 'penerapan_nilai_rangkaian1':
-                    $penerapan_nilai_rangkaian1_index = $column_index;
+                case 'sedang':
+                    $sedang_index = $column_index;
                     break;
-                case 'aktif_rangkaian2':
-                    $aktif_rangkaian2_index = $column_index;
-                    break;
-                case 'penerapan_nilai_rangkaian2':
-                    $penerapan_nilai_rangkaian2_index = $column_index;
+                case 'berat':
+                    $berat_index = $column_index;
                     break;
             }
         }
 
-        if (isset($nim_index) && isset($aktif_rangkaian1_index) && isset($penerapan_nilai_rangkaian1_index)
-        && isset($aktif_rangkaian2_index) && isset($penerapan_nilai_rangkaian2_index)) {
+        if (isset($nim_index) && isset($ringan_index) && isset($sedang_index)&& isset($berat_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
@@ -77,8 +74,8 @@ class PK2MabaKeaktifanController extends Controller
                     $data_row = $spreadsheetArray[$i];
 					$error_row = $i;
 
-                    $affected = DB::update('update pk2maba_keaktifan set aktif_rangkaian1 = ?, penerapan_nilai_rangkaian1 = ?, aktif_rangkaian2 = ?, penerapan_nilai_rangkaian2 = ? where nim = ?',
-                        [$data_row[$aktif_rangkaian1_index], $data_row[$penerapan_nilai_rangkaian1_index], $data_row[$aktif_rangkaian2_index], $data_row[$penerapan_nilai_rangkaian2_index], $data_row[$nim_index]]);
+                    $affected = DB::update('update pk2maba_tour_pelanggaran set ringan = ?, sedang = ?, berat = ? where nim = ?',
+                        [$data_row[$ringan_index], $data_row[$sedang_index], $data_row[$berat_index], $data_row[$nim_index]]);
                 }
                 DB::commit();
                 $error_row = null;
@@ -116,8 +113,8 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->first();
-        return view('panel-admin.pk2maba.keaktifan-edit', compact('pk2mabaKeaktifan'));
+        $pk2mTourPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->first();
+        return view('panel-admin.pkm.pelanggaran-edit', compact('pk2mTourPelanggaran'));
     }
 
     /**
@@ -129,13 +126,12 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
-            'aktif_rangkaian1' => $request->aktif_rangkaian1,
-            'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
-            'aktif_rangkaian2' => $request->aktif_rangkaian2,
-            'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2,
+        $dataPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->update([
+            'ringan' => $request->ringan,
+            'sedang' => $request->sedang,
+            'berat' => $request->berat,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert', 'Berhasil mengubah data keaktifan PK2M Tour');
     }
 
     /**
@@ -146,12 +142,11 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function destroy($nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
-            'aktif_rangkaian1' => 0,
-            'penerapan_nilai_rangkaian1' => 0,
-            'aktif_rangkaian2' => 0,
-            'penerapan_nilai_rangkaian2' => 0,
+        $dataPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->update([
+            'ringan' => 0,
+            'sedang' => 0,
+            'berat' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert', 'Berhasil menghapus data keaktifan PK2M Tour');
     }
 }

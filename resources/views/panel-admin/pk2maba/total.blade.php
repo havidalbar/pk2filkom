@@ -65,7 +65,7 @@
 									{{ $mahasiswa->nama }}
 								</td>
 								<td>
-									{{ 
+									{{
 									$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian1 +
 									$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian2 +
 									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->aktif_rangkaian1 +
