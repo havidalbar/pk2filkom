@@ -24,9 +24,10 @@ class ArtikelRequest extends FormRequest
      */
     public function rules()
     {
-		return [
-            'tanya' => 'required|string|max:191',
-            'deskripsi' => 'required|string|max:65535',
+        return [
+            'judul' => 'required|string|max:191',
+            // 'deskripsi' => 'required|string|max:65535',
+            'sub_konten' => 'required',
             'thumbnail' => 'image',
         ];
     }

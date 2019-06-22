@@ -21,17 +21,17 @@ function MyCustomUploadAdapterPlugin(editor) {
 
 // ...
 
-DecoupledEditor
-	.create(document.querySelector('#editor'), {
-		extraPlugins: [MyCustomUploadAdapterPlugin],
+// DecoupledEditor
+// 	.create(document.querySelector('#editor'), {
+// 		extraPlugins: [MyCustomUploadAdapterPlugin],
 
-		// ...
-	})
-	.then(editor => {
-		const toolbarContainer = document.querySelector('#toolbar-container');
+// 		// ...
+// 	})
+// 	.then(editor => {
+// 		const toolbarContainer = document.querySelector('#toolbar-container');
 
-		toolbarContainer.appendChild(editor.ui.view.toolbar.element);
-	})
-	.catch(error => {
-		console.error(error);
-	});
+// 		toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+// 	})
+// 	.catch(error => {
+// 		console.error(error);
+// 	});

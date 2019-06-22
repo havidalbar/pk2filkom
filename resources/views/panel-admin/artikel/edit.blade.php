@@ -20,7 +20,8 @@
 			<div class="m-portlet__body pt-1">
 
 				<form action="{{ route('panel.artikel.update', ['slug' => $slug]) }}"
-					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+					class="m-form m-form--state m-form--fit m-form--label-align-right" enctype="multipart/form-data"
+					method="POST">
 					@csrf
 					@method('PUT')
 					@include('panel-admin.artikel.form-create-edit', ['ketForm' => 'edit'])

@@ -38,101 +38,111 @@ class ArtikelController extends Controller
      */
     public function store(ArtikelRequest $request)
     {
-        $artikel = new Artikel;
+        DB::beginTransaction();
+        try {
+            $artikel = new Artikel;
 
-        $slug = substr(str_slug($request->judul), 0, 180);
-        $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-            ->orderBy('slug', 'DESC')->first('slug');
+            $slug = substr(str_slug($request->judul), 0, 180);
+            $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
+                ->orderBy('slug', 'DESC')->first('slug');
 
-        if ($latestSlug) {
-            $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
+            if ($latestSlug) {
+                $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
 
-            if ($latestSlugNumber) {
-                error_log($latestSlugNumber);
-                $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
+                if ($latestSlugNumber) {
+                    error_log($latestSlugNumber);
+                    $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
+                } else {
+                    $artikel->slug = $slug . '-1';
+                }
             } else {
-                $artikel->slug = $slug . '-1';
-            }
-        } else {
-            $artikel->slug = $slug;
-        }
-
-        $artikel->judul = $request->judul;
-
-        $uploadPath = public_path() . '/uploads/';
-
-        for ($i = 0; $i < count($request->sub_konten); $i++) {
-            $sub_konten = new SubArtikel;
-
-            if ($request->gambar_sub[$i]) {
-                $gambar_sub = $request->gambar_sub[$i];
-                $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
-                $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
-                $sub_konten->thumbnail = $gambar_sub_name;
+                $artikel->slug = $slug;
             }
 
-            $dom = new \domdocument();
-            $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $images = $dom->getelementsbytagname('img');
+            $artikel->judul = $request->judul;
 
-            //loop over img elements, decode their base64 src and save them to public folder,
-            //and then replace base64 src with stored image URL.
-            foreach ($images as $k => $img) {
-                $data = $img->getattribute('src');
+            $uploadPath = public_path() . '/uploads/';
 
-                list($type, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
+            // $dom = new \domdocument();
+            // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            // $images = $dom->getelementsbytagname('img');
 
-                $data = base64_decode($data);
-                // $image_name = time() . $k . '.png';
-                $image_extension = str_replace('data:image/', '', $type);
-                $image_name = uniqid() . '.' . $image_extension;
+            // //loop over img elements, decode their base64 src and save them to public folder,
+            // //and then replace base64 src with stored image URL.
+            // foreach ($images as $k => $img) {
+            //     $data = $img->getattribute('src');
 
-                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+            //     list($type, $data) = explode(';', $data);
+            //     list(, $data) = explode(',', $data);
 
-                $img->removeattribute('src');
-                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+            //     $data = base64_decode($data);
+            //     // $image_name = time() . $k . '.png';
+            //     $image_extension = str_replace('data:image/', '', $type);
+            //     $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
+
+            //     file_put_contents($uploadPath . $image_name, $data);
+
+            //     $img->removeattribute('src');
+            //     $img->setattribute('src', asset('/uploads/' . $image_name));
+            // }
+
+            // $artikel->deskripsi = $dom->savehtml();
+
+            //thumbnail
+            if ($request->hasFile('thumbnail')) {
+                $thumbnail = $request->file('thumbnail');
+                $thumbnailFileName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
+                $thumbnail->move($uploadPath . 'thumbnail/', $thumbnailFileName);
+                $artikel->thumbnail = $thumbnailFileName;
             }
 
-			$sub_konten->deskripsi = $dom->savehtml();
-			$sub_konten->save();
+            $artikel->save();
+
+            for ($i = 0; $i < count($request->sub_konten); $i++) {
+                $sub_konten = new SubArtikel;
+
+                if ($request->gambar_sub[$i]) {
+                    $gambar_sub = $request->gambar_sub[$i];
+                    $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
+                    $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+                    $sub_konten->thumbnail = $gambar_sub_name;
+                }
+
+                $dom = new \domdocument();
+                $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $images = $dom->getelementsbytagname('img');
+
+                //loop over img elements, decode their base64 src and save them to public folder,
+                //and then replace base64 src with stored image URL.
+                foreach ($images as $k => $img) {
+                    $data = $img->getattribute('src');
+
+                    list($type, $data) = explode(';', $data);
+                    list(, $data) = explode(',', $data);
+
+                    $data = base64_decode($data);
+                    // $image_name = time() . $k . '.png';
+                    $image_extension = str_replace('data:image/', '', $type);
+                    $image_name = uniqid() . '.' . $image_extension;
+
+                    file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+
+                    $img->removeattribute('src');
+                    $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                }
+
+                $sub_konten->id_artikel = $artikel->id;
+                $sub_konten->deskripsi = $dom->savehtml();
+                $sub_konten->save();
+            }
+            DB::commit();
+
+            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
+        } catch (\Exception $ex) {
+			DB::rollback();
+			
+            return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
         }
-
-        // $dom = new \domdocument();
-        // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        // $images = $dom->getelementsbytagname('img');
-
-        // //loop over img elements, decode their base64 src and save them to public folder,
-        // //and then replace base64 src with stored image URL.
-        // foreach ($images as $k => $img) {
-        //     $data = $img->getattribute('src');
-
-        //     list($type, $data) = explode(';', $data);
-        //     list(, $data) = explode(',', $data);
-
-        //     $data = base64_decode($data);
-        //     // $image_name = time() . $k . '.png';
-        //     $image_extension = str_replace('data:image/', '', $type);
-        //     $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
-
-        //     file_put_contents($uploadPath . $image_name, $data);
-
-        //     $img->removeattribute('src');
-        //     $img->setattribute('src', asset('/uploads/' . $image_name));
-        // }
-
-        // $artikel->deskripsi = $dom->savehtml();
-
-        //thumbnail
-        if ($request->hasFile('thumbnail')) {
-            $thumbnail = $request->file('thumbnail');
-            $thumbnailFileName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
-            $thumbnail->move($uploadPath . 'thumbnail/', $thumbnailFileName);
-            $artikel->thumbnail = $thumbnailFileName;
-        }
-
-        $artikel->save();
-        return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
     }
 
     /**
@@ -181,71 +191,82 @@ class ArtikelController extends Controller
         $artikel = Artikel::where('slug', $slug)->first();
 
         if ($artikel) {
-            $slug = substr(str_slug($request->judul), 0, 180);
-            if ($slug != $artikel->slug) {
-                $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-                    ->orderBy('slug', 'DESC')->first('slug');
+            DB::beginTransaction();
+            try {
+                $slug = substr(str_slug($request->judul), 0, 180);
+                if ($slug != $artikel->slug) {
+                    $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
+                        ->orderBy('slug', 'DESC')->first('slug');
 
-                if ($latestSlug) {
-                    $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
+                    if ($latestSlug) {
+                        $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
 
-                    if ($latestSlugNumber) {
-                        error_log($latestSlugNumber);
-                        $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
+                        if ($latestSlugNumber) {
+                            error_log($latestSlugNumber);
+                            $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
+                        } else {
+                            $artikel->slug = $slug . '-1';
+                        }
                     } else {
-                        $artikel->slug = $slug . '-1';
-                    }
-                } else {
-                    $artikel->slug = $slug;
-                }
-            }
-
-            $artikel->judul = $request->judul;
-
-            $uploadPath = public_path() . '/uploads/';
-
-            $dom = new \domdocument();
-            $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-            $images = $dom->getelementsbytagname('img');
-
-            //loop over img elements, decode their base64 src and save them to public folder,
-            //and then replace base64 src with stored image URL.
-            foreach ($images as $k => $img) {
-                $data = $img->getattribute('src');
-
-                list($type, $data) = explode(';', $data);
-                list(, $data) = explode(',', $data);
-
-                $data = base64_decode($data);
-                // $image_name = time() . $k . '.png';
-                $image_extension = str_replace('data:image/', '', $type);
-                $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
-
-                file_put_contents($uploadPath . $image_name, $data);
-
-                $img->removeattribute('src');
-                $img->setattribute('src', asset('/uploads/' . $image_name));
-            }
-
-            $artikel->deskripsi = $dom->savehtml();
-
-            //thumbnail
-            if ($request->hasFile('thumbnail')) {
-                $thumbnail = $request->file('thumbnail');
-                $thumbnailFileName = uniqid('thumbnail-') . '.' . $thumbnail->getClientOriginalExtension();
-                $thumbnail->move($uploadPath, $thumbnailFileName);
-
-                if ($artikel->thumbnail) {
-                    if (file_exists($uploadPath . $artikel->thumbnail)) {
-                        unlink($uploadPath . $artikel->thumbnail);
+                        $artikel->slug = $slug;
                     }
                 }
 
-                $artikel->thumbnail = $thumbnailFileName;
-            }
+                $artikel->judul = $request->judul;
 
-            $artikel->save();
-            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
+                $uploadPath = public_path() . '/uploads/';
+
+                // $dom = new \domdocument();
+                // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                // $images = $dom->getelementsbytagname('img');
+
+                // //loop over img elements, decode their base64 src and save them to public folder,
+                // //and then replace base64 src with stored image URL.
+                // foreach ($images as $k => $img) {
+                //     $data = $img->getattribute('src');
+
+                //     list($type, $data) = explode(';', $data);
+                //     list(, $data) = explode(',', $data);
+
+                //     $data = base64_decode($data);
+                //     // $image_name = time() . $k . '.png';
+                //     $image_extension = str_replace('data:image/', '', $type);
+                //     $image_name = str_replace('.', '-', uniqid()) . '.' . $image_extension;
+
+                //     file_put_contents($uploadPath . $image_name, $data);
+
+                //     $img->removeattribute('src');
+                //     $img->setattribute('src', asset('/uploads/' . $image_name));
+                // }
+
+                // $artikel->deskripsi = $dom->savehtml();
+
+                //thumbnail
+                if ($request->hasFile('thumbnail')) {
+                    $thumbnail = $request->file('thumbnail');
+                    $thumbnailFileName = uniqid() . '.' . $thumbnail->getClientOriginalExtension();
+                    $thumbnail->move($uploadPath . 'thumbnail/', $thumbnailFileName);
+
+                    if ($artikel->thumbnail) {
+                        if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
+                            unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
+                        }
+                    }
+
+                    $artikel->thumbnail = $thumbnailFileName;
+                }
+
+                $artikel->save();
+
+                // TODO : Update Artikel
+
+                DB::commit();
+
+                return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
+            } catch (\Exception $ex) {
+                DB::rollback();
+                return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
+            }
         } else {
             return abort(404);
         }
@@ -262,6 +283,19 @@ class ArtikelController extends Controller
         $artikel = Artikel::where('slug', $slug)->first();
 
         if ($artikel) {
+            $uploadPath = public_path() . '/uploads/';
+
+            $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
+            foreach ($sub_kontens as $sub_konten) {
+                if (file_exists($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail)) {
+                    unlink($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail);
+                }
+            }
+            $sub_kontens->delete();
+
+            if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
+                unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
+            }
             $artikel->delete();
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
