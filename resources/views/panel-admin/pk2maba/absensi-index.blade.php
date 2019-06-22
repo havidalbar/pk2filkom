@@ -138,17 +138,18 @@
 					</span>
 				</button>
 			</div>
-			<form action="/pk2Absensi" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+			<form action="{{ route('panel.kegiatan.pk2maba.absensi.store') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
-					@method("POST")
 					<div class="form-group m-form__group row ">
-						<label for="Thumbnail" class="col-4 col-form-label">
+						<label for="import_pk2maba_absensi" class="col-4 col-form-label">
 							File PK2ABSENSI
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="absensi" required="true">
+							<input type="file" id="import_pk2maba_absensi" name="import_pk2maba_absensi" required="true"
+								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>
