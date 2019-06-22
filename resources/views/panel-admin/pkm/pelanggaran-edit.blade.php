@@ -19,7 +19,7 @@
 		<div class="m-content">
 			<div class="m-portlet m-portlet--mobile">
 				<div class="m-portlet__body pt-1">
-					<form action="{{ route('panel.kegiatan.pkm.pelanggaran.update', $p2kmTourPelanggaran->nim) }}"
+					<form action="{{ route('panel.kegiatan.pkm.pelanggaran.update', $pk2mTourPelanggaran->nim) }}"
 						class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 						@csrf
 						@method('PUT')
@@ -36,7 +36,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('nim') ? 'form-control-danger' : '' }}"
-										name="nim" placeholder="NIM" value="{{ $p2kmTourPelanggaran->nim }}" type="text"
+										name="nim" placeholder="NIM" value="{{ $pk2mTourPelanggaran->nim }}" type="text"
 										id="nim-text-input" readonly="true">
 									{!! $errors->first('nim', '<div class="form-control-feedback">:message</div>') !!}
 								</div>
@@ -48,7 +48,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('ringan') ? 'form-control-danger' : '' }}"
-										name="ringan" placeholder="ringan" value="{{ $p2kmTourPelanggaran->ringan }}"
+										name="ringan" placeholder="ringan" value="{{ $pk2mTourPelanggaran->ringan }}"
 										type="text" id="ringan-text-input">
 									{!! $errors->first('ringan', '<div class="form-control-feedback">:message</div>')
 									!!}
@@ -61,7 +61,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('sedang') ? 'form-control-danger' : '' }}"
-										name="sedang" placeholder="sedang" value="{{ $p2kmTourPelanggaran->sedang }}"
+										name="sedang" placeholder="sedang" value="{{ $pk2mTourPelanggaran->sedang }}"
 										type="text" id="sedang-text-input">
 									{!! $errors->first('sedang', '<div class="form-control-feedback">:message</div>')
 									!!}
@@ -74,7 +74,7 @@
 								<div class="col-9">
 									<input
 										class="form-control m-input {{ $errors->has('berat') ? 'form-control-danger' : '' }}"
-										name="berat" placeholder="berat" value="{{ $p2kmTourPelanggaran->berat }}"
+										name="berat" placeholder="berat" value="{{ $pk2mTourPelanggaran->berat }}"
 										type="text" id="berat-text-input">
 									{!! $errors->first('berat', '<div class="form-control-feedback">:message</div>') !!}
 								</div>

@@ -85,38 +85,38 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($p2kmTourPelanggarans as $p2kmTourPelanggaran)
+							@foreach ($pk2mTourPelanggarans as $pk2mTourPelanggaran)
 							<tr>
 								<td>
-									{{ $p2kmTourPelanggaran->nim }}
+									{{ $pk2mTourPelanggaran->nim }}
 								</td>
 								<td>
-									{{ $p2kmTourPelanggaran->mahasiswa->nama }}
+									{{ $pk2mTourPelanggaran->mahasiswa->nama }}
 								</td>
 								<td>
-									{{ $p2kmTourPelanggaran->ringan }}
+									{{ $pk2mTourPelanggaran->ringan }}
 								</td>
 								<td>
-									{{ $p2kmTourPelanggaran->sedang }}
+									{{ $pk2mTourPelanggaran->sedang }}
 								</td>
 								<td>
-									{{ $p2kmTourPelanggaran->berat }}
+									{{ $pk2mTourPelanggaran->berat }}
 								</td>
 								<td>
 									<div class="btn-group" role="group" aria-label="First group">
-										<a href="{{ route('panel.kegiatan.pkm.pelanggaran.edit', $p2kmTourPelanggaran->nim) }}"
+										<a href="{{ route('panel.kegiatan.pkm.pelanggaran.edit', $pk2mTourPelanggaran->nim) }}"
 											class="m-btn btn btn-warning">
 											<i class="fa fa-edit"></i>
 										</a>
 										<form
-											action="{{ route('panel.kegiatan.pkm.pelanggaran.destroy', $p2kmTourPelanggaran->nim) }}"
-											id="delete-pkm-pelanggaran-{{ $p2kmTourPelanggaran->nim }}"
+											action="{{ route('panel.kegiatan.pkm.pelanggaran.destroy', $pk2mTourPelanggaran->nim) }}"
+											id="delete-pkm-pelanggaran-{{ $pk2mTourPelanggaran->nim }}"
 											method="POST">
 											@csrf
 											@method('DELETE')
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-pkm-pelanggaran-{{ $p2kmTourPelanggaran->nim }}').submit()"
+											onclick="document.getElementById('delete-pkm-pelanggaran-{{ $pk2mTourPelanggaran->nim }}').submit()"
 											class="m-btn btn btn-danger">
 											<i class="fa fa-trash-o"></i>
 										</a>
@@ -146,8 +146,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/pkmPelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+            <form action="{{ route('panel.kegiatan.pkm.pelanggaran.store') }}" enctype="multipart/form-data"
+            class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -157,7 +157,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="pelanggaran" required="true">
+                            <input type="file" id="import_pk2m_tour_pelanggaran" name="import_pk2m_tour_pelanggaran" required="true"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

@@ -132,7 +132,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/prodiFinal" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+			<form action="{{ route('panel.kegiatan.prodi.store') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -142,7 +143,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="prodifinal" required="true">
+							<input type="file" id="import_prodi_final" name="import_prodi_final" required="true"
+								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

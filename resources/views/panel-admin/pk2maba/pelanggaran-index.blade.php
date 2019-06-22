@@ -145,8 +145,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/pk2Pelanggaran" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+            <form action="{{ route('panel.kegiatan.pk2maba.pelanggaran.store') }}" enctype="multipart/form-data"
+            class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -156,7 +156,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="pelanggaran" required="true">
+							<input type="file" id="import_pk2maba_pelanggaran" name="import_pk2maba_pelanggaran" required="true"
+								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

@@ -163,8 +163,8 @@
 					</span>
 				</button>
 			</div>
-			<form action="/stKeaktifan" class="m-form m-form--state m-form--fit m-form--label-align-right"
-				method="POST">
+            <form action="{{ route('panel.kegiatan.startup.keaktifan.store') }}" enctype="multipart/form-data"
+            class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					@csrf
 					@method("POST")
@@ -174,7 +174,8 @@
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" name="keatifan" required="true">
+							<input type="file" id="import_startup_keaktifan" name="import_startup_keaktifan" required="true"
+								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>
 				</div>

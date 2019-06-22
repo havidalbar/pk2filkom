@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class P2KMTourKeaktifan extends Model
+class PK2MTourKeaktifan extends Model
 {
     protected $table = 'pk2maba_tour_keaktifan';
 
