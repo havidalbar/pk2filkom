@@ -14,13 +14,13 @@ class CreatePk2mabaTourPelanggaranTable extends Migration
     public function up()
     {
         Schema::create('pk2maba_tour_pelanggaran', function (Blueprint $table) {
-            $table->unsignedBigInteger('nim');
+            $table->unsignedBigInteger('nim')->primary();
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->smallInteger('ringan')->default(0);
             $table->smallInteger('sedang')->default(0);
 			$table->smallInteger('berat')->default(0);
 			$table->string('editor', 30)->nullable();
-            $table->foreign('editor')->references('username')->on('pengguna');
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

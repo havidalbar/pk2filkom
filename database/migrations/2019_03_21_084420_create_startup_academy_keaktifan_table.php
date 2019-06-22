@@ -23,7 +23,7 @@ class CreateStartupAcademyKeaktifanTable extends Migration
             $table->smallInteger('aktif_rangkaian5')->default(0);
 			$table->smallInteger('penerapan_nilai_rangkaian5')->default(0);
 			$table->string('editor', 30)->nullable();
-            $table->foreign('editor')->references('username')->on('pengguna');
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

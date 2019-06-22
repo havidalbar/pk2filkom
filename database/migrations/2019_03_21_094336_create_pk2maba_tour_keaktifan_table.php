@@ -23,7 +23,7 @@ class CreatePk2mabaTourKeaktifanTable extends Migration
             $table->smallInteger('aktif_rangkaian8')->default(0);
 			$table->smallInteger('penerapan_nilai_rangkaian8')->default(0);
 			$table->string('editor', 30)->nullable();
-            $table->foreign('editor')->references('username')->on('pengguna');
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

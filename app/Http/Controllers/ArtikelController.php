@@ -140,7 +140,7 @@ class ArtikelController extends Controller
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
         } catch (\Exception $ex) {
-			DB::rollback();
+            DB::rollback();
 
             return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
         }
@@ -260,7 +260,7 @@ class ArtikelController extends Controller
                 $artikel->save();
 
                 // TODO : Update Artikel
-                $sub_kontens = SubArtikel::where('id_artikel',$artikel->id)->get();
+                $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
                 for ($i = 0; $i < count($request->sub_konten); $i++) {
 
                     if ($request->gambar_sub[$i]) {
@@ -292,11 +292,10 @@ class ArtikelController extends Controller
                         $img->removeattribute('src');
                         $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
                     }
-                $sub_kontens[$i]->id_artikel = $artikel->id;
-                $sub_kontens[$i]->deskripsi = $dom->savehtml();
-                $sub_kontens[$i]->save();
+                    $sub_kontens[$i]->id_artikel = $artikel->id;
+                    $sub_kontens[$i]->deskripsi = $dom->savehtml();
+                    $sub_kontens[$i]->save();
                 }
-
 
                 DB::commit();
 
@@ -306,7 +305,7 @@ class ArtikelController extends Controller
                 return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
             }
         } else {
-            return abort(404);
+            abort(404);
         }
     }
 
@@ -324,18 +323,19 @@ class ArtikelController extends Controller
             $uploadPath = public_path() . '/uploads/';
 
             $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
+
+            $artikel->delete();
+
+            if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
+                unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
+            }
+
             foreach ($sub_kontens as $sub_konten) {
                 if (file_exists($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail)) {
                     unlink($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail);
                 }
                 $sub_konten->delete();
             }
-
-
-            if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
-                unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
-            }
-            $artikel->delete();
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
         } else {
