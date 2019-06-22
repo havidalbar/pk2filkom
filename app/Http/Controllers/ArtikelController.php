@@ -6,6 +6,7 @@ use App\Artikel;
 use App\Http\Requests\ArtikelRequest;
 use App\SubArtikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArtikelController extends Controller
 {
@@ -140,7 +141,7 @@ class ArtikelController extends Controller
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
         } catch (\Exception $ex) {
 			DB::rollback();
-			
+
             return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
         }
     }
@@ -259,6 +260,43 @@ class ArtikelController extends Controller
                 $artikel->save();
 
                 // TODO : Update Artikel
+                $sub_kontens = SubArtikel::where('id_artikel',$artikel->id)->get();
+                for ($i = 0; $i < count($request->sub_konten); $i++) {
+
+                    if ($request->gambar_sub[$i]) {
+                        $gambar_sub = $request->gambar_sub[$i];
+                        $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
+                        $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+                        $sub_kontens[$i]->thumbnail = $gambar_sub_name;
+                    }
+
+                    $dom = new \domdocument();
+                    $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                    $images = $dom->getelementsbytagname('img');
+
+                    //loop over img elements, decode their base64 src and save them to public folder,
+                    //and then replace base64 src with stored image URL.
+                    foreach ($images as $k => $img) {
+                        $data = $img->getattribute('src');
+
+                        list($type, $data) = explode(';', $data);
+                        list(, $data) = explode(',', $data);
+
+                        $data = base64_decode($data);
+                        // $image_name = time() . $k . '.png';
+                        $image_extension = str_replace('data:image/', '', $type);
+                        $image_name = uniqid() . '.' . $image_extension;
+
+                        file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+
+                        $img->removeattribute('src');
+                        $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                    }
+                $sub_kontens[$i]->id_artikel = $artikel->id;
+                $sub_kontens[$i]->deskripsi = $dom->savehtml();
+                $sub_kontens[$i]->save();
+                }
+
 
                 DB::commit();
 
@@ -290,8 +328,9 @@ class ArtikelController extends Controller
                 if (file_exists($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail)) {
                     unlink($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail);
                 }
+                $sub_konten->delete();
             }
-            $sub_kontens->delete();
+
 
             if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
                 unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
