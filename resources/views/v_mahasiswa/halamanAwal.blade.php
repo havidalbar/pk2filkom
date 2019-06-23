@@ -17,7 +17,22 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="#" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="/isi-data-diri" class="nav-item nav-link ">LOGIN</a>
+                <!-- <a href="/isi-data-diri" class="nav-item nav-link ">LOGIN</a> -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ALFA FADILA
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Penugasan</a>
+                        <a class="dropdown-item" href="#">Penilaian</a>
+                        <a class="dropdown-item" href="#">QR Code</a>
+                        <a class="dropdown-item" href="#">Name Tag</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item logout" href="#"><span><i class="fas fa-sign-out-alt"></i></span>
+                            Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -57,7 +72,7 @@
                         allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">                     
+            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
                 <a href="#">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
@@ -264,7 +279,7 @@
 <!-- EndTitle -->
 
 <!-- berita -->
-<div class="jumbotron jumbotron-fluid pk2-jb6">    
+<div class="jumbotron jumbotron-fluid pk2-jb6">
     <div class="container d-flex align-items-center justify-content-center">
         <div class="row align-items-center justify-content-center">
             <div class="col-sm-12 col-md-6">
@@ -284,7 +299,7 @@
                         <div class="hovereffect-berita">
                             <img class="img2" src="{{asset('img/berita/myhome.jpg')}}" alt="">
                             <div class="overlay">
-                            <h2>Selamat Hari Buruh 2019</h2>
+                                <h2>Selamat Hari Buruh 2019</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
                                     <a class="info" href="#">Lihat Berita</a>
                                 </div>
@@ -295,7 +310,7 @@
                         <div class="hovereffect-berita">
                             <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
                             <div class="overlay">
-                            <h2>Atribut dan Barang Bawaan</h2>
+                                <h2>Atribut dan Barang Bawaan</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
                                     <a class="info" href="#">Lihat Berita</a>
                                 </div>
@@ -306,7 +321,7 @@
                         <div class="hovereffect-berita">
                             <img class="img2" src="{{asset('img/berita/IMG_0069_birukuning.png')}}" alt="">
                             <div class="overlay">
-                            <h2>Atribut dan Barang Bawaan</h2>
+                                <h2>Atribut dan Barang Bawaan</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
                                     <a class="info" href="#">Lihat Berita</a>
                                 </div>
@@ -328,7 +343,7 @@
             </div>
             <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
         </div>
-    </div>    
+    </div>
 </div>
 <!-- endBerita -->
 

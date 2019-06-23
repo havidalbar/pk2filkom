@@ -8,11 +8,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a href="#" class="nav-item nav-link active" data-item-ojb="pk2-jb3">TENTANG SIMABA</a>
-                <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
-                <a href="#" class="nav-item nav-link ">FAQ</a>
-                <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="#" class="nav-item nav-link ">LOGIN</a>
+                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb3">TENTANG SIMABA</a>
+                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb5">RANGKAIAN</a>
+                <a href="#" class="nav-item nav-link menu">FAQ</a>
+                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb6">BERITA</a>
+                <!-- <a href="#" class="nav-item nav-link ">LOGIN</a> -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ALFA FADILA
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Penugasan</a>
+                        <a class="dropdown-item" href="#">Penilaian</a>
+                        <a class="dropdown-item" href="#">QR Code</a>
+                        <a class="dropdown-item" href="#">Name Tag</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item logout" href="#"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
