@@ -1232,6 +1232,20 @@ figure,figure img {
   min-height: 100vh;
   height: 100%;
 }
+.form-container{
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+.form-group{
+  margin-bottom: 0.7rem !important;
+}
+.invalid-feedback{
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  padding-left: 10px;
+  border-radius: 3px;
+}
 @media (max-width: 767.98px) { 
   .bg-form-data-diri{
     height: 100%;

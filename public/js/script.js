@@ -44,11 +44,6 @@ $(document).ready(function () {
         autoclose: true,
         orientation: "bottom left",
         defaultViewDate: { year: 2001 }
-    });
-    $('.toast').toast({
-        'autohide': false,
-        // 'delay':5000
-      });
-    // endDatepicker        
-    // $('.toast').toast('show');    
+    });  
+    // endDatepicker
 });

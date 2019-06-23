@@ -24,7 +24,7 @@
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
-                    $('.toast').toast('show');
+                    // $('.toast').toast('show');
                 }
                 form.classList.add('was-validated');
             }, false);
@@ -46,7 +46,8 @@
             </div>
             <div class="col-sm bg-form">
                 <div class="row h-100 justify-content-center align-items-center">
-                    <form class="col-sm-12 col-md-9 needs-validation" method="POST" action="blabla.php" novalidate>
+                    <form class="col-sm-12 col-md-9 needs-validation form-container" method="POST" action="blabla.php"
+                        novalidate>
                         <h1 class="text-center text-white font-italic">Form Data Diri</h1>
                         <div class="form-row pt-2">
                             <div class="form-group col-md-6 pt-3">
@@ -58,6 +59,9 @@
                                     </div>
                                     <input type="text" id="coba" class="form-control form-data-diri shadow-none"
                                         name="tempatLahir" placeholder="Tempat Lahir" required>
+                                    <div class="invalid-feedback">
+                                        Masukkan tempat lahir anda.
+                                    </div>
                                 </label>
                             </div>
                             <div class="form-group col-md-6 pt-3">
@@ -68,6 +72,9 @@
                                     </div>
                                     <input class="tanggal form-control form-data-diri shadow-none" name="tanggalLahir"
                                         placeholder="08/08/1999" onkeydown="return false" required>
+                                    <div class="invalid-feedback">
+                                        Pilih tanggal lahir anda.
+                                    </div>
                                 </label>
                             </div>
                         </div>
@@ -85,6 +92,9 @@
                                     <option value="Buddha">Buddha</option>
                                     <option value="Kong Hu Cu">Kong Hu Cu</option>
                                 </select>
+                                <div class="invalid-feedback">
+                                    Pilih agama yang anda anut.
+                                </div>
                             </label>
                         </div>
                         <div class="form-row">
@@ -100,6 +110,9 @@
                                         <option value="Laki-laki">Laki-laki</option>
                                         <option value="Perempuan">Perempuan</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Pilih jenis kelamin anda.
+                                    </div>
                                 </label>
                             </div>
                             <div class="form-group col-md-6 pt-3">
@@ -115,6 +128,9 @@
                                         <option value="B">B</option>
                                         <option value="AB">AB</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Pilih golongan darah anda.
+                                    </div>
                                 </label>
                             </div>
                         </div>
@@ -125,6 +141,9 @@
                                 </div>
                                 <input type="text" class="form-control form-data-diri shadow-none" name="penyakit"
                                     placeholder="Riwayat Penyakit" required>
+                                <div class="invalid-feedback">
+                                    Masukkan riwayat penyakit yang pernah anda derita. Jika tidak ada isi "Tidak ada".
+                                </div>
                             </label>
                         </div>
                         <div class="form-group pt-3">
@@ -135,6 +154,9 @@
                                 </div>
                                 <input type="text" class="form-control form-data-diri shadow-none" name="alergi"
                                     placeholder="Alergi" required>
+                                <div class="invalid-feedback">
+                                    Masukkan alergi yang anda miliki. Jika tidak ada isi "Tidak ada".
+                                </div>
                             </label>
                         </div>
                         <div class="form-group pt-3 pb-4">
@@ -146,6 +168,9 @@
                                 </div>
                                 <input type="number" class="form-control form-data-diri shadow-none" name="telepon"
                                     placeholder="Nomor Telepon" required>
+                                <div class="invalid-feedback">
+                                    Masukkan nomor telepon anda.
+                                </div>
                             </label>
                         </div>
                         <button type="submit" class="btn btn-lg btn-block lanjutkan font-semibold">Lanjutkan</button>
