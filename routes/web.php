@@ -260,3 +260,5 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         });
     });
 });
+
+Route::get('/text','ImageController@call')->name('textOnImage');

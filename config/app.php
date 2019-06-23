@@ -162,6 +162,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        //Intervention Image
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -234,7 +236,10 @@ return [
 		/*
          * Laravel SAML2
          */
-		'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
+        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
+
+        //Intervention Image
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
