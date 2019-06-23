@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Mahasiswa;
 
 class ImageController extends Controller
 {
     public function call(){
-        $this->textOnImage("MOCHAMAD HAVID ALBAR PURNOMO","175150201111075","SISTEM INFORMASI","0","0","MAKANAN SEHAT","OBAT OBAT","SAKIT SAKIT");
+        $mahasiswas = Mahasiswa::all();
+        for($i=0;$i<count($mahasiswas);$i++){
+        $this->textOnImage($mahasiswas[$i]->nama,$mahasiswas[$i]->nim,"SISTEM INFORMASI","1","0","MAKA MAKAN MAKAN MAKAN MAKAN","OBATT OBATT OBATT OBATT OBATT","SAKITT SAKITT SAKITT SAKITT SAKITT");
+        }
     }
 
     public function textOnImage($nama,$nim,$prodi,$cluster,$kelompok,$makan,$obat,$sakit)
@@ -72,7 +76,7 @@ class ImageController extends Controller
             $font->angle(0);
         });
 
-        $img->text($makan, 275, 425, function ($font) {
+        $img->text($makan, 405, 425, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(25);
             $font->color('#000');
@@ -81,7 +85,8 @@ class ImageController extends Controller
             $font->angle(0);
         });
 
-        $img->text($obat, 250, 685, function ($font) {
+
+        $img->text($obat, 400, 685, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(25);
             $font->color('#000');
@@ -90,7 +95,7 @@ class ImageController extends Controller
             $font->angle(0);
         });
 
-        $img->text($sakit, 250, 935, function ($font) {
+        $img->text($sakit, 400, 935, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(25);
             $font->color('#000');
@@ -99,6 +104,6 @@ class ImageController extends Controller
             $font->angle(0);
         });
         $img->save(public_path('img/nametag_edit/'.$prodi_singkat.'/'.$nim.'.jpg'));
-        return $img->response('jpg');
+        //return $img->response('jpg');
     }
 }
