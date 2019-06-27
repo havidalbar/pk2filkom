@@ -92,6 +92,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 'pengguna' => 'username',
             ])->except(['show', 'index']);
 
+            Route::resource('penugasan', 'PenugasanController')->parameters([
+                'penugasan' => 'id',
+            ])->except(['show']);
+
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
                 Route::group(['prefix' => 'pk2maba', 'as' => 'pk2maba.'], function () {
                     Route::get('total', 'AdminController@getPK2MabaTotal')->name('total');
