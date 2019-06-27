@@ -1016,12 +1016,19 @@ figure,figure img {
 .vdBerita {
   min-height: 240px;
 }
-.detailBerita .titleSection {
+.detailBerita .titleSection,
+.multipleChoise .titleSection {
   color: #fff;
-  letter-spacing: 10px;
   text-align: center;
 }
-.detailBerita .titleSection::after{
+.detailBerita .titleSection {
+  letter-spacing: 10px;
+}
+.multipleChoise .titleSection {
+  letter-spacing: 6px;
+}
+.multipleChoise .titleSection::after,
+.detailBerita .titleSection::after {
   width: 140%;
   transform: translateX(-14%);
 }
@@ -1151,6 +1158,54 @@ figure,figure img {
   font-size: 32px;
   color: #223b6e;
   margin: 1rem 0;
+}
+.question label { 
+  display: block;
+}
+.question label:last-child { 
+  margin-bottom: 1.5rem;
+}
+.kirimJwb {
+  background-color: #012E44;
+  padding: 6px;
+  border-radius: 4px;
+  color: #fff;
+  transition: all 0.5s;
+  display: flex;
+  text-align: center;
+  font-size: 16px;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+.kirimJwb span {
+	cursor:pointer;
+	display:flex;
+	position:relative;
+	transition:0.5s;
+}
+.kirimJwb span:after{
+	font-family:'Font Awesome 5 Pro';
+	content:'\f101';
+	position:absolute;
+	opacity:0;
+	top:0;
+	right:-10px;
+	transition:0.5s;
+}
+.kirimJwb:hover span{
+	padding-right:15px;
+}
+.kirimJwb:hover span:after{
+	opacity:1;
+	right:0;
+}
+.pk2-dtBerita > .title > .container ul{
+  margin-top: 1rem;
+  color: #fff;
+  font-family: 'Esphimere-semiBold';
+  font-weight: bold;
 }
 /* endMedia ICON */
 /* Desktop Version */
