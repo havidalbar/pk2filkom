@@ -38,6 +38,12 @@ Route::get('/panel/tugas/create', function () {
 Route::get('/panel/tugas/edit', function () {
     return view('panel-admin/tugas/edit');
 });
+Route::get('panel/kegiatan/startup/total', function () {
+    return view('panel-admin/startup/total');
+});
+Route::get('panel/kegiatan/pkm/total', function () {
+    return view('panel-admin/pkm/total');
+});
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     Route::get('/', function () {
