@@ -29,6 +29,15 @@ Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
 Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
 
+Route::get('/panel/tugas', function () {
+    return view('panel-admin/tugas/index');
+});
+Route::get('/panel/tugas/create', function () {
+    return view('panel-admin/tugas/create');
+});
+Route::get('/panel/tugas/edit', function () {
+    return view('panel-admin/tugas/edit');
+});
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     Route::get('/', function () {
@@ -260,3 +269,5 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         });
     });
 });
+
+Route::get('/text','ImageController@call')->name('textOnImage');
