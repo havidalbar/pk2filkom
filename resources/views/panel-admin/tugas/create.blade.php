@@ -18,8 +18,9 @@
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body pt-1">
-                <form action="#" class="m-form m-form--state m-form--fit m-form--label-align-right"
-                    enctype="multipart/form-data" method="GET">
+                <form class="m-form m-form--state m-form--fit m-form--label-align-right"
+					enctype="multipart/form-data" method="POST">
+					@csrf
                     @include('panel-admin.tugas.form-create-edit-soal', ['ketForm' => 'tambah'])
                 </form>
             </div>
