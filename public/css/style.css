@@ -1018,7 +1018,6 @@ figure img {
     margin: 0;
 }
 .footer {
-    margin-top: 1.5rem;
     background-color: #012e44;
     color: #f7bb3e;
 }
@@ -1286,4 +1285,88 @@ figure img {
     .nav-link:hover::after {
         content: "";
     }
+}
+
+/* halaman faq */
+.bg-faq {
+    background-image: url(../img/bg-section/faq.png);
+    height: 100%;
+}
+
+.accordion .card {
+    margin-top: 30px;
+    border-radius: 5px !important;
+    border: none;
+}
+
+.card-header {
+    padding: 0;
+}
+
+/* .card-body {
+    padding: 0 !important;
+} */
+
+.btn.btn-link {
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    font-family: "Esphimere-Bold";
+    background-color: white;
+    color: #053d58;
+    font-size: 20px;
+    padding: 8px 12px;
+}
+
+.btn.btn-link:hover {
+    color: #f8bc3f;
+}
+
+.panel-heading.active {
+    background-color: #809fff;
+  }
+
+  [data-toggle="collapse"]:not(.collapsed) {
+    background-color: #f8bc3f !important;
+    color: #053d58;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  [data-toggle="collapse"]:not(.collapsed):hover {
+    color: #053d58;
+  }
+
+  [data-toggle="collapse"] {
+    background-color: white;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+.card-body {
+    color: white;
+    background-color: #053d58;
+    padding: 8px 12px;
+    font-size: 20px;
+}
+
+.faq.title {
+    text-align: center;
+    font-family: "Esphimere-Bold";
+    color: white;
+    content: "";
+    display: block;
+    border-bottom: 3px solid #f7bb3e;
+    width: 20%;
+    margin: auto;
+    padding-bottom: 5px;
+    margin-bottom: -8px;
+}
+
+.faq.subtitle {
+    color: white;
+    margin: 40px;
+    font-family: "Esphimere-Light";
+    text-align: center;
+    font-size: 20px;
 }
