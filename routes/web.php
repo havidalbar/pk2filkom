@@ -29,6 +29,9 @@ Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
 Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
 
+// TODO : Pindah QR Code Mahasiswa
+Route::get('/test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
+
 Route::get('/panel/tugas', function () {
     return view('panel-admin/tugas/index');
 });
@@ -67,17 +70,18 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::get('/', function ($id) {
                 return redirect()->route('panel.mahasiswa.biodata');
             })->name('index');
-            Route::get('biodata', 'MahasiswaController@getBiodata')->name('biodata');
-            Route::get('kesehatan', 'MahasiswaController@getKesehatan')->name('kesehatan');
+            Route::get('biodata', 'PanelMahasiswaController@getBiodata')->name('biodata');
+            Route::get('kesehatan', 'PanelMahasiswaController@getKesehatan')->name('kesehatan');
         });
-        Route::get('biodata-mahasiswa', 'adminPanel@dataBiodataMahasiswa');
-        Route::get('kesehatan-mahasiswa', 'adminPanel@dataKesehatanMahasiswa');
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
             Route::get('/', 'AdminController@index')->name('index');
             Route::get('ganti-password', 'AdminController@getGantiPassword')->name('ganti-password');
             Route::post('ganti-password', 'AdminController@gantiPassword');
         });
+
+        // ABSENSI OPEN HOUSE
+        Route::get('absensi-open-house', 'StartupAbsensiController@absensiOpenHouse');
 
         // DIVISI HUMAS
         Route::group(['middleware' => ['admin.publikasi']], function () {
@@ -98,8 +102,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
         Route::group(['middleware' => ['admin.full']], function () {
             Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
-                Route::get('biodata/{nim}/edit', 'MahasiswaController@editBiodataByAdmin')->name('biodata.edit');
-                Route::put('biodata/{nim}', 'MahasiswaController@updateBiodataByAdmin')->name('biodata.update');
+                Route::get('biodata/{nim}/edit', 'PanelMahasiswaController@editBiodataByAdmin')->name('biodata.edit');
+                Route::put('biodata/{nim}', 'PanelMahasiswaController@updateBiodataByAdmin')->name('biodata.update');
             });
 
             Route::resource('nilai-kkm', 'NilaiKkmController')->parameters([
@@ -177,108 +181,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     'prodi' => 'nim',
                 ])->except(['create', 'show']);
             });
-        });
-
-        Route::group(['middleware' => ['admin.full'], 'prefix' => 'full', 'as' => 'full.'], function () {
-            // Route::get('/NilaiKKM', 'AdminController@getNilaiKKM')->name('show-nilai-kkm');
-            // Route::get('/addNilaiKKM', 'AdminController@getTambahNilaiKKM')->name('show-add-nilai-kkm');
-            // Route::post('/addNilaiKKM', 'AdminController@tambahNilaiKKM')->name('add-nilai-kkm');
-            // Route::get('{id}/edit-nilaiKKM', 'AdminController@getEditNilaiKKM')->name('show-edit-nilai-kkm');
-            // Route::post('{id}/edit-nilaiKKM', 'AdminController@editNilaiKKM')->name('edit-nilai-kkm');
-            // Route::post('{id}/hapus-nilaiKKM', 'AdminController@hapusNilaiKKM')->name('hapus-nilai-kkm');
-
-            // Route::get('/addPengguna', 'AdminController@getTambahPengguna')->name('show-tambah-pengguna');
-            // Route::post('/addPengguna', 'AdminController@tambahPengguna')->name('tambah-pengguna');
-            // Route::get('{username}/edit-pengguna', 'AdminController@getEditPengguna')->name('show-edit-pengguna');
-            // Route::post('{username}/edit-pengguna', 'AdminController@editPenggunaFull')->name('edit-pengguna');
-            // Route::post('{username}/hapus-pengguna', 'AdminController@hapusPengguna')->name('hapus-pengguna');
-
-            // TODO : PK2Controller
-            // Route::get('/pk2-Absensi', 'AdminController@getPk2mabaAbsen')->name('show-pk2-absensi');
-            // Route::post('/pk2Absensi', 'adminPanel@importPk2Absensi');
-            // Route::get('{nim}/edit-Pk2Absensi', 'AdminController@getEditPk2mabaAbsensi')->name('show-edit-pk2-absensi');
-            // Route::post('{nim}/edit-Pk2Absensi', 'AdminController@editPk2mabamabaAbsen')->name('edit-pk2-absensi');
-            // Route::post('{nim}/hapus-Pk2Absensi', 'AdminController@hapusPk2mabaAbsen')->name('hapus-pk2-absensi');
-
-            // Route::get('/pk2-Keaktifan', 'AdminController@getPk2mabaKeaktifan')->name('show-pk2-keaktifan');
-            // Route::post('/pk2Keaktifan', 'adminPanel@importPk2Keaktifan');
-            // Route::get('{nim}/edit-Pk2Keaktifan', 'AdminController@getEditPk2mabaKeaktifan')->name('show-edit-pk2-keaktifan');
-            // Route::post('{nim}/edit-Pk2Keaktifan', 'AdminController@editPk2mabaKeaktifan')->name('edit-pk2-keaktifan');
-            // Route::post('{nim}/hapus-Pk2Keaktifan', 'AdminController@hapusPk2mabaKeaktifan')->name('hapus-pk2-keaktifan');
-
-            // Route::get('/pk2Tugas', 'adminPanel@dataPk2Tugas');
-            // Route::post('/pk2Tugas', 'adminPanel@importPk2Tugas');
-            // Route::get('/editPk2Tugas', 'adminPanel@editPk2Tugas');
-            // Route::put('/editPk2Tugas', 'adminPanel@prosesEditPk2Tugas');
-            // Route::get('/lihatEsaiPk2Tugas', 'adminPanel@lihatEsaiPk2tugas');
-
-            // Route::get('/pk2-Pelanggaran', 'AdminController@getPk2mabaPelanggaran')->name('show-pk2-pelanggaran');
-            // Route::post('/pk2Pelanggaran', 'adminPanel@importPk2Pelanggaran');
-            // Route::get('{nim}/edit-Pk2Pelanggaran', 'AdminController@getEditPk2mabaPelanggaran')->name('show-edit-pk2-pelanggaran');
-            // Route::post('{nim}/edit-Pk2Pelanggaran', 'AdminController@editPk2mabaPelanggaran')->name('edit-pk2-pelanggaran');
-            // Route::post('{nim}/hapus-Pk2Pelanggaran', 'AdminController@hapusPk2mabaPelanggaran')->name('hapus-pk2-pelanggaran');
-
-            // Route::get('/pk2Total', 'AdminController@getPk2mabaRekapNilai')->name('show-pk2-rekap');
-
-            // Route::get('/st-Absensi', 'AdminController@getStartupAbsen')->name('show-stAbsensi');
-            // Route::post('/stAbsensi', 'adminPanel@importStAbsensi');
-            // Route::get('{nim}/edit-StAbsensi', 'AdminController@getEditStartupAbsen')->name('show-edit-stAbsensi');
-            // Route::post('{nim}/edit-StAbsensi', 'AdminController@editStartupAbsen')->name('edit-stAbsensi');
-            // Route::post('{nim}/hapus-StAbsensi', 'AdminController@hapusStartupAbsen')->name('hapus-stAbsensi');
-
-            // Route::get('/st-Keaktifan', 'AdminController@getStartupKeaktifan')->name('show-stKeaktifan');
-            // Route::post('/stKeaktifan', 'adminPanel@importStKeaktifan');
-            // Route::get('{nim}/edit-StKeaktifan', 'AdminController@getEditStartupKeaktifan')->name('show-edit-stKeaktifan');
-            // Route::post('{nim}/editStKeaktifan', 'AdminController@editStartupKeaktifan')->name('edit-stKeaktifan');
-            // Route::post('{nim}/hapus-StKeaktifan', 'AdminController@hapusStartupKeaktifan')->name('hapus-stKeaktifan');
-
-            // Route::get('/stTugas', 'adminPanel@dataStTugas');
-            // Route::post('/stTugas', 'adminPanel@importStTugas');
-            // Route::get('/stTugasDeepTalk', 'adminPanel@datastTugasDeepTalk');
-            // Route::post('/stTugasDeepTalk', 'adminPanel@importstTugasDeepTalk');
-            // Route::get('/stTugasFilkomTv', 'adminPanel@datastTugasFilkomTv');
-            // Route::post('/stTugasFilkomTv', 'adminPanel@importstTugasFilkomTv');
-            // Route::get('/editStTugas', 'adminPanel@editStTugas');
-            // Route::put('/editStTugas', 'adminPanel@prosesEditStTugas');
-            // Route::get('/stPelanggaran', 'adminPanel@dataStPelanggaran');
-            // Route::post('/stPelanggaran', 'adminPanel@importStPelanggaran');
-            // Route::get('/editStPelanggaran', 'adminPanel@editStPelanggaran');
-            // Route::put('/editStPelanggaran', 'adminPanel@prosesEditStPelanggaran');
-
-            // Route::get('/pkm-Absensi', 'AdminController@getPk2mabaTourAbsen')->name('show-pkm-absensi');
-            // Route::post('/pkmAbsensi', 'adminPanel@importPkmAbsensi');
-            // Route::get('{nim}/edit-PkmAbsensi', 'AdminController@getEditPk2mabaTourAbsen')->name('show-edit-pkm-absensi');
-            // Route::post('{nim}/edit-PkmAbsensi', 'AdminController@editPk2mabaTourAbsen')->name('edit-pkm-absensi');
-            // Route::post('{nim}/hapus-PkmAbsensi', 'AdminController@hapusPk2mabaTourAbsen')->name('hapus-pkm-absensi');
-
-            // Route::get('/pkm-Keaktifan', 'AdminController@getPk2mabaTourKeaktifan')->name('show-pkm-keaktifan');
-            // Route::post('/pkmKeaktifan', 'adminPanel@importPkmKeaktifan');
-            // Route::get('{nim}/edit-PkmKeaktifan', 'AdminController@getEditPk2mabaTourKeaktifan')->name('show-edit-pkm-keaktifan');
-            // Route::post('{nim}/edit-PkmKeaktifan', 'AdminController@editPk2mabaTourKeaktifan')->name('edit-pkm-keaktifan');
-            // Route::post('{nim}/hapus-PkmAbsensi', 'AdminController@hapusPk2mabaTourKeaktifan')->name('hapus-pkm-keaktifan');
-
-            // Route::get('/pkmKelompok', 'adminPanel@dataPkmKelompok');
-            // Route::post('/pkmKelompok', 'adminPanel@importPkmKelompok');
-            // Route::get('/pkmTugas', 'adminPanel@dataPkmTugas');
-            // Route::post('/pkmTugas', 'adminPanel@importPkmTugas');
-            // Route::get('/editPkmTugas', 'adminPanel@editPkmTugas');
-            // Route::put('/editPkmTugas', 'adminPanel@proseseditPkmTugas');
-
-            // Route::get('/pkmTugasAbstraksi', 'adminPanel@dataPkmTugasAbstraksi');
-            // Route::post('/pkmTugasAbstraksi', 'adminPanel@importPkmTugasAbstraksi');
-            // Route::get('/lihatPkmTugasAbstraksi', 'adminPanel@editPkmTugasAbstraksi');
-            // Route::put('/lihatPkmTugasAbstraksi', 'adminPanel@prosesEditPkmTugasAbstraksi');
-
-            // Route::get('/pkmPelanggaran', 'adminPanel@dataPkmPelanggaran');
-            // Route::post('/pkmPelanggaran', 'adminPanel@importPkmPelanggaran');
-            // Route::get('/editPkmPelanggaran', 'adminPanel@editPkmPelanggaran');
-            // Route::put('/editPkmPelanggaran', 'adminPanel@prosesEditPkmPelanggaran');
-
-            // Route::get('/prodiFinal', 'AdminController@getProdiFinal')->name('show-prodi-final');
-            // Route::post('/prodiFinal', 'adminPanel@importProdiFinal');
-            // Route::get('{nim}/edit-ProdiFinal', 'AdminController@getEditProdiFinal')->name('show-edit-prodi-final');
-            // Route::post('{nim}/edit-ProdiFinal', 'AdminController@EditProdiFinal')->name('edit-prodi-final');
-            // Route::post('{nim}/hapus-prodiFinal', 'AdminController@hapusProdiFinal')->name('hapus-prodi-final');
         });
     });
 });

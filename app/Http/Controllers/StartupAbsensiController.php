@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mahasiswa;
 use App\StartupAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -72,7 +73,7 @@ class StartupAbsensiController extends Controller
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update startup_academy_absensi set nilai_rangkaian3 = ?, nilai_rangkaian4 = ?, nilai_rangkaian5 = ? where nim = ?',
                         [$data_row[$nilai_rangkaian3_index], $data_row[$nilai_rangkaian4_index], $data_row[$nilai_rangkaian5_index], $data_row[$nim_index]]);
@@ -148,5 +149,25 @@ class StartupAbsensiController extends Controller
             'nilai_rangkaian5' => 0,
         ]);
         return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil menghapus data absensi Startup Academy');
+    }
+
+    public function absensiOpenHouse(Request $request)
+    {
+        try {
+            $decrypted = decrypt($request->nim);
+
+            $mahasiswa = Mahasiswa::where('nim', $decrypted)->first();
+
+            if ($mahasiswa) {
+                $update = StartupAbsensi::where('nim', $decrypted)->update([
+                    'nilai_rangkaian4' => 100,
+				]);
+				return response();
+            } else {
+                abort(404);
+            }
+        } catch (DecryptException $e) {
+            abort(400);
+        }
     }
 }
