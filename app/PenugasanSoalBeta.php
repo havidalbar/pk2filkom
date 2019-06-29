@@ -13,4 +13,13 @@ class PenugasanSoalBeta extends Model
 
     public $incrementing = false;
     public $timestamps = false;
+
+    protected $with = [
+        'pilihan_jawaban',
+    ];
+
+    public function pilihan_jawaban()
+    {
+        return $this->hasMany('App\PenugasanJawabanBeta', 'id_soal', 'id');
+    }
 }

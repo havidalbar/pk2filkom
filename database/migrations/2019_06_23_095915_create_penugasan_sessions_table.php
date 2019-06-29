@@ -16,9 +16,10 @@ class CreatePenugasanSessionsTable extends Migration
         Schema::create('penugasan_sessions', function (Blueprint $table) {
             $table->unsignedBigInteger('nim');
             $table->foreign('nim')->references('nim')->on('mahasiswa');
-            $table->unsignedInteger('id_penugasan');
+            $table->unsignedBigInteger('id_penugasan');
             $table->foreign('id_penugasan')->references('id')->on('penugasan_beta')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['nim', 'id_penugasan']);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

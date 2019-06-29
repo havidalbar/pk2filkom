@@ -19,10 +19,9 @@ class CreatePenugasanBetaTable extends Migration
             $table->string('judul', 191);
             $table->unsignedTinyInteger('jenis');
             $table->boolean('random')->default(0);
-            $table->boolean('editable')->default(0);
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_akhir');
-            $table->unsignedSmallInteger('durasi')->nullable();
+            $table->unsignedSmallInteger('batas_waktu')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('editor', 30)->nullable();
             $table->foreign('editor')->references('username')->on('pengguna')->onDelete('set null')->onUpdate('cascade');

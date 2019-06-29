@@ -11,4 +11,9 @@ class PenugasanBeta extends Model
     protected $hidden = [
         'editor', 'created_at', 'updated_at',
     ];
+
+    public function soal()
+    {
+        return $this->hasMany('App\PenugasanSoalBeta', 'id_penugasan', 'id');
+    }
 }

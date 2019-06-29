@@ -16,7 +16,7 @@ class CreateJawabanBetaTable extends Migration
         Schema::create('jawaban_beta', function (Blueprint $table) {
             $table->unsignedBigInteger('nim');
             $table->foreign('nim')->references('nim')->on('mahasiswa');
-            $table->unsignedInteger('id_soal');
+            $table->string('id_soal', 36);
             $table->foreign('id_soal')->references('id')->on('penugasan_soal_beta')->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['nim', 'id_soal']);
             $table->text('jawaban')->nullable();

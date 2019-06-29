@@ -93,7 +93,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             ])->except(['show', 'index']);
 
             Route::resource('penugasan', 'PenugasanController')->parameters([
-                'penugasan' => 'id',
+                'penugasan' => 'slug',
             ])->except(['show']);
 
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {

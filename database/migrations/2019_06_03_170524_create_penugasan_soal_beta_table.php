@@ -15,7 +15,7 @@ class CreatePenugasanSoalBetaTable extends Migration
     {
         Schema::create('penugasan_soal_beta', function (Blueprint $table) {
             $table->string('id', 36)->primary();
-            $table->unsignedInteger('id_penugasan');
+            $table->unsignedBigInteger('id_penugasan');
             $table->foreign('id_penugasan')->references('id')->on('penugasan_beta')->onDelete('cascade')->onUpdate('cascade');
             $table->text('soal');
             $table->string('id_jawaban_benar', 36)->nullable();
