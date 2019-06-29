@@ -14,11 +14,11 @@ class CreateSubArtikelsTable extends Migration
     public function up()
     {
         Schema::create('sub_artikel', function (Blueprint $table) {
-			$table->bigIncrements('id');
+            $table->bigIncrements('id');
             $table->unsignedInteger('id_artikel');
-            $table->foreign('id_artikel')->references('id')->on('artikel');			
-			$table->string('thumbnail', 191);
-			$table->mediumText('deskripsi');
+            $table->foreign('id_artikel')->references('id')->on('artikel')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('thumbnail', 191);
+            $table->mediumText('deskripsi');
             $table->timestamps();
         });
     }

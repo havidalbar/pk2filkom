@@ -140,7 +140,7 @@ class ArtikelController extends Controller
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
         } catch (\Exception $ex) {
-			DB::rollback();
+            DB::rollback();
 
             return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
         }
@@ -337,7 +337,6 @@ class ArtikelController extends Controller
                 }
             }
 
-
                 DB::commit();
 
                 return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
@@ -346,7 +345,7 @@ class ArtikelController extends Controller
                 return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
             }
         } else {
-            return abort(404);
+            abort(404);
         }
     }
 
@@ -364,18 +363,19 @@ class ArtikelController extends Controller
             $uploadPath = public_path() . '/uploads/';
 
             $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
+
+            $artikel->delete();
+
+            if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
+                unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
+            }
+
             foreach ($sub_kontens as $sub_konten) {
                 if (file_exists($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail)) {
                     unlink($uploadPath . 'sub_artikel/' . $sub_konten->thumbnail);
                 }
                 $sub_konten->delete();
             }
-
-
-            if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
-                unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
-            }
-            $artikel->delete();
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
         } else {

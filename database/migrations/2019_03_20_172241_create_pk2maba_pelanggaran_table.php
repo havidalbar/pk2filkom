@@ -18,9 +18,9 @@ class CreatePk2mabaPelanggaranTable extends Migration
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->smallInteger('ringan')->default(0);
             $table->smallInteger('sedang')->default(0);
-			$table->smallInteger('berat')->default(0);
-			$table->string('editor', 30)->nullable();
-            $table->foreign('editor')->references('username')->on('pengguna');
+            $table->smallInteger('berat')->default(0);
+            $table->string('editor', 30)->nullable();
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -17,9 +17,9 @@ class CreatePk2mabaAbsensiTable extends Migration
             $table->unsignedBigInteger('nim')->primary();
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->smallInteger('nilai_rangkaian1')->default(0);
-			$table->smallInteger('nilai_rangkaian2')->default(0);
-			$table->string('editor', 30)->nullable();
-            $table->foreign('editor')->references('username')->on('pengguna');
+            $table->smallInteger('nilai_rangkaian2')->default(0);
+            $table->string('editor', 30)->nullable();
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
             $table->timestamps();
         });
     }
