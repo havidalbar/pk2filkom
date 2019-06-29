@@ -5,6 +5,7 @@
 @include('layouts.header')
 <div class="jumbotron jumbotron-fluid bg-faq">
     <h1 class="faq title">F A Q</h1>
+    <div class="faq garis"></div>
     <p class="faq subtitle">Frequently Asked Question adalah daftar pertanyaan umum yang paling ditanyakan</p>
     <div class="container">
         <div class="accordion" id="accordionFAQ">
