@@ -1370,6 +1370,9 @@ figure img {
 }
 
 @media (max-width: 767.98px) {
+    .bg-faq{
+        background-size: cover;
+    }
     .faq.title {
         font-size: 32px;
     }
