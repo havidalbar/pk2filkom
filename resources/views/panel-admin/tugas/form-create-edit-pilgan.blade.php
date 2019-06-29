@@ -9,8 +9,7 @@
 			Judul Tugas
 		</label>
 		<div class="col-10">
-			<input id="judul_tugas" class="form-control m-input" name="judul" placeholder="Nama Tugas" type="text"
-				required>
+			<input id="judul_tugas" class="form-control m-input" name="judul" placeholder="Nama Tugas" type="text" required>
 		</div>
 	</div>
 	<div class="form-group m-form__group row align-items-center">
@@ -18,8 +17,8 @@
 			Deskripsi
 		</label>
 		<div class="col-10">
-			<input id="deskripsi_tugas" class="form-control m-input" name="deskripsi"
-				placeholder="Deskripsi Mengenai Tugas" type="text" required>
+			<input id="deskripsi_tugas" class="form-control m-input" name="deskripsi" placeholder="Deskripsi Mengenai Tugas" type="text"
+				required>
 		</div>
 	</div>
 	<div class="form-group m-form__group row align-items-center">
@@ -69,6 +68,39 @@
                     </label>
                     <div class="col-10">
                         <input class="form-control m-input" name="soal[${data}][soal]" placeholder="Pertanyaan" type="text" required>
+                    </div>
+                </div>
+				<div class="form-group m-form__group row align-items-center">
+                    <label class="col-form-label">
+                        Pilihan jawaban
+                    </label>
+                </div>
+				<div class="form-group m-form__group row align-items-center">
+					<input type="radio" name="jawaban_benar" value="0">
+                    <div class="col-12">
+                        <input class="form-control m-input" name="soal[${data}][pilihan_jawaban][0]" placeholder="Pilihan Jawaban 0"
+                            type="text" required>
+                    </div>
+                </div>
+				<div class="form-group m-form__group row align-items-center">
+					<input type="radio" name="jawaban_benar" value="1">
+                    <div class="col-12">
+                        <input class="form-control m-input" name="soal[${data}][pilihan_jawaban][1]" placeholder="Pilihan Jawaban 1"
+                            type="text" required>
+                    </div>
+                </div>
+				<div class="form-group m-form__group row align-items-center">
+					<input type="radio" name="jawaban_benar" value="2">
+                    <div class="col-12">
+                        <input class="form-control m-input" name="soal[${data}][pilihan_jawaban][2]" placeholder="Pilihan Jawaban 2"
+                            type="text" required>
+                    </div>
+                </div>
+				<div class="form-group m-form__group row align-items-center">
+					<input type="radio" name="jawaban_benar" value="3">
+                    <div class="col-12">
+                        <input class="form-control m-input" name="soal[${data}][pilihan_jawaban][3]" placeholder="Pilihan Jawaban 3"
+                            type="text" required>
                     </div>
                 </div>
             </div>`);
