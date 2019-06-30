@@ -1208,6 +1208,29 @@ figure,figure img {
   font-weight: bold;
 }
 /* endMedia ICON */
+.row.justify-content-md-center{
+  margin: 5% 0;
+}
+.row.justify-content-md-center .col-md-2{
+  font-family: 'Esphimere-semiBold';
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: #F1C538;
+  /* border: 1px solid rgba(86,61,124,.2); */
+  border-radius: 6px;
+  color: #00185A;
+  text-align: center;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-top: 40px; 
+  margin-bottom: 40px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  min-width: 155px;
+  min-height: 70px;
+}
 /* Desktop Version */
 @media (max-width: 575.98px) {
   #swipUp {
@@ -1319,6 +1342,10 @@ figure,figure img {
   .hovereffect-berita .img2{
     max-height: none;
   }
+  .row.justify-content-md-center .col-md-2{
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+  }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
   .nav-link {
@@ -1373,6 +1400,10 @@ figure,figure img {
   .hovereffect p.icon-links a{
     font-size: 18px;
   }
+  .row.justify-content-md-center .col-md-2{
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -1415,6 +1446,8 @@ figure,figure img {
   .hovereffect p.icon-links a{
     font-size: 20px;
   }
+  
+
 }
 
 @media (min-width: 1200px){

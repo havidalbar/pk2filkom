@@ -23,6 +23,9 @@ Route::get('/berita', function () {
 Route::get('/multipleChoise', function () {
     return view('v_mahasiswa/multipleChoise');
 });
+Route::get('/penugasan', function () {
+    return view('v_mahasiswa/penugasan');
+});
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
