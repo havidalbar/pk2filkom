@@ -18,12 +18,12 @@
 	<div class="m-content">
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__body pt-1">
-				<form class="m-form m-form--state m-form--fit m-form--label-align-right" enctype="multipart/form-data"
-					method="POST">
+				<form action="{{ route('panel.penugasan.store') }}"
+					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 					@csrf
-					@if ($_GET['type'] == 'pilgan')
-					@include('panel-admin.tugas.form-create-edit-soal', ['ketForm' => 'tambah'])
-					@elseif ($_GET['type'] == 'link')
+					@if ($_GET['jenis'] == 'pilgan')
+					@include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'tambah'])
+					@elseif ($_GET['jenis'] == 'link')
 					@include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'tambah'])
 					@endif
 				</form>

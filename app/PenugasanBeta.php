@@ -14,6 +14,6 @@ class PenugasanBeta extends Model
 
     public function soal()
     {
-        return $this->hasMany('App\PenugasanSoalBeta', 'id_penugasan', 'id');
+        return $this->hasMany('App\PenugasanSoalBeta', 'id_penugasan', 'id')->orderBy('index');
     }
 }

@@ -20,6 +20,6 @@ class PenugasanSoalBeta extends Model
 
     public function pilihan_jawaban()
     {
-        return $this->hasMany('App\PenugasanJawabanBeta', 'id_soal', 'id');
+        return $this->hasMany('App\PenugasanJawabanBeta', 'id_soal', 'id')->orderBy('index');
     }
 }

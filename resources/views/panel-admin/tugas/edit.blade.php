@@ -18,10 +18,13 @@
 	<div class="m-content">
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__body pt-1">
-				<form class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-					@if ($_GET['type'] == 'pilgan')
+				<form action="{{ route('panel.penugasan.update', ['slug' => $penugasan->slug]) }}"
+					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+					@csrf
+					@method('PUT')
+					@if ($penugasan->jenis === 2)
 					@include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'edit'])
-					@elseif ($_GET['type'] == 'link')
+					@elseif ($penugasan->jenis === 1)
 					@include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'edit'])
 					@endif
 				</form>

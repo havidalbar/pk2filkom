@@ -15,7 +15,7 @@ class CreatePenugasanBetaTable extends Migration
     {
         Schema::create('penugasan_beta', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('slug', 191);
+            $table->string('slug', 191)->unique();
             $table->string('judul', 191);
             $table->unsignedTinyInteger('jenis');
             $table->boolean('random')->default(0);

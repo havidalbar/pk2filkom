@@ -19,6 +19,7 @@ class CreatePenugasanSoalBetaTable extends Migration
             $table->foreign('id_penugasan')->references('id')->on('penugasan_beta')->onDelete('cascade')->onUpdate('cascade');
             $table->text('soal');
             $table->string('id_jawaban_benar', 36)->nullable();
+            $table->unsignedTinyInteger('index');
         });
     }
 

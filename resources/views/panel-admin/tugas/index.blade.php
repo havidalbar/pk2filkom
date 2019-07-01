@@ -49,11 +49,14 @@
 							<th title="Judul">
 								Judul
 							</th>
-							<th title="Dibuat pada">
-								Dibuat pada
+							<th title="Jumlah soal">
+								Jumlah soal
 							</th>
-							<th title="Diubah pada">
-								Diubah pada
+							<th title="Waktu mulai">
+								Waktu mulai
+							</th>
+							<th title="Waktu akhir">
+								Waktu akhir
 							</th>
 							<th title="Action">
 								Action
@@ -61,31 +64,34 @@
 						</tr>
 					</thead>
 					<tbody>
+						@foreach ($penugasans as $index => $penugasan)
 						<tr>
-							<td>1</td>
-							<td>Tes</td>
-							<td>2019-06-22 17:08:13</td>
-							<td>2019-06-22 17:08:13</td>
+							<td>{{ $index + 1 }}</td>
+							<td>{{ $penugasan->judul }}</td>
+							<td>{{ count($penugasan->soal) }}</td>
+							<td>{{ $penugasan->waktu_mulai }}</td>
+							<td>{{ $penugasan->waktu_akhir }}</td>
 							<td>
 								<div class="btn-group" role="group" aria-label="First group">
-									<a href="#"
+									<a href="{{ route('panel.penugasan.edit', ['slug' => $penugasan->slug]) }}"
 										class="m-btn btn btn-warning">
 										<i class="fa fa-edit"></i>
 									</a>
-									<form id="delete-artikel-form"
-										action="#"
+									<form id="delete-penugasan-form-{{ $penugasan->id }}"
+										action="{{ route('panel.penugasan.destroy', ['slug' => $penugasan->slug]) }}"
 										method="POST">
 										@csrf
 										@method('DELETE')
 									</form>
 									<a href="javascript:void(0)"
-										onclick="document.getElementById(`delete-artikel-form`).submit()"
+										onclick="document.getElementById(`delete-penugasan-form-{{ $penugasan->id }}`).submit()"
 										class="m-btn btn btn-danger">
 										<i class="fa fa-trash-o"></i>
 									</a>
 								</div>
 							</td>
 						</tr>
+						@endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->

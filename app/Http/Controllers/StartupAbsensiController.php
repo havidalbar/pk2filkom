@@ -154,20 +154,34 @@ class StartupAbsensiController extends Controller
     public function absensiOpenHouse(Request $request)
     {
         try {
-            $decrypted = decrypt($request->nim);
+            if (isset($request->nim_key)) {
+                $decrypted = decrypt($request->nim_key);
 
-            $mahasiswa = Mahasiswa::where('nim', $decrypted)->first();
-
-            if ($mahasiswa) {
-                $update = StartupAbsensi::where('nim', $decrypted)->update([
-                    'nilai_rangkaian4' => 100,
-				]);
-				return response();
+                $nim = $decrypted;
+            } else if (isset($request->nim)) {
+                $nim = $request->nim;
             } else {
-                abort(404);
+                return view('panel-admin.startup.absensi-open-house');
+            }
+
+            if (is_numeric($nim)) {
+                $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+
+                if ($mahasiswa) {
+                    $update = StartupAbsensi::where('nim', $nim)->update([
+                        'nilai_rangkaian4' => 100,
+                    ]);
+                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Absensi mahasiswa' . $nim . 'berhasil dimasukkan');
+                } else {
+                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Mahasiswa tidak ditemukan');
+                }
+            } else {
+                throw new DecryptException;
             }
         } catch (DecryptException $e) {
-            abort(400);
+            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Kesalahan input atau kode QR');
+        } catch (Exception $e) {
+            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Kesalahan pengolahan data');
         }
     }
 }

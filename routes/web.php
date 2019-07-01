@@ -80,9 +80,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::post('ganti-password', 'AdminController@gantiPassword');
         });
 
-        // ABSENSI OPEN HOUSE
-        Route::get('absensi-open-house', 'StartupAbsensiController@absensiOpenHouse');
-
         // DIVISI HUMAS
         Route::group(['middleware' => ['admin.publikasi']], function () {
             // UNUSED FUNCTION : [Fadhil]
@@ -143,6 +140,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
+                    // ABSENSI OPEN HOUSE
+                    Route::get('absensi/open-house', 'StartupAbsensiController@absensiOpenHouse')->name('absensi.open-house');
 
                     Route::resource('keaktifan', 'StartupKeaktifanController')->parameters([
                         'keaktifan' => 'nim',

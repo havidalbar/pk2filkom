@@ -30,7 +30,7 @@ class PenugasanRequest extends FormRequest
             'random' => 'sometimes',
             'waktu_mulai' => 'required|date_format:Y-m-d H:i:s',
             'waktu_akhir' => 'required|date_format:Y-m-d H:i:s',
-            'batas_waktu' => 'required|integer|min:0|max:65535',
+            'batas_waktu' => 'sometimes|required|integer|min:0|max:65535',
             'deskripsi' => 'required|string|max:65535',
             'soal' => 'required|array',
         ];

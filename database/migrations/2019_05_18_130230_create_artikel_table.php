@@ -15,7 +15,7 @@ class CreateArtikelTable extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('slug', 191);
+            $table->string('slug', 191)->unique();
             $table->string('judul', 191);
             $table->string('deskripsi')->nullable();
             $table->string('thumbnail')->nullable();

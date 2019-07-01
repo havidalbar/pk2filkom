@@ -14,11 +14,12 @@ class CreateKomentarTable extends Migration
     public function up()
     {
         Schema::create('komentar', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->string('id', 36);
+            $table->primary('id');
             $table->unsignedInteger('id_artikel');
             $table->foreign('id_artikel')->references('id')->on('artikel');
             $table->text('isi');
-            $table->unsignedBigInteger('komentar_ke')->nullable();
+            $table->string('komentar_ke', 36)->nullable();
             $table->foreign('komentar_ke')->references('id')->on('komentar')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('nim_mahasiswa')->nullable();
             $table->foreign('nim_mahasiswa')->references('nim')->on('mahasiswa');

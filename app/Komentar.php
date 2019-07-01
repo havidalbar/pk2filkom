@@ -2,11 +2,16 @@
 
 namespace App;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Komentar extends Model
 {
+    use Uuid;
+
     protected $table = 'komentar';
+
+    public $incrementing = false;
 
     protected $with = [
         'balasan',

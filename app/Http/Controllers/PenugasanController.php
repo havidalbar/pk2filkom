@@ -18,7 +18,8 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        //
+        $penugasans = PenugasanBeta::all();
+        return view('panel-admin.tugas.index', compact('penugasans'));
     }
 
     /**
@@ -28,7 +29,7 @@ class PenugasanController extends Controller
      */
     public function create()
     {
-        //
+        return view('panel-admin.tugas.create');
     }
 
     /**
@@ -134,7 +135,8 @@ class PenugasanController extends Controller
                     $soal->soal = $request->soal[$i]['soal'];
                 }
 
-                $soal->id_penugasan = $penugasan->id;
+				$soal->id_penugasan = $penugasan->id;
+				// $soal->index = 
                 $soal->save();
 
                 if ($penugasan->jenis == 2) {
@@ -216,7 +218,8 @@ class PenugasanController extends Controller
      */
     public function edit($slug)
     {
-        echo 'edit ' . $slug;
+        $penugasan = PenugasanBeta::where('slug', $slug)->first();
+        return view('panel-admin.tugas.edit', compact('penugasan'));
     }
 
     /**
@@ -293,7 +296,7 @@ class PenugasanController extends Controller
 
                 for ($i = 0; $i < count($request->soal); $i++) {
                     if (isset($request->soal[$i]['id'])) {
-                        $soal = PenugasanSoalBeta::where('id', $id)->first();
+                        $soal = PenugasanSoalBeta::where('id', $request->soal[$i]['id'])->first();
 
                         if (!$soal) {
                             $soal = new PenugasanSoalBeta;
@@ -328,6 +331,7 @@ class PenugasanController extends Controller
                         }
                     }
 
+                    $soal->index = $i;
                     $soal->id_penugasan = $penugasan->id;
                     $soal->soal = $dom->savehtml();
                     $soal->save();
