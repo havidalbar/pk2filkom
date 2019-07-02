@@ -66,7 +66,7 @@ class ProdiFinalController extends Controller
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update prodi_final set nilai_full = ? where nim = ?',
                         [$data_row[$nilai_full_index], $data_row[$nim_index]]);
@@ -107,7 +107,7 @@ class ProdiFinalController extends Controller
      */
     public function edit($nim)
     {
-        $prodiFinal = ProdiFinal::where('nim', $nim)->first();
+        $prodiFinal = ProdiFinal::find($nim);
         return view('panel-admin.prodi-final.edit', compact('prodiFinal'));
     }
 
@@ -120,7 +120,7 @@ class ProdiFinalController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $prodiFinal = ProdiFinal::where('nim', $nim)->update([
+        $prodiFinal = ProdiFinal::find($nim)->update([
             'nilai_full' => $request->nilai_prodi,
         ]);
         return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');
@@ -134,7 +134,7 @@ class ProdiFinalController extends Controller
      */
     public function destroy($nim)
     {
-        $prodiFinal = ProdiFinal::where('nim', $nim)->update([
+        $prodiFinal = ProdiFinal::find($nim)->update([
             'nilai_full' => 0,
         ]);
         return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');

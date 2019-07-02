@@ -65,14 +65,14 @@ class PK2MTourPelanggaranController extends Controller
             }
         }
 
-        if (isset($nim_index) && isset($ringan_index) && isset($sedang_index)&& isset($berat_index)) {
+        if (isset($nim_index) && isset($ringan_index) && isset($sedang_index) && isset($berat_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update pk2maba_tour_pelanggaran set ringan = ?, sedang = ?, berat = ? where nim = ?',
                         [$data_row[$ringan_index], $data_row[$sedang_index], $data_row[$berat_index], $data_row[$nim_index]]);
@@ -113,7 +113,7 @@ class PK2MTourPelanggaranController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mTourPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->first();
+        $pk2mTourPelanggaran = PK2MTourPelanggaran::find($nim);
         return view('panel-admin.pkm.pelanggaran-edit', compact('pk2mTourPelanggaran'));
     }
 
@@ -126,7 +126,7 @@ class PK2MTourPelanggaranController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->update([
+        $dataPelanggaran = PK2MTourPelanggaran::find($nim)->update([
             'ringan' => $request->ringan,
             'sedang' => $request->sedang,
             'berat' => $request->berat,
@@ -142,7 +142,7 @@ class PK2MTourPelanggaranController extends Controller
      */
     public function destroy($nim)
     {
-        $dataPelanggaran = PK2MTourPelanggaran::where('nim', $nim)->update([
+        $dataPelanggaran = PK2MTourPelanggaran::find($nim)->update([
             'ringan' => 0,
             'sedang' => 0,
             'berat' => 0,

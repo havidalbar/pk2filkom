@@ -135,8 +135,8 @@ class PenugasanController extends Controller
                     $soal->soal = $request->soal[$i]['soal'];
                 }
 
-				$soal->id_penugasan = $penugasan->id;
-				// $soal->index = 
+                $soal->id_penugasan = $penugasan->id;
+                // $soal->index =
                 $soal->save();
 
                 if ($penugasan->jenis == 2) {
@@ -186,7 +186,7 @@ class PenugasanController extends Controller
 
             return redirect()->route('panel.penugasan.index')->with('alert', 'Penugasan berhasil dibuat');
         } catch (\Exception $ex) {
-            DB::rollback();
+            DB::rollBack();
 
             foreach ($uploadQueue as $uploaded) {
                 if (file_exists($uploaded)) {
@@ -391,7 +391,7 @@ class PenugasanController extends Controller
 
                 return redirect()->route('panel.penugasan.index')->with('alert', 'Penugasan berhasil diubah');
             } catch (\Exception $ex) {
-                DB::rollback();
+                DB::rollBack();
 
                 foreach ($uploadQueue as $uploaded) {
                     if (file_exists($uploaded)) {

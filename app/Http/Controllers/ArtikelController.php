@@ -48,10 +48,10 @@ class ArtikelController extends Controller
                 ->orderBy('slug', 'DESC')->first('slug');
 
             if ($latestSlug) {
-                $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
+                $slug_element = explode('-', $latestSlug->slug);
+                $latestSlugNumber = end($slug_element);
 
-                if ($latestSlugNumber) {
-                    error_log($latestSlugNumber);
+                if (is_numeric($latestSlugNumber)) {
                     $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
                 } else {
                     $artikel->slug = $slug . '-1';
@@ -140,7 +140,7 @@ class ArtikelController extends Controller
 
             return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
         } catch (\Exception $ex) {
-            DB::rollback();
+            DB::rollBack();
 
             return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
         }
@@ -194,16 +194,16 @@ class ArtikelController extends Controller
         if ($artikel) {
             DB::beginTransaction();
             try {
-                $slug = substr(str_slug($request->judul), 0, 180);
-                if ($slug != $artikel->slug) {
+                if (str_slug($request->judul) != str_slug($artikel->judul)) {
+                    $slug = substr(str_slug($request->judul), 0, 180);
                     $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
                         ->orderBy('slug', 'DESC')->first('slug');
 
                     if ($latestSlug) {
-                        $latestSlugNumber = str_replace($slug . '-', '', $latestSlug->slug);
+                        $slug_element = explode('-', $latestSlug->slug);
+                        $latestSlugNumber = end($slug_element);
 
-                        if ($latestSlugNumber) {
-                            error_log($latestSlugNumber);
+                        if (is_numeric($latestSlugNumber)) {
                             $artikel->slug = $slug . '-' . ($latestSlugNumber + 1);
                         } else {
                             $artikel->slug = $slug . '-1';
@@ -260,43 +260,43 @@ class ArtikelController extends Controller
                 $artikel->save();
 
                 // TODO : Update Artikel
-                $sub_kontens = SubArtikel::where('id_artikel',$artikel->id)->get();
+                $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
 
                 for ($i = 0; $i < count($request->sub_konten); $i++) {
-                if(count($sub_kontens)<=count($request->sub_konten)&& $i<=count($sub_kontens)-1){
-                    if ($request->gambar_sub[$i]) {
-                        $gambar_sub = $request->gambar_sub[$i];
-                        $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
-                        $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
-                        $sub_kontens[$i]->thumbnail = $gambar_sub_name;
-                    }
+                    if (count($sub_kontens) <= count($request->sub_konten) && $i <= count($sub_kontens) - 1) {
+                        if ($request->gambar_sub[$i]) {
+                            $gambar_sub = $request->gambar_sub[$i];
+                            $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
+                            $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+                            $sub_kontens[$i]->thumbnail = $gambar_sub_name;
+                        }
 
-                    $dom = new \domdocument();
-                    $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-                    $images = $dom->getelementsbytagname('img');
+                        $dom = new \domdocument();
+                        $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        $images = $dom->getelementsbytagname('img');
 
-                    //loop over img elements, decode their base64 src and save them to public folder,
-                    //and then replace base64 src with stored image URL.
-                    foreach ($images as $k => $img) {
-                        $data = $img->getattribute('src');
+                        //loop over img elements, decode their base64 src and save them to public folder,
+                        //and then replace base64 src with stored image URL.
+                        foreach ($images as $k => $img) {
+                            $data = $img->getattribute('src');
 
-                        list($type, $data) = explode(';', $data);
-                        list(, $data) = explode(',', $data);
+                            list($type, $data) = explode(';', $data);
+                            list(, $data) = explode(',', $data);
 
-                        $data = base64_decode($data);
-                        // $image_name = time() . $k . '.png';
-                        $image_extension = str_replace('data:image/', '', $type);
-                        $image_name = uniqid() . '.' . $image_extension;
+                            $data = base64_decode($data);
+                            // $image_name = time() . $k . '.png';
+                            $image_extension = str_replace('data:image/', '', $type);
+                            $image_name = uniqid() . '.' . $image_extension;
 
-                        file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                            file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                        $img->removeattribute('src');
-                        $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
-                    }
-                $sub_kontens[$i]->id_artikel = $artikel->id;
-                $sub_kontens[$i]->deskripsi = $dom->savehtml();
-                $sub_kontens[$i]->save();
-                }else{
+                            $img->removeattribute('src');
+                            $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                        }
+                        $sub_kontens[$i]->id_artikel = $artikel->id;
+                        $sub_kontens[$i]->deskripsi = $dom->savehtml();
+                        $sub_kontens[$i]->save();
+                    } else {
 
                         $sub_konten = new SubArtikel;
 
@@ -334,14 +334,14 @@ class ArtikelController extends Controller
                         $sub_konten->deskripsi = $dom->savehtml();
                         $sub_konten->save();
 
+                    }
                 }
-            }
 
                 DB::commit();
 
                 return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
             } catch (\Exception $ex) {
-                DB::rollback();
+                DB::rollBack();
                 return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
             }
         } else {

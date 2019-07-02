@@ -6,10 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class PK2MabaKeaktifan extends Model
 {
-	protected $table = 'pk2maba_keaktifan';
-	
-	protected $primaryKey = 'nim';
+    use Traits\EditorTracker;
+
+    protected $table = 'pk2maba_keaktifan';
+
+    protected $primaryKey = 'nim';
     public $incrementing = false;
+
+    protected $fillable = [
+        'aktif_rangkaian1',
+        'penerapan_nilai_rangkaian1',
+        'aktif_rangkaian2',
+        'penerapan_nilai_rangkaian2',
+    ];
 
     protected $with = [
         'mahasiswa:nim,nama',

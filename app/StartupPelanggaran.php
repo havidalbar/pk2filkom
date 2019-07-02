@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class StartupPelanggaran extends Model
 {
+    use Traits\EditorTracker;
+
     protected $table = 'startup_academy_pelanggaran';
 
     protected $primaryKey = 'nim';
     public $incrementing = false;
+
+    protected $fillable = [
+        'ringan',
+        'sedang',
+        'berat',
+    ];
 
     protected $with = [
         'mahasiswa:nim,nama',

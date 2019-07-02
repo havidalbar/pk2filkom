@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class PK2MabaAbsensi extends Model
 {
-	protected $table = 'pk2maba_absensi';
-	
-	protected $primaryKey = 'nim';
+    use Traits\EditorTracker;
+
+    protected $table = 'pk2maba_absensi';
+
+    protected $primaryKey = 'nim';
     public $incrementing = false;
+
+    protected $fillable = [
+        'nilai_rangkaian1',
+        'nilai_rangkaian2',
+    ];
 
     protected $with = [
         'mahasiswa:nim,nama',

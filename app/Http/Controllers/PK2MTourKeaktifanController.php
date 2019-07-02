@@ -16,7 +16,7 @@ class PK2MTourKeaktifanController extends Controller
      */
     public function index()
     {
-		$pk2mTourKeaktifans = PK2MTourKeaktifan::all();
+        $pk2mTourKeaktifans = PK2MTourKeaktifan::all();
         return view('panel-admin.pkm.keaktifan-index', compact('pk2mTourKeaktifans'));
     }
 
@@ -75,15 +75,15 @@ class PK2MTourKeaktifanController extends Controller
         }
 
         if (isset($nim_index) && isset($aktif_rangkaian6_index) && isset($penerapan_nilai_rangkaian6_index)
-        && isset($aktif_rangkaian7_index) && isset($penerapan_nilai_rangkaian7_index)
-        && isset($aktif_rangkaian8_index) && isset($penerapan_nilai_rangkaian8_index)) {
+            && isset($aktif_rangkaian7_index) && isset($penerapan_nilai_rangkaian7_index)
+            && isset($aktif_rangkaian8_index) && isset($penerapan_nilai_rangkaian8_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update pk2maba_tour_keaktifan set aktif_rangkaian6 = ?, penerapan_nilai_rangkaian6 = ?, aktif_rangkaian7 = ?, penerapan_nilai_rangkaian7 = ?, aktif_rangkaian8 = ?, penerapan_nilai_rangkaian8 = ? where nim = ?',
                         [$data_row[$aktif_rangkaian6_index], $data_row[$penerapan_nilai_rangkaian6_index], $data_row[$aktif_rangkaian7_index], $data_row[$penerapan_nilai_rangkaian7_index], $data_row[$aktif_rangkaian8_index], $data_row[$penerapan_nilai_rangkaian8_index], $data_row[$nim_index]]);
@@ -124,7 +124,7 @@ class PK2MTourKeaktifanController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mTourKeaktifan = PK2MTourKeaktifan::where('nim', $nim)->first();
+        $pk2mTourKeaktifan = PK2MTourKeaktifan::find($nim);
         return view('panel-admin.pkm.keaktifan-edit', compact('pk2mTourKeaktifan'));
     }
 
@@ -137,12 +137,12 @@ class PK2MTourKeaktifanController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataKeaktifan = PK2MTourKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = PK2MTourKeaktifan::find($nim)->update([
             'aktif_rangkaian6' => $request->aktif_rangkaian6,
             'penerapan_nilai_rangkaian6' => $request->penerapan_nilai_rangkaian6,
             'aktif_rangkaian7' => $request->aktif_rangkaian7,
-			'penerapan_nilai_rangkaian7' => $request->penerapan_nilai_rangkaian7,
-			'aktif_rangkaian8' => $request->aktif_rangkaian8,
+            'penerapan_nilai_rangkaian7' => $request->penerapan_nilai_rangkaian7,
+            'aktif_rangkaian8' => $request->aktif_rangkaian8,
             'penerapan_nilai_rangkaian8' => $request->penerapan_nilai_rangkaian8,
         ]);
         return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan PK2M Tour');
@@ -156,12 +156,12 @@ class PK2MTourKeaktifanController extends Controller
      */
     public function destroy($nim)
     {
-        $dataKeaktifan = PK2MTourKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = PK2MTourKeaktifan::find($nim)->update([
             'aktif_rangkaian6' => 0,
             'penerapan_nilai_rangkaian6' => 0,
             'aktif_rangkaian7' => 0,
-			'penerapan_nilai_rangkaian7' => 0,
-			'aktif_rangkaian8' => 0,
+            'penerapan_nilai_rangkaian7' => 0,
+            'aktif_rangkaian8' => 0,
             'penerapan_nilai_rangkaian8' => 0,
         ]);
         return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan PK2M Tour');

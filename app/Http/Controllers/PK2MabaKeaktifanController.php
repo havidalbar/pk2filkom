@@ -6,6 +6,7 @@ use App\PK2MabaKeaktifan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+
 class PK2MabaKeaktifanController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function index()
     {
-		$pk2mabaKeaktifans = PK2MabaKeaktifan::all();
+        $pk2mabaKeaktifans = PK2MabaKeaktifan::all();
         return view('panel-admin.pk2maba.keaktifan-index', ['pk2mabaKeaktifans' => $pk2mabaKeaktifans]);
     }
 
@@ -68,14 +69,14 @@ class PK2MabaKeaktifanController extends Controller
         }
 
         if (isset($nim_index) && isset($aktif_rangkaian1_index) && isset($penerapan_nilai_rangkaian1_index)
-        && isset($aktif_rangkaian2_index) && isset($penerapan_nilai_rangkaian2_index)) {
+            && isset($aktif_rangkaian2_index) && isset($penerapan_nilai_rangkaian2_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update pk2maba_keaktifan set aktif_rangkaian1 = ?, penerapan_nilai_rangkaian1 = ?, aktif_rangkaian2 = ?, penerapan_nilai_rangkaian2 = ? where nim = ?',
                         [$data_row[$aktif_rangkaian1_index], $data_row[$penerapan_nilai_rangkaian1_index], $data_row[$aktif_rangkaian2_index], $data_row[$penerapan_nilai_rangkaian2_index], $data_row[$nim_index]]);
@@ -116,7 +117,7 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->first();
+        $pk2mabaKeaktifan = PK2MabaKeaktifan::find($nim);
         return view('panel-admin.pk2maba.keaktifan-edit', compact('pk2mabaKeaktifan'));
     }
 
@@ -129,7 +130,7 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = PK2MabaKeaktifan::find($nim)->update([
             'aktif_rangkaian1' => $request->aktif_rangkaian1,
             'penerapan_nilai_rangkaian1' => $request->penerapan_nilai_rangkaian1,
             'aktif_rangkaian2' => $request->aktif_rangkaian2,
@@ -146,7 +147,7 @@ class PK2MabaKeaktifanController extends Controller
      */
     public function destroy($nim)
     {
-        $dataKeaktifan = PK2MabaKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = PK2MabaKeaktifan::find($nim)->update([
             'aktif_rangkaian1' => 0,
             'penerapan_nilai_rangkaian1' => 0,
             'aktif_rangkaian2' => 0,

@@ -6,6 +6,7 @@ use App\StartupKeaktifan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+
 class StartupKeaktifanController extends Controller
 {
     /**
@@ -74,15 +75,15 @@ class StartupKeaktifanController extends Controller
         }
 
         if (isset($nim_index) && isset($aktif_rangkaian3_index) && isset($penerapan_nilai_rangkaian3_index)
-        && isset($aktif_rangkaian4_index) && isset($penerapan_nilai_rangkaian4_index)
-        && isset($aktif_rangkaian5_index) && isset($penerapan_nilai_rangkaian5_index)) {
+            && isset($aktif_rangkaian4_index) && isset($penerapan_nilai_rangkaian4_index)
+            && isset($aktif_rangkaian5_index) && isset($penerapan_nilai_rangkaian5_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update startup_academy_keaktifan set aktif_rangkaian3 = ?, penerapan_nilai_rangkaian3 = ?, aktif_rangkaian4 = ?, penerapan_nilai_rangkaian4 = ?, aktif_rangkaian5 = ?, penerapan_nilai_rangkaian5 = ? where nim = ?',
                         [$data_row[$aktif_rangkaian3_index], $data_row[$penerapan_nilai_rangkaian3_index], $data_row[$aktif_rangkaian4_index], $data_row[$penerapan_nilai_rangkaian4_index], $data_row[$aktif_rangkaian5_index], $data_row[$penerapan_nilai_rangkaian5_index], $data_row[$nim_index]]);
@@ -123,7 +124,7 @@ class StartupKeaktifanController extends Controller
      */
     public function edit($nim)
     {
-        $startupKeaktifan = StartupKeaktifan::where('nim', $nim)->first();
+        $startupKeaktifan = StartupKeaktifan::find($nim);
         return view('panel-admin.startup.keaktifan-edit', compact('startupKeaktifan'));
     }
 
@@ -136,7 +137,7 @@ class StartupKeaktifanController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = StartupKeaktifan::find($nim)->update([
             'aktif_rangkaian3' => $request->aktif_rangkaian3,
             'penerapan_nilai_rangkaian3' => $request->penerapan_nilai_rangkaian3,
             'aktif_rangkaian4' => $request->aktif_rangkaian4,
@@ -155,7 +156,7 @@ class StartupKeaktifanController extends Controller
      */
     public function destroy($nim)
     {
-        $dataKeaktifan = StartupKeaktifan::where('nim', $nim)->update([
+        $dataKeaktifan = StartupKeaktifan::find($nim)->update([
             'aktif_rangkaian3' => 0,
             'penerapan_nilai_rangkaian3' => 0,
             'aktif_rangkaian4' => 0,

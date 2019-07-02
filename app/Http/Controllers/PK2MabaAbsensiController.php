@@ -110,7 +110,7 @@ class PK2MabaAbsensiController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaAbsensi = PK2MabaAbsensi::where('nim', $nim)->first();
+        $pk2mabaAbsensi = PK2MabaAbsensi::find($nim);
         return view('panel-admin.pk2maba.absensi-edit', compact('pk2mabaAbsensi'));
     }
 
@@ -123,7 +123,7 @@ class PK2MabaAbsensiController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataAbsen = PK2MabaAbsensi::where('nim', $nim)->update([
+        $dataAbsen = PK2MabaAbsensi::find($nim)->update([
             'nilai_rangkaian1' => $request->nilai_rangkaian1,
             'nilai_rangkaian2' => $request->nilai_rangkaian2,
         ]);
@@ -138,7 +138,7 @@ class PK2MabaAbsensiController extends Controller
      */
     public function destroy($nim)
     {
-        $dataAbsen = PK2MabaAbsensi::where('nim', $nim)->update([
+        $dataAbsen = PK2MabaAbsensi::find($nim)->update([
             'nilai_rangkaian1' => 0,
             'nilai_rangkaian2' => 0,
         ]);

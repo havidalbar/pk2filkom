@@ -114,7 +114,7 @@ class StartupAbsensiController extends Controller
      */
     public function edit($nim)
     {
-        $startupAbsensi = StartupAbsensi::where('nim', $nim)->first();
+        $startupAbsensi = StartupAbsensi::find($nim);
         return view('panel-admin.startup.absensi-edit', compact('startupAbsensi'));
     }
 
@@ -127,7 +127,7 @@ class StartupAbsensiController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataAbsen = StartupAbsensi::where('nim', $nim)->update([
+        $dataAbsen = StartupAbsensi::find($nim)->update([
             'nilai_rangkaian3' => $request->nilai_rangkaian3,
             'nilai_rangkaian4' => $request->nilai_rangkaian4,
             'nilai_rangkaian5' => $request->nilai_rangkaian5,
@@ -143,7 +143,7 @@ class StartupAbsensiController extends Controller
      */
     public function destroy($nim)
     {
-        $dataAbsen = StartupAbsensi::where('nim', $nim)->update([
+        $dataAbsen = StartupAbsensi::find($nim)->update([
             'nilai_rangkaian3' => 0,
             'nilai_rangkaian4' => 0,
             'nilai_rangkaian5' => 0,
@@ -165,7 +165,7 @@ class StartupAbsensiController extends Controller
             }
 
             if (is_numeric($nim)) {
-                $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+                $mahasiswa = Mahasiswa::find($nim);
 
                 if ($mahasiswa) {
                     $update = StartupAbsensi::where('nim', $nim)->update([

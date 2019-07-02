@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProdiFinal extends Model
 {
-	protected $table = 'prodi_final';
-	
-	protected $primaryKey = 'nim';
+    use Traits\EditorTracker;
+
+    protected $table = 'prodi_final';
+
+    protected $primaryKey = 'nim';
     public $incrementing = false;
+
+    protected $fillable = [
+        'nilai_full',
+    ];
 
     protected $with = [
         'mahasiswa:nim,nama',

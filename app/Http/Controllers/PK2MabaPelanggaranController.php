@@ -6,6 +6,7 @@ use App\PK2MabaPelanggaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+
 class PK2MabaPelanggaranController extends Controller
 {
     /**
@@ -64,14 +65,14 @@ class PK2MabaPelanggaranController extends Controller
             }
         }
 
-        if (isset($nim_index) && isset($ringan_index) && isset($sedang_index)&& isset($berat_index)) {
+        if (isset($nim_index) && isset($ringan_index) && isset($sedang_index) && isset($berat_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update pk2maba_pelanggaran set ringan = ?, sedang = ?, berat = ? where nim = ?',
                         [$data_row[$ringan_index], $data_row[$sedang_index], $data_row[$berat_index], $data_row[$nim_index]]);
@@ -112,7 +113,7 @@ class PK2MabaPelanggaranController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mabaPelanggaran = PK2MabaPelanggaran::where('nim', $nim)->first();
+        $pk2mabaPelanggaran = PK2MabaPelanggaran::find($nim);
         return view('panel-admin.pk2maba.pelanggaran-edit', compact('pk2mabaPelanggaran'));
     }
 
@@ -125,7 +126,7 @@ class PK2MabaPelanggaranController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataPelanggaran = PK2MabaPelanggaran::where('nim', $nim)->update([
+        $dataPelanggaran = PK2MabaPelanggaran::find($nim)->update([
             'ringan' => $request->ringan,
             'sedang' => $request->sedang,
             'berat' => $request->berat,
@@ -141,7 +142,7 @@ class PK2MabaPelanggaranController extends Controller
      */
     public function destroy($nim)
     {
-        $dataPelanggaran = PK2MabaPelanggaran::where('nim', $nim)->update([
+        $dataPelanggaran = PK2MabaPelanggaran::find($nim)->update([
             'ringan' => 0,
             'sedang' => 0,
             'berat' => 0,

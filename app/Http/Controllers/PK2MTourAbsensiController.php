@@ -6,6 +6,7 @@ use App\PK2MTourAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+
 class PK2MTourAbsensiController extends Controller
 {
     /**
@@ -71,7 +72,7 @@ class PK2MTourAbsensiController extends Controller
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
+                    $error_row = $i;
 
                     $affected = DB::update('update pk2maba_tour_absensi set nilai_rangkaian6 = ?, nilai_rangkaian7 = ?, nilai_rangkaian8 = ? where nim = ?',
                         [$data_row[$nilai_rangkaian6_index], $data_row[$nilai_rangkaian7_index], $data_row[$nilai_rangkaian8_index], $data_row[$nim_index]]);
@@ -112,7 +113,7 @@ class PK2MTourAbsensiController extends Controller
      */
     public function edit($nim)
     {
-        $pk2mTourAbsensi = PK2MTourAbsensi::where('nim', $nim)->first();
+        $pk2mTourAbsensi = PK2MTourAbsensi::find($nim);
         return view('panel-admin.pkm.absensi-edit', compact('pk2mTourAbsensi'));
     }
 
@@ -125,7 +126,7 @@ class PK2MTourAbsensiController extends Controller
      */
     public function update(Request $request, $nim)
     {
-        $dataAbsen = PK2MTourAbsensi::where('nim', $nim)->update([
+        $dataAbsen = PK2MTourAbsensi::find($nim)->update([
             'nilai_rangkaian6' => $request->nilai_rangkaian6,
             'nilai_rangkaian7' => $request->nilai_rangkaian7,
             'nilai_rangkaian8' => $request->nilai_rangkaian8,
@@ -141,7 +142,7 @@ class PK2MTourAbsensiController extends Controller
      */
     public function destroy($nim)
     {
-        $dataAbsen = PK2MTourAbsensi::where('nim', $nim)->update([
+        $dataAbsen = PK2MTourAbsensi::find($nim)->update([
             'nilai_rangkaian6' => 0,
             'nilai_rangkaian7' => 0,
             'nilai_rangkaian8' => 0,
