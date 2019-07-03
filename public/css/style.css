@@ -1018,7 +1018,6 @@ figure img {
     margin: 0;
 }
 .footer {
-    margin-top: 1.5rem;
     background-color: #012e44;
     color: #f7bb3e;
 }
@@ -1287,3 +1286,116 @@ figure img {
         content: "";
     }
 }
+/* Halaman kumpul video ig */
+.bg-kumpul-video-ig {
+    background-image: url(../img/bg-section/bg-kumpul-video-ig.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleKumpulVideo {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
+.garisKumpulVideo {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 500px;
+    margin: auto;
+}
+.bg-kumpul {
+    margin-top: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.bg-kumpul .col-video {
+    border-right: 2px solid #eec950;
+    padding: 30px;
+}
+.col-video .preview-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 24px;
+    color: white;
+}
+.col-video #preview-video-ig {
+    width: 320px;
+    height: 374px;
+}
+.col-video .form-input-link {
+    margin-top: 16px;
+
+}
+.form-input-link #input-video-ig {
+    height: 48px;
+}
+.form-input-link .btn-submit-web {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-web:hover {
+    background-color: #f8bc3f;
+}
+.form-input-link .btn-submit-mobile {
+    display: none;
+}
+.bg-kumpul .col-ketentuan {
+    padding: 40px 30px 40px 30px;
+    color: white;
+}
+.col-ketentuan .ketentuan-title {
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+}
+.col-ketentuan .list-ketentuan {
+    font-size: 24px;
+}
+.list-ketentuan .ketentuan-text {
+    margin-left: 10px;
+}
+@media (max-width: 767.98px) {
+    .titleKumpulVideo {
+        font-size: 28px;
+    }
+    .garisKumpulVideo {
+        width: 320px;
+    }
+    .col-video .preview-text {
+        font-size: 20px;
+    }
+    .bg-kumpul .col-video {
+        border-right: none;
+        border-bottom: 2px solid #eec950;
+    }
+    .col-video #preview-video-ig {
+        width: 270px;
+        height: 335px;
+    }
+    .form-input-link #input-video-ig {
+        height: 36px;
+        border-radius: 3px;
+    }
+    .form-input-link .btn-submit-web {
+        display: none;
+    }
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;        
+    }
+    .col-ketentuan .ketentuan-title {
+        font-size: 24px;        
+    }
+    .col-ketentuan .list-ketentuan {
+        font-size: 20px;
+    }    
+}
+/* Akhir Halaman kumpul video ig */

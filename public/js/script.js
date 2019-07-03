@@ -28,5 +28,10 @@ $(document).ready(function() {
             },1250,'swing');
         }
     });
-    // endScrollAnimate
+    // endScrollAnimate  
+    // Preview video ig
+    $('#input-video-ig').on('input', function() {
+        document.getElementById("preview-video-ig").src = (this.value) + "embed";
+    });      
+    // endPreview video ig
 });
