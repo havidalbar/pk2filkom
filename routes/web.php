@@ -20,6 +20,9 @@ Route::get('/isi-data-diri', function () {
 Route::get('/berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
+Route::get('/qr-code', function () {
+    return view('v_mahasiswa/qrCode');
+});
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
