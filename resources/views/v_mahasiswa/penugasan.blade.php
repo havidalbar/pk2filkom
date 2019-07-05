@@ -18,34 +18,34 @@
         
         <div class="row justify-content-md-center">
             <div class="col-md-2">
-            Twibbom
+            Twibbon
             </div>
             <div class="col-md-2">
             Buku Panduan
             </div>
             <div class="col-md-2">
-            Video Profile
+            Video
             </div>
             <div class="col-md-2">
             TTS
             </div>
             <div class="col-md-2">
-            Pengabdian Masyarakat
+            Ngopi
             </div>
             <div class="col-md-2">
-            Filkom TV
+            FILKOM Mengabdi
             </div>
             <div class="col-md-2">
-            Share Our Moment
+            Serial FILKOM
             </div>
             <div class="col-md-2">
-            Proposal PKM
+            PKM
             </div>
             <div class="col-md-2">
-            Post Test OH
+            Kuis OH
             </div>
             <div class="col-md-2">
-            Trial LSO
+            Trial
             </div>
         </div>
     </div>
