@@ -101,6 +101,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
                 Route::get('biodata/{nim}/edit', 'PanelMahasiswaController@editBiodataByAdmin')->name('biodata.edit');
                 Route::put('biodata/{nim}', 'PanelMahasiswaController@updateBiodataByAdmin')->name('biodata.update');
+                // CLUSTER
+                Route::resource('cluster', 'ClusterController')->parameters([
+                    'cluster' => 'nama',
+                ])->only(['store', 'update', 'destroy']);
             });
 
             Route::resource('nilai-kkm', 'NilaiKkmController')->parameters([

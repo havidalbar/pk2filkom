@@ -42,7 +42,7 @@ class FaqController extends Controller
         $faq->jawab = $request->jawab;
         $faq->save();
 
-        return redirect()->route('panel.faq.index')->with('alert-success', 'FAQ berhasil diubah');
+        return redirect()->route('panel.faq.index')->with('alert-success', 'FAQ berhasil dibuat');
     }
 
     /**

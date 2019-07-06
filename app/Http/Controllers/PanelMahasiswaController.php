@@ -21,13 +21,13 @@ class PanelMahasiswaController extends Controller
 
     public function editBiodataByAdmin($nim)
     {
-        $dataMahasiswa = Mahasiswa::where('nim', $nim)->first();
+        $dataMahasiswa = Mahasiswa::find($nim);
         return view('panel-admin.mahasiswa.edit-biodata', ['dataMahasiswa' => $dataMahasiswa]);
     }
 
     public function updateBiodataByAdmin(Request $request, $nim)
     {
-        $dataMahasiswa = Mahasiswa::where('nim', $nim)->update(['kelompok' => $request->kelompok, 'cluster' => $request->cluster]);
+        $dataMahasiswa = Mahasiswa::find($nim)->update(['kelompok' => $request->kelompok, 'cluster' => $request->cluster]);
         return redirect()->route('panel.mahasiswa.biodata')->with('alert-success', 'Berhasil mengubah data mahasiswa');
     }
 }
