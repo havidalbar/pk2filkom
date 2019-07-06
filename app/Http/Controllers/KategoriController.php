@@ -27,14 +27,14 @@ class KategoriController extends Controller
         $exist = Kategori::find($slug);
 
         if ($exist) {
-            return redirect()->back()->with('alert', 'Kategori sudah terdaftar')->withInput();
+            return redirect()->back()->with('alert-error', 'Kategori sudah terdaftar')->withInput();
         } else {
             $kategori = new Kategori;
             $kategori->slug = $slug;
             $kategori->jenis = $request->jenis;
             $kategori->save();
 
-            return redirect()->back()->with('alert', 'Kategori berhasil didaftarkan');
+            return redirect()->back()->with('alert-success', 'Kategori berhasil didaftarkan');
         }
     }
 
@@ -67,7 +67,7 @@ class KategoriController extends Controller
                 $kategori->save();
             }
 
-            return redirect()->route('panel.publikasi.kategori.index')->with('alert', 'Kategori berhasil diubah');
+            return redirect()->route('panel.publikasi.kategori.index')->with('alert-success', 'Kategori berhasil diubah');
         } else {
             abort(404);
         }

@@ -53,7 +53,7 @@ class KomentarController extends Controller
 
         $komentar->save();
 
-        return redirect()->back()->with('alert', 'Komentar berhasil dikirim');
+        return redirect()->back()->with('alert-success', 'Komentar berhasil dikirim');
     }
 
     /**
@@ -92,7 +92,7 @@ class KomentarController extends Controller
             $komentar->isi = $request->isi;
 			$komentar->save();
 			
-			return redirect()->back()->with('alert', 'Komentar berhasil diubah');
+			return redirect()->back()->with('alert-success', 'Komentar berhasil diubah');
         } else {
             abort(404);
         }
@@ -111,7 +111,7 @@ class KomentarController extends Controller
         if ($komentar) {
             $komentar->delete();
 
-            return redirect()->back()->with('alert', 'Komentar berhasil dihapus');
+            return redirect()->back()->with('alert-success', 'Komentar berhasil dihapus');
         } else {
             abort(404);
         }

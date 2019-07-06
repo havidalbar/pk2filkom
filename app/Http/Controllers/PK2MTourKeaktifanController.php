@@ -85,23 +85,24 @@ class PK2MTourKeaktifanController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update pk2maba_tour_keaktifan set aktif_rangkaian6 = ?, penerapan_nilai_rangkaian6 = ?, aktif_rangkaian7 = ?, penerapan_nilai_rangkaian7 = ?, aktif_rangkaian8 = ?, penerapan_nilai_rangkaian8 = ? where nim = ?',
-                        [$data_row[$aktif_rangkaian6_index], $data_row[$penerapan_nilai_rangkaian6_index], $data_row[$aktif_rangkaian7_index], $data_row[$penerapan_nilai_rangkaian7_index], $data_row[$aktif_rangkaian8_index], $data_row[$penerapan_nilai_rangkaian8_index], $data_row[$nim_index]]);
+                    PK2MTourKeaktifan::find($data_row[$nim_index])->update([
+                        'aktif_rangkaian6' => $data_row[$aktif_rangkaian6_index],
+                        'penerapan_nilai_rangkaian6' => $data_row[$penerapan_nilai_rangkaian6_index],
+                        'aktif_rangkaian7' => $data_row[$aktif_rangkaian7_index],
+                        'penerapan_nilai_rangkaian7' => $data_row[$penerapan_nilai_rangkaian7_index],
+                        'aktif_rangkaian8' => $data_row[$aktif_rangkaian8_index],
+                        'penerapan_nilai_rangkaian8' => $data_row[$penerapan_nilai_rangkaian8_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -145,7 +146,7 @@ class PK2MTourKeaktifanController extends Controller
             'aktif_rangkaian8' => $request->aktif_rangkaian8,
             'penerapan_nilai_rangkaian8' => $request->penerapan_nilai_rangkaian8,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert-success', 'Berhasil mengubah data keaktifan PK2M Tour');
     }
 
     /**
@@ -164,6 +165,6 @@ class PK2MTourKeaktifanController extends Controller
             'aktif_rangkaian8' => 0,
             'penerapan_nilai_rangkaian8' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.keaktifan.index')->with('alert-success', 'Berhasil menghapus data keaktifan PK2M Tour');
     }
 }

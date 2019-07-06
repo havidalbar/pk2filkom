@@ -74,23 +74,21 @@ class PK2MTourPelanggaranController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update pk2maba_tour_pelanggaran set ringan = ?, sedang = ?, berat = ? where nim = ?',
-                        [$data_row[$ringan_index], $data_row[$sedang_index], $data_row[$berat_index], $data_row[$nim_index]]);
+                    PK2MTourPelanggaran::find($data_row[$nim_index])->update([
+                        'ringan' => $data_row[$ringan_index],
+                        'sedang' => $data_row[$sedang_index],
+                        'berat' => $data_row[$berat_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -131,7 +129,7 @@ class PK2MTourPelanggaranController extends Controller
             'sedang' => $request->sedang,
             'berat' => $request->berat,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert', 'Berhasil mengubah data keaktifan PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert-success', 'Berhasil mengubah data keaktifan PK2M Tour');
     }
 
     /**
@@ -147,6 +145,6 @@ class PK2MTourPelanggaranController extends Controller
             'sedang' => 0,
             'berat' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert', 'Berhasil menghapus data keaktifan PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.pelanggaran.index')->with('alert-success', 'Berhasil menghapus data keaktifan PK2M Tour');
     }
 }

@@ -57,7 +57,7 @@ class AdminController extends Controller
         $data->password = Hash::make($request->password);
         $data->divisi = $request->divisi;
         $data->save();
-        return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mendaftar pengguna');
+        return redirect()->route('panel.pengguna.index')->with('alert-success', 'Berhasil mendaftar pengguna');
     }
 
     /**
@@ -105,7 +105,7 @@ class AdminController extends Controller
             Session::put('divisi', $request->divisi);
             Session::put('is_full_access', $dataPengguna->is_full_access);
         }
-        return redirect()->route('panel.pengguna.index')->with('alert', 'Berhasil mengedit pengguna');
+        return redirect()->route('panel.pengguna.index')->with('alert-success', 'Berhasil mengedit pengguna');
     }
 
     /**
@@ -121,7 +121,7 @@ class AdminController extends Controller
         if (Session::get('username') == $username) {
             logout();
         } else {
-            return redirect()->back()->with('alert', 'Berhasil menghapus pengguna');
+            return redirect()->back()->with('alert-success', 'Berhasil menghapus pengguna');
         }
     }
 
@@ -147,10 +147,10 @@ class AdminController extends Controller
                     return redirect()->route('panel.dashboard');
                 }
             } else {
-                return redirect()->back()->with('alert', 'Password salah!');
+                return redirect()->back()->with('alert-error', 'Password salah!');
             }
         } else {
-            return redirect()->back()->with('alert', 'Username tidak ditemukan');
+            return redirect()->back()->with('alert-error', 'Username tidak ditemukan');
         }
     }
 
@@ -173,9 +173,9 @@ class AdminController extends Controller
             $pengguna->password = Hash::make($request->password_baru);
             $pengguna->save();
 
-            return redirect()->back()->with('alert', 'Password berhasil diubah');
+            return redirect()->back()->with('alert-success', 'Password berhasil diubah');
         } else {
-            return redirect()->back()->with('alert', 'Password salah');
+            return redirect()->back()->with('alert-error', 'Password salah');
         }
     }
 

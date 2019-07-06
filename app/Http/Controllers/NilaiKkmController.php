@@ -41,7 +41,7 @@ class NilaiKkmController extends Controller
         $data->kegiatan = $request->kegiatan;
         $data->nilai = $request->nilai;
         $data->save();
-        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil menambah penilaian');
+        return redirect()->route('panel.nilai-kkm.index')->with('alert-success', 'Berhasil menambah penilaian');
     }
 
     /**
@@ -80,7 +80,7 @@ class NilaiKkmController extends Controller
             'kegiatan' => $request->kegiatan,
             'nilai' => $request->nilai,
         ]);
-        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil mengubah data nilai kkm');
+        return redirect()->route('panel.nilai-kkm.index')->with('alert-success', 'Berhasil mengubah data nilai kkm');
     }
 
     /**
@@ -93,6 +93,6 @@ class NilaiKkmController extends Controller
     {
         $dataNilai = NilaiKKM::where('id', $id)->first();
         $dataNilai->delete();
-        return redirect()->route('panel.nilai-kkm.index')->with('alert', 'Berhasil menghapus penilaian');
+        return redirect()->route('panel.nilai-kkm.index')->with('alert-success', 'Berhasil menghapus penilaian');
     }
 }

@@ -184,7 +184,7 @@ class PenugasanController extends Controller
             }
             DB::commit();
 
-            return redirect()->route('panel.penugasan.index')->with('alert', 'Penugasan berhasil dibuat');
+            return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil dibuat');
         } catch (\Exception $ex) {
             DB::rollBack();
 
@@ -193,9 +193,7 @@ class PenugasanController extends Controller
                     unlink($uploaded);
                 }
             }
-
-            echo $ex;
-            // return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
+            return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
         }
     }
 
@@ -389,7 +387,7 @@ class PenugasanController extends Controller
                 }
                 DB::commit();
 
-                return redirect()->route('panel.penugasan.index')->with('alert', 'Penugasan berhasil diubah');
+                return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil diubah');
             } catch (\Exception $ex) {
                 DB::rollBack();
 
@@ -398,9 +396,7 @@ class PenugasanController extends Controller
                         unlink($uploaded);
                     }
                 }
-
-                echo $ex;
-                // return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
+                return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
             }
         } else {
             abort(404);
@@ -420,7 +416,7 @@ class PenugasanController extends Controller
         if ($penugasan) {
             $penugasan->delete();
 
-            return redirect()->route('panel.penugasan.index')->with('alert', 'Penugasan berhasil dihapus');
+            return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil dihapus');
         } else {
             abort(404);
         }

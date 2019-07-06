@@ -85,23 +85,24 @@ class StartupKeaktifanController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update startup_academy_keaktifan set aktif_rangkaian3 = ?, penerapan_nilai_rangkaian3 = ?, aktif_rangkaian4 = ?, penerapan_nilai_rangkaian4 = ?, aktif_rangkaian5 = ?, penerapan_nilai_rangkaian5 = ? where nim = ?',
-                        [$data_row[$aktif_rangkaian3_index], $data_row[$penerapan_nilai_rangkaian3_index], $data_row[$aktif_rangkaian4_index], $data_row[$penerapan_nilai_rangkaian4_index], $data_row[$aktif_rangkaian5_index], $data_row[$penerapan_nilai_rangkaian5_index], $data_row[$nim_index]]);
+                    StartupKeaktifan::find($data_row[$nim_index])->update([
+                        'aktif_rangkaian3' => $data_row[$aktif_rangkaian3_index],
+                        'penerapan_nilai_rangkaian3' => $data_row[$penerapan_nilai_rangkaian3_index],
+                        'aktif_rangkaian4' => $data_row[$aktif_rangkaian4_index],
+                        'penerapan_nilai_rangkaian4' => $data_row[$penerapan_nilai_rangkaian4_index],
+                        'aktif_rangkaian5' => $data_row[$aktif_rangkaian5_index],
+                        'penerapan_nilai_rangkaian5' => $data_row[$penerapan_nilai_rangkaian5_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -145,7 +146,7 @@ class StartupKeaktifanController extends Controller
             'aktif_rangkaian5' => $request->aktif_rangkaian5,
             'penerapan_nilai_rangkaian5' => $request->penerapan_nilai_rangkaian5,
         ]);
-        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan Startup Academy');
+        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert-success', 'Berhasil mengubah data keaktifan Startup Academy');
     }
 
     /**
@@ -164,6 +165,6 @@ class StartupKeaktifanController extends Controller
             'aktif_rangkaian5' => 0,
             'penerapan_nilai_rangkaian5' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan Startup Academy');
+        return redirect()->route('panel.kegiatan.startup.keaktifan.index')->with('alert-success', 'Berhasil menghapus data keaktifan Startup Academy');
     }
 }

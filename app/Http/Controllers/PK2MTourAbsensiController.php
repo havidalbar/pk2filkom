@@ -74,23 +74,21 @@ class PK2MTourAbsensiController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update pk2maba_tour_absensi set nilai_rangkaian6 = ?, nilai_rangkaian7 = ?, nilai_rangkaian8 = ? where nim = ?',
-                        [$data_row[$nilai_rangkaian6_index], $data_row[$nilai_rangkaian7_index], $data_row[$nilai_rangkaian8_index], $data_row[$nim_index]]);
+                    PK2MTourAbsensi::find($data_row[$nim_index])->update([
+                        'nilai_rangkaian6' => $data_row[$nilai_rangkaian6_index],
+                        'nilai_rangkaian7' => $data_row[$nilai_rangkaian7_index],
+                        'nilai_rangkaian8' => $data_row[$nilai_rangkaian8_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -131,7 +129,7 @@ class PK2MTourAbsensiController extends Controller
             'nilai_rangkaian7' => $request->nilai_rangkaian7,
             'nilai_rangkaian8' => $request->nilai_rangkaian8,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert', 'Berhasil mengubah data absensi PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert-success', 'Berhasil mengubah data absensi PK2M Tour');
     }
 
     /**
@@ -147,6 +145,6 @@ class PK2MTourAbsensiController extends Controller
             'nilai_rangkaian7' => 0,
             'nilai_rangkaian8' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert', 'Berhasil menghapus data absensi PK2M Tour');
+        return redirect()->route('panel.kegiatan.pkm.absensi.index')->with('alert-success', 'Berhasil menghapus data absensi PK2M Tour');
     }
 }

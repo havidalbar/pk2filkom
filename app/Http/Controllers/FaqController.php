@@ -42,7 +42,7 @@ class FaqController extends Controller
         $faq->jawab = $request->jawab;
         $faq->save();
 
-        return redirect()->route('panel.faq.index')->with('alert', 'FAQ berhasil diubah');
+        return redirect()->route('panel.faq.index')->with('alert-success', 'FAQ berhasil diubah');
     }
 
     /**
@@ -84,7 +84,7 @@ class FaqController extends Controller
             $faq->jawab = $request->jawab;
             $faq->save();
 
-            return redirect()->route('panel.faq.index')->with('alert', 'FAQ berhasil diubah');
+            return redirect()->route('panel.faq.index')->with('alert-success', 'FAQ berhasil diubah');
         } else {
             abort(404);
         }
@@ -103,7 +103,7 @@ class FaqController extends Controller
         if ($faq) {
             $faq->delete();
 
-            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
+            return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil dihapus');
         } else {
             abort(404);
         }

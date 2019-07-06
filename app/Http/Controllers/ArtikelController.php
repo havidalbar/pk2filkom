@@ -138,11 +138,11 @@ class ArtikelController extends Controller
             }
             DB::commit();
 
-            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dibuat');
+            return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil dibuat');
         } catch (\Exception $ex) {
             DB::rollBack();
 
-            return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
+            return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
         }
     }
 
@@ -339,10 +339,10 @@ class ArtikelController extends Controller
 
                 DB::commit();
 
-                return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil diubah');
+                return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil diubah');
             } catch (\Exception $ex) {
                 DB::rollBack();
-                return redirect()->back()->withInput()->with('alert', 'Terjadi kesalahan data!');
+                return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
             }
         } else {
             abort(404);
@@ -377,7 +377,7 @@ class ArtikelController extends Controller
                 $sub_konten->delete();
             }
 
-            return redirect()->route('panel.artikel.index')->with('alert', 'Artikel berhasil dihapus');
+            return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil dihapus');
         } else {
             abort(404);
         }

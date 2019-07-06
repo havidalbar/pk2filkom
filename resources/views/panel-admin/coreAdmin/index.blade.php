@@ -19,7 +19,7 @@
             active: function() {
                 sessionStorage.fonts = true;
             }
-          });
+        });
 	</script>
 	<!--end::Web font -->
 	<!--begin::Base Styles -->
@@ -30,6 +30,7 @@
 	<link rel="shortcut icon" href="{{asset('admin/logo.ico')}}" />
 </head>
 <!-- end::Head -->
+@include('panel-admin.coreAdmin.alert')
 <!-- begin::Body -->
 @yield('content')
 <!-- end::Body -->

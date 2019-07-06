@@ -68,23 +68,19 @@ class ProdiFinalController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update prodi_final set nilai_full = ? where nim = ?',
-                        [$data_row[$nilai_full_index], $data_row[$nim_index]]);
+                    ProdiFinal::find($data_row[$nim_index])->update([
+                        'nilai_full' => $data_row[$nilai_full_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -123,7 +119,7 @@ class ProdiFinalController extends Controller
         $prodiFinal = ProdiFinal::find($nim)->update([
             'nilai_full' => $request->nilai_prodi,
         ]);
-        return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');
+        return redirect()->route('panel.kegiatan.prodi.index')->with('alert-success', 'Berhasil mengubah data nilai Prodi');
     }
 
     /**
@@ -137,6 +133,6 @@ class ProdiFinalController extends Controller
         $prodiFinal = ProdiFinal::find($nim)->update([
             'nilai_full' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.prodi.index')->with('alert', 'Berhasil mengubah data nilai Prodi');
+        return redirect()->route('panel.kegiatan.prodi.index')->with('alert-success', 'Berhasil mengubah data nilai Prodi');
     }
 }

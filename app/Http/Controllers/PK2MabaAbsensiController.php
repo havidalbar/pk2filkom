@@ -69,25 +69,22 @@ class PK2MabaAbsensiController extends Controller
                 // database queries here
                 for ($i = 1; $i < count($spreadsheetArray); $i++) {
                     $data_row = $spreadsheetArray[$i];
-					$error_row = $i;
-					
-                    $affected = DB::update('update pk2maba_absensi set nilai_rangkaian1 = ?, nilai_rangkaian2 = ? where nim = ?',
-                        [$data_row[$nilai_rangkaian1_index], $data_row[$nilai_rangkaian2_index], $data_row[$nim_index]]);
+                    $error_row = $i;
+
+                    PK2MabaAbsensi::find($data_row[$nim_index])->update([
+                        'nilai_rangkaian1' => $data_row[$nilai_rangkaian1_index],
+                        'nilai_rangkaian2' => $data_row[$nilai_rangkaian2_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -127,7 +124,7 @@ class PK2MabaAbsensiController extends Controller
             'nilai_rangkaian1' => $request->nilai_rangkaian1,
             'nilai_rangkaian2' => $request->nilai_rangkaian2,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert', 'Berhasil mengubah data absensi PK2Maba');
+        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert-success', 'Berhasil mengubah data absensi PK2Maba');
     }
 
     /**
@@ -142,6 +139,6 @@ class PK2MabaAbsensiController extends Controller
             'nilai_rangkaian1' => 0,
             'nilai_rangkaian2' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert', 'Berhasil menghapus data absensi PK2Maba');
+        return redirect()->route('panel.kegiatan.pk2maba.absensi.index')->with('alert-success', 'Berhasil menghapus data absensi PK2Maba');
     }
 }

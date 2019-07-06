@@ -78,23 +78,22 @@ class PK2MabaKeaktifanController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update pk2maba_keaktifan set aktif_rangkaian1 = ?, penerapan_nilai_rangkaian1 = ?, aktif_rangkaian2 = ?, penerapan_nilai_rangkaian2 = ? where nim = ?',
-                        [$data_row[$aktif_rangkaian1_index], $data_row[$penerapan_nilai_rangkaian1_index], $data_row[$aktif_rangkaian2_index], $data_row[$penerapan_nilai_rangkaian2_index], $data_row[$nim_index]]);
+                    PK2MabaKeaktifan::find($data_row[$nim_index])->update([
+                        'aktif_rangkaian1' => $data_row[$aktif_rangkaian1_index],
+                        'penerapan_nilai_rangkaian1' => $data_row[$penerapan_nilai_rangkaian1_index],
+                        'aktif_rangkaian2' => $data_row[$aktif_rangkaian2_index],
+                        'penerapan_nilai_rangkaian2' => $data_row[$penerapan_nilai_rangkaian2_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -136,7 +135,7 @@ class PK2MabaKeaktifanController extends Controller
             'aktif_rangkaian2' => $request->aktif_rangkaian2,
             'penerapan_nilai_rangkaian2' => $request->penerapan_nilai_rangkaian2,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil mengubah data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert-success', 'Berhasil mengubah data keaktifan PK2Maba');
     }
 
     /**
@@ -153,6 +152,6 @@ class PK2MabaKeaktifanController extends Controller
             'aktif_rangkaian2' => 0,
             'penerapan_nilai_rangkaian2' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert', 'Berhasil menghapus data keaktifan PK2Maba');
+        return redirect()->route('panel.kegiatan.pk2maba.keaktifan.index')->with('alert-success', 'Berhasil menghapus data keaktifan PK2Maba');
     }
 }

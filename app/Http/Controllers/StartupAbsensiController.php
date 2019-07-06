@@ -75,23 +75,21 @@ class StartupAbsensiController extends Controller
                     $data_row = $spreadsheetArray[$i];
                     $error_row = $i;
 
-                    $affected = DB::update('update startup_academy_absensi set nilai_rangkaian3 = ?, nilai_rangkaian4 = ?, nilai_rangkaian5 = ? where nim = ?',
-                        [$data_row[$nilai_rangkaian3_index], $data_row[$nilai_rangkaian4_index], $data_row[$nilai_rangkaian5_index], $data_row[$nim_index]]);
+                    StartupAbsensi::find($data_row[$nim_index])->update([
+                        'nilai_rangkaian3' => $data_row[$nilai_rangkaian3_index],
+                        'nilai_rangkaian4' => $data_row[$nilai_rangkaian4_index],
+                        'nilai_rangkaian5' => $data_row[$nilai_rangkaian5_index],
+                    ]);
                 }
                 DB::commit();
-                $error_row = null;
-
+                return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-            }
-            if ($error_row) {
-                echo 'Terjadi kesalahan impor pada baris ' . $error_row . '<br>Impor dibatalkan!';
-            } else {
-                echo 'Berhasil!';
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
             }
         } else {
-            echo 'Terjadi kesalahan format!';
+            return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
         }
     }
 
@@ -132,7 +130,7 @@ class StartupAbsensiController extends Controller
             'nilai_rangkaian4' => $request->nilai_rangkaian4,
             'nilai_rangkaian5' => $request->nilai_rangkaian5,
         ]);
-        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil mengubah data absensi Startup Academy');
+        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert-success', 'Berhasil mengubah data absensi Startup Academy');
     }
 
     /**
@@ -148,7 +146,7 @@ class StartupAbsensiController extends Controller
             'nilai_rangkaian4' => 0,
             'nilai_rangkaian5' => 0,
         ]);
-        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert', 'Berhasil menghapus data absensi Startup Academy');
+        return redirect()->route('panel.kegiatan.startup.absensi.index')->with('alert-success', 'Berhasil menghapus data absensi Startup Academy');
     }
 
     public function absensiOpenHouse(Request $request)
@@ -171,17 +169,17 @@ class StartupAbsensiController extends Controller
                     $update = StartupAbsensi::where('nim', $nim)->update([
                         'nilai_rangkaian4' => 100,
                     ]);
-                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Absensi mahasiswa' . $nim . 'berhasil dimasukkan');
+                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa' . $nim . 'berhasil dimasukkan');
                 } else {
-                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Mahasiswa tidak ditemukan');
+                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-error', 'Mahasiswa tidak ditemukan');
                 }
             } else {
                 throw new DecryptException;
             }
         } catch (DecryptException $e) {
-            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Kesalahan input atau kode QR');
+            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Kesalahan input atau kode QR');
         } catch (Exception $e) {
-            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert', 'Kesalahan pengolahan data');
+            return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-error', 'Kesalahan pengolahan data');
         }
     }
 }
