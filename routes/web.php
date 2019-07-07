@@ -44,3 +44,13 @@ Route::get('/pos/{id}', 'PostController@showPost');
 Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
 Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
+
+Route::get('/Buku-Panduan', function () {
+    return view('v_mahasiswa/bukpan');
+});
+Route::get('/Cerita-Tentang-Aku', function () {
+    return view('v_mahasiswa/kumpulVideoIG');
+});
+Route::get('/Teka-Teki-siMABA', function () {
+    return view('v_mahasiswa/tts');
+});

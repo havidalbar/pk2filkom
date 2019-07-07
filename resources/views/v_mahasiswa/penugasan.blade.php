@@ -15,37 +15,56 @@
                 <h1 class="titleSection">penuggasan</h1>
             </div>
         </div>
-        
         <div class="row justify-content-md-center">
             <div class="col-md-2">
-            Twibbon
+              <a href="/Twibbon">  
+                <div class="item-penugasan">Twibbon</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Buku Panduan
+              <a href="/Buku-Panduan">
+                <div class="item-penugasan">Buku Panduan</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Video
+              <a href="/Cerita-Tentang-Aku">
+                <div class="item-penugasan">Cerita Tentang Aku</div>
+              </a>
             </div>
             <div class="col-md-2">
-            TTS
+              <a href="/Teka-Teki-siMaba">
+                <div class="item-penugasan">Teka Teki siMABA</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Ngopi
+                <a href="/FILKOM-Mengabdi">
+                  <div class="item-penugasan">FILKOM Mengabdi</div>
+                </a>
             </div>
             <div class="col-md-2">
-            FILKOM Mengabdi
+              <a href="/Serial-FILKOM">
+                <div class="item-penugasan">Serial FILKOM</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Serial FILKOM
+                <a href="/Ngobrol-Inspiratif">
+                  <div class="item-penugasan">Ngobrol Inspiratif</div>
+                </a>
             </div>
             <div class="col-md-2">
-            PKM
+              <a href="/PKM">
+                <div class="item-penugasan">PKM</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Kuis OH
+              <a href="/Kuis-OH">
+                <div class="item-penugasan">Kuis OH</div>
+              </a>
             </div>
             <div class="col-md-2">
-            Trial
+              <a href="/Cobain-Organisasi">
+                <div class="item-penugasan">Cobain Organisasi</div>
+              </a>
             </div>
         </div>
     </div>
