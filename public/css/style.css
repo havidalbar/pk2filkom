@@ -1307,28 +1307,29 @@ figure img {
 }
 .bg-kumpul {
     margin-top: 40px;
+    padding: 40px;
     background-color: rgba(3, 60, 88, 0.76);
-    border-radius: 3px;
+    border-radius: 3px;    
 }
-.bg-kumpul .col-video {
-    border-right: 2px solid #eec950;
-    padding: 30px;
+.preview-tugas{
+    width: 525px;    
 }
-.col-video .preview-text {
+.preview-tugas .preview-text {
     font-family: "Esphimere-SemiBold";
-    font-size: 24px;
+    font-size: 28px;
     color: white;
 }
-.col-video #preview-video-ig {
+.preview-tugas #preview-video-ig {
     width: 320px;
     height: 374px;
+    border-radius: 3px;
 }
-.col-video .form-input-link {
-    margin-top: 16px;
-
+.form-input-link {
+    margin-top: 20px;    
+    width: 100%;
 }
-.form-input-link #input-video-ig {
-    height: 48px;
+.form-input-link #input-video-ig {    
+    height: 48px;    
 }
 .form-input-link .btn-submit-web {
     background-color: #eec950;
@@ -1342,39 +1343,53 @@ figure img {
 .form-input-link .btn-submit-mobile {
     display: none;
 }
-.bg-kumpul .col-ketentuan {
-    padding: 40px 30px 40px 30px;
-    color: white;
+.detail-tugas{
+    color: white;    
+    max-width: 800px;
+    padding: 20px;
 }
-.col-ketentuan .ketentuan-title {
+.detail-tugas .ketentuan-title {
     font-family: "Esphimere-SemiBold";
     text-transform: uppercase;
     font-size: 28px;
     text-align: center;
+    margin-top: 32px;
 }
-.col-ketentuan .list-ketentuan {
+.detail-tugas .list-ketentuan {
     font-size: 24px;
+}
+.list-ketentuan .nomor-text {
+    width: 20px;
 }
 .list-ketentuan .ketentuan-text {
     margin-left: 10px;
+}
+.ketentuan-text .nomor-sub-text{
+    margin-right: 10px;
 }
 @media (max-width: 767.98px) {
     .titleKumpulVideo {
         font-size: 28px;
     }
     .garisKumpulVideo {
-        width: 320px;
-    }
-    .col-video .preview-text {
-        font-size: 20px;
-    }
-    .bg-kumpul .col-video {
-        border-right: none;
+        width: 100%;
         border-bottom: 2px solid #eec950;
     }
-    .col-video #preview-video-ig {
+    .bg-kumpul{
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-kumpul .preview-tugas{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-tugas .preview-text {
+        font-size: 24px;
+    }
+    .preview-tugas #preview-video-ig {
         width: 270px;
         height: 335px;
+    }
+    .form-input-link{
+        width: 100%;
     }
     .form-input-link #input-video-ig {
         height: 36px;
@@ -1391,10 +1406,10 @@ figure img {
         display: block;
         height: 36px;        
     }
-    .col-ketentuan .ketentuan-title {
+    .detail-tugas .ketentuan-title {
         font-size: 24px;        
     }
-    .col-ketentuan .list-ketentuan {
+    .detail-tugas .list-ketentuan {
         font-size: 20px;
     }    
 }
