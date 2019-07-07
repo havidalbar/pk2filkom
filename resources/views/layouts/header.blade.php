@@ -10,8 +10,8 @@
             <div class="navbar-nav ml-auto">
                 <a href="#" class="nav-item nav-link active" data-item-ojb="pk2-jb3">TENTANG SIMABA</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
-                <a href="#" class="nav-item nav-link ">FAQ</a>
-                <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
+                <a href="/faq" class="nav-item nav-link ">FAQ</a>
+                <a href="/berita" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
                 <a href="#" class="nav-item nav-link ">LOGIN</a>
             </div>
         </div>
