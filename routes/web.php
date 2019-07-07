@@ -26,6 +26,9 @@ Route::get('/multipleChoise', function () {
 Route::get('/penugasan', function () {
     return view('v_mahasiswa/penugasan');
 });
+Route::get('/tts', function () {
+    return view('v_mahasiswa/tts');
+});
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
