@@ -40,39 +40,61 @@
                     <div class="d-flex flex-column list-ketentuan mt-4">
                         <div class="d-flex flex-row mb-2">
                             <div>1.</div>
-                            <div class="ketentuan-text">Minimal durasi video 5 menit Minimal durasi video 5 menit</div>
+                            <div class="ketentuan-text">Periode: 29 Juli - 10 Agustus 2019</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div>2.</div>
-                            <div class="ketentuan-text">Minimal durasi video 5 menit</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div>3.</div>
-                            <div class="ketentuan-text">Minimal durasi video 5 menit Minimal durasi video 5 menit</div>
+                            <div class="ketentuan-text">Konten video meliputi:</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div >-</div>
+                            <div class="ketentuan-text">Perkenalan diri</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div >-</div>
+                            <div class="ketentuan-text">Alasan memilih FILKOM</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div >-</div>
+                            <div class="ketentuan-text">Pengetahuan tentang FILKOM</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div >-</div>
+                            <div class="ketentuan-text">Ambisi di FILKOM serta cara pencapaiannya</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div >-</div>
+                            <div class="ketentuan-text">Harapan untuk FILKOM</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div>4.</div>
-                            <div class="ketentuan-text">Minimal durasi video 5 menit</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div>5.</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div>6.</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div>7.</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div>8.</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div>9.</div>
+                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian wajah secara jelas</div>
                         </div>
                     </div>
-                    <!-- <div class="list-ketentuan">
-                        <div>
-                            <span>1.</span>
-                            <span>Minimal durasi video 5 menit</span>
-                        </div>
-                        <div>
-                            <span>1.</span>
-                            <span>Minimal durasi video 5 menit ashsa ashsa ysa husas</span>
-                        </div>
-                        <div>
-                            <span>1.</span>
-                            <span>Minimal durasi video 5 menit</span>
-                        </div>
-                        <div>
-                            <span>1.</span>
-                            <span>Minimal durasi video 5 menit</span>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
