@@ -1313,6 +1313,7 @@ figure img {
     color: #0B2939;
     font-size: 40px;
     text-align: center;
+    cursor: pointer;
 }
 
 .ketentuan {
