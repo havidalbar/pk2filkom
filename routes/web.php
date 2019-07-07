@@ -32,24 +32,6 @@ Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
 // TODO : Pindah QR Code Mahasiswa
 Route::get('/test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
 
-Route::get('/panel/tugas', function () {
-    return view('panel-admin/tugas/index');
-});
-Route::get('/panel/tugas/create', function () {
-    return view('panel-admin/tugas/create');
-});
-Route::post('/panel/tugas/create', function () {
-    print_r($_POST);
-});
-Route::get('/panel/tugas/edit', function () {
-    return view('panel-admin/tugas/edit');
-});
-Route::get('panel/kegiatan/startup/total', function () {
-    return view('panel-admin/startup/total');
-});
-Route::get('panel/kegiatan/pkm/total', function () {
-    return view('panel-admin/pkm/total');
-});
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     Route::get('/', function () {
@@ -164,6 +146,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::get('filkom-tv', 'StartupTugasController@dataFilkomTv')->name('filkom-tv');
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
+
+                    Route::get('total', function () {
+                        return view('panel-admin.startup.total');
+                    })->name('total');
                 });
 
                 Route::group(['prefix' => 'pkm', 'as' => 'pkm.'], function () {
@@ -178,6 +164,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     Route::resource('pelanggaran', 'PK2MTourPelanggaranController')->parameters([
                         'pelanggaran' => 'nim',
                     ])->except(['create', 'show']);
+
+                    Route::get('total', function () {
+                        return view('panel-admin.pkm.total');
+                    })->name('total');
                 });
 
                 Route::resource('prodi', 'ProdiFinalController')->parameters([
