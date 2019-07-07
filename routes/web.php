@@ -20,9 +20,6 @@ Route::get('/isi-data-diri', function () {
 Route::get('/berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
-Route::get('/faq', function () {
-    return view('v_mahasiswa/faq');
-});
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
@@ -41,3 +38,5 @@ Route::get('/pos/{id}', 'PostController@showPost');
 Route::get('/test-package', 'PackageTestController@index');
 Route::get('/test-mPDF', 'PackageTestController@mPDF');
 Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
+
+Route::get('/faq','MahasiswaController@getFaq');
