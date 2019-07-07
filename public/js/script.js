@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() {    
     // Paralex fixNavbar
     $(window).scroll(function(){
         let navScroll = $(this).scrollTop();
