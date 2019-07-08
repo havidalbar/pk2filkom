@@ -44,9 +44,6 @@ Route::post('/panel/tugas/create', function () {
 Route::get('/panel/tugas/edit', function () {
     return view('panel-admin/tugas/edit');
 });
-Route::get('panel/kegiatan/startup/total', function () {
-    return view('panel-admin/startup/total');
-});
 Route::get('panel/kegiatan/pkm/total', function () {
     return view('panel-admin/pkm/total');
 });
@@ -141,6 +138,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 });
 
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
+                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
