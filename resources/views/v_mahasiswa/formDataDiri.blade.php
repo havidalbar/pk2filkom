@@ -46,7 +46,7 @@
             </div>
             <div class="col-sm bg-form">
                 <div class="row h-100 justify-content-center align-items-center">
-                    <form class="col-sm-12 col-md-9 needs-validation form-container" method="POST" action="blabla.php"
+                    <form class="col-sm-12 col-md-9 needs-validation form-container" method="GET"
                         novalidate>
                         <h1 class="text-center text-white font-italic">Form Data Diri</h1>
                         <div class="form-row pt-2">
@@ -145,19 +145,34 @@
                                     Masukkan riwayat penyakit yang pernah anda derita. Jika tidak ada isi "Tidak ada".
                                 </div>
                             </label>
-                        </div>
-                        <div class="form-group pt-3">
-                            <label class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text icon-input"><i class="icon-alergi-biru fa-lg"></i>
+                        </div>                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6 pt-3">
+                                <label class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text icon-input"><i class="icon-alergi-biru fa-lg"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="text" class="form-control form-data-diri shadow-none" name="alergi"
-                                    placeholder="Alergi" required>
-                                <div class="invalid-feedback">
-                                    Masukkan alergi yang anda miliki. Jika tidak ada isi "Tidak ada".
-                                </div>
-                            </label>
+                                    <input type="text" class="form-control form-data-diri shadow-none" name="alergiMakanan"
+                                        placeholder="Alergi Makanan" required>
+                                    <div class="invalid-feedback">
+                                        Masukkan alergi makanan yang anda miliki. Jika tidak ada isi "Tidak ada".
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-group col-md-6 pt-3">
+                                <label class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text icon-input"><i class="icon-alergi-biru fa-lg"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control form-data-diri shadow-none" name="alergiObat"
+                                        placeholder="Alergi Obat" required>
+                                    <div class="invalid-feedback">
+                                        Masukkan alergi obat yang anda miliki. Jika tidak ada isi "Tidak ada".
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group pt-3 pb-4">
                             <label class="input-group">
