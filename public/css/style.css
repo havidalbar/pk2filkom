@@ -1348,23 +1348,26 @@ figure img {
     max-width: 800px;
     padding: 20px;
 }
-.detail-tugas .ketentuan-title {
+.detail-tugas .detail-title {
     font-family: "Esphimere-SemiBold";
     text-transform: uppercase;
     font-size: 28px;
     text-align: center;
     margin-top: 32px;
 }
-.detail-tugas .list-ketentuan {
+.detail-tugas .detail-list {
     font-size: 24px;
 }
-.list-ketentuan .nomor-text {
+.detail-list .nomor-text {
     width: 20px;
 }
-.list-ketentuan .ketentuan-text {
+.detail-list .text {
     margin-left: 10px;
 }
-.ketentuan-text .nomor-sub-text{
+.text a{
+    text-decoration: none;
+}
+.text .nomor-sub-text{
     margin-right: 10px;
 }
 @media (max-width: 767.98px) {
@@ -1406,10 +1409,10 @@ figure img {
         display: block;
         height: 36px;        
     }
-    .detail-tugas .ketentuan-title {
+    .detail-tugas .detail-title {
         font-size: 24px;        
     }
-    .detail-tugas .list-ketentuan {
+    .detail-tugas .detail-list {
         font-size: 20px;
     }    
 }

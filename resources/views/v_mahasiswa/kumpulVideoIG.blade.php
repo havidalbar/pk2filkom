@@ -36,59 +36,95 @@
             </div>
             <div class="d-flex justify-content-center">
                 <div class="detail-tugas">
-                    <p class="ketentuan-title">Ketentuan Tugas</p>
-                    <div class="d-flex flex-column list-ketentuan mt-4">
+                    <p class="detail-title">Ketentuan Tugas</p>
+                    <div class="d-flex flex-column detail-list mt-4">
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">1.</div>
-                            <div class="ketentuan-text">Periode: 29 Juli - 10 Agustus 2019.</div>
+                            <div class="text">Periode: 29 Juli - 10 Agustus 2019.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">2.</div>
-                            <div class="ketentuan-text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian
+                            <div class="text">Dalam video ‘Cerita Tentang Aku’ harus memperlihatkan bagian
                                 wajah
                                 secara jelas.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">3.</div>
-                            <div class="ketentuan-text">
+                            <div class="text">
                                 <div>Konten video meliputi:</div>
                                 <div><span class="nomor-sub-text">-</span>Perkenalan diri</div>
                                 <div><span class="nomor-sub-text">-</span>Alasan memilih FILKOM</div>
                                 <div><span class="nomor-sub-text">-</span>Pengetahuan tentang FILKOM</div>
-                                <div><span class="nomor-sub-text">-</span>Ambisi di FILKOM serta cara pencapaiannya</div>
+                                <div><span class="nomor-sub-text">-</span>Ambisi di FILKOM serta cara pencapaiannya
+                                </div>
                                 <div><span class="nomor-sub-text">-</span>Harapan untuk FILKOM</div>
                             </div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">4.</div>
-                            <div class="ketentuan-text">Tidak boleh mengandung kata-kata kotor dan SARA.</div>
+                            <div class="text">Tidak boleh mengandung kata-kata kotor dan SARA.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">5.</div>
-                            <div class="ketentuan-text">Durasi video yang dibuat antara 3 - 5 menit.</div>
+                            <div class="text">Durasi video yang dibuat antara 3 - 5 menit.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">6.</div>
-                            <div class="ketentuan-text">Audio/suara dari video harus dapat terdengar dengan jelas.</div>
+                            <div class="text">Audio/suara dari video harus dapat terdengar dengan jelas.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">7.</div>
-                            <div class="ketentuan-text">Diperbolehkan untuk melakukan editing terhadap video yang
+                            <div class="text">Diperbolehkan untuk melakukan editing terhadap video yang
                                 diambil.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">8.</div>
-                            <div class="ketentuan-text">Media sosial yang digunakan untuk mengunggah video tidak dalam
+                            <div class="text">Media sosial yang digunakan untuk mengunggah video tidak dalam
                                 mode privat.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">9.</div>
-                            <div class="ketentuan-text">Video yang telah diunggah tidak diperbolehkan untuk dihapus atau
+                            <div class="text">Video yang telah diunggah tidak diperbolehkan untuk dihapus atau
                                 diarsipkan hingga akhir rangkaian PK2MABA & Startup Academy 2019.</div>
                         </div>
                     </div>
+                    <p class="detail-title">Cara</p>
+                    <div class="d-flex flex-column detail-list mt-4">
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">1.</div>
+                            <div class="text">Pertama, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan kamu sampaikan pada video 'Cerita Tentang Aku'.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">2.</div>
+                            <div class="text">Siapkan kamera dan ambil video terbaikmu. Kamu juga dapat mengedit video yang telah kamu ambil.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">3.</div>
+                            <div class="text">Unggah video tersebut melalui akun Instagram yang kamu miliki dengan men-tag akun resmi PK2MABA FILKOM UB 2019 yakni @pk2maba_filkom. Kamu bisa membagi video tersebut ke dalam beberapa slide ya.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">4.</div>
+                            <div class="text">Pastikan kamu memberikan caption sesuai dengan konten yang telah disediakan dan menambahkan kata-kata motivasi di dalamnya. Konten dari caption bisa kamu lihat pada <a href="#">link berikut ini.</a></div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">5.</div>
+                            <div class="text">Dan jangan lupa untuk menyertakan tagar #..... #..... pada bagian akhir dari caption tersebut.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">6.</div>
+                            <div class="text">Selanjutnya, kamu dapat menyalin link unggahan tersebut dan mengumpulkannya di website SiMABA.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">7.</div>
+                            <div class="text">Kamu juga dapat memberikan review mengenai video 'Cerita Tentang Aku' versi teman kamu dengan memberikan komentar pada unggahan videonya.</div>
+                        </div>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="nomor-text">8.</div>
+                            <div class="text">Terakhir, selamat kamu telah sukses mendapatkan kupon ketiga!</div>
+                        </div>                        
+                    </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
 </div>
