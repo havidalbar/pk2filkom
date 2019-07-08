@@ -1044,6 +1044,11 @@ figure img {
     margin-bottom: 18px;
     font-size: 18px;
 }
+.linkSosmed a {
+  color: #F7BB3E;
+  text-decoration: none;
+  font-size: 18px;
+}
 /* Media ICON */
 [data-icon]:before {
     font-family: "media" !important;

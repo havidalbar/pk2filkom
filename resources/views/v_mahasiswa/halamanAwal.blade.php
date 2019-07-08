@@ -141,11 +141,10 @@
                         <img class="img-responsive" src="{{asset('img/bg-section/gedfbidongkuning.png')}}" alt="">
                         <div class="overlay">
                             <p class="icon-links">
-                                <a href="#"><i data-icon="b"></i></a>
-                                <a href="#"> <i data-icon="d"></i></a>
-                                <a href="#"><i data-icon="e"></i></a>
-                                <a href="#"><i data-icon="f"></i></a>
-                                <a href="#"><i data-icon="a"></i></a>
+                                <a href="https://www.instagram.com/pk2maba_filkom/"><i data-icon="b"></i></a>
+                                <a href="http://bit.ly/OAPK2FILKOM"><i data-icon="e"></i></a>
+                                <a href="http://twitter.com/PK2FILKOM2019"><i data-icon="f"></i></a>
+                                <a href="http://bit.ly/PK2MABAFILKOM"><i data-icon="a"></i></a>
                             </p>
                         </div>
                     </div>
