@@ -1017,8 +1017,7 @@ figure img {
 .footer-copyright p {
     margin: 0;
 }
-.footer {
-    margin-top: 1.5rem;
+.footer {    
     background-color: #012e44;
     color: #f7bb3e;
 }
