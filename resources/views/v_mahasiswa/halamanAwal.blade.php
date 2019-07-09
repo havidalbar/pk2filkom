@@ -26,6 +26,10 @@
 
 <!-- jumbotronLandingPage -->
 <div class="jumbotron jumbotron-fluid pk2-jb1">
+    <video autoplay loop id="landingPageVideo">
+        <source src="{{asset('vidio/VIDEO GEDUNG.mp4')}}" type="video/mp4">
+    </video>
+              
     <div class="container d-flex justify-content-center align-items-center animasi slideKeAtas">
         <div class="pk2imgContent">
             <img src="{{asset('img/bg-section/simaba4@4x.svg')}}" class="img pk2content">

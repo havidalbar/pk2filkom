@@ -388,6 +388,17 @@ html,body{
 .pk2-jb1::after{
   background-image: linear-gradient(to left,rgba(247,187,62,0.73),rgba(2,25,38,0.43),rgba(3,60,88,0.95));
 }
+video#landingPageVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
 .pk2-jb2{
   z-index: 3;  
 }
@@ -1112,6 +1123,9 @@ figure,figure img {
   }
   .hovereffect-berita .img2{
     max-height: none;
+  }
+  video#landingPageVideo {
+    height: 100vh;
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
