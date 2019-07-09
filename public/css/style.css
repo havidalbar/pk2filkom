@@ -1232,17 +1232,23 @@ figure,figure img {
   min-height: 70px;
 }
 /* TTS */
-.tts-soal {
+.pk2-dtBerita > .title > .container ol {
+  margin-top: 1.5rem;
+  color: #fff;
+  font-family: 'Esphimere-Light';
+}
+
+#tts-soal {
   font-family: 'Esphimere-Light';
   font-size: 16px;
   color: #fff;
 }
 
-.tts-soal h1 {
+#tts-soal h1 {
   font-family: 'Esphimere-bold';
   font-size: 18px;
 }
-.tts-soal ol{    
+#tts-soal ol{    
   display: block;
   list-style-type: none;
   margin-block-start: 1em;
@@ -1252,7 +1258,7 @@ figure,figure img {
   padding-inline-start: 40px;
   text-align: justify;
 }
-.tts-soal ol li::before {
+#tts-soal ol li::before {
   content: attr(data-noSoal) ". ";
   margin-left: 2rem;
   margin-right: 0.45rem;
@@ -1264,8 +1270,8 @@ table#tts-table tr {
   width: 100%;
 }
 table#tts-table td {
-  width: 2em;
-  height: 2em;
+  width: 3.5em;
+  height: 2.5em;
   border: 1px solid transparent;
   padding: 0;
   margin: 0;
@@ -1288,7 +1294,7 @@ table#tts-table td input{
 }
 /* EndTTS */
 /* Desktop Version */
-@media (max-width: 575.98px) {
+@media (max-width: 575.98px) { 
   #swipUp {
     bottom: -65px;
   }  
@@ -1304,8 +1310,22 @@ table#tts-table td input{
   .slick-dots {
     bottom: -48px;
   }
+  #tts-soal {
+    padding: 0 15px;
+  }
 }
 @media (max-width: 767.98px) {
+  .tts .titleSection {
+    font-size: 24px;
+  }
+  .tts .titleSection::after {
+      width: 110%;
+      transform: translateX(-5%);
+  }
+  table#tts-table td {
+    width: 3.5em;
+    height: 1.5em;
+  }
   .nav-link {
     font-size: 16px !important;
   }

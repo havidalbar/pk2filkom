@@ -84,8 +84,9 @@ $(document).ready(function() {
     
     let tts = {
         init : function(){
-            tts.table_tts();
-            tts.table_inputan(window.location.origin+"/js/tts.json");
+            this.table_tts();
+            this.table_inputan(window.location.origin+"/js/tts.json");
+            this.dataSoal(window.location.origin+"/js/tts.json");
         },
         table_tts :  () => {
             let tbl = ['<table id="tts-table">'];
@@ -150,6 +151,37 @@ $(document).ready(function() {
 
             xhr.open('GET', file, true);
             xhr.send();
+        },
+        dataSoal : (file) => {
+            const xhr = typeof XMLHttpRequest != 'undefined' ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            
+            xhr.onreadystatechange = () => {
+                let data;
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    data = JSON.parse(xhr.responseText);
+                    const dataTts = data.soalTts;
+                    
+                    let soalMendatar = ['<div class="col-md-6 col-sm-12"><h1>Menurun</h1><ol id="menurun">'];
+                    let soalMenurun = ['<div class="col-md-6 col-sm-12"><h1>Mendatar</h1><ol id="mendatar">'];
+                        $.each(dataTts, function(i, data) {
+                            $.each(data.mendatar, function(i, soal) {
+                                soalMendatar.push(`<li data-noSoal="`+soal.noSoal+`">`+soal.soal+`</li>`)
+                            });
+                            $.each(data.menurun, function(i, soal) {
+                                soalMenurun.push(`<li data-noSoal="`+soal.noSoal+`">`+soal.soal+`</li>`)
+                            });
+                        });
+                    soalMendatar.push('</div></ol>');
+                    soalMenurun.push('</div></ol>');
+                    const semuaSoal = soalMenurun.concat(soalMendatar);
+                    $('#tts-soal').append(semuaSoal.join(''));
+                    
+                }
+            }
+
+            xhr.open('GET', file, true);
+            xhr.send();
+
         }
     }
     tts.init();
