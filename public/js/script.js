@@ -40,7 +40,7 @@ $(document).ready(function () {
     // Datepicker
     $(".tanggal").datepicker({
         language: "id",
-        format: 'dd/mm/yyyy',
+        format: 'yyyy-mm-dd',
         autoclose: true,
         orientation: "bottom left",
         defaultViewDate: { year: 2001 }

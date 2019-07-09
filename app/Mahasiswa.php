@@ -79,13 +79,6 @@ class Mahasiswa extends Model
         }
     }
 
-    public function getTanggalLahirAttribute($value)
-    {
-        $tanggal_lahir_array = explode('-', $value);
-        krsort($tanggal_lahir_array);
-        return implode('/', $tanggal_lahir_array);
-    }
-
     public function getRekapNilaiPk2mabaAttribute()
     {
         return [

@@ -181,9 +181,7 @@ class AuthController extends Controller
         $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
 
         $data_mahasiswa->tempat_lahir = $request->tempat_lahir;
-        $tanggal_lahir_array = explode('/', $request->tanggal_lahir);
-        krsort($tanggal_lahir_array);
-        $data_mahasiswa->tanggal_lahir = implode('-', $tanggal_lahir_array);
+        $data_mahasiswa->tanggal_lahir = $request->tanggal_lahir;
         $data_mahasiswa->agama = $request->agama;
         $data_mahasiswa->jenis_kelamin = $request->jenis_kelamin;
         $data_mahasiswa->gol_darah = $request->gol_darah;
