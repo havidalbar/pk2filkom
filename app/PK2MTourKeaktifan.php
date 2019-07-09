@@ -14,6 +14,7 @@ class PK2MTourKeaktifan extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'aktif_rangkaian6',
         'penerapan_nilai_rangkaian6',
         'aktif_rangkaian7',

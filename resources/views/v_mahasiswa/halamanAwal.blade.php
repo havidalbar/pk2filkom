@@ -17,7 +17,7 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="#" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="/isi-data-diri" class="nav-item nav-link ">LOGIN</a>
+                <a href="{{ route('mahasiswa.login') }}" class="nav-item nav-link ">LOGIN</a>
             </div>
         </div>
     </div>

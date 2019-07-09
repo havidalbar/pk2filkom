@@ -14,6 +14,7 @@ class PK2MabaKeaktifan extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'aktif_rangkaian1',
         'penerapan_nilai_rangkaian1',
         'aktif_rangkaian2',

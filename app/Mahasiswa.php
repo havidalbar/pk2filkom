@@ -11,6 +11,11 @@ class Mahasiswa extends Model
     protected $primaryKey = 'nim';
     public $incrementing = false;
 
+    protected $fillable = [
+        'nim',
+        'nama',
+    ];
+
     protected $casts = [
         'nim' => 'string',
     ];
@@ -72,6 +77,13 @@ class Mahasiswa extends Model
             default:
                 return 'Tidak diketahui';
         }
+    }
+
+    public function getTanggalLahirAttribute($value)
+    {
+        $tanggal_lahir_array = explode('-', $value);
+        krsort($tanggal_lahir_array);
+        return implode('/', $tanggal_lahir_array);
     }
 
     public function getRekapNilaiPk2mabaAttribute()
