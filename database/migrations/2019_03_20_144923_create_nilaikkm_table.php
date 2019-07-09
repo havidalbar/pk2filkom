@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateNilaikkmTable extends Migration
 {
@@ -15,10 +15,9 @@ class CreateNilaikkmTable extends Migration
     {
         Schema::create('nilaikkm', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kegiatan');
-            $table->integer('nilai');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('kegiatan', 191);
+            $table->unsignedSmallInteger('nilai');
+            $table->timestamps();
         });
     }
 
