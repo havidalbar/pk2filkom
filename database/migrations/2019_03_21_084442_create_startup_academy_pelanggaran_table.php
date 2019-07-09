@@ -14,14 +14,14 @@ class CreateStartupAcademyPelanggaranTable extends Migration
     public function up()
     {
         Schema::create('startup_academy_pelanggaran', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nim');
-            $table->integer('ringan')->default('0');
-            $table->integer('sedang')->default('0');
-            $table->integer('berat')->default('0');
-            $table->foreign('nim')->references('nim')->on('mahasiswa')->unsigned()->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->unsignedBigInteger('nim')->primary();
+            $table->foreign('nim')->references('nim')->on('mahasiswa');
+            $table->smallInteger('ringan')->default(0);
+            $table->smallInteger('sedang')->default(0);
+			$table->smallInteger('berat')->default(0);
+			$table->string('editor', 30)->nullable();
+            $table->foreign('editor')->references('username')->on('pengguna')->onUpdate('cascade')->onDelete('set null');
+            $table->timestamps();
         });
     }
 

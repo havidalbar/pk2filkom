@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePenggunaTable extends Migration
 {
@@ -14,13 +14,11 @@ class CreatePenggunaTable extends Migration
     public function up()
     {
         Schema::create('pengguna', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('username');
-            $table->string('password');
-            $table->string('divisi');
-            $table->rememberToken();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('username', 30)->primary();
+            $table->string('divisi', 191);
+            $table->char('password', 60);
+            $table->rememberToken()->nullable();
+            $table->timestamps();
         });
     }
 
