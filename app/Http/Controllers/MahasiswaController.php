@@ -21,4 +21,8 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/penugasan');
     }
+    public function getBukuPanduan()
+    {
+        return view('v_mahasiswa/bukpan');
+    }
 }

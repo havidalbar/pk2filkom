@@ -15,21 +15,6 @@ Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 })->name('index');
 Route::get('faq','MahasiswaController@getFaq')->name('faq');
-Route::get('berita', function () {
-    return view('v_mahasiswa/detailBerita');
-});
-Route::get('/multipleChoise', function () {
-    return view('v_mahasiswa/multipleChoise');
-});
-Route::get('/Buku-Panduan', function () {
-    return view('v_mahasiswa/bukpan');
-});
-Route::get('/Cerita-Tentang-Aku', function () {
-    return view('v_mahasiswa/kumpulVideoIG');
-});
-Route::get('/Teka-Teki-siMABA', function () {
-    return view('v_mahasiswa/tts');
-});
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::get('login', 'AuthController@login')->name('login');
@@ -40,6 +25,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::post('data-diri', 'AuthController@storeDataDiri');
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
+        Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
         Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
