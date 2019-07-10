@@ -27,7 +27,7 @@
               </a>
             </div>
             <div class="col-md-2">
-              <a href="/Cerita-Tentang-Aku">
+            <a href="{{ route('mahasiswa.cerita-tentang-aku') }}">
                 <div class="item-penugasan">Cerita Tentang Aku</div>
               </a>
             </div>

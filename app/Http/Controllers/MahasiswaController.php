@@ -25,4 +25,8 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/bukpan');
     }
+    public function getCeritaTentangAku()
+    {
+        return view('v_mahasiswa/kumpulVideoIG');
+    }
 }

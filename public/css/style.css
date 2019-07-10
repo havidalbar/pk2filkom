@@ -1853,3 +1853,136 @@ input::-webkit-inner-spin-button {
     background-color:#0B2939;
     color: #EEC950;
 }
+
+/* Halaman kumpul video ig */
+.bg-kumpul-video-ig {
+    background-image: url(../img/bg-section/bg-kumpul-video-ig.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleKumpulVideo {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
+.garisKumpulVideo {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 500px;
+    margin: auto;
+}
+.bg-kumpul {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.preview-tugas{
+    width: 525px;
+}
+.preview-tugas .preview-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
+.preview-tugas #preview-video-ig {
+    width: 320px;
+    height: 374px;
+    border-radius: 3px;
+}
+.form-input-link {
+    margin-top: 20px;
+    width: 100%;
+}
+.form-input-link #input-video-ig {
+    height: 48px;
+}
+.form-input-link .btn-submit-web {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-web:hover {
+    background-color: #f8bc3f;
+}
+.form-input-link .btn-submit-mobile {
+    display: none;
+}
+.detail-tugas{
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+.detail-tugas .detail-title {
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 32px;
+}
+.detail-tugas .detail-list {
+    font-size: 24px;
+}
+.detail-list .nomor-text {
+    width: 20px;
+}
+.detail-list .text {
+    margin-left: 10px;
+}
+.text a{
+    text-decoration: none;
+}
+.text .nomor-sub-text{
+    margin-right: 10px;
+}
+@media (max-width: 767.98px) {
+    .titleKumpulVideo {
+        font-size: 28px;
+    }
+    .garisKumpulVideo {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .bg-kumpul{
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-kumpul .preview-tugas{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-tugas .preview-text {
+        font-size: 24px;
+    }
+    .preview-tugas #preview-video-ig {
+        width: 270px;
+        height: 335px;
+    }
+    .form-input-link{
+        width: 100%;
+    }
+    .form-input-link #input-video-ig {
+        height: 36px;
+        border-radius: 3px;
+    }
+    .form-input-link .btn-submit-web {
+        display: none;
+    }
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;
+    }
+    .detail-tugas .detail-title {
+        font-size: 24px;
+    }
+    .detail-tugas .detail-list {
+        font-size: 20px;
+    }
+}
+/* Akhir Halaman kumpul video ig */

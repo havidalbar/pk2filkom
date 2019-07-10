@@ -27,6 +27,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
         Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
+        Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
