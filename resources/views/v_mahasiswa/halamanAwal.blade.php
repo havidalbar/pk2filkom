@@ -72,7 +72,7 @@
                         allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
+            <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">                     
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
                 <a href="#">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
@@ -343,7 +343,7 @@
             </div>
             <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
         </div>
-    </div>
+    </div>    
 </div>
 <!-- endBerita -->
 

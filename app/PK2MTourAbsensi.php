@@ -14,6 +14,7 @@ class PK2MTourAbsensi extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'nilai_rangkaian6',
         'nilai_rangkaian7',
         'nilai_rangkaian8',

@@ -14,6 +14,7 @@ class PK2MTourPelanggaran extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'ringan',
         'sedang',
         'berat',

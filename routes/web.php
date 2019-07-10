@@ -16,20 +16,27 @@ Route::get('/', function () {
 });
 Route::get('/qr-code', function () {
     return view('v_mahasiswa/qrCode');
+})->name('index');
+
+Route::get('berita', function () {
+    return view('v_mahasiswa/detailBerita');
 });
 
-Route::get('/login', 'AuthController@index');
-Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
-Route::get('/isi-biodata', 'AuthController@getBiodata');
-Route::post('/isi-biodata', 'AuthController@postBiodata');
-Route::get('/logout', 'AuthController@logout');
-
-Route::get('/test-package', 'PackageTestController@index');
-Route::get('/test-mPDF', 'PackageTestController@mPDF');
-Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
-
 // TODO : Pindah QR Code Mahasiswa
-Route::get('/test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
+Route::get('test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
+
+// Mahasiswa
+Route::group(['as' => 'mahasiswa.'], function () {
+    Route::get('login', 'AuthController@login')->name('login');
+    Route::post('login', 'AuthController@loginMahasiswa');
+
+    Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
+        Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
+        Route::post('data-diri', 'AuthController@storeDataDiri');
+
+        Route::get('logout', 'AuthController@logout');
+    });
+});
 
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {

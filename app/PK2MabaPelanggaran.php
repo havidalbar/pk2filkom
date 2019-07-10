@@ -14,6 +14,7 @@ class PK2MabaPelanggaran extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'ringan',
         'sedang',
         'berat',
