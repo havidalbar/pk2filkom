@@ -1318,6 +1318,7 @@ figure img {
     font-family: "Esphimere-SemiBold";
     font-size: 28px;
     color: white;
+    text-align: center;
 }
 .preview-tugas #preview-video-ig {
     width: 320px;
