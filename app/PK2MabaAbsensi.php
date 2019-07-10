@@ -14,6 +14,7 @@ class PK2MabaAbsensi extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'nilai_rangkaian1',
         'nilai_rangkaian2',
     ];

@@ -14,6 +14,7 @@ class ProdiFinal extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'nilai_full',
     ];
 
