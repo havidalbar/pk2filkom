@@ -19,7 +19,21 @@ Route::get('berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
 Route::get('/faq','MahasiswaController@getFaq');
-
+Route::get('/multipleChoise', function () {
+    return view('v_mahasiswa/multipleChoise');
+});
+Route::get('/penugasan', function () {
+    return view('v_mahasiswa/penugasan');
+});
+Route::get('/Buku-Panduan', function () {
+    return view('v_mahasiswa/bukpan');
+});
+Route::get('/Cerita-Tentang-Aku', function () {
+    return view('v_mahasiswa/kumpulVideoIG');
+});
+Route::get('/Teka-Teki-siMABA', function () {
+    return view('v_mahasiswa/tts');
+});
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::get('login', 'AuthController@login')->name('login');

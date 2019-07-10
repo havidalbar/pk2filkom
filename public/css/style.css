@@ -1038,18 +1038,18 @@ figure img {
     margin-top: 16px;
 }
 .footerLogo {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 21px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 21px;
 }
 .linkSosmed {
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 6px;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 6px;
 }
 .linkSosmed p {
     font-family: "Esphimere-Bold";
@@ -1074,7 +1074,234 @@ figure img {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.pk2-dtBerita{
+  background-image: url(../img/bg-section/bgBerita.png);
+}
+.vdBerita {
+  min-height: 240px;
+}
+.detailBerita .titleSection,
+.multipleChoise .titleSection {
+  color: #fff;
+  text-align: center;
+}
+.detailBerita .titleSection {
+  letter-spacing: 10px;
+}
+.multipleChoise .titleSection {
+  letter-spacing: 6px;
+}
+.multipleChoise .titleSection::after,
+.detailBerita .titleSection::after {
+  width: 140%;
+  transform: translateX(-14%);
+}
+.jumbotron.pk2-dtBerita::after{
+  clear: both;
+  content: "";
+  display: block;
+}
+.slick-slide img{
+  width: 100%;
+  height: 100%;
+}
+.slick-slide {
+  margin: 0 10px !important;
+}
+.berita-prev, .berita-next {
+  color: #fff;
+  font-size: 60px;
+  cursor: pointer;
+}
+.slick-dots{
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  left: 0;
+  z-index: 15;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-left: 0;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+  }
+.slick-dots li {
+  box-sizing: content-box;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 3px;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
+}
+.slick-dots  li {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.slick-dots li.slick-active{
+  opacity: 1;
+}
+.slick-slide img{
+  transform: translate(1%, 0) scale(.9);
+}
+.slick-slide.slick-center img {
+  transform: scale(1);
+}
+.infoBerita {
+  text-align: center;
+  color: #033C58;
+  margin: 1.5rem;
+}
+
+.infoBerita .titleBerita {
+  font-family: 'Esphimere-semiBold';
+  text-transform: uppercase;
+  font-size: 32px;
+  background-color: #f2bc4b;
+  padding: 6px 40px;
+}
+.zoom {
+  display:inline-block;
+  position: relative;
+}
+.zoom img{
+  width: 100%;
+  height: 100%;
+}
+.gradientBerita{
+  height: auto;
+  color: #fff;
+  background-color: #fff;
+  background-image: linear-gradient(to bottom, rgba(3,60,88,1),rgba(85,85,85,1));
+}
+.commentBerita{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.commentImg {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #DEE1E6;
+}
+.btn.btn-comment {
+  color: #6c757d;
+}
+.media-body p{
+  margin: 0;
+}
+.media-title strong {
+  font-size: 18px;
+  color: #1d387b;
+}
+.media-title .sub-title {
+  font-size: 14px;
+  color: #6c757d;
+}
+.commentEvent h1{
+  font-family: 'Esphimere-semiBold';
+  font-size: 32px;
+  color: #223b6e;
+  margin: 1rem 0;
+}
+.question label {
+  display: block;
+}
+.question label:last-child {
+  margin-bottom: 1.5rem;
+}
+.kirimJwb {
+  background-color: #012E44;
+  padding: 6px;
+  border-radius: 4px;
+  color: #fff;
+  transition: all 0.5s;
+  display: flex;
+  text-align: center;
+  font-size: 16px;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+.kirimJwb span {
+	cursor:pointer;
+	display:flex;
+	position:relative;
+	transition:0.5s;
+}
+.kirimJwb span:after{
+	font-family:'Font Awesome 5 Pro';
+	content:'\f101';
+	position:absolute;
+	opacity:0;
+	top:0;
+	right:-10px;
+	transition:0.5s;
+}
+.kirimJwb:hover span{
+	padding-right:15px;
+}
+.kirimJwb:hover span:after{
+	opacity:1;
+	right:0;
+}
+.pk2-dtBerita > .title > .container ul{
+  margin-top: 1rem;
+  color: #fff;
+  font-family: 'Esphimere-semiBold';
+  font-weight: bold;
+}
 /* endMedia ICON */
+.row.justify-content-md-center{
+  margin: 5% 0;
+}
+.row.justify-content-md-center .col-md-2{
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.row.justify-content-md-center .col-md-2 a{
+  text-decoration: none;
+  color: #00185A;
+}
+.row.justify-content-md-center .col-md-2 a .item-penugasan{
+  font-family: 'Esphimere-semiBold';
+  padding: 12px 15px 12px 15px;
+  background-color: #F1C538;
+  /* border: 1px solid rgba(86,61,124,.2); */
+  border-radius: 6px;
+  color: #00185A;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  min-width: 155px;
+  min-height: 70px;
+}
 /* Desktop Version */
 @media (max-width: 575.98px) {
     #swipUp {
@@ -1196,6 +1423,10 @@ figure img {
   }
   .hovereffect-berita .img2 {
       max-height: none;
+  }
+  .row.justify-content-md-center .col-md-2{
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
