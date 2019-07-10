@@ -6,7 +6,7 @@
 @include('layouts.header')
 <!-- endNavbar atas -->
 
-<div class="jumbotron jumbotron-fluid pk2-dtBerita p-0 mb-4" style="margin-bottom: -1.5rem !important">    
+<div class="jumbotron jumbotron-fluid bg-penugasan p-0 d-flex align-items-center justify-content-center">
   <!-- Title -->
   <div class="title">
     <div class="container">
@@ -15,9 +15,9 @@
                 <h1 class="titleSection">penuggasan</h1>
             </div>
         </div>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center alitem">
             <div class="col-md-2">
-              <a href="/Twibbon">  
+              <a href="/Twibbon">
                 <div class="item-penugasan">Twibbon</div>
               </a>
             </div>
@@ -71,7 +71,7 @@
   </div>
   <!-- EndTitle -->
 </div>
-  
+
 <!-- Footer -->
 @include('layouts.footer')
 <!-- Footer -->

@@ -1272,6 +1272,12 @@ figure img {
   font-weight: bold;
 }
 /* endMedia ICON */
+/* Penugasan */
+.bg-penugasan{
+    background-image: url(../img/bg-section/bg-penugasan.png);
+    height: calc(100vh - 79px);
+    min-height: 100%;
+  }
 .row.justify-content-md-center{
   margin: 5% 0;
 }
@@ -1291,7 +1297,6 @@ figure img {
   font-family: 'Esphimere-semiBold';
   padding: 12px 15px 12px 15px;
   background-color: #F1C538;
-  /* border: 1px solid rgba(86,61,124,.2); */
   border-radius: 6px;
   color: #00185A;
   text-align: center;
@@ -1302,6 +1307,7 @@ figure img {
   min-width: 155px;
   min-height: 70px;
 }
+/* endPenugasan */
 /* Desktop Version */
 @media (max-width: 575.98px) {
     #swipUp {

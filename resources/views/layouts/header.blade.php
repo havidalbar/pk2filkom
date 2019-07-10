@@ -18,7 +18,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ session('nama') }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Penugasan</a>
                         <a class="dropdown-item" href="#">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
