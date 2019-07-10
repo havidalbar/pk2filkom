@@ -17,23 +17,24 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pk2maba-tab" data-toggle="tab" href="#pk2maba" role="tab"
-                        aria-controls="pk2maba" aria-selected="false">Pk2maba</a>
+                        aria-controls="pk2maba" aria-selected="false">PK2MABA</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="pkm-tab" data-toggle="tab" href="#pkm" role="tab" aria-controls="pkm"
-                        aria-selected="false">Pkm</a>
+                        aria-selected="false">PKM</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="startup-tab" data-toggle="tab" href="#startup" role="tab"
-                        aria-controls="startup" aria-selected="false">Start Up Academy</a>
+                        aria-controls="startup" aria-selected="false">STARTUP ACADEMY</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="cluster-tab" data-toggle="tab" href="#cluster" role="tab"
-                        aria-controls="cluster" aria-selected="false">Cluster</a>
+                        aria-controls="cluster" aria-selected="false">CLUSTER</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active table-responsive bg-table" id="semua" role="tabpanel" aria-labelledby="semua-tab">
+                <div class="tab-pane fade show active table-responsive bg-table" id="semua" role="tabpanel"
+                    aria-labelledby="semua-tab">
                     <table class="table table-striped table-borderless" style="text-align:center">
                         <thead>
                             <tr>
@@ -47,7 +48,11 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>PK2MABA</td>
-                                <td>LULUS</td>
+                                @if (session('nim'))
+                                <td><b>LULUS</b></td>
+                                @else
+                                <td><b>LULUS</b></td>
+                                @endif
                                 <td>0</td>
                             </tr>
                             <tr>
@@ -71,7 +76,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade table-responsive bg-table" id="pk2maba" role="tabpanel" aria-labelledby="pk2maba-tab">
+                <div class="tab-pane fade table-responsive bg-table" id="pk2maba" role="tabpanel"
+                    aria-labelledby="pk2maba-tab">
                     <table class="table table-striped table-borderless" style="text-align:center">
                         <thead>
                             <tr>
@@ -117,7 +123,7 @@
                                 <td>0</td>
                             </tr>
                         </tbody>
-                    </table>                    
+                    </table>
                 </div>
                 <div class="tab-pane fade table-responsive bg-table" id="pkm" role="tabpanel" aria-labelledby="pkm-tab">
                     <table class="table table-striped table-borderless" style="text-align:center">
@@ -185,7 +191,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade table-responsive bg-table" id="startup" role="tabpanel" aria-labelledby="startup-tab">
+                <div class="tab-pane fade table-responsive bg-table" id="startup" role="tabpanel"
+                    aria-labelledby="startup-tab">
                     <table class="table table-striped table-borderless" style="text-align:center">
                         <thead>
                             <tr>
@@ -239,7 +246,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade table-responsive bg-table" id="cluster" role="tabpanel" aria-labelledby="cluster-tab">
+                <div class="tab-pane fade table-responsive bg-table" id="cluster" role="tabpanel"
+                    aria-labelledby="cluster-tab">
                     <table class="table table-striped table-borderless" style="text-align:center">
                         <thead>
                             <tr>
@@ -250,7 +258,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                            <tr>
                                 <th scope="row">1</th>
                                 <td>Poin Awal</td>
                                 <td>-</td>
@@ -269,7 +277,7 @@
                                 <td>0</td>
                             </tr>
                             <tr>
-                                <td class="totalPoin" colspan="3" >Total Poin</td>
+                                <td class="totalPoin" colspan="3">Total Poin</td>
                                 <td>0</td>
                             </tr>
                         </tbody>
