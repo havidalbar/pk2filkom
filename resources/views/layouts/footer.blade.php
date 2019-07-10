@@ -9,23 +9,19 @@
                     <div class="linkSosmed">
                         <p>Contact Us</p>
                         <!--Instagram-->
-                        <a class="ins-ic">
+                        <a class="ins-ic" href="https://www.instagram.com/pk2maba_filkom/">
                             <i data-icon="b" class="fab fa-lg mr-md-5 mr-3 fa-2x"> </i>
                         </a>
-                        <!-- Facebook -->
-                        <a class="fb-ic">
-                            <i data-icon="d" class="fab fa-lg mr-md-5 mr-3 fa-2x"> </i>
-                        </a>
                         <!-- Line -->
-                        <a class="line-ic">
+                        <a class="line-ic" href="http://bit.ly/OAPK2FILKOM">
                             <i data-icon="e" class="fab fa-lg mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                         <!-- Twitter -->
-                        <a class="tw-ic">
+                        <a class="tw-ic" href="http://twitter.com/PK2FILKOM2019">
                             <i data-icon="f" class="fab fa-lg mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                         <!--Youtube -->
-                        <a class="yt-ic">
+                        <a class="yt-ic" href="http://bit.ly/PK2MABAFILKOM">
                             <i data-icon="a" class="fab fa-lg mr-md-5 mr-3 fa-2x"> </i>
                         </a>
                     </div>

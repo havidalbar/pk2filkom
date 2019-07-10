@@ -45,6 +45,10 @@
 
 <!-- jumbotronLandingPage -->
 <div class="jumbotron jumbotron-fluid pk2-jb1">
+    <video autoplay loop id="landingPageVideo">
+        <source src="{{asset('vidio/VIDEO GEDUNG.mp4')}}" type="video/mp4">
+    </video>
+              
     <div class="container d-flex justify-content-center align-items-center animasi slideKeAtas">
         <div class="pk2imgContent">
             <img src="{{asset('img/bg-section/simaba4@4x.svg')}}" class="img pk2content">
@@ -145,11 +149,10 @@
                         <img class="img-responsive" src="{{asset('img/bg-section/gedfbidongkuning.png')}}" alt="">
                         <div class="overlay">
                             <p class="icon-links">
-                                <a href="#"><i data-icon="b"></i></a>
-                                <a href="#"> <i data-icon="d"></i></a>
-                                <a href="#"><i data-icon="e"></i></a>
-                                <a href="#"><i data-icon="f"></i></a>
-                                <a href="#"><i data-icon="a"></i></a>
+                                <a href="https://www.instagram.com/pk2maba_filkom/"><i data-icon="b"></i></a>
+                                <a href="http://bit.ly/OAPK2FILKOM"><i data-icon="e"></i></a>
+                                <a href="http://twitter.com/PK2FILKOM2019"><i data-icon="f"></i></a>
+                                <a href="http://bit.ly/PK2MABAFILKOM"><i data-icon="a"></i></a>
                             </p>
                         </div>
                     </div>

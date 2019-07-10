@@ -365,6 +365,18 @@ body {
     padding-bottom: 5px;
     margin-bottom: -8px;
 }
+
+video#landingPageVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
 .dropdown .nav-link {
     font-family: "Esphimere-SemiBold";
 }
@@ -1044,6 +1056,11 @@ figure img {
     margin-bottom: 18px;
     font-size: 18px;
 }
+.linkSosmed a {
+  color: #F7BB3E;
+  text-decoration: none;
+  font-size: 18px;
+}
 /* Media ICON */
 [data-icon]:before {
     font-family: "media" !important;
@@ -1075,108 +1092,111 @@ figure img {
     }
 }
 @media (max-width: 767.98px) {
-    .nav-link {
-        font-size: 16px !important;
-    }
-    .dropdown-menu {
-        padding-bottom: 0 !important;
-        font-size: 15px !important;
-    }
-    .titleSection {
-        font-size: 32px;
-    }
-    .navbar-brand img {
-        width: 120px;
-        height: auto;
-        padding-left: 15px;
-    }
-    .navbar-toggler {
-        margin-right: 15px;
-    }
-    .pk2content {
-        width: 205px;
-        height: 200px;
-    }
-    .pk2imgContent::before,
-    .pk2imgContent::after {
-        border-bottom: 7px solid #f7bb3e;
-        width: 80%;
-    }
-    .pk2imgContent::before {
-        margin-right: -45px;
-    }
-    .pk2imgContent::after {
-        margin-left: -45px;
-    }
-    .afterMovieTxt {
-        font-size: 46px;
-        letter-spacing: 5px;
-    }
-    .afterMovieTxt::after {
-        width: 100%;
-    }
-    .st2::before {
-        border-left: 3px solid #fff;
-        border-top: 3px solid #fff;
-        transform: translate(5px, -14px);
-    }
-    .st2::after {
-        border-right: 3px solid #fff;
-        border-bottom: 3px solid #fff;
-        transform: translate(-5px, 14px);
-    }
-    .title-pk2 {
-        margin-bottom: 12px !important;
-        font-size: 22px;
-        padding: 10px 10px;
-        width: auto;
-    }
-    .pk2ttgsimana .media-body p {
-        font-size: 14px;
-    }
-    .pk2-jb4 {
-        height: 100%;
-        margin-bottom: 1.5rem !important;
-    }
-    .pk2-jb5 {
-        height: 100%;
-    }
-    .pk2-jb6 {
-        background-size: 170px;
-        height: 100%;
-    }
-    .figure {
-        width: 160px !important;
-        height: 160px !important;
-    }
-    .carousel-item .container .row .col-md-6:first-child {
-        padding-bottom: 0 !important;
-    }
-    .media.timeLine .media-body h5 {
-        font-size: 28px;
-    }
-    .media.timeLine .media-body p {
-        font-size: 17px;
-    }
-    .publis {
-        font-size: 19px;
-    }
-    .bg-color-filkom,
-    .bg-gdfilkom {
-        height: 200px !important;
-    }
-    .sep {
-        display: none;
-    }
-    .hovereffect-berita {
-        margin: 10px 0;
-    }
-    .pk2-jb6 .col-md-6:last-child > .row > .col {
-        height: 100%;
-    }
-    .hovereffect-berita .img2 {
-        max-height: none;
-    }
+  video#landingPageVideo {
+    height: 100vh;
+  }
+  .nav-link {
+      font-size: 16px !important;
+  }
+  .dropdown-menu {
+      padding-bottom: 0 !important;
+      font-size: 15px !important;
+  }
+  .titleSection {
+      font-size: 32px;
+  }
+  .navbar-brand img {
+      width: 120px;
+      height: auto;
+      padding-left: 15px;
+  }
+  .navbar-toggler {
+      margin-right: 15px;
+  }
+  .pk2content {
+      width: 205px;
+      height: 200px;
+  }
+  .pk2imgContent::before,
+  .pk2imgContent::after {
+      border-bottom: 7px solid #f7bb3e;
+      width: 80%;
+  }
+  .pk2imgContent::before {
+      margin-right: -45px;
+  }
+  .pk2imgContent::after {
+      margin-left: -45px;
+  }
+  .afterMovieTxt {
+      font-size: 46px;
+      letter-spacing: 5px;
+  }
+  .afterMovieTxt::after {
+      width: 100%;
+  }
+  .st2::before {
+      border-left: 3px solid #fff;
+      border-top: 3px solid #fff;
+      transform: translate(5px, -14px);
+  }
+  .st2::after {
+      border-right: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      transform: translate(-5px, 14px);
+  }
+  .title-pk2 {
+      margin-bottom: 12px !important;
+      font-size: 22px;
+      padding: 10px 10px;
+      width: auto;
+  }
+  .pk2ttgsimana .media-body p {
+      font-size: 14px;
+  }
+  .pk2-jb4 {
+      height: 100%;
+      margin-bottom: 1.5rem !important;
+  }
+  .pk2-jb5 {
+      height: 100%;
+  }
+  .pk2-jb6 {
+      background-size: 170px;
+      height: 100%;
+  }
+  .figure {
+      width: 160px !important;
+      height: 160px !important;
+  }
+  .carousel-item .container .row .col-md-6:first-child {
+      padding-bottom: 0 !important;
+  }
+  .media.timeLine .media-body h5 {
+      font-size: 28px;
+  }
+  .media.timeLine .media-body p {
+      font-size: 17px;
+  }
+  .publis {
+      font-size: 19px;
+  }
+  .bg-color-filkom,
+  .bg-gdfilkom {
+      height: 200px !important;
+  }
+  .sep {
+      display: none;
+  }
+  .hovereffect-berita {
+      margin: 10px 0;
+  }
+  .pk2-jb6 .col-md-6:last-child > .row > .col {
+      height: 100%;
+  }
+  .hovereffect-berita .img2 {
+      max-height: none;
+  }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
     .nav-link {
