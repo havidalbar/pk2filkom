@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 Route::get('/qr-code', function () {
     return view('v_mahasiswa/qrCode');
+})->name('index');
+
+Route::get('berita', function () {
+    return view('v_mahasiswa/detailBerita');
 });
 
 // TODO : Pindah QR Code Mahasiswa
