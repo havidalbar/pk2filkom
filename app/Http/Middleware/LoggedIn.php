@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class MahasiswaLoggedIn
+class LoggedIn
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class MahasiswaLoggedIn
      */
     public function handle($request, Closure $next)
     {
-        if (session('nim')) {
+        if (session('nim') || session('username')) {
             return $next($request);
         } else {
             return redirect()->back()->with('alert', 'Anda belum login');

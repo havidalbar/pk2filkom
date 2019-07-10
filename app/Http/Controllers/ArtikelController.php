@@ -154,10 +154,11 @@ class ArtikelController extends Controller
      */
     public function show($slug)
     {
-        $artikel = Artikel::where('slug', $slug)->first();
+        $beritas = Artikel::without('sub')->get(['slug', 'thumbnail']);
+        $berita = Artikel::with('komentar')->where('slug', $slug)->first();
 
-        if ($artikel) {
-            // TODO : RETURN TAMPILAN BERITA [Fadhil]
+        if ($berita) {
+            return view('v_mahasiswa/detailBerita', compact('berita', 'beritas'));
         } else {
             abort(404);
         }

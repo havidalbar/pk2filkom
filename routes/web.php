@@ -15,8 +15,15 @@ Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 })->name('index');
 
-Route::get('berita', function () {
-    return view('v_mahasiswa/detailBerita');
+// Berita
+Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
+    Route::get('/', 'ArtikelController@show')->name('show');
+
+    Route::group(['prefix' => 'komentar', 'as' => 'komentar.'], function () {
+        Route::post('/', 'KomentarController@store')->name('post');
+        Route::post('balas/{reply}', 'KomentarController@store')->name('reply');
+        Route::put('{id}', 'KomentarController@update')->name('update');
+    });
 });
 
 // Mahasiswa

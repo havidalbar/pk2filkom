@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KomentarRequest;
 use App\Komentar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class KomentarController extends Controller
@@ -35,25 +36,32 @@ class KomentarController extends Controller
      * @param  \App\Http\Requests\KomentarRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KomentarRequest $request)
+    public function store(KomentarRequest $request, $slug, $reply = null)
     {
-        $komentar = new Komentar;
-        $komentar->id_artikel = $request->id_artikel;
-        $komentar->isi = $request->isi;
+        try {
+            DB::beginTransaction();
+            $artikel = \App\Artikel::without('sub')->where('slug', $slug)->first(['id']);
+            $komentar = new Komentar;
+            $komentar->id_artikel = $artikel->id;
+            $komentar->isi = $request->isi;
 
-        if ($request->komentar_ke) {
-            $komentar->komentar_ke = $request->komentar_ke;
+            if ($reply) {
+                $komentar->komentar_ke = $reply;
+            }
+
+            if (Session::get('nim')) {
+                $komentar->nim_mahasiswa = Session::get('nim');
+            } else if (Session::get('username')) {
+                $komentar->username_admin = Session::get('username');
+            }
+
+            $komentar->save();
+            DB::commit();
+
+            return redirect()->back()->with('alert', 'Komentar berhasil dikirim');
+        } catch (Exception $e) {
+            DB::rollBack();
         }
-
-        if (Session::get('nim')) {
-            $komentar->nim_mahasiswa = Session::get('nim');
-        } else if (Session::get('username')) {
-            $komentar->username_admin = Session::get('username');
-        }
-
-        $komentar->save();
-
-        return redirect()->back()->with('alert-success', 'Komentar berhasil dikirim');
     }
 
     /**
@@ -90,9 +98,9 @@ class KomentarController extends Controller
         $komentar = Komentar::where('id', $id)->first();
         if ($komentar) {
             $komentar->isi = $request->isi;
-			$komentar->save();
-			
-			return redirect()->back()->with('alert-success', 'Komentar berhasil diubah');
+            $komentar->save();
+
+            return redirect()->back()->with('alert', 'Komentar berhasil diubah');
         } else {
             abort(404);
         }
@@ -111,7 +119,7 @@ class KomentarController extends Controller
         if ($komentar) {
             $komentar->delete();
 
-            return redirect()->back()->with('alert-success', 'Komentar berhasil dihapus');
+            return redirect()->back()->with('alert', 'Komentar berhasil dihapus');
         } else {
             abort(404);
         }

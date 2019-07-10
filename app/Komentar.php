@@ -21,4 +21,9 @@ class Komentar extends Model
     {
         return $this->hasMany('App\Komentar', 'komentar_ke', 'id');
     }
+
+    public function pengirim_mahasiswa()
+    {
+        return $this->belongsTo('App\Mahasiswa', 'nim_mahasiswa', 'nim');
+    }
 }
