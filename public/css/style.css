@@ -1474,3 +1474,101 @@ input::-webkit-inner-spin-button {
       font-size: 16px;
     }
   }
+  /* halaman faq */
+.bg-faq {
+    background-image: url(../img/bg-section/faq.png);
+    height: 100%;
+}
+
+.accordion .card {
+    margin-top: 30px;
+    border-radius: 5px !important;
+    border: none;
+}
+
+.card-header {
+    padding: 0;
+}
+
+.btn.btn-link {
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    font-family: "Esphimere-Bold";
+    background-color: white;
+    color: #0b2939;
+    font-size: 20px;
+    padding: 8px 16px;
+}
+
+.btn.btn-link:hover {
+    color: #eec950;
+}
+
+.panel-heading.active {
+    background-color: #809fff;
+}
+
+.bg-faq [data-toggle="collapse"]:not(.collapsed) {
+    background-color: #eec950 !important;
+    color: #0b2939;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.bg-faq [data-toggle="collapse"]:not(.collapsed):hover {
+    color: #0b2939;
+}
+
+.bg-faq [data-toggle="collapse"] {
+    background-color: white;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.card-body {
+    color: white;
+    background-color: #0b2939;
+    padding: 8px 12px;
+    font-size: 20px;
+    padding: 16px;
+}
+
+.faq.title {
+    text-align: center;
+    font-family: "Esphimere-Bold";
+    color: white;
+    margin-bottom: 12px !important;
+}
+
+.faq.garis {
+    border-bottom: 3px solid #eec950;
+    width: 300px;
+    margin: auto;
+}
+
+.faq.subtitle {
+    color: white;
+    margin-top: 28px;
+    margin-bottom: 40px;
+    font-family: "Esphimere-Light";
+    text-align: center;
+    font-size: 20px;
+}
+
+@media (max-width: 767.98px) {
+    .bg-faq{
+        background-size: cover;
+    }
+    .faq.title {
+        font-size: 32px;
+    }
+    .faq.garis {
+        width: 160px;
+    }
+    .faq.subtitle,
+    .btn.btn-link,
+    .card-body {
+        font-size: 16px;
+    }
+}

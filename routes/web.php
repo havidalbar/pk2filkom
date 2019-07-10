@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
+Route::get('/faq','MahasiswaController@getFaq');
 
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
