@@ -30,7 +30,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="#">Name Tag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="#"><span><i class="fas fa-sign-out-alt"></i></span>
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}"><span><i class="fas fa-sign-out-alt"></i></span>
                             Logout</a>
                     </div>
                 </div>
