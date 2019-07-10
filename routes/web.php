@@ -13,17 +13,11 @@
 
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
-});
-Route::get('/qr-code', function () {
-    return view('v_mahasiswa/qrCode');
 })->name('index');
 
 Route::get('berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
-
-// TODO : Pindah QR Code Mahasiswa
-Route::get('test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
 
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
@@ -33,6 +27,8 @@ Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
         Route::post('data-diri', 'AuthController@storeDataDiri');
+
+        Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
 
         Route::get('logout', 'AuthController@logout');
     });

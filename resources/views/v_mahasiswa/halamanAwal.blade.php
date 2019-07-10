@@ -5,8 +5,9 @@
 <!-- Navbar atas -->
 <nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand " data-item-ojb="pk2-jb1" href="#"><img src="{{asset('img/bg-section/simaba2@4x.svg')}}"
-                class="imgCover"></a>
+        <a class="navbar-brand " data-item-ojb="pk2-jb1" href="{{ route('index') }}">
+            <img src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,22 +18,25 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="#" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <!-- <a href="/isi-data-diri" class="nav-item nav-link ">LOGIN</a> -->
+                @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ALFA FADILA
+                        {{ session('nama') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Penugasan</a>
                         <a class="dropdown-item" href="#">Penilaian</a>
-                        <a class="dropdown-item" href="#">QR Code</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="#">Name Tag</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="#"><span><i class="fas fa-sign-out-alt"></i></span>
                             Logout</a>
                     </div>
                 </div>
+                @else
+                <a href="{{ route('mahasiswa.login') }}" class="nav-item nav-link ">LOGIN</a>
+                @endif
             </div>
         </div>
     </div>
