@@ -17,4 +17,8 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/qrCode');
     }
+    public function getPenugasan()
+    {
+        return view('v_mahasiswa/penugasan');
+    }
 }

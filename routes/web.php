@@ -14,16 +14,12 @@
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 })->name('index');
-
+Route::get('faq','MahasiswaController@getFaq')->name('faq');
 Route::get('berita', function () {
     return view('v_mahasiswa/detailBerita');
 });
-Route::get('/faq','MahasiswaController@getFaq');
 Route::get('/multipleChoise', function () {
     return view('v_mahasiswa/multipleChoise');
-});
-Route::get('/penugasan', function () {
-    return view('v_mahasiswa/penugasan');
 });
 Route::get('/Buku-Panduan', function () {
     return view('v_mahasiswa/bukpan');
@@ -44,8 +40,8 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::post('data-diri', 'AuthController@storeDataDiri');
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
-
-        Route::get('logout', 'AuthController@logout');
+        Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
+        Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
 
