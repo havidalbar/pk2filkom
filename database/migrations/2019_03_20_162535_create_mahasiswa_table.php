@@ -14,16 +14,14 @@ class CreateMahasiswaTable extends Migration
     public function up()
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->string('nim')->primary();
-            $table->string('nama');
-            $table->string('jk');
-            $table->string('prodi');
-            $table->string('agama');
-            $table->integer('kelompok');
-            $table->string('cluster');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->unsignedBigInteger('nim')->primary();
+            $table->string('nama', 191);
+            $table->unsignedTinyInteger('jenis_kelamin')->nullable();
+            $table->unsignedTinyInteger('agama')->nullable();
+            $table->unsignedTinyInteger('prodi')->nullable();
+            $table->unsignedTinyInteger('kelompok')->nullable();
+            $table->string('cluster', 20);
+            $table->timestamps();
         });
     }
 

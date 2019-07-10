@@ -27,7 +27,12 @@
 </head>
 
 <body>
-    @yield('content')
+	@if (session('alert'))
+	<script>
+		alert('{{ session('alert') }}');
+	</script>
+	@endif
+	@yield('content')
 </body>
 
 </html>

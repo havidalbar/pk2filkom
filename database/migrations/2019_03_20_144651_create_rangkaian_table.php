@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRangkaianTable extends Migration
 {
@@ -16,9 +16,8 @@ class CreateRangkaianTable extends Migration
         Schema::create('rangkaian', function (Blueprint $table) {
             $table->increments('id');
             $table->date('waktu');
-            $table->string('rangkaian');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('rangkaian', 191);
+            $table->timestamps();
         });
     }
 

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DataDiriMahasiswaRequest;
 use App\Mahasiswa;
 use Goutte\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     //
-    public function index()
+    public function login()
     {
         return view('login');
     }
@@ -50,7 +52,7 @@ class AuthController extends Controller
                         Session::put('nama', $data[1]);
                         Session::put('jurusan', substr($data[3], 7));
                         Session::put('prodi', substr($data[4], 13));
-                        Session::put('foto', $foto[0][0]);
+                        // Session::put('foto', $foto[0][0]);
 
                         $cr = $cl->request('GET', 'https://siam.ub.ac.id/biodata.tampil.php');
 
@@ -58,41 +60,67 @@ class AuthController extends Controller
                             return trim(str_replace(["\n        ", "\n          "], "", $result->text()));
                         });
 
-                        Session::put('tempat_lahir', substr($dataDiri[1], 24));
-                        Session::put('tanggal_lahir', substr($dataDiri[2], 24));
-                        Session::put('jenis_kelamin', substr($dataDiri[3], 21));
-                        Session::put('agama', substr($dataDiri[5], 15));
-                        Session::put('golongan_darah', substr($dataDiri[6], 26));
-                        Session::put('nomor_telepon', substr($dataDiri[22], 30));
+                        // Session::put('tempat_lahir', substr($dataDiri[1], 24));
+                        // Session::put('tanggal_lahir', substr($dataDiri[2], 24));
+                        // Session::put('jenis_kelamin', substr($dataDiri[3], 21));
+                        // Session::put('agama', substr($dataDiri[5], 15));
+                        // Session::put('golongan_darah', substr($dataDiri[6], 26));
+                        // Session::put('nomor_telepon', substr($dataDiri[22], 30));
 
+                        // $response = [
+                        //     'data' => [
+                        //         'nim' => $data[0],
+                        //         'nama' => $data[1],
+                        //         'fakultas' => substr($data[2], 19),
+                        //         'jurusan' => substr($data[3], 7),
+                        //         'prodi' => substr($data[4], 13),
+                        //         'tempat_lahir' => substr($dataDiri[1], 24),
+                        //         'tanggal_lahir' => substr($dataDiri[2], 24),
+                        //         'jenis_kelamin' => substr($dataDiri[3], 21),
+                        //         'agama' => substr($dataDiri[5], 15),
+                        //         'golongan_darah' => substr($dataDiri[6], 26),
+                        //         'nomor_telepon' => substr($dataDiri[22], 30),
+                        //         'foto' => $foto[0][0],
+                        //     ],
+                        // ];
+                        // return response()->json($response, 200);
+
+                        // Cek sudah pernah isi data atau belum
+                        $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
+                        if ($data_mahasiswa) {
+                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                        } else {
+                            try {
+                                DB::beginTransaction();
+
+                                $mahasiswa = Mahasiswa::create([
+                                    'nim' => $data[0],
+                                    'nama' => $data[1],
+                                ]);
+                                // \App\PK2MabaAbsensi::create(['nim' => $mahasiswa->nim]);
+                                // \App\PK2MabaKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                // \App\PK2MabaPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                // \App\PK2MTourAbsensi::create(['nim' => $mahasiswa->nim]);
+                                // \App\PK2MTourKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                // \App\PK2MTourPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                // \App\StartupAbsensi::create(['nim' => $mahasiswa->nim]);
+                                // \App\StartupKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                // \App\StartupPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                // \App\ProdiFinal::create(['nim' => $mahasiswa->nim]);
+
+                                DB::commit();
+
+                                return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
+                            } catch (Exception $e) {
+                                DB::rollBack();
+                                Session::flush();
+
+                                return redirect()->back()->with('alert', 'Login gagal');
+                            }
+                        }
                     } else {
                         return redirect()->back()->with('alert', 'Hanya untuk mahasiswa FILKOM');
                     }
-
-                    $response = [
-                        'data' => [
-                            'nim' => $data[0],
-                            'nama' => $data[1],
-                            'fakultas' => substr($data[2], 19),
-                            'jurusan' => substr($data[3], 7),
-                            'prodi' => substr($data[4], 13),
-                            'tempat_lahir' => substr($dataDiri[1], 24),
-                            'tanggal_lahir' => substr($dataDiri[2], 24),
-                            'jenis_kelamin' => substr($dataDiri[3], 21),
-                            'agama' => substr($dataDiri[5], 15),
-                            'golongan_darah' => substr($dataDiri[6], 26),
-                            'nomor_telepon' => substr($dataDiri[22], 30),
-                            'foto' => $foto[0][0]
-                        ]
-                    ];
-                    return response()->json($response, 200);
-                }
-                // Cek sudah pernah isi data atau belum
-                $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
-                if ($data_mahasiswa) {
-                    return redirect('/')->with('alert', 'Anda berhasil login');
-                } else {
-                    return redirect('/isi-biodata');
                 }
             } else {
                 return redirect()->back()->with('alert', 'Hanya untuk angkatan 2019');
@@ -141,45 +169,34 @@ class AuthController extends Controller
     //     }
     // }
 
-    public function getBiodata()
+    public function getDataDiri()
     {
         $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
 
-        return view('isi-biodata', compact('data_mahasiswa'));
+        return view('v_mahasiswa/formDataDiri', compact('data_mahasiswa'));
     }
 
-    public function postBiodata(Request $request)
+    public function storeDataDiri(DataDiriMahasiswaRequest $request)
     {
-        $jenis_kelamin = $request->jenis_kelamin;
-        $agama = $request->agama;
+        $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
 
-        if (isset($jenis_kelamin) && isset($agama)) {
-            $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
-            if (!$data_mahasiswa) {
-                $data_mahasiswa = new Mahasiswa;
-                $data_mahasiswa->nim = Session::get('nim');
-            }
-            $data_mahasiswa->jenis_kelamin = $jenis_kelamin;
-            $data_mahasiswa->agama = $agama;
+        $data_mahasiswa->tempat_lahir = $request->tempat_lahir;
+        $data_mahasiswa->tanggal_lahir = $request->tanggal_lahir;
+        $data_mahasiswa->agama = $request->agama;
+        $data_mahasiswa->jenis_kelamin = $request->jenis_kelamin;
+        $data_mahasiswa->gol_darah = $request->gol_darah;
+        $data_mahasiswa->riwayat_penyakit = $request->riwayat_penyakit;
+        $data_mahasiswa->alergi_makanan = $request->alergi_makanan;
+        $data_mahasiswa->alergi_obat = $request->alergi_obat;
+        $data_mahasiswa->no_telepon = $request->no_telepon;
 
-            if ($request->riwayat_penyakit) {
-                $data_mahasiswa->riwayat_penyakit = $request->riwayat_penyakit;
-            }
-
-            if ($request->alergi_makanan) {
-                $data_mahasiswa->alergi_makanan = $request->alergi_makanan;
-            }
-            $data_mahasiswa->save();
-
-            return redirect('/')->with('alert', 'Selesai');
-        } else {
-            return redirect()->back()->withInput()->with('alert', 'Harap isi kolom yang diharuskan');
-        }
+        $data_mahasiswa->save();
+        return redirect()->back()->with('alert', 'Pengisian data diri berhasil');
     }
 
     public function logout()
     {
         Session::flush();
-        return redirect('/')->with('alert', 'Anda telah keluar');
+        return redirect()->route('index')->with('alert', 'Anda telah keluar');
     }
 }
