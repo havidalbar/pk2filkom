@@ -969,8 +969,7 @@ figure,figure img {
 .footer-copyright p{
   margin: 0;
 }
-.footer {
-  margin-top: 1.5rem;
+.footer {  
   background-color: #012E44;
   color: #F7BB3E;
 }
@@ -1227,7 +1226,6 @@ figure,figure img {
   font-family: 'Esphimere-semiBold';
   padding: 12px 15px 12px 15px;
   background-color: #F1C538;
-  /* border: 1px solid rgba(86,61,124,.2); */
   border-radius: 6px;
   color: #00185A;
   text-align: center;
@@ -1238,6 +1236,61 @@ figure,figure img {
   min-width: 155px;
   min-height: 70px;
 }
+/* Penugasan */
+.bg-penugasan {
+  background-image: url(../img/bg-section/bg-penugasan.png);
+  height: 100%;
+  min-height: calc(100vh - 79px);
+}
+.title-penugasan {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Esphimere-SemiBold";
+  color: white;
+  font-size: 40px;
+}
+.garis-penugasan {
+  display: block;
+  border-bottom: 3px solid #eec950;
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+}
+.list-penugasan{
+  margin-top: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+.list-penugasan a{
+  text-decoration: none;
+}
+.list-penugasan .item-penugasan{
+  font-family: 'Esphimere-semiBold';  
+  background-color: #F1C538;
+  border-radius: 6px;  
+  color: #00185A;  
+  cursor: pointer;
+  padding: 12px 20px 12px 20px;
+  margin-top: 20px;
+}
+.list-penugasan .item-penugasan:hover{  
+  background-color: #ffde77;
+}
+.item-penugasan .nama-tugas{
+  font-size:24px;
+}
+@media (max-width: 767.98px) {
+  .title-penugasan{
+    font-size: 28px;
+  }
+  .item-penugasan .nama-tugas{
+    font-size: 20px;
+  }
+  .list-penugasan{
+    margin-top: 20px;
+  }
+}
+/* endPenugasan */
 /* Desktop Version */
 @media (max-width: 575.98px) {
   #swipUp {

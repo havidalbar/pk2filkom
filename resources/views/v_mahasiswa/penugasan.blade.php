@@ -1,77 +1,122 @@
 @extends ('layouts.template')
-@section('title', 'Berita | FILKOM UB')
+@section('title', 'SiMaba! 2019 | FILKOM UB')
 
 @section('content')
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
 
-<div class="jumbotron jumbotron-fluid pk2-dtBerita p-0 mb-4" style="margin-bottom: -1.5rem !important">    
-  <!-- Title -->
-  <div class="title">
+<div class="jumbotron jumbotron-fluid bg-penugasan">
     <div class="container">
-        <div class="row">
-            <div class="titlePk2Maba m-auto multipleChoise">
-                <h1 class="titleSection">penuggasan</h1>
-            </div>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-2">
-              <a href="/Twibbon">  
-                <div class="item-penugasan">Twibbon</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Buku-Panduan">
-                <div class="item-penugasan">Buku Panduan</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Cerita-Tentang-Aku">
-                <div class="item-penugasan">Cerita Tentang Aku</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Teka-Teki-siMaba">
-                <div class="item-penugasan">Teka Teki siMABA</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-                <a href="/FILKOM-Mengabdi">
-                  <div class="item-penugasan">FILKOM Mengabdi</div>
+        <div class="title-penugasan">Penugasan</div>
+        <div class="garis-penugasan"></div>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="list-penugasan">                
+                <a href="/Twibbon">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Twibbon</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
                 </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Serial-FILKOM">
-                <div class="item-penugasan">Serial FILKOM</div>
-              </a>
-            </div>
-            <div class="col-md-2">
+                <a href="/Buku-Panduan">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Buku Panduan</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/Cerita-Tentang-Aku">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Cerita Tentang Aku</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/Teka-Teki-SiMaba">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Teka Teki SiMABA</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
                 <a href="/Ngobrol-Inspiratif">
-                  <div class="item-penugasan">Ngobrol Inspiratif</div>
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Ngobrol Inspiratif</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
                 </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/PKM">
-                <div class="item-penugasan">PKM</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Kuis-OH">
-                <div class="item-penugasan">Kuis OH</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Cobain-Organisasi">
-                <div class="item-penugasan">Cobain Organisasi</div>
-              </a>
+                <a href="/FILKOM-Mengabdi">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">FILKOM Mengabdi</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/Serial-FILKOM">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Serial FILKOM</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/PKM">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">PKM</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/Kuis-OH">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">Kuis OH</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="/CobaIn-Organisasi">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">CobaIn Organisasi</div>
+                        <div class="row">
+                            <div class="col-md-4">Pilihan Ganda</div>
+                            <div class="col-md-4">Mulai : 1 Januari 2019 19:30</div>
+                            <div class="col-md-4">Berakhir : 1 Januari 2019 23:59</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-  </div>
-  <!-- EndTitle -->
 </div>
-  
+
 <!-- Footer -->
 @include('layouts.footer')
 <!-- Footer -->
