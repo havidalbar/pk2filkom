@@ -21,7 +21,7 @@ $(document).ready(function () {
         }
     });
     // endParalex fixNavbar
-
+    
     // ScrollAnimate
     $('#swipUp, [data-item-ojb]').on('click', function (e) {
         e.preventDefault();
@@ -45,49 +45,138 @@ $(document).ready(function () {
         dots: true,
         swipe: false,
         centerPadding: '80px',
+        focusOnSelect: true,
+        // variableWidth: false,
         prevArrow: `
-            <a class="slickArrow carousel-control-prev" style="width: 5%;">
-                <span class="berita-prev" aria-hidden="true"><i class="far fa-chevron-left"></i></span>
-                <span class="sr-only">Previous</span>
-            </a>
+        <a class="slickArrow carousel-control-prev" style="width: 5%;">
+        <span class="berita-prev" aria-hidden="true"><i class="far fa-chevron-left"></i></span>
+        <span class="sr-only">Previous</span>
+        </a>
         `,
         nextArrow: `
-            <a class="slickArrow carousel-control-next" style="width: 5%;">
-                <span class="berita-next" aria-hidden="true"><i class="far fa-chevron-right"></i></span>
-                <span class="sr-only">Next</span>
-            </a>
+        <a class="slickArrow carousel-control-next" style="width: 5%;">
+        <span class="berita-next" aria-hidden="true"><i class="far fa-chevron-right"></i></span>
+        <span class="sr-only">Next</span>
+        </a>
         `,
         responsive: [
-          {
-            breakpoint: 768,
-            settings: {
-              arrows: false,
-              swipe: true,
-              centerMode: true,
-              centerPadding: '40px',
-              slidesToShow: 3
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              arrows: false,
-              swipe: true,
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    swipe: true,
+                    centerMode: true,
+                    centerPadding: '60px',
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    swipe: true,
               centerMode: true,
               centerPadding: '40px',
               slidesToShow: 1
             }
-          }
-        ]
+        }
+    ]
+});
+$('.zoom').zoom();
+// editKomen
+jQuery.fn.putEnd = function() {
+    return this.each(function() {
+        var $el = $(this), el = this;
+        if (!$el.is(":focus")) {
+            $el.focus();
+        }
+        if (el.setSelectionRange) {
+            var len = $el.val().length * 2;
+            setTimeout(function() { el.setSelectionRange(len, len); }, 1);
+        } else {
+            $el.val($el.val());
+        }
+
+        this.scrollTop = 999999;
     });
-    $('.zoom').zoom();
-    // Datepicker
-    $(".tanggal").datepicker({
-        language: "id",
-        format: 'yyyy-mm-dd',
-        autoclose: true,
-        orientation: "bottom left",
-        defaultViewDate: { year: 2001 }
+};
+
+$('.actionComment').on('click', '#buttonEdit', function(){
+    // let id   = $(this).attr("id"); 
+    let parentEdit = $(this).parent().parent().find('#dComment');
+    let form = $("<form/>", { action : '#', id : 'editComent' });
+    let input = $('<input />', { 'type': 'text', 'name': 'editComent', 'value': $('#dComment').text() });
+    
+    // console.log(parentEdit)
+    $(parentEdit).parent().append(form.append(input));
+    $(parentEdit).remove();
+    input.putEnd().on("focus", function() {
+        searchInput.putEnd();
     });
-    // endDatepicker
+    
+    let buttonNext = $(this).parent();
+    buttonNext.empty();
+    
+    buttonNext.append(`
+        <button class="btn btn-comment" id="editComent">Kirim</button>
+            <span>|</span>
+        <button class="btn btn-comment" id="batalComment">Batal</button>
+    `);
+});
+
+$('.actionComment').on('click', '#batalComment', function(){
+    let element = $(this).parent();
+    let parentEdit = $(this).parent().parent().find('#editComent');
+
+    var input = $('<p />', { 'id': 'dComment', 'text': $(parentEdit.find('input[name="editComent"]')).val() });
+    $(parentEdit).parent().append(input);
+    $(parentEdit).remove();
+
+    element.empty();
+    element.append(`
+        <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+            <span>|</span>
+        <button class="btn btn-comment" id="buttonBalas">Balas</button>
+    `);
+    
+    // console.log(parentEdit)
+    // console.log(parentEdit.find('input[name="editComent"]'))
+});
+$('.actionComment').on('click', '#buttonBalas', function(){
+    let parentBalas = $(this).parent().parent();
+    // console.log(this);
+    // console.log(parentBalas);
+    // console.log((parentBalas.find('form#balasComent')));
+    $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas">X</button>')
+    if(parentBalas.find('form#balasComent').length > 0){
+        alert('form replay komentar sudah ada!')
+    }else{
+        let form = $("<form/>", { action : '#', id : 'balasComent' });
+        let balas = `
+            <div class="input-group border mb-3">
+                <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar anda" name="isi">
+                <div class="input-group-append">
+                    <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
+                </div>
+            </div>`;
+        $(parentBalas).append(form.append(balas));
+    }
+});
+$('.actionComment').on('click', '#buttonBatalBalas', function(){
+    
+    let hapusReplay = $(this).parent().parent().find('form#balasComent');
+    // console.log(hapusReplay)
+    $(hapusReplay).remove();
+    $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
+});
+// Datepicker
+$(".tanggal").datepicker({
+    language: "id",
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    orientation: "bottom left",
+    defaultViewDate: { year: 2001 }
+});
+// endDatepicker
 });

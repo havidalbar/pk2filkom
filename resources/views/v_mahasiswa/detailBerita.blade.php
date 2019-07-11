@@ -18,14 +18,22 @@
         </div>
     </div>
     <!-- EndTitle -->
-    <section class="center slider py-5">
+    <section class="center slider responsive py-5">
+        @for ($i = 0; $i < 3; $i++)
         @foreach ($beritas as $berita_top)
         <div>
-            <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}">
+            <div class="hovereffect-berita">
                 <img src="{{ $berita_top->thumbnail }}" style="height: 200px; width: 200px">
-            </a>
+                <div class="overlay">
+                    <h2>Selamat Hari Kartini 2019</h2>
+                    <div class="h-100 d-flex align-items-center justify-content-center">
+                            <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info">Lihat Berita</a>
+                    </div>
+                </div>
+            </div>
         </div>
         @endforeach
+        @endfor
     </section>
 </div>
 <div class="container-fluid">
@@ -38,20 +46,23 @@
             </div>
         </div>
     </div>
-    @foreach ($berita->sub as $sub)
-    <div class="row">
-        <div class="col-md-6 px-md-0 vdBerita">
-            <div class="zoom">
-                <img src="{{ $sub->thumbnail }}" />
+        
+        @foreach ($berita->sub as $sub)
+        <div class="row">
+            <div class="col-md-6 px-md-0 vdBerita">
+                <div class="zoom">
+                    <img src="{{ $sub->thumbnail }}" />
+                </div>
+            </div>
+            <div class="col-md-6 vdBerita gradientBerita">
+                {!! $sub->deskripsi !!}
             </div>
         </div>
-        <div class="col-md-6 vdBerita gradientBerita">
-            {!! $sub->deskripsi !!}
-        </div>
-    </div>
-    @endforeach
+        @endforeach
+
     <div class="container">
 
+        {{-- @for ($i = 0; $i < 4; $i++)
         @foreach ($berita->komentar as $komentar)
         <div class="media commentBerita border py-2 px-3">
             <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
@@ -65,11 +76,73 @@
                 <p>{{ $komentar->isi }}</p>
             </div>
             <div class="input-group-append">
+                <button class="btn btn-comment">Edit</button>
+                <span>|</span>
                 <button class="btn btn-comment">Balas</button>
             </div>
         </div>
         @endforeach
+        @endfor --}}
 
+        
+        <div class="commentEventTitle commentEvent">
+            <span>2</span><h1>Komentar</h1>
+        </div>
+
+        <div class="media commentBerita py-2 px-3">
+            <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
+            <div class="media-body">
+                <div class="media-title">
+                    <p>
+                        <strong>boy boy boy</strong>
+                        <span class="sub-title" style="display: block">2019</span>
+                    </p>
+                </div>
+                <p id="dComment">gaes</p>
+            </div>
+            <div class="input-group-append actionComment" id="actionComment">
+                <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                <span>|</span>
+                <button class="btn btn-comment" id="buttonBalas">Balas</button>
+            </div>
+            {{-- Replay --}}
+                <div class="media commentBerita replayComment py-2 px-3">
+                    <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
+                    <div class="media-body">
+                        <div class="media-title">
+                            <p>
+                                <strong>boy boy boy</strong>
+                                <span class="sub-title" style="display: block">2019</span>
+                            </p>
+                        </div>
+                        <p id="dComment">gaes</p>
+                    </div>
+                    <div class="input-group-append actionComment" id="actionComment">
+                        <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                        <span>|</span>
+                        <button class="btn btn-comment" id="buttonBalas">Balas</button>
+                    </div>
+                </div>
+        </div>
+
+        <div class="media commentBerita py-2 px-3">
+            <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
+            <div class="media-body">
+                <div class="media-title">
+                    <p>
+                        <strong>boy boy boy</strong>
+                        <span class="sub-title" style="display: block">2019</span>
+                    </p>
+                </div>
+                <p id="dComment">gaes</p>
+            </div>
+            <div class="input-group-append actionComment" id="actionComment">
+                <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                <span>|</span>
+                <button class="btn btn-comment" id="buttonBalas">Balas</button>
+            </div>
+        </div>
+        
         <div class="commentEvent">
             <h1>Tambahkan Komentar</h1>
         </div>
