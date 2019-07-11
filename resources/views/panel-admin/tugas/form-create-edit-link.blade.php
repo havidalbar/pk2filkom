@@ -56,30 +56,18 @@
 		</div>
 	</div>
 	<input class="form-control m-input" name="tipe" type="hidden" value="pilihan_ganda">
-	<div id="soal"></div>
-	<script>
-		var data = 0;
-    function tambahSoal() {
-        let nomorSoal = data + 1;
-        $('#soal').append(
-            `<div class="border border-dark pt-3 pb-3 mt-3">
-                <div class="form-group m-form__group row align-items-center">
-                    <label class="col-2 col-form-label">
-                        Soal ${nomorSoal}
-                    </label>
-                    <div class="col-10">
-                        <input class="form-control m-input" name="soal[${data}][soal]" placeholder="Pertanyaan" type="text" required>
-                    </div>
+	<div id="soal">
+        <div class="border border-dark pt-3 pb-3 mt-3">
+            <div class="form-group m-form__group row align-items-center">
+                <label class="col-2 col-form-label">
+                    Soal ${nomorSoal}
+                </label>
+                <div class="col-10">
+                    <input class="form-control m-input" name="soal[0][soal]" placeholder="Pertanyaan" type="text" required>
                 </div>
-            </div>`);
-        data = nomorSoal;
-    }
-	</script>
-	<div class="mt-3 mb-3" style="text-align: center">
-		<button onclick="tambahSoal()" class="btn btn-secondary" type="button">
-			Tambah Soal
-		</button>
-	</div>
+            </div>
+        </div>
+    </div>	
 	<div class="m-portlet__foot m-portlet__foot--fit">
 		<div class="m-form__actions">
 			<button onclick="#" class="btn btn-primary" type="button">
