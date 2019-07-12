@@ -1357,13 +1357,16 @@ figure img {
     margin-top: 32px;
 }
 .detail-tugas .detail-list {
-    font-size: 24px;
+    font-size: 22px;
 }
 .detail-list .nomor-text {
     width: 20px;
 }
 .detail-list .text {
     margin-left: 10px;
+}
+.detail-list .text-periode{
+    font-family: "Esphimere-semiBold";
 }
 .text a{
     text-decoration: none;

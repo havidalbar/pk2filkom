@@ -39,8 +39,8 @@
                     <p class="detail-title">Ketentuan Tugas</p>
                     <div class="d-flex flex-column detail-list mt-4">
                         <div class="d-flex flex-row mb-2">
-                            <div class="nomor-text">1.</div>
-                            <div class="text">Periode: 29 Juli - 10 Agustus 2019.</div>
+                            <div class="nomor-text text-periode">1.</div>
+                            <div class="text text-periode">Periode: 29 Juli - 10 Agustus 2019.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">2.</div>
@@ -92,7 +92,7 @@
                     <div class="d-flex flex-column detail-list mt-4">
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">1.</div>
-                            <div class="text">Pertama, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan kamu sampaikan pada video 'Cerita Tentang Aku'.</div>
+                            <div class="text">Pertama, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan kamu sampaikan pada video ‘Cerita Tentang Aku’. Untuk lebih jelasnya, kamu dapat kamu melihat contohnya di link berikut ini.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">2.</div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">5.</div>
-                            <div class="text">Dan jangan lupa untuk menyertakan tagar #..... #..... pada bagian akhir dari caption tersebut.</div>
+                            <div class="text">Dan jangan lupa untuk menyertakan tagar #KenaliAku #MariBerkawan #FILKOMUB2019 #BersamaUntukBersatu #SatuHatiSatuJiwaFILKOM pada bagian akhir dari caption tersebut.</div>
                         </div>
                         <div class="d-flex flex-row mb-2">
                             <div class="nomor-text">6.</div>
