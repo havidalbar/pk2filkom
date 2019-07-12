@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="title-text">Preview Nametag</p>
-                        <img src="{{asset('img/nametag/175150201111075.jpg')}}" class="img-nametag">
+                        <img src="{{asset('img/nametag/TIF DIGABUNG 85.jpg')}}" class="img-nametag">
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-download">Download Nametag</button>
                         </div>
@@ -24,34 +24,41 @@
                         <div class="list-text">
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">1.</div>
-                                <div class="text">
-                                    Pertama, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
-                                </div>
+                                <div class="text">Unduh template nametag & gantungan tas.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">2.</div>
-                                <div class="text">
-                                    Kedua, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
+                                <div class="text">Nametag dicetak berwarna di kertas HVS (tidak perlu merubah ukuran).
                                 </div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">3.</div>
-                                <div class="text">
-                                    Ketiga, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
-                                </div>
+                                <div class="text">Gunting dan lipat nametag.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">4.</div>
+                                <div class="text">Tempel foto formal dengan ukuran 3x4.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">5.</div>
+                                <div class="text">Masukkan ke dalam nametag holder mika ukuran B2, dengan bagian depan
+                                    merupakan nametag dan bagian belakang merupakan kartu kendali.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">6.</div>
+                                <div class="text">Gunakan tali berwarna biru untuk nametag tersebut.</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="detail-bagholder">
-                <div class="row">                    
+                <div class="row">
                     <div class="col-md-6">
                         <p class="title-text">Preview Bagholder</p>
-                        <img src="{{asset('img/nametag/175150201111075.jpg')}}" class="img-nametag">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <img src="{{asset('img/bagholder/BAGHOLDER TIF 40.jpg')}}">
+                        </div>
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-download">Download Bagholder</button>
                         </div>
@@ -61,24 +68,17 @@
                         <div class="list-text">
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">1.</div>
-                                <div class="text">
-                                    Pertama, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
-                                </div>
+                                <div class="text">Gantungan tas dicetak berwarna di kertas HVS (tidak perlu merubah
+                                    ukuran).</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">2.</div>
-                                <div class="text">
-                                    Kedua, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
-                                </div>
+                                <div class="text">Gunting dan lipat gantungan tas, lalu dilaminasi press.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">3.</div>
-                                <div class="text">
-                                    Ketiga, kamu dapat mulai untuk berpikir apa saja yang sekiranya akan
-                                    kamu sampaikan pada video ‘Cerita Tentang Aku’.
-                                </div>
+                                <div class="text">Gunakan pita kecil berwarna biru dan ikatkan gantungan tersebut di
+                                    tas.</div>
                             </div>
                         </div>
                     </div>

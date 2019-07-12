@@ -1330,6 +1330,7 @@ figure img {
 }
 .bg-isi-nametag .text {    
     margin-left: 10px;
+    width: 100%;
 }
 .bg-isi-nametag .btn-download {
     font-family: "Esphimere-semiBold";
@@ -1345,9 +1346,6 @@ figure img {
 }
 .detail-bagholder{
     margin-top: 32px;
-}
-.detail-bagholder .img-nametag {
-    width: 100%;
 }
 @media (max-width: 767.98px) {
     .title-nametag {        
