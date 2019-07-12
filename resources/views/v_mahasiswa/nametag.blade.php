@@ -25,7 +25,9 @@
                         ?>
                         <img src="{!! $imgNametagEncode !!}" class="img-nametag">
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-download" onclick="window.location.href='{!! $imgNametagEncode !!}'">Download Nametag</button>
+                            <a download="Nametag.png" class="btn btn-download" href="{!! $imgNametagEncode !!}">
+                                <button class="btn btn-download">Download Nametag</button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6">
