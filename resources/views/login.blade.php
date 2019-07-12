@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
-<form action="/login-mahasiswa" method="POST">
-{{csrf_field()}}
-<input name="nim" type="number" required>
-<input name="password" type="password" required>
-<input type="submit" value="LOGIN">
-</form>
-</body>
-</html>
+@extends ('layouts.template')
+@section('title', 'SiMaba! 2019 | FILKOM UB')
+
+@section('content')
+<div class="jumbotron jumbotron-fluid bg-login">
+    <div class="container d-flex flex-column align-items-center justify-content-center">
+        <div>
+            <img src="{{asset('img/bg-section/simaba4@4x.svg')}}" class="img-logo">
+        </div>
+        <div class="form-login">
+            <form method="GET">
+                <div class="form-group">
+                    <input type="number" class="form-control" name="nim" placeholder="Masukkan NIM">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Masukkan Password">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-login">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
