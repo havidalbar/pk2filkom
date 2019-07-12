@@ -1345,9 +1345,9 @@ input::-webkit-inner-spin-button {
     box-shadow: rgba(255, 255, 255, 0.19) 0px 5px 10px 2px;
     border-color: white;
     border-radius: 10px;
-    padding: 4px 16px 4px 16px;
+    padding: 8px 16px 8px 16px;
     margin-top: 18px;
-    min-width: 104px;
+    min-width: 112px;
 }
 .form-login .btn-login:hover {
     background-color: white;
@@ -1373,7 +1373,8 @@ input::-webkit-inner-spin-button {
         padding: 0 16px 0 16px;     
     }
     .form-login .btn-login {
-        margin-top: 8px;        
+        font-size: 18px;
+        margin-top: 8px;                
     }
 }
 /* Akhir Login Maba */
