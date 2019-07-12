@@ -24,33 +24,17 @@ class AuthController extends Controller
 
         if (isset($nim) && isset($password)) {
             if (substr($nim, 0, 5)) {
-                $cl = new Client;
-                $cr = $cl->request('GET', 'https://siam.ub.ac.id/');
-                $form = $cr->selectButton('Masuk')->form();
-                $cr = $cl->submit($form, array('username' => $nim, 'password' => $password));
+                $API_EM_APPS = 'https://em.ub.ac.id/redirect/login/loginApps/?nim=' . $nim . '&password=' . $password;
 
-                $cek = $cr->filter('small.error-code')->each(function ($result) {
-                    return $result->text();
-                });
+                $responseLogin = json_decode(file_get_contents($API_EM_APPS), true);
 
-                if (isset($cek[0])) {
+                if (!$responseLogin['status']) {
                     return redirect()->back()->with('alert', 'NIM atau password salah');
                 } else {
-                    $data = $cr->filter('div[class="bio-info"] > div')->each(function ($result) {
-                        return $result->text();
-                    });
-
-                    if (strtolower(trim(substr($data[2], 19))) == 'ilmu komputer') {
-
-                        $div_foto = $cr->filter('div[class="photo-id"]')->each(function ($result) {
-                            return $result->attr('style');
-                        });
-
-                        preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $div_foto[0], $foto);
-
-                        $nim_login = $data[0];
-                        $nama_login = $data[1];
-                        switch (strtolower(substr($data[4], 13))) {
+                    if (strtolower($responseLogin['fak']) == 'fakultas ilmu komputer') {
+                        $nim_login = $responseLogin['nim'];
+                        $nama_login = $responseLogin['nama'];
+                        switch (strtolower($responseLogin['prodi'])) {
                             case 'teknik informatika':
                                 $prodi_login = 2;
                                 break;
@@ -69,7 +53,7 @@ class AuthController extends Controller
                             default:
                                 $prodi_login = 0;
                         }
-                        $foto_login = $foto[0][0];
+                        $foto_login = $responseLogin['foto'];
 
                         // Cek sudah pernah isi data atau belum
                         $data_mahasiswa = Mahasiswa::where('nim', $nim)->exists();
