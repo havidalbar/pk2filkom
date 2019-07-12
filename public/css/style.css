@@ -1543,7 +1543,7 @@ figure img {
 .bg-login {
     background-image: url(../img/bg-section/gedfhitamputih.png);
     height: 100vh;
-    min-height: 800px;
+    min-height: 600px;
 }
 .bg-login::after {
     background-image: linear-gradient(
@@ -1564,9 +1564,12 @@ figure img {
 .form-login .form-group {
     margin-bottom: 28px;
 }
+.form-login .form-group .input-group-text{
+    border-radius: 10px 0 0 10px;
+}
 .form-login .form-group .form-control {
     padding: 24px 16px 24px 16px;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
 }
 /* Halaman qr code */
 .bg-qr-code {
@@ -1707,7 +1710,7 @@ input::-webkit-inner-spin-button {
     padding-top: 5px;
     padding-bottom: 15px;
   }
-  .form-group{
+  .bg-form-data-diri .form-group{
     margin-bottom: 0.7rem !important;
   }
   .invalid-feedback{
