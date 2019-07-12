@@ -40,7 +40,7 @@ class AuthController extends Controller
                         return $result->text();
                     });
 
-                    if (trim(substr($data[2], 19)) == 'Ilmu Komputer') {
+                    if (strtolower(trim(substr($data[2], 19))) == 'ilmu komputer') {
 
                         $div_foto = $cr->filter('div[class="photo-id"]')->each(function ($result) {
                             return $result->attr('style');
@@ -48,75 +48,68 @@ class AuthController extends Controller
 
                         preg_match_all('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $div_foto[0], $foto);
 
-                        Session::put('nim', $data[0]);
-                        Session::put('nama', $data[1]);
-                        Session::put('jurusan', substr($data[3], 7));
-                        Session::put('prodi', substr($data[4], 13));
-                        // Session::put('foto', $foto[0][0]);
-
-                        $cr = $cl->request('GET', 'https://siam.ub.ac.id/biodata.tampil.php');
-
-                        $dataDiri = $cr->filter('tr[class="text"]')->each(function ($result) {
-                            return trim(str_replace(["\n        ", "\n          "], "", $result->text()));
-                        });
-
-                        // Session::put('tempat_lahir', substr($dataDiri[1], 24));
-                        // Session::put('tanggal_lahir', substr($dataDiri[2], 24));
-                        // Session::put('jenis_kelamin', substr($dataDiri[3], 21));
-                        // Session::put('agama', substr($dataDiri[5], 15));
-                        // Session::put('golongan_darah', substr($dataDiri[6], 26));
-                        // Session::put('nomor_telepon', substr($dataDiri[22], 30));
-
-                        // $response = [
-                        //     'data' => [
-                        //         'nim' => $data[0],
-                        //         'nama' => $data[1],
-                        //         'fakultas' => substr($data[2], 19),
-                        //         'jurusan' => substr($data[3], 7),
-                        //         'prodi' => substr($data[4], 13),
-                        //         'tempat_lahir' => substr($dataDiri[1], 24),
-                        //         'tanggal_lahir' => substr($dataDiri[2], 24),
-                        //         'jenis_kelamin' => substr($dataDiri[3], 21),
-                        //         'agama' => substr($dataDiri[5], 15),
-                        //         'golongan_darah' => substr($dataDiri[6], 26),
-                        //         'nomor_telepon' => substr($dataDiri[22], 30),
-                        //         'foto' => $foto[0][0],
-                        //     ],
-                        // ];
-                        // return response()->json($response, 200);
+                        $nim_login = $data[0];
+                        $nama_login = $data[1];
+                        switch (strtolower(substr($data[4], 13))) {
+                            case 'teknik informatika':
+                                $prodi_login = 2;
+                                break;
+                            case 'teknik komputer':
+                                $prodi_login = 3;
+                                break;
+                            case 'sistem informasi':
+                                $prodi_login = 4;
+                                break;
+                            case 'teknologi informasi':
+                                $prodi_login = 6;
+                                break;
+                            case 'pendidikan teknologi informasi':
+                                $prodi_login = 7;
+                                break;
+                            default:
+                                $prodi_login = 0;
+                        }
+                        $foto_login = $foto[0][0];
 
                         // Cek sudah pernah isi data atau belum
-                        $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
-                        if ($data_mahasiswa) {
-                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
-                        } else {
+                        $data_mahasiswa = Mahasiswa::where('nim', $nim)->exists();
+                        if (!$data_mahasiswa) {
                             try {
                                 DB::beginTransaction();
 
                                 $mahasiswa = Mahasiswa::create([
-                                    'nim' => $data[0],
-                                    'nama' => $data[1],
+                                    'nim' => $nim_login,
+                                    'nama' => $nama_login,
+                                    'prodi' => $prodi_login
                                 ]);
-                                // \App\PK2MabaAbsensi::create(['nim' => $mahasiswa->nim]);
-                                // \App\PK2MabaKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                // \App\PK2MabaPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                // \App\PK2MTourAbsensi::create(['nim' => $mahasiswa->nim]);
-                                // \App\PK2MTourKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                // \App\PK2MTourPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                // \App\StartupAbsensi::create(['nim' => $mahasiswa->nim]);
-                                // \App\StartupKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                // \App\StartupPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                // \App\ProdiFinal::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MabaAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MabaKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MabaPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\ProdiFinal::create(['nim' => $mahasiswa->nim]);
 
                                 DB::commit();
-
-                                return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
                             } catch (Exception $e) {
                                 DB::rollBack();
-                                Session::flush();
 
                                 return redirect()->back()->with('alert', 'Login gagal');
                             }
+                        }
+
+                        Session::put('nim', $nim_login);
+                        Session::put('nama', $nama_login);
+                        Session::put('prodi', $prodi_login);
+                        Session::put('foto', $foto_login);
+
+                        if ($data_mahasiswa) {
+                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                        } else {
+                            return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
                         }
                     } else {
                         return redirect()->back()->with('alert', 'Hanya untuk mahasiswa FILKOM');
