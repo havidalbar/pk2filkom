@@ -14,11 +14,13 @@
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 })->name('index');
-Route::get('faq','MahasiswaController@getFaq')->name('faq');
+Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
-    Route::get('login', 'AuthController@login')->name('login');
-    Route::post('login', 'AuthController@loginMahasiswa');
+    Route::group(['middleware' => ['mahasiswa.tologin']], function () {
+        Route::get('login', 'AuthController@login')->name('login');
+        Route::post('login', 'AuthController@loginMahasiswa');
+    });
 
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
