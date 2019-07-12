@@ -14,9 +14,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="title-text">Preview Nametag</p>
-                        <img src="{{asset('img/nametag/TIF DIGABUNG 85.jpg')}}" class="img-nametag">
+                        <?php
+                        $imgNametag = Image::make($nametag);
+                        // $imgBagholder = Image::make($bagholder);
+                        $imgNametag->encode('png');
+                        // $imgBagholder->encode('png');
+                        $type = 'png';
+                        $imgNametagEncode = 'data:image/' . $type . ';base64,' . base64_encode($imgNametag);
+                        // $imgBagholderEncode = 'data:image/' . $type . ';base64,' . base64_encode($imgBagholder);
+                        ?>
+                        <img src="{!! $imgNametagEncode !!}" class="img-nametag">
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-download">Download Nametag</button>
+                            <button class="btn btn-download" onclick="window.location.href='{!! $imgNametagEncode !!}'">Download Nametag</button>
                         </div>
                     </div>
                     <div class="col-md-6">

@@ -4,19 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Mahasiswa;
 use Intervention\Image\ImageManagerStatic as Image;
+// use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 class ImageController extends Controller
 {
-    public function call()
-    {
-        $mahasiswas = Mahasiswa::all();
-        for ($i = 0; $i < count($mahasiswas); $i++) {
-            $this->textOnImage($mahasiswas[$i]->nama, $mahasiswas[$i]->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
-        }
-    }
+    // public function call()
+    // {
+    //     $mahasiswa = Mahasiswa::find(Session::get('nim'));
+    //     $this->textOnImage($mahasiswa->nama, $mahasiswa->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
 
-    public function textOnImage($nama, $nim, $prodi, $cluster, $kelompok, $makan, $obat, $sakit)
+    // }
+
+    public function textOnImageNametag()
     {
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        $nama = $mahasiswa->nama;
+        $nim = $mahasiswa->nim;
+        $prodi = "Teknik Komputer";
+        $cluster = "1";
+        $kelompok = "0";
+        $makan = "MAKA MAKAN MAKAN MAKAN MAKAN";
+        $obat = "OBATT OBATT OBATT OBATT OBATT";
+        $sakit = "SAKITT SAKITT SAKITT SAKITT SAKITT";
         $imgNameTag = "";
         $prodi_singkat = "";
         $imgBagHolder = "";
@@ -109,7 +119,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+        // $imgNameTag->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
         //return $img->response('jpg');
 
         //bagholder
@@ -138,7 +148,9 @@ class ImageController extends Controller
                     $font->valign('bottom');
                     $font->angle(0);
                 });
-                $imgBagHolder->save(public_path('img/bagholder_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+                // $imgBagHolder->save(public_path('img/bagholder_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
         //return $imgBagHolder->response('jpg');
+
+        return view('v_mahasiswa/nametag',['nametag'=>$imgNameTag, 'bagholder'=>$imgBagHolder]);
     }
 }
