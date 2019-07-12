@@ -11,98 +11,134 @@ class ImageController extends Controller
     {
         $mahasiswas = Mahasiswa::all();
         for ($i = 0; $i < count($mahasiswas); $i++) {
-            $this->textOnImage($mahasiswas[$i]->nama, $mahasiswas[$i]->nim, "SISTEM INFORMASI", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
+            $this->textOnImage($mahasiswas[$i]->nama, $mahasiswas[$i]->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
         }
     }
 
     public function textOnImage($nama, $nim, $prodi, $cluster, $kelompok, $makan, $obat, $sakit)
     {
-        $img = "";
+        $imgNameTag = "";
         $prodi_singkat = "";
+        $imgBagHolder = "";
         if (strtoupper($prodi) == "TEKNIK INFORMATIKA") {
-            $img = Image::make('img/nametag/TIF.jpg');
+            $imgNameTag = Image::make('img/nametag/TIF.jpg');
+            $imgBagHolder = Image::make('img/bagholder/TIF.jpg');
             $prodi_singkat = "TIF";
         } else if (strtoupper($prodi) == "SISTEM INFORMASI") {
-            $img = Image::make('img/nametag/SI.jpg');
+            $imgNameTag = Image::make('img/nametag/SI.jpg');
+            $imgBagHolder = Image::make('img/bagholder/SI.jpg');
             $prodi_singkat = "SI";
         } else if (strtoupper($prodi) == "TEKNIK KOMPUTER") {
-            $img = Image::make('img/nametag/TEKKOM.jpg');
+            $imgNameTag = Image::make('img/nametag/TEKKOM.jpg');
+            $imgBagHolder = Image::make('img/bagholder/TEKKOM.jpg');
             $prodi_singkat = "TEKKOM";
         } else if (strtoupper($prodi) == "PENDIDIKAN TEKNOLOGI INFORMASI") {
-            $img = Image::make('img/nametag/PTI.jpg');
+            $imgNameTag = Image::make('img/nametag/PTI.jpg');
+            $imgBagHolder = Image::make('img/bagholder/PTI.jpg');
             $prodi_singkat = "PTI";
         } else if (strtoupper($prodi) == "TEKNOLOGI INFORMASI") {
-            $img = Image::make('img/nametag/TI.jpg');
+            $imgNameTag = Image::make('img/nametag/TI.jpg');
+            $imgBagHolder = Image::make('img/bagholder/TI.jpg');
             $prodi_singkat = "TI";
         }
-        $img->text($nama, 1154, 820, function ($font) {
+        //nametag
+        $imgNameTag->text($nama, 991, 685, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(27);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->text($nim, 1153, 862, function ($font) {
+        $imgNameTag->text($nim, 990, 717, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(30);
+            $font->size(20);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->text($prodi, 1152, 945, function ($font) {
+        $imgNameTag->text($prodi, 989, 800, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(28);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->text("CLUSTER " . $cluster, 1149, 1015, function ($font) {
+        $imgNameTag->text("CLUSTER " . $cluster, 986, 860, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(28);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->text("KELOMPOK " . $kelompok, 1151, 1085, function ($font) {
+        $imgNameTag->text("KELOMPOK " . $kelompok, 988, 920, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(28);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
 
-        $img->text($makan, 405, 425, function ($font) {
+        $imgNameTag->text($makan, 345, 360, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(25);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
 
-        $img->text($obat, 400, 685, function ($font) {
+        $imgNameTag->text($obat, 340, 580, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(25);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
 
-        $img->text($sakit, 400, 935, function ($font) {
+        $imgNameTag->text($sakit, 340, 795, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(25);
+            $font->size(21);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $img->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+        $imgNameTag->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
         //return $img->response('jpg');
+
+        //bagholder
+                //bagholder
+                $imgBagHolder->text($nama, 1154, 820, function ($font) {
+                    $font->file(public_path('/font/Gotham-Bold.otf'));
+                    $font->size(27);
+                    $font->color('#000');
+                    $font->align('center');
+                    $font->valign('bottom');
+                    $font->angle(0);
+                });
+                $imgBagHolder->text($cluster, 1153, 862, function ($font) {
+                    $font->file(public_path('/font/Gotham Book Regular.otf'));
+                    $font->size(30);
+                    $font->color('#000');
+                    $font->align('center');
+                    $font->valign('bottom');
+                    $font->angle(0);
+                });
+                $imgBagHolder->text($kelompok, 1152, 945, function ($font) {
+                    $font->file(public_path('/font/Gotham-Bold.otf'));
+                    $font->size(28);
+                    $font->color('#000');
+                    $font->align('center');
+                    $font->valign('bottom');
+                    $font->angle(0);
+                });
+                $imgBagHolder->save(public_path('img/bagholder_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+        //return $imgBagHolder->response('jpg');
     }
 }
