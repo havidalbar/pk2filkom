@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Faq;
+use App\Mahasiswa;
 
 class MahasiswaController extends Controller
 {
@@ -28,5 +29,10 @@ class MahasiswaController extends Controller
     public function getCeritaTentangAku()
     {
         return view('v_mahasiswa/kumpulVideoIG');
+    }
+    public function getNametag()
+    {
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        return view('v_mahasiswa/nametag');
     }
 }

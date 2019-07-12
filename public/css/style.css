@@ -1057,9 +1057,9 @@ figure img {
     font-size: 18px;
 }
 .linkSosmed a {
-  color: #F7BB3E;
-  text-decoration: none;
-  font-size: 18px;
+    color: #f7bb3e;
+    text-decoration: none;
+    font-size: 18px;
 }
 /* Media ICON */
 [data-icon]:before {
@@ -1986,3 +1986,81 @@ input::-webkit-inner-spin-button {
     }
 }
 /* Akhir Halaman kumpul video ig */
+
+/* Nametag */
+.bg-nametag {
+    background-image: url(../img/bg-section/bg-nametag.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.title-nametag {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
+.garis-nametag {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 520px;
+    margin: auto;
+}
+.bg-isi-nametag {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.bg-isi-nametag .title-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    color: white;
+}
+.bg-isi-nametag .list-text {
+    font-size: 20px;
+    color: white;
+}
+.bg-isi-nametag .nomor-text {
+    width: 20px;
+}
+.bg-isi-nametag .text {
+    margin-left: 10px;
+    width: 100%;
+}
+.bg-isi-nametag .btn-download {
+    font-family: "Esphimere-semiBold";
+    padding: 12px 15px 12px 15px;
+    margin: 20px;
+    background-color: #f1c538;
+    border-radius: 6px;
+    color: #00185a;
+    text-align: center;
+}
+.detail-nametag .img-nametag {
+    width: 100%;
+}
+.detail-bagholder{
+    margin-top: 32px;
+}
+@media (max-width: 767.98px) {
+    .title-nametag {
+        font-size: 28px;
+    }
+    .garis-nametag {
+        display: block;
+        border-bottom: 3px solid #eec950;
+        width: 100%;
+        margin: auto;
+    }
+    .bg-isi-nametag {
+        padding: 20px 16px 20px 16px;
+    }
+    .bg-isi-nametag .title-text {
+        font-size: 24px;
+    }
+    .bg-isi-nametag .btn-download {
+        padding: 10px 12px 10px 12px;
+    }
+}
+/* Akhir Nametag */
