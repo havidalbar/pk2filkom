@@ -31,7 +31,11 @@
     </div>
     <!-- Copyright -->
     <div class="footer-copyright text-center">
-        <p>© 2019. All rights reserved.<span>Design and Development by PIT & DDM PK2MABA FILKOM 2019</span></p>
+        @php
+        $year = date('Y');
+        @endphp
+        <p>© {{ $year == 2019 ? $year : '2019 - ' . $year }}. All rights reserved.<span>Design and Development by PIT &
+                DDM PK2MABA FILKOM 2019</span></p>
     </div>
     <!-- Copyright -->
 </footer>

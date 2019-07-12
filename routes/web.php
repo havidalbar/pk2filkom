@@ -11,10 +11,8 @@
 |
  */
 
-Route::get('/', function () {
-    return view('v_mahasiswa/halamanAwal');
-})->name('index');
-Route::get('faq','MahasiswaController@getFaq')->name('faq');
+Route::get('/', 'MahasiswaController@index')->name('index');
+Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::get('login', 'AuthController@login')->name('login');
