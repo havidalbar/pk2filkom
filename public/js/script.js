@@ -148,8 +148,8 @@ $('.actionComment').on('click', '#buttonBalas', function(){
     // console.log(this);
     // console.log(parentBalas);
     // console.log((parentBalas.find('form#balasComent')));
-    $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas">X</button>')
     if(parentBalas.find('form#balasComent').length > 0){
+        $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas">X</button>')
         alert('form replay komentar sudah ada!')
     }else{
         let form = $("<form/>", { action : '#', id : 'balasComent' });

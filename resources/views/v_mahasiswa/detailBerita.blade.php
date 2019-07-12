@@ -19,7 +19,7 @@
     </div>
     <!-- EndTitle -->
     <section class="center slider responsive py-5">
-        @for ($i = 0; $i < 3; $i++)
+        @for ($i = 0; $i < 6; $i++)
         @foreach ($beritas as $berita_top)
         <div>
             <div class="hovereffect-berita">
