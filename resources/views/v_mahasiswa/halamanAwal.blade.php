@@ -46,7 +46,7 @@
 
 <!-- jumbotronLandingPage -->
 <div class="jumbotron jumbotron-fluid pk2-jb1">
-    <video autoplay loop id="landingPageVideo">
+    <video autoplay loop muted id="landingPageVideo">
         <source src="{{asset('vidio/VIDEO GEDUNG.mp4')}}" type="video/mp4">
     </video>
 
