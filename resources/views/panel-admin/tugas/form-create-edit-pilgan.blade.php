@@ -22,7 +22,7 @@
         <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/decoupled-document/ckeditor.js"></script>
         <script src="{{ asset('js/CKEditorBarBar.js') }}"></script>
         <div class="col-10">
-            <div class="col-10">
+            <div class="col-12">
                 <!-- The toolbar will be rendered in this container. -->
                 <div id="deskripsi-editor-container"></div>
 
@@ -35,22 +35,17 @@
         </div>
         <script>
             DecoupledEditor
-                    .create(document.querySelector('#deskripsi-editor'), {
-                        extraPlugins: [MyCustomUploadAdapterPlugin],
-                        // ...
-                    })
-                    .then(editor => {
-                        document.querySelector('#deskripsi-editor-container')
-                            .appendChild( editor.ui.view.toolbar.element );
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
-                
-                function submitForm() {
-                    $('#deskripsi_input').val(encodeURI($('#deskripsi-editor').html()));
-                    $('#submitter').click();
-                }
+                .create(document.querySelector('#deskripsi-editor'), {
+                    extraPlugins: [MyCustomUploadAdapterPlugin],
+                    // ...
+                })
+                .then(editor => {
+                    document.querySelector('#deskripsi-editor-container')
+                        .appendChild(editor.ui.view.toolbar.element);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         </script>
     </div>
     <div class="form-group m-form__group row align-items-center {{ $errors->has('waktu_tampil') ? 'has-danger' : '' }}">
@@ -103,7 +98,7 @@
         </label>
         <div class="col-10">
             <input class="form-control m-input {{ $errors->has('random') ? 'form-control-danger' : '' }}" name="random"
-                type="checkbox" {{ $penugasan->random ? 'checked' : '' }}>
+                type="checkbox">
             {!! $errors->first('random', '<div class="form-control-feedback">:message</div>') !!}
         </div>
     </div>
@@ -121,78 +116,105 @@
     <input class="form-control m-input" name="tipe" type="hidden" value="pilihan_ganda">
     <div class="border border-dark pt-4 pb-4 mt-4 mb-4">
         @if (empty(old('soal')) && empty($penugasan))
-        @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) <div class="form-group m-form__group row align-items-center">
+        @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) 
+        <div class="form-group m-form__group row align-items-center">
             <label class="col-2 col-form-label">
                 Soal {{ $i + 1 }}
+            </label>            
+            <div class="col-12">
+                <div class="col-12">
+                    <!-- The toolbar will be rendered in this container. -->
+                    <div id="soal-editor-container-{{$i}}"></div>
+
+                    <!-- This container will become the editable. -->
+                    <div id="soal-editor-{{$i}}" style="border: 1px solid grey">{!! old('deskripsi') ?
+                        urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
+                </div>
+                <input id="soal_input_{{$i}}" name="soal[{{ $i }}][soal]" type="hidden" required>
+                {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
+            </div>
+        </div>     
+        <div class="form-group m-form__group row align-items-center">
+            <label class="col-form-label">
+                Pilihan jawaban
             </label>
-            <div class="col-10">
-                <input class="form-control m-input" name="soal[{{ $i }}][soal]"
-                    placeholder="Pertanyaan soal {{ $i + 1 }}" type="text" required>
+        </div>
+        <div style="margin-left:24px">
+            @for($j = 0; $j < 4; $j++) 
+            <div class="form-group m-form__group d-flex flex-row align-items-center">
+                <input type="radio" name="soal[{{ $i }}][jawaban_benar]" value="{{ $j }}">
+                <div style="width:100%;margin-left:16px">
+                <div class="col-12">
+                    <div class="col-12">
+                        <!-- The toolbar will be rendered in this container. -->
+                        <div id="jawaban-editor-container-{{$i}}-{{$j}}"></div>
+
+                        <!-- This container will become the editable. -->
+                        <div id="jawaban-editor-{{$i}}-{{$j}}" style="border: 1px solid grey">{!! old('deskripsi') ?
+                            urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
+                    </div>
+                    <input id="jawaban_input_{{$i}}_{{$j}}" name="soal[{{ $i }}][pilihan_jawaban][{{ $j }}]" type="hidden" required>
+                    {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
+                </div>
+                    <!-- <input class="form-control m-input" name="soal[{{ $i }}][pilihan_jawaban][{{ $j }}]"
+                        placeholder="Pilihan Jawaban {{ $j + 1 }}" type="text" required> -->
+                </div>
             </div>
+            <script>
+                DecoupledEditor
+                    .create(document.querySelector('#jawaban-editor-{{$i}}-{{$j}}'), {
+                        extraPlugins: [MyCustomUploadAdapterPlugin],
+                        // ...
+                    })
+                    .then(editor => {
+                        document.querySelector('#jawaban-editor-container-{{$i}}-{{$j}}')
+                            .appendChild(editor.ui.view.toolbar.element);
+                    })                
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+            @endfor
+        </div>  
+
+        <script>
+            DecoupledEditor
+                .create(document.querySelector('#soal-editor-{{$i}}'), {
+                    extraPlugins: [MyCustomUploadAdapterPlugin],
+                    // ...
+                })
+                .then(editor => {
+                    document.querySelector('#soal-editor-container-{{$i}}')
+                        .appendChild(editor.ui.view.toolbar.element);
+                })                
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+        @endfor        
+        @endif
     </div>
-    <div class="form-group m-form__group row align-items-center">
-        <label class="col-form-label">
-            Pilihan jawaban
-        </label>
-    </div>
-    <div style="margin-left:24px">
-        @for($j = 0; $j < 4; $j++) <div class="form-group m-form__group d-flex flex-row align-items-center">
-            <input type="radio" name="soal[{{ $i }}][jawaban_benar]" value="{{ $j }}">
-            <div style="width:100%;margin-left:16px">
-                <input class="form-control m-input" name="soal[{{ $i }}][pilihan_jawaban][{{ $j }}]"
-                    placeholder="Pilihan Jawaban {{ $j + 1 }}" type="text" required>
-            </div>
-    </div>
-    @endfor
-</div>
-@endfor
-@elseif (old('soal') || $penugasan->soal)
-@foreach ((old('soal') ?? $penugasan->soal) as $index => $soal)
-<div class="form-group m-form__group row align-items-center">
-    <label class="col-2 col-form-label">
-        Soal {{ $index + 1 }}
-    </label>
-    <div class="col-10">
-        <input class="form-control m-input" name="soal[{{ $index }}][soal]"
-            placeholder="Pertanyaan soal {{ $index + 1 }}" type="text" required
-            value="{{ $soal->soal ?? $soal['soal'] }}">
-    </div>
-</div>
-<div class="form-group m-form__group row align-items-center">
-    <label class="col-form-label">
-        Pilihan jawaban
-    </label>
-</div>
-<div style="margin-left:24px">
-    @foreach(($soal['pilihan_jawaban'] ?? $soal->pilihan_jawaban) as $pj_index => $piljaw)
-    @php
-    if ($soal->pilihan_jawaban && $piljaw->id == $soal->id_jawaban_benar) {
-    $index_jawaban_benar_submitted = $pj_index;
-    }
-    @endphp
-    <div class="form-group m-form__group d-flex flex-row align-items-center">
-        <input type="radio" name="soal[{{ $index }}][jawaban_benar]" value="{{ $pj_index }}"
-            {{ $pj_index === ($soal['jawaban_benar'] ?? $index_jawaban_benar_submitted) ? 'checked' : '' }}>
-        <div style="width:100%;margin-left:16px">
-            <input class="form-control m-input" name="soal[{{ $index }}][pilihan_jawaban][{{ $pj_index }}]"
-                placeholder="Pilihan Jawaban {{ $pj_index + 1 }}" type="text" required
-                value="{{ $piljaw->pilihan_jawaban ?? $piljaw }}">
+    <div class="m-portlet__foot m-portlet__foot--fit">
+        <script>
+            function submitForm() {
+                $('#deskripsi_input').val(encodeURI($('#deskripsi-editor').html()));
+                @for ($i = 0; $i < $_GET['jumlah_soal']; $i++)
+                $('#soal_input_{{$i}}').val(encodeURI($('#soal-editor-{{$i}}').html()));
+                @for ($j = 0; $j < 4; $j++)
+                $('#jawaban_input_{{$i}}_{{$j}}').val(encodeURI($('#jawaban-editor-{{$i}}-{{$j}}').html()));
+                @endfor
+                @endfor
+                $('#submitter').click();
+            }
+        </script>
+        <div class="m-form__actions">
+            <button onclick="submitForm()" class="btn btn-primary" type="button">
+                Simpan Tugas
+            </button>
+            <button id="submitter" style="display: none;" type="submit"></button>
+            <button type="reset" class="btn btn-secondary">
+                Reset
+            </button>
         </div>
     </div>
-    @endforeach
-</div>
-@endforeach
-@endif
-</div>
-<div class="m-portlet__foot m-portlet__foot--fit">
-    <div class="m-form__actions">
-        <button onclick="submitForm()" class="btn btn-primary" type="button">
-            Simpan Tugas
-        </button>
-        <button id="submitter" style="display: none;" type="submit"></button>
-        <button type="reset" class="btn btn-secondary">
-            Reset
-        </button>
-    </div>
-</div>
 </div>
