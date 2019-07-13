@@ -1329,7 +1329,7 @@ figure img {
     margin-top: 20px;    
     width: 100%;
 }
-.form-input-link #input-video-ig {    
+.form-input-link .input-video {    
     height: 48px;    
 }
 .form-input-link .btn-submit-web {
@@ -1390,7 +1390,7 @@ figure img {
     }
     .preview-tugas .preview-text {
         font-size: 24px;
-    }
+    }    
     .preview-tugas #preview-video-ig {
         width: 270px;
         height: 335px;
@@ -1398,9 +1398,9 @@ figure img {
     .form-input-link{
         width: 100%;
     }
-    .form-input-link #input-video-ig {
+    .form-input-link .input-video {
         height: 36px;
-        border-radius: 3px;
+        border-radius: 3px !important;
     }
     .form-input-link .btn-submit-web {
         display: none;
@@ -1421,3 +1421,114 @@ figure img {
     }    
 }
 /* Akhir Halaman kumpul video ig */
+/* Halaman kumpul line */
+.bg-kumpul-line {
+    background-image: url(../img/bg-section/bg-kumpul-line.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleKumpulLine {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
+.garisKumpulLine {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 480px;
+    margin: auto;
+}
+.bg-kumpul {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;    
+}
+.preview-tugas{
+    width: 525px;    
+}
+.preview-tugas .pengumpulan-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.preview-tugas #preview-section{
+    display: none;
+}
+.preview-tugas label{
+    font-family: "Esphimere-SemiBold";
+    font-size: 18px;
+    color: white;
+}
+.preview-tugas .preview-box{
+    background-color:#dce3e4;
+    min-width:100px;
+    min-height:100px;
+    padding:10px;
+    border-radius:5px;
+}
+.preview-tugas .preview-gambar {    
+    max-width: 100%;         
+    max-height: 320px;
+    border-radius: 3px;
+    background-color: #e4e4e4;
+    margin-right: 8px;
+}
+.form-input-link .pilih-gambar{
+    cursor:pointer;
+    font-family: "Esphimere-Regular";
+    font-size: 14px;
+    padding: 6px 12px 6px 12px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: black;
+}
+.form-input-link #input-line {    
+    height: 48px;    
+}
+.form-input-link .btn-submit-line {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-line:hover {
+    background-color: #f8bc3f;
+}
+@media (max-width: 767.98px) {
+    .titleKumpulLine {
+        font-size: 28px;
+    }
+    .garisKumpulLine {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .bg-kumpul{
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-kumpul .preview-tugas{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-tugas .pengumpulan-text {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }        
+    .form-input-link #input-line {
+        height: 36px;
+        border-radius: 3px;
+    }    
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;        
+    }
+}
+/* Akhir Halaman kumpul line */

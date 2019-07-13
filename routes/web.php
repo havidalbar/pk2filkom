@@ -23,6 +23,9 @@ Route::get('/berita', function () {
 Route::get('/kumpul-video', function () {
     return view('v_mahasiswa/kumpulVideoIG');
 });
+Route::get('/kumpul-line', function () {
+    return view('v_mahasiswa/kumpulLine');
+});
 
 Route::get('/login', 'AuthController@index');
 Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
