@@ -14,6 +14,7 @@ class StartupKeaktifan extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'aktif_rangkaian3',
         'penerapan_nilai_rangkaian3',
         'aktif_rangkaian4',

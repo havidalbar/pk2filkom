@@ -1,6 +1,6 @@
 @if (session('alert'))
 <script>
-	alert({{ session('alert') }});
+	alert('{{ session('alert') }}');
 </script>
 @elseif (session('alert-success'))
 <script>

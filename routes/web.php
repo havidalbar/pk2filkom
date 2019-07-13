@@ -13,40 +13,28 @@
 
 Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
+})->name('index');
+Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+// Mahasiswa
+Route::group(['as' => 'mahasiswa.'], function () {
+    Route::group(['middleware' => ['mahasiswa.tologin']], function () {
+        Route::get('login', 'AuthController@login')->name('login');
+        Route::post('login', 'AuthController@loginMahasiswa');
+    });
+
+    Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
+        Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
+        Route::post('data-diri', 'AuthController@storeDataDiri');
+
+        Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
+        Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
+        Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
+        Route::get('nametag', 'MahasiswaController@getNametag')->name('nametag');
+        Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
+        Route::get('logout', 'AuthController@logout')->name('logout');
+    });
 });
 
-Route::get('/berita', function () {
-    return view('v_mahasiswa/detailBerita');
-});
-
-Route::get('/login', 'AuthController@index');
-Route::post('/login-mahasiswa', 'AuthController@loginMahasiswa');
-Route::get('/isi-biodata', 'AuthController@getBiodata');
-Route::post('/isi-biodata', 'AuthController@postBiodata');
-Route::get('/logout', 'AuthController@logout');
-
-Route::get('/test-package', 'PackageTestController@index');
-Route::get('/test-mPDF', 'PackageTestController@mPDF');
-Route::get('/test-PhpSpreadsheet', 'PackageTestController@PhpSpreadsheet');
-
-// TODO : Pindah QR Code Mahasiswa
-Route::get('/test-qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse');
-
-Route::get('/panel/tugas', function () {
-    return view('panel-admin/tugas/index');
-});
-Route::get('/panel/tugas/create', function () {
-    return view('panel-admin/tugas/create');
-});
-Route::post('/panel/tugas/create', function () {
-    print_r($_POST);
-});
-Route::get('/panel/tugas/edit', function () {
-    return view('panel-admin/tugas/edit');
-});
-Route::get('panel/kegiatan/pkm/total', function () {
-    return view('panel-admin/pkm/total');
-});
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     Route::get('/', function () {
@@ -162,6 +150,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::get('filkom-tv', 'StartupTugasController@dataFilkomTv')->name('filkom-tv');
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
+
+                    Route::get('total', function () {
+                        return view('panel-admin.startup.total');
+                    })->name('total');
                 });
 
                 Route::group(['prefix' => 'pkm', 'as' => 'pkm.'], function () {
@@ -176,6 +168,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     Route::resource('pelanggaran', 'PK2MTourPelanggaranController')->parameters([
                         'pelanggaran' => 'nim',
                     ])->except(['create', 'show']);
+
+                    Route::get('total', function () {
+                        return view('panel-admin.pkm.total');
+                    })->name('total');
                 });
 
                 Route::resource('prodi', 'ProdiFinalController')->parameters([

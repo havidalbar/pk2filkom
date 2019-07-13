@@ -11,6 +11,12 @@ class Mahasiswa extends Model
     protected $primaryKey = 'nim';
     public $incrementing = false;
 
+    protected $fillable = [
+        'nim',
+        'nama',
+        'prodi'
+    ];
+
     protected $casts = [
         'nim' => 'string',
     ];

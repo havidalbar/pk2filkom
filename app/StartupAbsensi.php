@@ -14,6 +14,7 @@ class StartupAbsensi extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'nim',
         'nilai_rangkaian3',
         'nilai_rangkaian4',
         'nilai_rangkaian5',

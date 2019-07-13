@@ -2,13 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Faq;
+use App\Mahasiswa;
 
 class MahasiswaController extends Controller
 {
-    //
+    public function getFaq(){
+        $faqs = Faq::all();
+        return view('v_mahasiswa.faq', compact('faqs'));
+    }
+
     public function getQRCodeAbsensiOpenHouse()
     {
-        echo '<img src="data:image/png;base64, ' . base64_encode(QrCode::format('png')->size(400)->generate(encrypt('175150200111019'))) . ' ">';
+        return view('v_mahasiswa/qrCode');
+    }
+    public function getPenugasan()
+    {
+        return view('v_mahasiswa/penugasan');
+    }
+    public function getBukuPanduan()
+    {
+        return view('v_mahasiswa/bukpan');
+    }
+    public function getCeritaTentangAku()
+    {
+        return view('v_mahasiswa/kumpulVideoIG');
+    }
+    public function getNametag()
+    {
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        return view('v_mahasiswa/nametag');
     }
 }
