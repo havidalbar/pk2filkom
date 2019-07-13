@@ -17,24 +17,14 @@
                     <i class="m-menu__section-icon flaticon-more-v3"></i>
                 </li>
                 <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-                    <div class="m-menu__link">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#jumlahSoal" class="m-menu__link">
                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                             <span></span>
                         </i>
-                        <div class="dropdown">
-                            <div class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                                aria-expanded="false">Tambah Tugas<span class="caret"></span></div>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-header" style="font-size:14px;text-align:center">Tipe Tugas</li>
-                                <li><a href="{{ route('panel.penugasan.create', ['jenis' => 'link']) }}">Link</a></li>
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#jumlahSoal">
-                                        Pilihan Ganda
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        <span class="m-menu__link-text">
+                            Tambah Tugas
+                        </span>
+                    </a>
                 </li>
                 <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
                     <a href="{{ route('panel.penugasan.index') }}" class="m-menu__link">
@@ -57,9 +47,9 @@
 <div class="modal fade" id="jumlahSoal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="bla.php" method="get">
+            <form action="{{ route('panel.penugasan.create') }}" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Jumlah Soal Yang Diberikan</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Tambah Tugas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -67,11 +57,22 @@
                 <div class="modal-body">
                     <div class="form-group m-form__group row align-items-center">
                         <div class="col">
-                            <label>
+                            <label for="tipe_soal">
+                                Tipe Soal
+                            </label>
+                            <select name="tipe_soal" id="tipe_soal">
+                                <option selected disabled value="">Pilih Tipe Soal</option>
+                                <option value="instagram">Link Instagram</option>
+                                <option value="line">Link LINE</option>
+                                <option value="youtube">Link Youtube</option>
+                                <option value="pilgan">Pilihan Ganda</option>
+                            </select>
+                            <br>
+                            <label for="jumlah_soal">
                                 Jumlah Soal
                             </label>
-                            <input class="form-control m-input" name="jumlah_soal" type="number"
-                                placeholder="Masukkan Jumlah Soal" required>
+                            <input class="form-control m-input" id="jumlah_soal" name="jumlah_soal" type="number"
+                                min="1" placeholder="Masukkan Jumlah Soal" required>
                         </div>
                     </div>
                 </div>

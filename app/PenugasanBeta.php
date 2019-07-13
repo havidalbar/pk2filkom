@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PenugasanBeta extends Model
 {
-    use Traits\Slug;
-
     protected $table = 'penugasan_beta';
 
     protected $hidden = [
