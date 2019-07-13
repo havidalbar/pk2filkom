@@ -102,7 +102,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text("CLUSTER " . $cluster, $centerNametagKanan, 864, function ($font) {
+        $imgNameTag->text('CLUSTER ' . $cluster, $centerNametagKanan, 864, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -110,7 +110,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text("KELOMPOK " . $kelompok, $centerNametagKanan, 920, function ($font) {
+        $imgNameTag->text('KELOMPOK ' . $kelompok, $centerNametagKanan, 920, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -119,28 +119,28 @@ class ImageController extends Controller
             $font->angle(0);
         });
 
-        $imgNameTag->text($makan, $centerNametagKiri, 360, function ($font) {
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($makan), $centerNametagKiri, 360, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(21);
             $font->color('#000');
             $font->align('center');
-            $font->valign('bottom');
+            $font->valign('top');
             $font->angle(0);
         });
-        $imgNameTag->text($obat, $centerNametagKiri, 580, function ($font) {
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($obat), $centerNametagKiri, 580, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(21);
             $font->color('#000');
             $font->align('center');
-            $font->valign('bottom');
+            $font->valign('top');
             $font->angle(0);
         });
-        $imgNameTag->text($sakit, $centerNametagKiri, 795, function ($font) {
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($sakit), $centerNametagKiri, 795, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(21);
             $font->color('#000');
             $font->align('center');
-            $font->valign('bottom');
+            $font->valign('top');
             $font->angle(0);
         });
         $imgNameTag->encode('data-url', 100);
@@ -185,7 +185,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgBagHolder->text("CLUSTER " . $cluster, $bagholderCenter, 108, function ($font) {
+        $imgBagHolder->text('CLUSTER ' . $cluster, $bagholderCenter, 108, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(11);
             $font->color('#000');
@@ -193,7 +193,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgBagHolder->text("KELOMPOK " . $kelompok, $bagholderCenter, 146, function ($font) {
+        $imgBagHolder->text('KELOMPOK ' . $kelompok, $bagholderCenter, 146, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(11);
             $font->color('#000');
@@ -207,5 +207,38 @@ class ImageController extends Controller
         // return $imgBagHolder->response('jpg');
 
         return view('v_mahasiswa/nametag', ['nametag' => $imgNameTag, 'bagholder' => $imgBagHolder]);
+    }
+
+    private function generateWrappedTextKartuKesehatanKendali($text)
+    {
+        $text_array = explode(' ', $text);
+        $result_array = [];
+        $limit = 25;
+        $line = '';
+        for ($i = 0; $i < count($text_array); $i++) {
+            if (count($result_array) >= 4) {
+                break;
+            }
+
+            if (strlen($text_array[$i]) > $limit) {
+                if ($line) {
+                    $result_array[] = $line;
+                    $line = '';
+                }
+                $result_array[] = substr($text_array[$i], 0, $limit - 4) . '...';
+            } else {
+                if (strlen($line . ($line ? ' ' : '') . $text_array[$i]) >= $limit) {
+                    $result_array[] = $line;
+                    $line = $text_array[$i];
+                } else {
+                    $line = $line . ($line ? ' ' : '') . $text_array[$i];
+                }
+            }
+        }
+        if (!$result_array) {
+            $result_array[] = $line;
+        }
+
+        return implode("\n", $result_array);
     }
 }
