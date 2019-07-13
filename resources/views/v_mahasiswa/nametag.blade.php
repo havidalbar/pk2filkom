@@ -14,18 +14,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="title-text">Preview Nametag</p>
-                        <?php
-                        $imgNametag = Image::make($nametag);
-                        // $imgBagholder = Image::make($bagholder);
-                        $imgNametag->encode('png');
-                        // $imgBagholder->encode('png');
-                        $type = 'png';
-                        $imgNametagEncode = 'data:image/' . $type . ';base64,' . base64_encode($imgNametag);
-                        // $imgBagholderEncode = 'data:image/' . $type . ';base64,' . base64_encode($imgBagholder);
-                        ?>
-                        <img src="{!! $imgNametagEncode !!}" class="img-nametag">
+                        <img src="{!! $nametag !!}" class="img-nametag">
                         <div class="d-flex justify-content-center">
-                            <a download="Nametag.png" class="btn btn-download" href="{!! $imgNametagEncode !!}">
+                            <a download="Nametag.{{ $nametag->extension }}" href="{!! $nametag !!}">
                                 <button class="btn btn-download">Download Nametag</button>
                             </a>
                         </div>
@@ -68,10 +59,12 @@
                     <div class="col-md-6">
                         <p class="title-text">Preview Bagholder</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="{{asset('img/bagholder/BAGHOLDER TIF 40.jpg')}}">
+                            <img src="{!! $bagholder !!}">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-download">Download Bagholder</button>
+                            <a download="Bagholder.{{ $nametag->extension }}" href="{!! $bagholder !!}">
+                                <button class="btn btn-download">Download Bagholder</button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6">
