@@ -411,10 +411,7 @@ video#landingPageVideo {
     position: absolute;
     bottom: 0;
 }
-.pk2-jb1 {
-    background-image: url(../img/bg-section/gedfhitamputih.png);
-    background-size: cover;
-    background-position: center;
+.pk2-jb1 {    
     height: 100vh;
 }
 .pk2-jb1::after {
