@@ -27,8 +27,8 @@
                 <div id="deskripsi-editor-container"></div>
 
                 <!-- This container will become the editable. -->
-                <div id="deskripsi-editor" style="border: 1px solid grey"><?= old('deskripsi') ??
-                    $penugasan->deskripsi ?? 'a' ?></div>
+                <div id="deskripsi-editor" style="border: 1px solid grey">{!! old('deskripsi') ?
+                    urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
             </div>
             <input id="deskripsi_input" name="deskripsi" type="hidden" required>
             {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
@@ -48,7 +48,7 @@
                 });
             
             function submitForm() {
-                $('#deskripsi_input').val($('#deskripsi-editor').html());
+                $('#deskripsi_input').val(encodeURI($('#deskripsi-editor').html()));
                 $('#submitter').click();
             }
         </script>
@@ -101,9 +101,6 @@
     case 'youtube':
     $jenis = 3;
     break;
-    case 'pilihan_ganda':
-    $jenis = 4;
-    break;
     }
     } else {
     $jenis = $penugasan->jenis;
@@ -131,17 +128,19 @@
         <input class="form-control m-input" name="soal[{{ $index }}][soal]"
             placeholder="Pertanyaan soal {{ $index + 1 }}" type="text" required value="{{ $soal['soal'] }}">
     </div>
-    @endforeach
-    @endif
-    <div class="m-portlet__foot m-portlet__foot--fit">
-        <div class="m-form__actions">
-            <button onclick="submitForm()" class="btn btn-primary" type="button">
-                Simpan Tugas
-            </button>
-            <button id="submitter" style="display: none;" type="submit"></button>
-            <button type="reset" class="btn btn-secondary">
-                Reset
-            </button>
-        </div>
+</div>
+@endforeach
+@endif
+{!! $errors->first('soal', '<div class="form-control-feedback">:message</div>') !!}
+<div class="m-portlet__foot m-portlet__foot--fit">
+    <div class="m-form__actions">
+        <button onclick="submitForm()" class="btn btn-primary" type="button">
+            Simpan Tugas
+        </button>
+        <button id="submitter" style="display: none;" type="submit"></button>
+        <button type="reset" class="btn btn-secondary">
+            Reset
+        </button>
     </div>
+</div>
 </div>

@@ -115,7 +115,8 @@
 
                     <!-- This container will become the editable. -->
                     <div class="sub-konten-editor" style="border: 1px solid grey">
-                        <?= $sub_konten_data ?? '' ?></div>
+                        {!! $sub_konten_data ? urlencode($sub_konten_data) : '' !!}
+                    </div>
                 </div>
             </div>
         </div>

@@ -143,7 +143,7 @@ class PenugasanController extends Controller
                 if ($penugasan->jenis == 4) {
                     // TODO : Masukkan jawaban
                     $submitted_pilihan_jawaban = [];
-                    foreach ($request->soal[$i]['pilihan_jawaban'] as $pj) {
+                    foreach ($request->soal[$i]['pilihan_jawaban'] as $pji => $pj) {
                         $pilihan_jawaban = new PenugasanJawabanBeta;
 
                         $dom = new \domdocument();
@@ -174,6 +174,7 @@ class PenugasanController extends Controller
 
                         $pilihan_jawaban->id_soal = $soal->id;
                         $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
+                        $pilihan_jawaban->index = $pji;
 
                         $pilihan_jawaban->save();
                         $submitted_pilihan_jawaban[] = $pilihan_jawaban;
@@ -194,6 +195,8 @@ class PenugasanController extends Controller
                     unlink($uploaded);
                 }
             }
+
+            dd($ex);
             return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
         }
     }
@@ -363,7 +366,7 @@ class PenugasanController extends Controller
                                     $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
                                 }
                             }
-                            
+
                             $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
                             $pilihan_jawaban->save();
                             $submitted_pilihan_jawaban[] = $pilihan_jawaban;
@@ -384,6 +387,8 @@ class PenugasanController extends Controller
                         unlink($uploaded);
                     }
                 }
+
+                dd($ex);
                 return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
             }
         } else {

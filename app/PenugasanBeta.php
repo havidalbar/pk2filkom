@@ -16,11 +16,4 @@ class PenugasanBeta extends Model
     {
         return $this->hasMany('App\PenugasanSoalBeta', 'id_penugasan', 'id')->orderBy('index');
     }
-
-    public function sluggable()
-    {
-        return [
-            'source' => 'judul',
-        ];
-    }
 }
