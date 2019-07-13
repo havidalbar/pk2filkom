@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateArtikelTable extends Migration
 {
@@ -15,12 +15,10 @@ class CreateArtikelTable extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_kategori');
-            $table->foreign('id_kategori')->references('id')->on('kategori')->nullable();
-            $table->date('waktu')->nullable();
-            $table->string('judul')->nullable();
+            $table->string('slug', 191)->unique();
+            $table->string('judul', 191);
             $table->string('deskripsi')->nullable();
-            $table->string('gambarthumbnail')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

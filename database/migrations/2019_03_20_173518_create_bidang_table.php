@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBidangTable extends Migration
 {
@@ -14,12 +14,9 @@ class CreateBidangTable extends Migration
     public function up()
     {
         Schema::create('bidang', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('bidang')->unique();
-            $table->integer('kuota');
-            $table->string('panjang');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('bidang', 191)->primary();
+            $table->unsignedSmallInteger('kuota');
+            $table->string('panjang', 191);
         });
     }
 
