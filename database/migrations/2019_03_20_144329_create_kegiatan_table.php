@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateKegiatanTable extends Migration
 {
@@ -16,11 +16,10 @@ class CreateKegiatanTable extends Migration
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->increments('id');
             $table->date('waktu');
-            $table->string('rangkaian');
+            $table->string('rangkaian', 191);
             $table->mediumText('keterangan');
             $table->mediumText('deskripsi');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 
