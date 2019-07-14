@@ -45,23 +45,5 @@ $(document).ready(function () {
         orientation: "bottom left",
         defaultViewDate: { year: 2001 }
     });
-    // endDatepicker
-    // Preview video ig
-    $('#input-video-ig').on('input', function() {
-        document.getElementById("preview-video-ig").src = (this.value) + "embed";
-    });
-    // endPreview video ig
-    // Preview video yt
-    $('#input-video-yt').on('input', function() {                
-        var link = this.value;        
-        var splitLink = link.split("/");
-        var idLink = splitLink[3];
-        // console.log(getId[0]);
-        // console.log(getId[1]);
-        // console.log(getId[2]);
-        // console.log(splitLink[3]);
-        // console.log(getId[4]);
-        document.getElementById("preview-video-yt").src = "https://www.youtube.com/embed/" + idLink;
-    });      
-    // endPreview video yt
+    // endDatepicker    
 });
