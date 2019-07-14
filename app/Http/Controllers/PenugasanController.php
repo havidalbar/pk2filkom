@@ -67,6 +67,7 @@ class PenugasanController extends Controller
             $penugasan->judul = $request->judul;
 
             $dom = new \domdocument();
+            libxml_use_internal_errors(true);
             $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $images = $dom->getelementsbytagname('img');
 
@@ -107,6 +108,7 @@ class PenugasanController extends Controller
 
                 if ($request->jenis == 4) {
                     $dom = new \domdocument();
+                    libxml_use_internal_errors(true);
                     $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                     $images = $dom->getelementsbytagname('img');
 
@@ -147,6 +149,7 @@ class PenugasanController extends Controller
                         $pilihan_jawaban = new PenugasanJawabanBeta;
 
                         $dom = new \domdocument();
+                        libxml_use_internal_errors(true);
                         $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                         $images = $dom->getelementsbytagname('img');
 
@@ -233,6 +236,8 @@ class PenugasanController extends Controller
      */
     public function update(PenugasanRequest $request, $slug)
     {
+        // dd($request->deskripsi);
+
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
         if ($penugasan) {
@@ -263,6 +268,7 @@ class PenugasanController extends Controller
                 $penugasan->judul = $request->judul;
 
                 $dom = new \domdocument();
+                libxml_use_internal_errors(true);
                 $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                 $images = $dom->getelementsbytagname('img');
 
@@ -303,6 +309,7 @@ class PenugasanController extends Controller
 
                     if ($request->jenis == 4) {
                         $dom = new \domdocument();
+                        libxml_use_internal_errors(true);
                         $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                         $images = $dom->getelementsbytagname('img');
 
@@ -342,6 +349,7 @@ class PenugasanController extends Controller
                             $pilihan_jawaban = $piljaws[$pji];
 
                             $dom = new \domdocument();
+                            libxml_use_internal_errors(true);
                             $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                             $images = $dom->getelementsbytagname('img');
 
