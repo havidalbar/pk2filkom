@@ -9,7 +9,8 @@ use App\Mahasiswa;
 
 class MahasiswaController extends Controller
 {
-    public function getFaq(){
+    public function getFaq()
+    {
         $faqs = Faq::all();
         return view('v_mahasiswa.faq', compact('faqs'));
     }
@@ -18,18 +19,17 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/qrCode');
     }
-    public function getPenugasan()
-    {
-        return view('v_mahasiswa/penugasan');
-    }
+
     public function getBukuPanduan()
     {
         return view('v_mahasiswa/bukpan');
     }
+
     public function getCeritaTentangAku()
     {
         return view('v_mahasiswa/kumpulVideoIG');
     }
+    
     public function getNametag()
     {
         $mahasiswa = Mahasiswa::find(Session::get('nim'));

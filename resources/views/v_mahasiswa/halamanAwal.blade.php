@@ -18,20 +18,30 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
+                <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ session('nama') }}
+                        <?php
+                        $nama = session('nama');
+                        $splitNama = explode(' ', $nama);
+                        if (count($splitNama) > 1) {
+                            $nama = $splitNama[0] . ' ' . $splitNama[1][0] . '.';
+                        }
+                        echo $nama;
+                        ?>
                     </a>
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('mahasiswa.penugasan') }}">Penugasan</a>
                         <a class="dropdown-item" href="#">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
-                        <a class="dropdown-item" href="#">Name Tag</a>
+                        <a class="dropdown-item" href="#">Nametag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}"><span><i class="fas fa-sign-out-alt"></i></span>
-                            Logout</a>
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
+                            <span><i class="fas fa-sign-out-alt"></i></span>
+                            Keluar
+                        </a>
                     </div>
                 </div>
                 @else
@@ -126,7 +136,7 @@
     <div class="row">
         <div class="col-md-6 imgCover bg-polka">
             <h1 class="title-faq">Faq</h1>
-        <a href="{{  route('faq') }}" class="btn btn-faq">LIHAT SEMUA PERTANYAAN</a>
+            <a href="{{  route('faq') }}" class="btn btn-faq">LIHAT SEMUA PERTANYAAN</a>
         </div>
         <div class="col-md-6">
             <div class="row h-100">
@@ -207,9 +217,9 @@
                                         <h5 class="mt-0 title">PK2MABA</h5>
                                         <h6 class="publis">Hari Pertama</h6>
                                         <p>Merupakan acara penyambutan Mahasiswa Baru
-                                        Fakultas Ilmu Komputer 2019 dan pembekalan untuk
-                                        memulai kehidupan sebagai mahasiswa Fakultas Ilmu Komputer
-                                        Universitas Brawijaya.</p>
+                                            Fakultas Ilmu Komputer 2019 dan pembekalan untuk
+                                            memulai kehidupan sebagai mahasiswa Fakultas Ilmu Komputer
+                                            Universitas Brawijaya.</p>
                                     </div>
                                 </div>
                             </div>
@@ -231,9 +241,9 @@
                                         <h5 class="mt-0 title">PK2MABA</h5>
                                         <h6 class="publis">Hari Kedua</h6>
                                         <p>Merupakan acara penyambutan Mahasiswa Baru
-                                        Fakultas Ilmu Komputer 2019 dan pembentukan pola
-                                        pikir mahasiswa baru Fakultas Ilmu Komputer
-                                        Universitas Brawijaya.</p>
+                                            Fakultas Ilmu Komputer 2019 dan pembentukan pola
+                                            pikir mahasiswa baru Fakultas Ilmu Komputer
+                                            Universitas Brawijaya.</p>
                                     </div>
                                 </div>
                             </div>
@@ -255,10 +265,10 @@
                                         <h5 class="mt-0 title">PKM Rangkaian 1</h5>
                                         {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
-                                        PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
-                                        baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail
-                                        pembuatan karya ilmiah sehingga kelak dapat berpartisipasi dalam
-                                        ajang PKM dan mampu mengikuti Pekan Ilmiah Mahasiswa Nasional.</p>
+                                            PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
+                                            baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail
+                                            pembuatan karya ilmiah sehingga kelak dapat berpartisipasi dalam
+                                            ajang PKM dan mampu mengikuti Pekan Ilmiah Mahasiswa Nasional.</p>
                                     </div>
                                 </div>
                             </div>
@@ -266,130 +276,130 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <figure class="figure">
-                                        <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                            class="figure-img img-fluid rounded">
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <div class="media timeLine">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 title">Kelas Inspirasi</h5>
-                                            {{-- <h6 class="publis">08 September 2019</h6> --}}
-                                            <p>Kelas Inspirasi merupakan rangkaian pertama dari Startup Academy 2019.
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <figure class="figure">
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                        class="figure-img img-fluid rounded">
+                                </figure>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="media timeLine">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 title">Kelas Inspirasi</h5>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <p>Kelas Inspirasi merupakan rangkaian pertama dari Startup Academy 2019.
                                             Kegiatan ini berupa seminar dan talkshow. Materi yang akan diberikan
                                             adalah leadership, entrepreneurship dan achievement yang akan diisi oleh
                                             pemateri yang berpengalaman dalam bidangnya.</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <figure class="figure">
-                                        <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                            class="figure-img img-fluid rounded">
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <div class="media timeLine">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 title">Open House</h5>
-                                            {{-- <h6 class="publis">08 September 2019</h6> --}}
-                                            <p>Open House FILKOM merupakan rangkaian kedua dari Startup Academy 2019.
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <figure class="figure">
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                        class="figure-img img-fluid rounded">
+                                </figure>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="media timeLine">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 title">Open House</h5>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <p>Open House FILKOM merupakan rangkaian kedua dari Startup Academy 2019.
                                             Kegiatan ini akan diisi dengan pengenalan LSO maupun LO yang ada di
                                             Fakultas Ilmu Komputer. Open House yang akan diselenggarakan akan
                                             dikemas seperti bazar atau pameran, dimana dalam rangkaian ini setiap
                                             anggota dari LSO maupun LO memberikan tampilan terbaik untuk mengenalkan
                                             LSO atau LO masing masing.</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <figure class="figure">
-                                        <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                            class="figure-img img-fluid rounded">
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <div class="media timeLine">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 title">PKM Rangkaian 2</h5>
-                                            {{-- <h6 class="publis">08 September 2019</h6> --}}
-                                            <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
-                                                PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
-                                                baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
-                                                karya ilmiah sehingga kelak dapat berpartisipasi dalam ajang PKM dan mampu
-                                                mengikuti Pekan Ilmiah Mahasiswa Nasional.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <figure class="figure">
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                        class="figure-img img-fluid rounded">
+                                </figure>
                             </div>
-                        </div>
-                    </div>
-                <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <figure class="figure">
-                                        <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                            class="figure-img img-fluid rounded">
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <div class="media timeLine">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 title">Outbond</h5>
-                                            {{-- <h6 class="publis">08 September 2019</h6> --}}
-                                            <p>Outbound merupakan rangkaian ketiga Startup Academy 2019
-                                            dimana pada kegiatan ini panitia telah menyiapkan beberapa permainan
-                                            menarik yang bertujuan untuk memberikan hiburan sekaligus menanamkan
-                                            beberapa nilai kekeluargaan kepada mahasiswa baru Fakultas Ilmu Komputer
-                                            2019..</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <div class="carousel-item">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <figure class="figure">
-                                        <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                            class="figure-img img-fluid rounded">
-                                    </figure>
-                                </div>
-                                <div class="col-md-6 d-flex align-items-center justify-content-center">
-                                    <div class="media timeLine">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 title">PKM Final</h5>
-                                            <h6 class="publis">08 September 2019</h6>
-                                            <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="media timeLine">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 title">PKM Rangkaian 2</h5>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
                                             karya ilmiah sehingga kelak dapat berpartisipasi dalam ajang PKM dan mampu
                                             mengikuti Pekan Ilmiah Mahasiswa Nasional.</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <figure class="figure">
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                        class="figure-img img-fluid rounded">
+                                </figure>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="media timeLine">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 title">Outbond</h5>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <p>Outbound merupakan rangkaian ketiga Startup Academy 2019
+                                            dimana pada kegiatan ini panitia telah menyiapkan beberapa permainan
+                                            menarik yang bertujuan untuk memberikan hiburan sekaligus menanamkan
+                                            beberapa nilai kekeluargaan kepada mahasiswa baru Fakultas Ilmu Komputer
+                                            2019..</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <figure class="figure">
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                        class="figure-img img-fluid rounded">
+                                </figure>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="media timeLine">
+                                    <div class="media-body">
+                                        <h5 class="mt-0 title">PKM Final</h5>
+                                        <h6 class="publis">08 September 2019</h6>
+                                        <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
+                                            PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
+                                            baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
+                                            karya ilmiah sehingga kelak dapat berpartisipasi dalam ajang PKM dan mampu
+                                            mengikuti Pekan Ilmiah Mahasiswa Nasional.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a class="carousel-control-prev" href="#carousel-timeline" role="button" data-slide="prev">
                 <span class="timeLine-prev" aria-hidden="true"><i class="far fa-chevron-left"></i></span>

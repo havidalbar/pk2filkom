@@ -28,23 +28,15 @@ Route::group(['as' => 'mahasiswa.'], function () {
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
+        Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
+            Route::get('/', 'JawabanController@index')->name('index');
+            Route::get('{slug}', 'JawabanController@getViewJawaban')->name('jawab');
+        });
         Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
         Route::get('nametag', 'MahasiswaController@getNametag')->name('nametag');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
-});
-Route::get('/isi-data-diri', function () {
-    return view('v_mahasiswa/formDataDiri');
-});
-Route::get('/berita', function () {
-    return view('v_mahasiswa/detailBerita');
-});
-Route::get('/kumpul-video', function () {
-    return view('v_mahasiswa/kumpulVideoIG');
-});
-Route::get('/kumpul-line', function () {
-    return view('v_mahasiswa/kumpulLine');
 });
 
 // Admin Panel
