@@ -34,6 +34,15 @@ class SubmitLineRequest extends FormRequest
         ];
     }
 
+    protected function prepareForValidation()
+    {
+        $penugasan = \App\PenugasanBeta::where('slug', $this->route('slug'))
+            ->first(['jenis', 'slug']);
+        $this->merge([
+            'jenis' => $penugasan->jenis
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -41,13 +50,21 @@ class SubmitLineRequest extends FormRequest
      */
     public function rules()
     {
-        $penugasan = \App\Penugasan::where('slug', $this->route('slug'))
-            ->withCount(['soal'])->get();
-        return [
-            'jawaban' => 'required|array|size:' . $penugasan->soal_count,
-            'jawaban.id' => 'required|string|size:32',
-            'jawaban.url' => 'required|string|max:191',
-            'jawaban.screenshot' => 'required|image|max:4096'
-        ];
+        $penugasan = \App\PenugasanBeta::where('slug', $this->route('slug'))
+            ->withCount(['soal'])->first();
+        if ($penugasan->jenis == 1 || $penugasan->jenis == 2) {
+            return [
+                'jawaban' => 'required|array|size:' . $penugasan->soal_count,
+                'jawaban.*.id' => 'required|string|size:36',
+                'jawaban.*.url' => 'required|string|max:191',
+            ];
+        } else {
+            return [
+                'jawaban' => 'required|array|size:' . $penugasan->soal_count,
+                'jawaban.*.id' => 'required|string|size:36',
+                'jawaban.*.url' => 'required|string|max:191',
+                'jawaban.*.screenshot' => 'required|image|max:4096'
+            ];
+        }
     }
 }

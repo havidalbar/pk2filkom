@@ -7,11 +7,12 @@
 <!-- endNavbar atas -->
 <div class="jumbotron jumbotron-fluid bg-kumpul-video-ig">
     <div class="container">
-        <h1 class="titleKumpulVideo">{{$penugasan->judul}}</h1>
+        <h1 class="titleKumpulVideo">{{ $penugasan->judul }}</h1>
         <div class="garisKumpulVideo"></div>
         <div class="container bg-kumpul">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="preview-tugas">
+                    {{ $errors ?? 'aaa' }}
                     @foreach ($penugasan->soal as $index => $soal)                                            
                     <p class="preview-text">Preview</p>                    
                     @if ($penugasan->jenis == '1')                    
@@ -42,7 +43,8 @@
                     </script>
                     @endforeach                
                     <div class="d-flex justify-content-center">
-                        <form class="form-input-link" method="GET">
+                        <form class="form-input-link" method="POST">
+                            @csrf
                             <div class="input-group">
                                 @foreach ($penugasan->soal as $index => $soal)
                                 @if ($penugasan->jenis == '1')

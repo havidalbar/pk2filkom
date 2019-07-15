@@ -8,6 +8,7 @@ use App\ProtectedFile;
 use App\Http\Requests\SubmitIGYTRequest;
 use App\Http\Requests\SubmitLineRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class JawabanController extends Controller
 {
@@ -52,7 +53,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/kumpulLine');
     }
 
-    public function submitJawaban($request, $slug)
+    public function submitJawaban(SubmitLineRequest $request, $slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
@@ -61,11 +62,6 @@ class JawabanController extends Controller
                 case '1':
                 case '2':
                 case '3':
-                    if ($penugasan->jenis == 3) {
-                        $this->triggerSubmitLineRequest($request);
-                    } else {
-                        $this->triggerSubmitIGYTRequest($request);
-                    }
                     return $this->submitIGYTLine($request, $penugasan);
                 case '4':
             }
@@ -73,12 +69,6 @@ class JawabanController extends Controller
             abort(404);
         }
     }
-
-    private function triggerSubmitIGYTRequest(SubmitIGYTRequest $request)
-    { }
-
-    private function triggerSubmitLineRequest(SubmitLineRequest $request)
-    { }
 
     private function submitIGYTLine($request, $penugasan)
     {
@@ -107,7 +97,7 @@ class JawabanController extends Controller
                             } else {
                                 $urlChecker = 'https://www.youtube.com/oembed?url=';
                             }
-                            if (!$this->checkValidInstagramYoutubeUrl($urlChecker . $jawaban->url)) {
+                            if (!$this->checkValidInstagramYoutubeUrl($urlChecker . $jawaban['url'])) {
                                 $errors[] = "jawaban[{$index}]";
                                 $error_messages[] = "Link tidak valid";
                                 break;
@@ -159,7 +149,7 @@ class JawabanController extends Controller
                         ]);
 
                         $submitJawaban->screenshot = $path;
-                        $submitJawaban->jawaban = $jawaban->url;
+                        $submitJawaban->jawaban = $jawaban['url'];
                         $submitJawaban->save();
                     } else {
                         $errors[] = "jawaban[{$index}]";
@@ -183,12 +173,11 @@ class JawabanController extends Controller
 
     private function checkValidInstagramYoutubeUrl($url)
     {
-        $url = $url;
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_URL, $url);
+        $ch = curl_init($url);
+        curl_exec($ch);
         $http_code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        dd($http_code);
         curl_close($ch);
         if ($http_code == 200) {
             return true;
