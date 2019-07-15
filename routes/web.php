@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 
-Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFiles')
+Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
     ->where('name', '(.*)')->name('protected-assets');
 
 // Mahasiswa

@@ -23,4 +23,9 @@ class ProtectedFile extends Model
     {
         return route('protected-assets', ['name' => $this->path]);
     }
+
+    public function jawaban()
+    {
+        return $this->belongsTo('App\JawabanBeta', 'id_jawaban', 'id');
+    }
 }

@@ -36,12 +36,12 @@ class MahasiswaController extends Controller
         return view('v_mahasiswa/nametag');
     }
 
-    public function getProtectedFiles($name)
+    public function getProtectedFile($name)
     {
         $file = \App\ProtectedFile::find($name);
 
         if ($file) {
-            if (session('nim') == $file->nim || session('username')) {
+            if (session('nim') == $file->jawaban->nim || session('username')) {
                 if (file_exists(storage_path($file->path))) {
                     return response()->file(storage_path($file->path));
                 } else {
