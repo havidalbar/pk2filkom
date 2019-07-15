@@ -2,35 +2,27 @@
 
 namespace App;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class JawabanBeta extends Model
 {
+    use Uuid;
+
     protected $table = 'jawaban_beta';
 
     protected $fillable = [
         'nim',
-        'id_penugasan',
         'id_soal'
     ];
 
-    protected $appends = [
-        'files'
-    ];
-
-    public function getFilesAttribute()
+    public function files()
     {
-        $files = \App\ProtectedFile::where([
-            'nim', $this->nim,
-            'id_soal', $this->id_soal
-        ])->get();
+        return $this->hasMany('App\ProtectedFiles', 'id_jawaban', 'id');
+    }
 
-        $file_urls = [];
-
-        foreach ($files as $file) {
-            $file_urls[] = route('protected-assets', $file->path);
-        }
-
-        return $file_urls;
+    public function soal()
+    {
+        return $this->belongsTo('App\PenugasanSoalBeta', 'id_soal', 'id');
     }
 }

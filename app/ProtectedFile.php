@@ -15,8 +15,12 @@ class ProtectedFile extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'nim',
-        'id_soal',
+        'id_jawaban',
         'path'
     ];
+
+    public function getLinkAttribute()
+    {
+        return route('protected-assets', ['name' => $this->path]);
+    }
 }

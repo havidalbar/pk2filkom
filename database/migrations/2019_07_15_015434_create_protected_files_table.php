@@ -14,13 +14,9 @@ class CreateProtectedFilesTable extends Migration
     public function up()
     {
         Schema::create('protected_files', function (Blueprint $table) {
-            $table->string('path', 191);
-            $table->primary('path');
-            $table->unsignedBigInteger('nim');
-            $table->string('id_soal', 32)->nullable();
-            $table->foreign('id_soal')->references('id_soal')->on('jawaban_beta')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('nim')->references('nim')->on('mahasiswa')
+            $table->string('path', 191)->primary();
+            $table->string('id_jawaban', 36)->nullable();
+            $table->foreign('id_jawaban')->references('id')->on('jawaban_beta')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
     }

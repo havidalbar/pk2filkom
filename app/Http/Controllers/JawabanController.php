@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\JawabanBeta;
 use App\PenugasanBeta;
 use App\ProtectedFile;
-use App\Http\Requests\SubmitIGYTRequest;
-use App\Http\Requests\SubmitLineRequest;
+use App\Http\Requests\SubmitJawabanRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,9 +37,10 @@ class JawabanController extends Controller
     private function getViewFormInstagramYoutube(Request $request, $penugasan)
     {
         $jawabans = JawabanBeta::where([
-            'nim' => session('nim'),
-            'id_penugasan' => $penugasan->id
-        ])->get();
+            'nim' => session('nim')
+        ])->whereHas('soal', function ($query) use ($penugasan) {
+            $query->where('id_penugasan', $penugasan->id);
+        })->get();
         return view('v_mahasiswa/kumpulVideoIG', compact('penugasan', 'jawabans'));
     }
 
@@ -53,7 +53,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/kumpulLine');
     }
 
-    public function submitJawaban(SubmitLineRequest $request, $slug)
+    public function submitJawaban(SubmitJawabanRequest $request, $slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
@@ -107,6 +107,7 @@ class JawabanController extends Controller
                                 try {
                                     $screenshot = $request->file("jawaban[{$index}][screenshot]");
                                     $path = $screenshot->store('storage/uploads');
+                                    $savePath = str_replace_first('storage', '', $path);
                                 } catch (\Exception $e) {
                                     $errors[] = "jawaban[{$index}]";
                                     $error_messages[] = "Gambar tidak dapat disimpan";
@@ -119,22 +120,17 @@ class JawabanController extends Controller
                             }
                         }
 
-                        $savePath = str_replace_first('storage', '', $path);
-
                         $submitJawaban = JawabanBeta::where([
                             'nim' => session('nim'),
-                            'id_soal' => $soal->id,
-                            'id_penugasan' => $penugasan->id
+                            'id_soal' => $soal->id
                         ])->first();
 
                         if (!$submitJawaban) {
-                            $submitJawaban = JawabanBeta::create([
-                                'nim' => session('nim'),
-                                'id_soal' => $soal->id,
-                                'id_penugasan' => $penugasan->id
-                            ]);
+                            $submitJawaban = new JawabanBeta;
+                            $submitJawaban->nim = session('nim');
+                            $submitJawaban->id_soal = $soal->id;
                         } else {
-                            if ($penugasan->jenis == 3 && $path && file_exists(storage_path($submitJawaban->screenshot))) {
+                            if ($penugasan->jenis == 3 && file_exists(storage_path($submitJawaban->screenshot))) {
                                 unlink(storage_path($submitJawaban->screenshot));
 
                                 $existFile = ProtectedFiles::find($submitJawaban->screenshot);
@@ -142,15 +138,15 @@ class JawabanController extends Controller
                             }
                         }
 
-                        ProtectedFile::create([
-                            'nim' => session('nim'),
-                            'id_soal' => $soal->id,
-                            'path' => $savePath
-                        ]);
-
-                        $submitJawaban->screenshot = $path;
                         $submitJawaban->jawaban = $jawaban['url'];
                         $submitJawaban->save();
+
+                        if ($penugasan->jenis == 3) {
+                            ProtectedFile::create([
+                                'id_jawaban' => $submitJawaban->id,
+                                'path' => $savePath
+                            ]);
+                        }
                     } else {
                         $errors[] = "jawaban[{$index}]";
                         $error_messages[] = "ID soal tidak valid";
@@ -173,12 +169,24 @@ class JawabanController extends Controller
 
     private function checkValidInstagramYoutubeUrl($url)
     {
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true,     // return web page
+            CURLOPT_HEADER         => false,    // don't return headers
+            CURLOPT_FOLLOWLOCATION => true,     // follow redirects
+            CURLOPT_ENCODING       => "",       // handle all encodings
+            CURLOPT_USERAGENT      => "spider", // who am i
+            CURLOPT_AUTOREFERER    => true,     // set referer on redirect
+            CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
+            CURLOPT_TIMEOUT        => 120,      // timeout on response
+            CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
+            CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
+        );
         $ch = curl_init($url);
+        curl_setopt_array($ch, $options);
         curl_exec($ch);
         $http_code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        dd($http_code);
         curl_close($ch);
+
         if ($http_code == 200) {
             return true;
         } else {
