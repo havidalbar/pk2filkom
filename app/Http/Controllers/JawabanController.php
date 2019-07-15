@@ -65,7 +65,7 @@ class JawabanController extends Controller
 
     private function getViewPenugasanOffline($penugasan)
     {
-        return view('v_mahasiswa/detailPenugasanOffline', compact($penugasan));
+        return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug)
