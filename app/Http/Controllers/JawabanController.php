@@ -16,7 +16,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/penugasan');
     }
 
-    public function getViewJawaban(Request $request, $slug)
+    public function getViewJawaban($slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
@@ -24,17 +24,22 @@ class JawabanController extends Controller
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
-                    return $this->getViewFormInstagramYoutube($request, $penugasan);
+                    return $this->getViewFormInstagramYoutube($penugasan);
                 case '3':
-                    return $this->getViewFormLine($request, $penugasan);
+                    return $this->getViewFormLine($penugasan);
                 case '4':
+                    return $this->startPilihanGanda($penugasan);
+                case '5':
+                    return $this->getViewPenugasanOffline($penugasan);
+                default:
+                    abort(500);
             }
         } else {
             abort(404);
         }
     }
 
-    private function getViewFormInstagramYoutube(Request $request, $penugasan)
+    private function getViewFormInstagramYoutube($penugasan)
     {
         $jawabans = JawabanBeta::where([
             'nim' => session('nim')
@@ -44,13 +49,23 @@ class JawabanController extends Controller
         return view('v_mahasiswa/kumpulVideoIG', compact('penugasan', 'jawabans'));
     }
 
-    private function getViewFormLine(Request $request, $penugasan)
+    private function getViewFormLine($penugasan)
     {
         $jawabans = JawabanBeta::where([
             'nim' => session('nim'),
             'id_penugasan' => $penugasan->id
         ])->get();
         return view('v_mahasiswa/kumpulLine');
+    }
+
+    private function startPilihanGanda($penugasan)
+    {
+        //
+    }
+
+    private function getViewPenugasanOffline($penugasan)
+    {
+        return view('v_mahasiswa/detailPenugasanOffline', compact($penugasan));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug)
@@ -97,7 +112,7 @@ class JawabanController extends Controller
                             } else {
                                 $urlChecker = 'https://www.youtube.com/oembed?url=';
                             }
-                            if (!$this->checkValidInstagramYoutubeUrl($urlChecker . $jawaban['url'])) {
+                            if (!$this->checkValidUrl($urlChecker . $jawaban['url'])) {
                                 $errors[] = "jawaban[{$index}]";
                                 $error_messages[] = "Link tidak valid";
                                 break;
@@ -167,7 +182,7 @@ class JawabanController extends Controller
         }
     }
 
-    private function checkValidInstagramYoutubeUrl($url)
+    private function checkValidUrl($url)
     {
         $options = array(
             CURLOPT_RETURNTRANSFER => true,     // return web page

@@ -12,48 +12,61 @@
         <div class="container bg-kumpul">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="preview-tugas">
-                    {{ $errors ?? 'aaa' }}
-                    @foreach ($penugasan->soal as $index => $soal)                                            
-                    <p class="preview-text">Preview</p>                    
-                    @if ($penugasan->jenis == '1')                    
+                    @foreach ($penugasan->soal as $index => $soal)
+                    <p class="preview-text">Preview</p>
+                    @if ($penugasan->jenis == 1)
                     <div class="justify-content-center align-content-center d-flex">
-                        <iframe id="preview-video-ig-{{$index}}" class="preview-video-ig" src="https://www.instagram.com/p/BsDMEbyF_qf/embed"
+                        <iframe id="preview-video-ig-{{ $index }}" class="preview-video-ig"
+                            src="https://www.instagram.com/p/BsDMEbyF_qf/embed" frameborder="0" scrolling="no"
+                            allowtransparency="true">
+                        </iframe>
+                    </div>
+                    @elseif ($penugasan->jenis == 2)
+                    <div
+                        class="justify-content-center align-content-center d-flex embed-responsive embed-responsive-16by9">
+                        <iframe id="preview-video-yt-{{$index}}" src="https://www.youtube.com/embed/1smZUQs0gIE"
                             frameborder="0" scrolling="no" allowtransparency="true">
                         </iframe>
                     </div>
-                    @elseif ($penugasan->jenis == '2')
-                    <div class="justify-content-center align-content-center d-flex embed-responsive embed-responsive-16by9">                        
-                        <iframe id="preview-video-yt-{{$index}}" src="https://www.youtube.com/embed/1smZUQs0gIE"
-                            frameborder="0" scrolling="no" allowtransparency="true">
-                        </iframe>                        
-                    </div>    
-                    @endif                                                     
+                    @endif
                     <script>
-                    $(document).ready(function () {                        
-                        $('#input-video-ig-{{$index}}').on('input', function() {
+                        $(document).ready(function () {
+                        $('#input-video-ig-{{ $index }}').on('input', function() {
                             document.getElementById("preview-video-ig-{{$index}}").src = (this.value) + "embed";
                         });
-                        $('#input-video-yt-{{$index}}').on('input', function() {                
-                            var link = this.value;        
+                        $('#input-video-yt-{{ $index }}').on('input', function() {
+                            var link = this.value;
                             var splitLink = link.split("/");
-                            var idLink = splitLink[3];                            
+                            var idLink = splitLink[3];
                             document.getElementById("preview-video-yt-{{$index}}").src = "https://www.youtube.com/embed/" + idLink;
-                        });                              
-                    });                    
+                        });
+                    });
                     </script>
-                    @endforeach                
+                    @endforeach
                     <div class="d-flex justify-content-center">
                         <form class="form-input-link" method="POST">
                             @csrf
                             <div class="input-group">
                                 @foreach ($penugasan->soal as $index => $soal)
+                                <?php
+                                $jawabanSoal = null;
+
+                                foreach ($jawabans as $jawaban) {
+                                    if ($jawaban->id_soal == $soal->id) {
+                                        $jawabanSoal = $jawaban;
+                                        break;
+                                    }
+                                }
+                                ?>
                                 @if ($penugasan->jenis == '1')
-                                <input id="input-video-ig-{{$index}}" type="url" class="form-control input-video"
-                                    placeholder="ex: https://www.instagram.com/p/BsDMEbyF_qf/" name="jawaban[{{$index}}][url]">                                
+                                <input id="input-video-ig-{{ $index }}" type="url" class="form-control input-video"
+                                    placeholder="{{ $soal->soal }}" name="jawaban[{{ $index }}][url]"
+                                    value="{{ $jawabanSoal ? $jawabanSoal->jawaban : '' }}">
                                 @elseif ($penugasan->jenis == '2')
-                                <input id="input-video-yt-{{$index}}" type="url" class="form-control input-video"
-                                    placeholder="ex: https://youtu.be/1smZUQs0gIE" name="jawaban[{{$index}}][url]">                                
-                                @endif                                
+                                <input id="input-video-yt-{{ $index }}" type="url" class="form-control input-video"
+                                    placeholder="{{ $soal->soal }}" name="jawaban[{{ $index }}][url]"
+                                    value="{{ $jawabanSoal ? $jawabanSoal->jawaban : '' }}">
+                                @endif
                                 <input name="jawaban[{{ $index }}][id]" value="{{ $soal->id }}" type="hidden">
                                 @endforeach
                                 <div class="input-group-append">
