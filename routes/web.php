@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('v_mahasiswa/halamanAwal');
 })->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+
+Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFiles')
+    ->where('name', '(.*)')->name('protected-assets');
+
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.tologin']], function () {

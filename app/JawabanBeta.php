@@ -25,6 +25,12 @@ class JawabanBeta extends Model
             'id_soal', $this->id_soal
         ])->get();
 
-        return $files;
+        $file_urls = [];
+
+        foreach ($files as $file) {
+            $file_urls[] = route('protected-assets', $file->path);
+        }
+
+        return $file_urls;
     }
 }

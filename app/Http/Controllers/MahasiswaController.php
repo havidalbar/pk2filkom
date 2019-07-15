@@ -29,10 +29,29 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/kumpulVideoIG');
     }
-    
+
     public function getNametag()
     {
         $mahasiswa = Mahasiswa::find(Session::get('nim'));
         return view('v_mahasiswa/nametag');
+    }
+
+    public function getProtectedFiles($name)
+    {
+        $file = \App\ProtectedFile::find($name);
+
+        if ($file) {
+            if (session('nim') == $file->nim || session('username')) {
+                if (file_exists(storage_path($file->path))) {
+                    return response()->file(storage_path($file->path));
+                } else {
+                    abort(404);
+                }
+            } else {
+                abort(401);
+            }
+        } else {
+            abort(404);
+        }
     }
 }

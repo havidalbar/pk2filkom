@@ -129,6 +129,8 @@ class JawabanController extends Controller
                             }
                         }
 
+                        $savePath = str_replace_first('storage', '', $path);
+
                         $submitJawaban = JawabanBeta::where([
                             'nim' => session('nim'),
                             'id_soal' => $soal->id,
@@ -142,8 +144,8 @@ class JawabanController extends Controller
                                 'id_penugasan' => $penugasan->id
                             ]);
                         } else {
-                            if ($penugasan->jenis == 3 && $path && file_exists($submitJawaban->screenshot)) {
-                                unlink($submitJawaban->screenshot);
+                            if ($penugasan->jenis == 3 && $path && file_exists(storage_path($submitJawaban->screenshot))) {
+                                unlink(storage_path($submitJawaban->screenshot));
 
                                 $existFile = ProtectedFiles::find($submitJawaban->screenshot);
                                 $existFile->delete();
@@ -153,7 +155,7 @@ class JawabanController extends Controller
                         ProtectedFile::create([
                             'nim' => session('nim'),
                             'id_soal' => $soal->id,
-                            'path' => $path
+                            'path' => $savePath
                         ]);
 
                         $submitJawaban->screenshot = $path;
