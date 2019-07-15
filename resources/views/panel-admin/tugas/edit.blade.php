@@ -26,6 +26,8 @@
                     @include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'edit'])
                     @elseif ($penugasan->jenis === 1 || $penugasan->jenis === 2 || $penugasan->jenis === 3)
                     @include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'edit'])
+                    @elseif ($penugasan->jenis === 5)
+                    @include('panel-admin.tugas.form-create-edit-offline', ['ketForm' => 'edit'])
                     @endif
                 </form>
             </div>
