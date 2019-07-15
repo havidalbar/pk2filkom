@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubmitIGYTRequest extends FormRequest
+class SubmitLineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,9 @@ class SubmitIGYTRequest extends FormRequest
             'string' => 'Data jawaban tidak valid',
             'size' => 'Data jawaban tidak valid',
             'array' => 'Data jawaban tidak valid',
+            'image' => 'File yang diunggah harus berupa gambar',
             'jawaban.url.max' => 'Masukan harus tidak lebih dari :max karakter',
+            'jawaban.screenshot.max' => 'File yang diunggah harus tidak lebih dari :max KB'
         ];
     }
 
@@ -45,6 +47,7 @@ class SubmitIGYTRequest extends FormRequest
             'jawaban' => 'required|array|size:' . $penugasan->soal_count,
             'jawaban.id' => 'required|string|size:32',
             'jawaban.url' => 'required|string|max:191',
+            'jawaban.screenshot' => 'required|image|max:4096'
         ];
     }
 }

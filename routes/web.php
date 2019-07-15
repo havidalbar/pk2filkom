@@ -32,7 +32,8 @@ Route::group(['as' => 'mahasiswa.'], function () {
             Route::get('/', 'JawabanController@index')->name('index');
             Route::group(['prefix' => '{slug}'], function () {
                 Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
-                Route::post('{index}', 'JawabanController@submitJawaban')->name('submit-jawaban');
+                Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
+                Route::post('{index}', 'JawabanController@submitJawaban')->name('submit-pilihan-ganda');
             });
         });
         Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\JawabanBeta;
 use App\PenugasanBeta;
+use App\ProtectedFile;
+use App\Http\Requests\SubmitIGYTRequest;
+use App\Http\Requests\SubmitLineRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class JawabanController extends Controller
 {
@@ -47,10 +49,10 @@ class JawabanController extends Controller
             'nim' => session('nim'),
             'id_penugasan' => $penugasan->id
         ])->get();
-        return view('v_mahasiswa/kumpulVideoIG');
+        return view('v_mahasiswa/kumpulLine');
     }
 
-    public function submitJawaban($request, $slug, $index = null)
+    public function submitJawaban($request, $slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
@@ -58,9 +60,13 @@ class JawabanController extends Controller
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
-                    return $this->submitIGYT($request, $penugasan);
                 case '3':
-                    return $this->getViewFormLine($request, $penugasan);
+                    if ($penugasan->jenis == 3) {
+                        $this->triggerSubmitLineRequest($request);
+                    } else {
+                        $this->triggerSubmitIGYTRequest($request);
+                    }
+                    return $this->submitIGYTLine($request, $penugasan);
                 case '4':
             }
         } else {
@@ -68,7 +74,13 @@ class JawabanController extends Controller
         }
     }
 
-    private function submitIGYT(SubmitIGYTRequest $request, $penugasan)
+    private function triggerSubmitIGYTRequest(SubmitIGYTRequest $request)
+    { }
+
+    private function triggerSubmitLineRequest(SubmitLineRequest $request)
+    { }
+
+    private function submitIGYTLine($request, $penugasan)
     {
         if (count($request->jawaban) == count($penugasan->soal)) {
             $now = date('Y-m-d H:i:s');
@@ -89,32 +101,64 @@ class JawabanController extends Controller
                     }
 
                     if ($soal) {
-                        if ($penugasan->jenis === 1) {
-                            $urlChecker = 'https://api.instagram.com/oembed?url=';
+                        if ($penugasan->jenis == 1 || $penugasan->jenis == 2) {
+                            if ($penugasan->jenis == 1) {
+                                $urlChecker = 'https://api.instagram.com/oembed?url=';
+                            } else {
+                                $urlChecker = 'https://www.youtube.com/oembed?url=';
+                            }
+                            if (!$this->checkValidInstagramYoutubeUrl($urlChecker . $jawaban->url)) {
+                                $errors[] = "jawaban[{$index}]";
+                                $error_messages[] = "Link tidak valid";
+                                break;
+                            }
                         } else {
-                            $urlChecker = 'https://www.youtube.com/oembed?url=';
+                            if ($jawaban['screenshot']) {
+                                try {
+                                    $screenshot = $request->file("jawaban[{$index}][screenshot]");
+                                    $path = $screenshot->store('storage/uploads');
+                                } catch (\Exception $e) {
+                                    $errors[] = "jawaban[{$index}]";
+                                    $error_messages[] = "Gambar tidak dapat disimpan";
+                                    break;
+                                }
+                            } else {
+                                $errors[] = "jawaban[{$index}]";
+                                $error_messages[] = "Gambar tidak dapat disimpan";
+                                break;
+                            }
                         }
-                        if ($this->checkValidInstagramYoutubeUrl($urlChecker . $jawaban->url)) {
-                            $submitJawaban = JawabanBeta::where([
+
+                        $submitJawaban = JawabanBeta::where([
+                            'nim' => session('nim'),
+                            'id_soal' => $soal->id,
+                            'id_penugasan' => $penugasan->id
+                        ])->first();
+
+                        if (!$submitJawaban) {
+                            $submitJawaban = JawabanBeta::create([
                                 'nim' => session('nim'),
                                 'id_soal' => $soal->id,
                                 'id_penugasan' => $penugasan->id
-                            ])->first();
-
-                            if (!$submitJawaban) {
-                                $submitJawaban = JawabanBeta::create([
-                                    'nim' => session('nim'),
-                                    'id_soal' => $soal->id,
-                                    'id_penugasan' => $penugasan->id
-                                ]);
-                            }
-
-                            $submitJawaban->jawaban = $jawaban->url;
-                            $submitJawaban->save();
+                            ]);
                         } else {
-                            $errors[] = "jawaban[{$index}]";
-                            $error_messages[] = "Link tidak valid";
+                            if ($penugasan->jenis == 3 && $path && file_exists($submitJawaban->screenshot)) {
+                                unlink($submitJawaban->screenshot);
+
+                                $existFile = ProtectedFiles::find($submitJawaban->screenshot);
+                                $existFile->delete();
+                            }
                         }
+
+                        ProtectedFile::create([
+                            'nim' => session('nim'),
+                            'id_soal' => $soal->id,
+                            'path' => $path
+                        ]);
+
+                        $submitJawaban->screenshot = $path;
+                        $submitJawaban->jawaban = $jawaban->url;
+                        $submitJawaban->save();
                     } else {
                         $errors[] = "jawaban[{$index}]";
                         $error_messages[] = "ID soal tidak valid";

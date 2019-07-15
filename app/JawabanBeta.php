@@ -13,4 +13,18 @@ class JawabanBeta extends Model
         'id_penugasan',
         'id_soal'
     ];
+
+    protected $appends = [
+        'files'
+    ];
+
+    public function getFilesAttribute()
+    {
+        $files = \App\ProtectedFile::where([
+            'nim', $this->nim,
+            'id_soal', $this->id_soal
+        ])->get();
+
+        return $files;
+    }
 }
