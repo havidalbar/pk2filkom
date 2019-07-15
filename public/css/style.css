@@ -2009,7 +2009,7 @@ input::-webkit-inner-spin-button {
     color: white;
     text-align: center;
 }
-.preview-tugas #preview-video-ig {
+.preview-tugas .preview-video-ig {
     width: 320px;
     height: 374px;
     border-radius: 3px;
@@ -2037,32 +2037,15 @@ input::-webkit-inner-spin-button {
     color: white;
     max-width: 800px;
     padding: 20px;
-}
-.detail-tugas .detail-title {
-    font-family: "Esphimere-SemiBold";
-    text-transform: uppercase;
-    font-size: 28px;
-    text-align: center;
     margin-top: 32px;
 }
-.detail-tugas .detail-list {
+.detail-tugas h3,h2,h4{
+    font-family: "Esphimere-SemiBold";    
+}
+.detail-tugas p,ol{
     font-size: 22px;
 }
-.detail-list .nomor-text {
-    width: 20px;
-}
-.detail-list .text {
-    margin-left: 10px;
-}
-.detail-list .text-periode{
-    font-family: "Esphimere-semiBold";
-}
-.text a{
-    text-decoration: none;
-}
-.text .nomor-sub-text{
-    margin-right: 10px;
-}
+
 @media (max-width: 767.98px) {
     .titleKumpulVideo {
         font-size: 28px;
@@ -2080,7 +2063,7 @@ input::-webkit-inner-spin-button {
     .preview-tugas .preview-text {
         font-size: 24px;
     }    
-    .preview-tugas #preview-video-ig {
+    .preview-tugas .preview-video-ig {
         width: 270px;
         height: 335px;
     }
@@ -2102,10 +2085,10 @@ input::-webkit-inner-spin-button {
         display: block;
         height: 36px;
     }
-    .detail-tugas .detail-title {
+    .detail-tugas h3{
         font-size: 24px;
     }
-    .detail-tugas .detail-list {
+    .detail-tugas p,ol{
         font-size: 20px;
     }
 }
