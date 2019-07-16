@@ -11,17 +11,18 @@
         <div class="accordion" id="accordionFAQ">
             @foreach ($faqs as $faq)
             <div class="card">
-            <div class="card-header" id="heading{{$faq->id}}">
+                <div class="card-header" id="heading{{$faq->id}}">
                     <!-- <h2 class="mb-0"> -->
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
-                    data-target="#collapse{{$faq->id}}" aria-expanded="true" aria-controls="collapse{{$faq->id}}">
-                        {{$faq->tanya}}
+                        data-target="#collapse{{$faq->id}}" aria-expanded="true" aria-controls="collapse{{$faq->id}}">
+                        {{ $faq->tanya }}
                     </button>
                     <!-- </h2> -->
                 </div>
-            <div id="collapse{{$faq->id}}" class="collapse" aria-labelledby="heading{{$faq->id}}" data-parent="#accordionFAQ">
+                <div id="collapse{{$faq->id}}" class="collapse" aria-labelledby="heading{{$faq->id}}"
+                    data-parent="#accordionFAQ">
                     <div class="card-body">
-                            {{$faq->jawab}}
+                        {!! $faq->jawab !!}
                     </div>
                 </div>
             </div>
