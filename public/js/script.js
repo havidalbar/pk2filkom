@@ -21,7 +21,7 @@ $(document).ready(function () {
         }
     });
     // endParalex fixNavbar
-    
+
     // ScrollAnimate
     $('#swipUp, [data-item-ojb]').on('click', function (e) {
         e.preventDefault();
@@ -76,107 +76,107 @@ $(document).ready(function () {
                 settings: {
                     arrows: false,
                     swipe: true,
-              centerMode: true,
-              centerPadding: '40px',
-              slidesToShow: 1
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                }
             }
-        }
-    ]
-});
-$('.zoom').zoom();
-// editKomen
-jQuery.fn.putEnd = function() {
-    return this.each(function() {
-        var $el = $(this), el = this;
-        if (!$el.is(":focus")) {
-            $el.focus();
-        }
-        if (el.setSelectionRange) {
-            var len = $el.val().length * 2;
-            setTimeout(function() { el.setSelectionRange(len, len); }, 1);
-        } else {
-            $el.val($el.val());
-        }
-
-        this.scrollTop = 999999;
+        ]
     });
-};
+    $('.zoom').zoom();
+    // editKomen
+    jQuery.fn.putEnd = function () {
+        return this.each(function () {
+            var $el = $(this), el = this;
+            if (!$el.is(":focus")) {
+                $el.focus();
+            }
+            if (el.setSelectionRange) {
+                var len = $el.val().length * 2;
+                setTimeout(function () { el.setSelectionRange(len, len); }, 1);
+            } else {
+                $el.val($el.val());
+            }
 
-$('.actionComment').on('click', '#buttonEdit', function(){
-    // let id   = $(this).attr("id"); 
-    let parentEdit = $(this).parent().parent().find('#dComment');
-    let form = $("<form/>", { action : '#', id : 'editComent' });
-    let input = $('<input />', { 'type': 'text', 'name': 'editComent', 'value': $('#dComment').text() });
-    
-    // console.log(parentEdit)
-    $(parentEdit).parent().append(form.append(input));
-    $(parentEdit).remove();
-    input.putEnd().on("focus", function() {
-        searchInput.putEnd();
-    });
-    
-    let buttonNext = $(this).parent();
-    buttonNext.empty();
-    
-    buttonNext.append(`
+            this.scrollTop = 999999;
+        });
+    };
+
+    $('.actionComment').on('click', '#buttonEdit', function () {
+        // let id   = $(this).attr("id"); 
+        let parentEdit = $(this).parent().parent().find('#dComment');
+        let form = $("<form/>", { action: '#', id: 'editComent' });
+        let input = $('<input />', { 'type': 'text', 'name': 'editComent', 'value': $('#dComment').text() });
+
+        // console.log(parentEdit)
+        $(parentEdit).parent().append(form.append(input));
+        $(parentEdit).remove();
+        input.putEnd().on("focus", function () {
+            searchInput.putEnd();
+        });
+
+        let buttonNext = $(this).parent();
+        buttonNext.empty();
+
+        buttonNext.append(`
         <button class="btn btn-comment" id="editComent">Kirim</button>
             <span>|</span>
         <button class="btn btn-comment" id="batalComment">Batal</button>
-    `);
-});
+        `);
+    });
 
-$('.actionComment').on('click', '#batalComment', function(){
-    let element = $(this).parent();
-    let parentEdit = $(this).parent().parent().find('#editComent');
+    $('.actionComment').on('click', '#batalComment', function () {
+        let element = $(this).parent();
+        let parentEdit = $(this).parent().parent().find('#editComent');
 
-    var input = $('<p />', { 'id': 'dComment', 'text': $(parentEdit.find('input[name="editComent"]')).val() });
-    $(parentEdit).parent().append(input);
-    $(parentEdit).remove();
+        var input = $('<p />', { 'id': 'dComment', 'text': $(parentEdit.find('input[name="editComent"]')).val() });
+        $(parentEdit).parent().append(input);
+        $(parentEdit).remove();
 
-    element.empty();
-    element.append(`
-        <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
-            <span>|</span>
-        <button class="btn btn-comment" id="buttonBalas">Balas</button>
-    `);
+        element.empty();
+        element.append(`
+            <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                <span>|</span>
+            <button class="btn btn-comment" id="buttonBalas">Balas</button>
+        `);
     
     // console.log(parentEdit)
     // console.log(parentEdit.find('input[name="editComent"]'))
 });
-$('.actionComment').on('click', '#buttonBalas', function(){
-    let parentBalas = $(this).parent().parent();
-    // console.log(this);
-    // console.log(parentBalas);
-    // console.log((parentBalas.find('form#balasComent')));
-    if(parentBalas.find('form#balasComent').length > 0){
+    $('.actionComment').on('click', '#buttonBalas', function () {
+        let parentBalas = $(this).parent().parent();
+        // console.log(this);
+        // console.log(parentBalas);
+        // console.log((parentBalas.find('form#balasComent')));
         $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas">X</button>')
-        alert('form replay komentar sudah ada!')
-    }else{
-        let form = $("<form/>", { action : '#', id : 'balasComent' });
-        let balas = `
+        if (parentBalas.find('form#balasComent').length > 0) {
+            alert('form replay komentar sudah ada!')
+        } else {
+            let form = $("<form/>", { action: '#', id: 'balasComent' });
+            let balas = `
             <div class="input-group border mb-3">
-                <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar anda" name="isi">
+                <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi">
                 <div class="input-group-append">
                     <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
                 </div>
             </div>`;
-        $(parentBalas).append(form.append(balas));
-    }
-});
-$('.actionComment').on('click', '#buttonBatalBalas', function(){
-    
-    let hapusReplay = $(this).parent().parent().find('form#balasComent');
-    // console.log(hapusReplay)
-    $(hapusReplay).remove();
-    $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
-});
-// Datepicker
-$(".tanggal").datepicker({
-    language: "id",
-    format: 'yyyy-mm-dd',
-    autoclose: true,
-    orientation: "bottom left",
-    defaultViewDate: { year: 2001 }
-});
-// endDatepicker
+            $(parentBalas).append(form.append(balas));
+        }
+    });
+    $('.actionComment').on('click', '#buttonBatalBalas', function () {
+
+        let hapusReplay = $(this).parent().parent().find('form#balasComent');
+        // console.log(hapusReplay)
+        $(hapusReplay).remove();
+        $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
+    });
+    // Datepicker
+    $(".tanggal").datepicker({
+        language: "id",
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        orientation: "bottom left",
+        defaultViewDate: { year: 2001 }
+    });
+    // endDatepicker
 });
