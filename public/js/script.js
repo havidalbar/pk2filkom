@@ -7,6 +7,7 @@ $(document).ready(function () {
             $('.pk2-jb6').css('height', ($(window).height() - 164) + 'px');
         }
     });
+    
     // Paralex fixNavbar
     $(window).scroll(function () {
         let navScroll = $(this).scrollTop();
@@ -37,6 +38,7 @@ $(document).ready(function () {
         }
     });
     // endScrollAnimate
+
     // Datepicker
     $(".tanggal").datepicker({
         language: "id",
@@ -46,9 +48,11 @@ $(document).ready(function () {
         defaultViewDate: { year: 2001 }
     });
     // endDatepicker
+
     // Preview video ig
     $('#input-video-ig').on('input', function() {
         document.getElementById("preview-video-ig").src = (this.value) + "embed";
     });
     // endPreview video ig
+
 });
