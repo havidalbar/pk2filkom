@@ -37,7 +37,10 @@ Route::group(['as' => 'mahasiswa.'], function () {
             Route::group(['prefix' => '{slug}'], function () {
                 Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
                 Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
-                Route::post('{index}', 'JawabanController@submitJawaban')->name('submit-pilihan-ganda');
+                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
+                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
+                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
+                });
             });
         });
         Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');

@@ -58,12 +58,22 @@ class SubmitJawabanRequest extends FormRequest
                 'jawaban.*.id' => 'required|string|size:36',
                 'jawaban.*.url' => 'required|string|max:191',
             ];
-        } else {
+        } else if ($penugasan->jenis == 3) {
             return [
                 'jawaban' => 'required|array|size:' . $penugasan->soal_count,
                 'jawaban.*.id' => 'required|string|size:36',
                 'jawaban.*.url' => 'required|string|max:191',
                 'jawaban.*.screenshot' => 'required|image|max:4096'
+            ];
+        } else {
+            return [
+                'jawaban.id' => 'required|string|size:36',
+                'jawaban.jawaban' => [
+                    'required',
+                    'string',
+                    'size:36',
+                    new \App\Rules\JawabanValid
+                ],
             ];
         }
     }
