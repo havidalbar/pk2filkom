@@ -206,7 +206,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -230,7 +230,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -254,7 +254,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -303,7 +303,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/oh.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -329,7 +329,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -354,7 +354,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/ob.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -379,7 +379,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
