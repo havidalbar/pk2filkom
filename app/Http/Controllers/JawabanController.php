@@ -12,7 +12,14 @@ class JawabanController extends Controller
 {
     public function index()
     {
-        return view('v_mahasiswa/penugasan');
+        $now = date('Y-m-d H:i:s');
+        $penugasans = PenugasanBeta::where('waktu_tampil', '>', $now)
+            ->withCount(['soal'])
+            ->orderBy('waktu_mulai', 'ASC')
+            ->orderBy('waktu_akhir', 'ASC')
+            ->get();
+
+        return view('v_mahasiswa/penugasan', compact('penugasans'));
     }
 
     public function getViewJawaban($slug)
@@ -93,14 +100,14 @@ class JawabanController extends Controller
 
         foreach ($soalSudahDijawab as $index => $jawabSoal) {
             if (!$jawabSoal->jawaban) {
-                return redirect()->route('penugasan.pilihan-ganda.view', [
+                return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
                     'slug' => $penugasan->slug,
                     'index' => $index + 1,
                 ]);
             }
         }
 
-        return redirect()->route('penugasan.pilihan-ganda.view', [
+        return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
             'slug' => $penugasan->slug,
             'index' => 1,
         ]);
@@ -138,10 +145,10 @@ class JawabanController extends Controller
             if ($penugasan->jenis != 5) {
                 $now = date('Y-m-d H:i:s');
                 if ($now < $penugasan->waktu_mulai) {
-                    return redirect()->route('penugasan.index')
+                    return redirect()->route('mahasiswa.penugasan.index')
                         ->with('alert', 'Penugasan belum dimulai');
                 } else if ($now > $penugasan->waktu_akhir) {
-                    return redirect()->route('penugasan.index')
+                    return redirect()->route('mahasiswa.penugasan.index')
                         ->with('alert', 'Waktu penugasan telah berakhir');
                 }
             }
@@ -290,12 +297,12 @@ class JawabanController extends Controller
             if ($request->action) {
                 switch ($request->action) {
                     case 'next':
-                        return redirect()->route('penugasan.pilihan-ganda.view', [
+                        return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
                             'slug' => $penugasan->slug,
                             'index' => $index + 1,
                         ]);
                     case 'done':
-                        return redirect()->route('penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
+                        return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
                     default:
                         return redirect()->back();
                 }
