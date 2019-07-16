@@ -13,7 +13,7 @@ class JawabanController extends Controller
     public function index()
     {
         $now = date('Y-m-d H:i:s');
-        $penugasans = PenugasanBeta::where('waktu_tampil', '>', $now)
+        $penugasans = PenugasanBeta::where('waktu_tampil', '<', $now)
             ->withCount(['soal'])
             ->orderBy('waktu_mulai', 'ASC')
             ->orderBy('waktu_akhir', 'ASC')

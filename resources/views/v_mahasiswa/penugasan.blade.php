@@ -17,8 +17,9 @@
                     <div class="item-penugasan">
                         <div class="nama-tugas">{{ $penugasan->judul }}</div>
                         <div class="row">
-                            <div class="col-md-4">{{ $penugasan->soal_count }} soal
-                                {{ strtolower($penugasan->jenis_text) }}</div>
+                            <div class="col-md-4">
+                                {{ ($penugasan->soal_count ? $penugasan->soal_count . ' Soal ' : '') . $penugasan->jenis_text }}
+                            </div>
                             <div class="col-md-4">Mulai : {{ $penugasan->waktu_mulai }}</div>
                             <div class="col-md-4">Berakhir : {{ $penugasan->waktu_akhir }}</div>
                         </div>
