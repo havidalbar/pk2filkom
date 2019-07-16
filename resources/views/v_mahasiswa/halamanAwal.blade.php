@@ -435,7 +435,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                         <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/myhome.jpg')}}" alt="">
+                            <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
                             <div class="overlay">
                                 <h2>Selamat Hari Buruh 2019</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
@@ -445,40 +445,41 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
+                        <div class="hovereffect-berita empty">
+                            <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
                             <div class="overlay">
-                                <h2>Atribut dan Barang Bawaan</h2>
+                                <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
+                                    <a class="info" href="#">coming soon</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/IMG_0069_birukuning.png')}}" alt="">
+                        <div class="hovereffect-berita empty">
+                            <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
                             <div class="overlay">
-                                <h2>Atribut dan Barang Bawaan</h2>
+                                <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
+                                    <a class="info" href="#">coming soon</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/line1.png')}}" alt="">
+                        <div class="hovereffect-berita empty">
+                            <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
                             <div class="overlay">
-                                <h2>Selamat Datang Mahasiswa Baru</h2>
+                                <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
+                                    <a class="info" href="#">coming soon</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
         </div>
     </div>
