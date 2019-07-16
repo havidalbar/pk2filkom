@@ -113,45 +113,6 @@ class AuthController extends Controller
         }
     }
 
-    // public function loginMahasiswa(Request $request)
-    // {
-    //     $API_EM = 'https://em.ub.ac.id/auth/css/api.php?nim=nim_mahasiswa&pass=pass_mahasiswa';
-    //     $API_EM_APPS = 'https://em.ub.ac.id/redirect/login/loginApps/?nim=nim_mahasiswa&password=pass_mahasiswa';
-
-    //     $nim = $request->nim;
-    //     $password = $request->password;
-    //     $responseLogin = json_decode(
-    //         file_get_contents(str_replace('nim_mahasiswa', $nim, str_replace('pass_mahasiswa', $password, $API_EM))
-    //         ), true);
-
-    //     if (substr($nim, 0, 5)) {
-    //         if ($nim && $password && $responseLogin['sukses']) {
-    //             $responseLoginEMApps = json_decode(
-    //                 file_get_contents(str_replace('nim_mahasiswa', $nim, str_replace('pass_mahasiswa', $password, $API_EM_APPS))
-    //                 ), true);
-
-    //             // Membuat session
-    //             Session::put('nim', $responseLogin['nim']);
-    //             Session::put('nama', $responseLogin['nama']);
-    //             Session::put('jurusan', $responseLogin['jurusan']);
-    //             Session::put('prodi', $responseLogin['prodi']);
-    //             Session::put('foto', $responseLoginEMApps['foto']);
-
-    //             // Cek sudah pernah isi data atau belum
-    //             $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
-    //             if ($data_mahasiswa) {
-    //                 return redirect('/')->with('alert', 'Anda berhasil login');
-    //             } else {
-    //                 return redirect('/isi-biodata');
-    //             }
-    //         } else {
-    //             return redirect('/')->with('alert', 'NIM atau password salah!');
-    //         }
-    //     } else {
-    //         return redirect('/')->with('alert', 'Hanya untuk angkatan 2019');
-    //     }
-    // }
-
     public function getDataDiri()
     {
         $data_mahasiswa = Mahasiswa::where('nim', Session::get('nim'))->first();
