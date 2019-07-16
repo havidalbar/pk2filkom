@@ -20,17 +20,6 @@ class JawabanController extends Controller
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
         if ($penugasan) {
-            if ($penugasan->jenis != 5) {
-                $now = date('Y-m-d H:i:s');
-                if ($now < $penugasan->waktu_mulai) {
-                    return redirect()->route('penugasan.index')
-                        ->with('alert', 'Penugasan belum dimulai');
-                } else if ($now > $penugasan->waktu_akhir) {
-                    return redirect()->route('penugasan.index')
-                        ->with('alert', 'Waktu penugasan telah berakhir');
-                }
-            }
-
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
@@ -117,6 +106,25 @@ class JawabanController extends Controller
         ]);
     }
 
+    public function getSoalPilihanGanda($slug, $index)
+    {
+        // TODO : Binding Pilihan Ganda
+        $penugasan = PenugasanBeta::where('slug', $slug)->withCount(['soal'])
+            ->first();
+        if ($index <= $penugasan->soal_count && $index > 0) {
+            $jawabans = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
+                $query->where('id_penugasan', $penugasan->id);
+            })->get(['jawaban']);
+            $jawaban = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
+                $query->where('id_penugasan', $penugasan->id);
+            })->skip($index - 1)->first();
+
+            return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan', 'jawaban', 'jawabans'));
+        } else {
+            abort(400);
+        }
+    }
+
     private function getViewPenugasanOffline($penugasan)
     {
         return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
@@ -124,15 +132,28 @@ class JawabanController extends Controller
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug, $index = null)
     {
-        $penugasan = PenugasanBeta::where('slug', $slug)->first();
+        $penugasan = PenugasanBeta::where('slug', $slug)->withCount(['soal'])->first();
 
         if ($penugasan) {
+            if ($penugasan->jenis != 5) {
+                $now = date('Y-m-d H:i:s');
+                if ($now < $penugasan->waktu_mulai) {
+                    return redirect()->route('penugasan.index')
+                        ->with('alert', 'Penugasan belum dimulai');
+                } else if ($now > $penugasan->waktu_akhir) {
+                    return redirect()->route('penugasan.index')
+                        ->with('alert', 'Waktu penugasan telah berakhir');
+                }
+            }
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
                 case '3':
                     return $this->submitIGYTLine($request, $penugasan);
                 case '4':
+                    return $this->submitJawabanPilihanGanda($request, $penugasan, $index);
+                default:
+                    abort(500);
             }
         } else {
             abort(404);
@@ -253,6 +274,36 @@ class JawabanController extends Controller
             return true;
         } else {
             return false;
+        }
+    }
+
+    private function submitJawabanPilihanGanda($request, $penugasan, $index)
+    {
+        if ($index <= $penugasan->soal_count && $index > 0) {
+            $jawaban = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
+                $query->where('id_penugasan', $penugasan->id);
+            })->skip($index - 1)->first();
+
+            $jawaban->jawaban = $request->jawaban;
+            $jawaban->save();
+
+            if ($request->action) {
+                switch ($request->action) {
+                    case 'next':
+                        return redirect()->route('penugasan.pilihan-ganda.view', [
+                            'slug' => $penugasan->slug,
+                            'index' => $index + 1,
+                        ]);
+                    case 'done':
+                        return redirect()->route('penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
+                    default:
+                        return redirect()->back();
+                }
+            } else {
+                return redirect()->back();
+            }
+        } else {
+            abort(400);
         }
     }
 }
