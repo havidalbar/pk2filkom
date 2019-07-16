@@ -27,6 +27,11 @@ class JawabanController extends Controller
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
         if ($penugasan) {
+            $now = date('Y-m-d H:i:s');
+            if ($now < $penugasan->waktu_mulai) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan belum dimulai');
+            }
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
