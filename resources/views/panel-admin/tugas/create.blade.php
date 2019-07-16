@@ -26,6 +26,8 @@
                     @elseif ($_GET['tipe_soal'] == 'instagram' || $_GET['tipe_soal'] == 'line' || $_GET['tipe_soal'] ==
                     'youtube')
                     @include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'tambah'])
+                    @elseif ($_GET['tipe_soal'] == 'offline')
+                    @include('panel-admin.tugas.form-create-edit-offline', ['ketForm' => 'tambah'])
                     @endif
                 </form>
             </div>

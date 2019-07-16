@@ -60,21 +60,40 @@
                             <label for="tipe_soal">
                                 Tipe Soal
                             </label>
-                            <select name="tipe_soal" id="tipe_soal">
+                            <select name="tipe_soal" id="tipe_soal" onchange="triggerJumlahSoal()">
                                 <option selected disabled value="">Pilih Tipe Soal</option>
                                 <option value="instagram">Link Instagram</option>
                                 <option value="line">Link LINE</option>
                                 <option value="youtube">Link Youtube</option>
                                 <option value="pilgan">Pilihan Ganda</option>
+                                <option value="offline">Penugasan Offline</option>
                             </select>
                             <br>
-                            <label for="jumlah_soal">
-                                Jumlah Soal
-                            </label>
-                            <input class="form-control m-input" id="jumlah_soal" name="jumlah_soal" type="number"
-                                min="1" placeholder="Masukkan Jumlah Soal" required>
+                            <div id="jumlah-soal-parent">
+                                <label for="jumlah_soal">
+                                    Jumlah Soal
+                                </label>
+                                <input class="form-control m-input" id="jumlah_soal" name="jumlah_soal" type="number"
+                                    min="1" placeholder="Masukkan Jumlah Soal" required>
+                            </div>
                         </div>
                     </div>
+                    <script>
+                        function triggerJumlahSoal() {
+                            let jumlahSoalParent = $('#jumlah-soal-parent');
+                            if ($('#tipe_soal').val() == 'offline') {
+                                jumlahSoalParent.empty();
+                            } else if (!$('#jumlah_soal').length) {
+                                jumlahSoalParent.append(`
+                                    <label for="jumlah_soal">
+                                        Jumlah Soal
+                                    </label>
+                                    <input class="form-control m-input" id="jumlah_soal" name="jumlah_soal" type="number"
+                                        min="1" placeholder="Masukkan Jumlah Soal" required>
+                                `);
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
