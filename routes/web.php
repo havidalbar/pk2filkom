@@ -42,7 +42,11 @@ Route::group(['as' => 'mahasiswa.'], function () {
             });
         });
         Route::get('nametag', 'MahasiswaController@getNametag')->name('nametag');
+        Route::get('penilaian', function () {
+            return view('v_mahasiswa/halamanPenilaian');
+        })->name('penilaian');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
+
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });

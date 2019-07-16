@@ -1622,6 +1622,20 @@ figure img {
     padding: 24px 16px 24px 16px;
     border-radius: 0 10px 10px 0;
 }
+
+/* Halaman Penilaian */
+.bg-penilaian {
+    background-image: url(../img/bg-section/bg-penilaian.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titlePenilaian {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
 /* Halaman qr code */
 .bg-qr-code {
     background-image: url(../img/bg-section/bg-qr-code.png);
@@ -1985,6 +1999,83 @@ input::-webkit-inner-spin-button {
     color: white;
     font-size: 40px;
 }
+.garisPenilaian {
+    display: block;
+    border-bottom: 3px solid #f7bb3e;
+    width: 350px;
+    margin: auto;
+}
+.bg-nilai {
+    margin-top: 20px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+    padding: 20px 40px 20px 40px;
+}
+.bg-nilai .nav-tabs {
+    padding: 0px 20px 0px 20px;
+    border-bottom: 0 !important;
+    text-align: center;
+}
+.bg-nilai .tab-content {
+    padding: 40px 50px 50px 50px;
+}
+.bg-nilai .nav-link {
+    margin-left: 0 !important;
+    border-bottom: 2px solid white;
+}
+.bg-nilai .nav-link.active {
+    background-color: transparent !important;
+    color: #f7bb3e !important;
+    border: none !important;
+    border-bottom: 2px solid #f7bb3e !important;
+}
+.bg-nilai .nav-link.active:hover{
+    background-color: transparent !important;
+    color: #f7bb3e !important;
+    border: none !important;
+    border-bottom: 2px solid #f7bb3e !important;
+}
+.bg-nilai .nav-link:hover {
+    color: #92d6e6 !important;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid #92d6e6 !important;
+}
+.bg-table {
+    background-color: white;
+    border-radius: 5px;
+}
+.table {
+    margin-bottom: 0 !important;
+    font-size: 17px !important;
+}
+.totalPoin{
+    font-family: "Esphimere-SemiBold";
+    font-size:20px;
+    text-align:center;
+}
+@media (max-width: 767.98px) {
+    .titlePenilaian {
+        font-size: 35px;
+    }
+    .garisPenilaian {
+        width: 200px;
+    }
+    .bg-nilai {
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-nilai .tab-content {
+        padding: 20px;
+    }
+    .table {
+        font-size: 15px !important;
+    }
+    .totalPoin{
+        font-size:16px;
+    }
+}
+/* Akhir Halaman Penilaian */
 .garisKumpulVideo {
     display: block;
     border-bottom: 3px solid #eec950;
