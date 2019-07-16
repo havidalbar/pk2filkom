@@ -9,7 +9,7 @@
             <p>Page Not Found</p>
             <p>Belum move on? Halaman ini aja udah :)</p>
         </div>
-        <div class="card home">
+        <div class="card home" onclick="window.location.href='/'">
             HOME
         </div>
     </div>

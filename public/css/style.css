@@ -2393,7 +2393,7 @@ input::-webkit-inner-spin-button {
 }
 
 .card.home {
-    width: 20%;
+    width: 30%;
     margin: 0;
     background-color: #EEC950;
     font-family: "Esphimere-Bold";
@@ -2406,6 +2406,7 @@ input::-webkit-inner-spin-button {
 
 .card.home:hover {
     background-color: #e4ba31;
+    cursor: pointer;
 }
 
 .textError {
