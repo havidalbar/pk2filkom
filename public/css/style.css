@@ -411,7 +411,7 @@ video#landingPageVideo {
     position: absolute;
     bottom: 0;
 }
-.pk2-jb1 {    
+.pk2-jb1 {
     height: 100vh;
 }
 .pk2-jb1::after {
@@ -1333,15 +1333,15 @@ figure img {
   text-decoration: none;
 }
 .list-penugasan .item-penugasan{
-  font-family: 'Esphimere-semiBold';  
+  font-family: 'Esphimere-semiBold';
   background-color: #F1C538;
-  border-radius: 6px;  
-  color: #00185A;  
+  border-radius: 6px;
+  color: #00185A;
   cursor: pointer;
   padding: 12px 20px 12px 20px;
   margin-top: 20px;
 }
-.list-penugasan .item-penugasan:hover{  
+.list-penugasan .item-penugasan:hover{
   background-color: #ffde77;
 }
 .item-penugasan .nama-tugas{
@@ -1716,18 +1716,18 @@ input::-webkit-inner-spin-button {
         width: 200px;
     }
     .bg-login .form-login {
-        margin-top: 16px;     
-        padding: 0 28px 0 28px;   
+        margin-top: 16px;
+        padding: 0 28px 0 28px;
     }
     .form-login .form-group {
         margin-bottom: 20px;
     }
     .form-login .form-group .form-control {
-        padding: 0 16px 0 16px;     
+        padding: 0 16px 0 16px;
     }
     .form-login .btn-login {
         font-size: 18px;
-        margin-top: 8px;                
+        margin-top: 8px;
     }
 }
 /* Akhir Login Maba */
@@ -2106,8 +2106,8 @@ input::-webkit-inner-spin-button {
     margin-top: 20px;
     width: 100%;
 }
-.form-input-link .input-video {    
-    height: 48px;    
+.form-input-link .input-video {
+    height: 48px;
 }
 .form-input-link .btn-submit-web {
     background-color: #eec950;
@@ -2128,7 +2128,7 @@ input::-webkit-inner-spin-button {
     margin-top: 32px;
 }
 .detail-tugas h3,h2,h4{
-    font-family: "Esphimere-SemiBold";    
+    font-family: "Esphimere-SemiBold";
 }
 .detail-tugas p,ol{
     font-size: 22px;
@@ -2150,7 +2150,7 @@ input::-webkit-inner-spin-button {
     }
     .preview-tugas .preview-text {
         font-size: 24px;
-    }    
+    }
     .preview-tugas .preview-video-ig {
         width: 270px;
         height: 335px;
@@ -2218,10 +2218,10 @@ input::-webkit-inner-spin-button {
     margin-top: 40px;
     padding: 40px;
     background-color: rgba(3, 60, 88, 0.76);
-    border-radius: 3px;    
+    border-radius: 3px;
 }
 .preview-tugas{
-    width: 525px;    
+    width: 525px;
 }
 .preview-tugas .pengumpulan-text {
     font-family: "Esphimere-SemiBold";
@@ -2246,8 +2246,8 @@ input::-webkit-inner-spin-button {
     padding:10px;
     border-radius:5px;
 }
-.preview-tugas .preview-gambar {    
-    max-width: 100%;         
+.preview-tugas .preview-gambar {
+    max-width: 100%;
     max-height: 320px;
     border-radius: 3px;
     background-color: #e4e4e4;
@@ -2262,8 +2262,8 @@ input::-webkit-inner-spin-button {
     background-color: #EFEFEF;
     color: black;
 }
-.form-input-link #input-line {    
-    height: 48px;    
+.form-input-link #input-line {
+    height: 48px;
 }
 .form-input-link .btn-submit-line {
     background-color: #eec950;
@@ -2291,18 +2291,18 @@ input::-webkit-inner-spin-button {
     .preview-tugas .pengumpulan-text {
         font-size: 24px;
         margin-bottom: 8px;
-    }        
+    }
     .form-input-link #input-line {
         height: 36px;
         border-radius: 3px;
-    }    
+    }
     .form-input-link .btn-submit-mobile {
         background-color: #eec950;
         font-family: "Esphimere-SemiBold";
         text-transform: uppercase;
         color: #0b2939;
         display: block;
-        height: 36px;        
+        height: 36px;
     }
 }
 /* Akhir Halaman kumpul line */
@@ -2377,3 +2377,56 @@ input::-webkit-inner-spin-button {
     }
 }
 /* Akhir Nametag */
+
+/*awal halaman error*/
+.bg-halError {
+    background-image: url(../img/bg-section/bg-error.png);
+    height: 100vh;
+}
+
+.container.error {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.card.home {
+    width: 30%;
+    margin: 0;
+    background-color: #EEC950;
+    font-family: "Esphimere-Bold";
+    font-size: 35px;
+    color: #0b2939;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card.home:hover {
+    background-color: #e4ba31;
+    cursor: pointer;
+}
+
+.textError {
+    text-align: center;
+    font-family: "Esphimere-Bold";
+    font-size: 50px;
+    color: black;
+    text-shadow:   3px 2px #eec950, 2px 3px #eec950;
+    margin: 0;
+    padding: 0;
+}
+
+.errormsg {
+    text-align: center;
+    font-family: "Esphimere-Light";
+    font-size: 200px;
+    color: rgba(250, 189, 54, 0.7);
+    text-shadow:   7px 6px black, 6px 7px black,
+               13px 12px rgba(6, 62, 89, 0.7), 12px 13px rgba(6, 62, 89, 0.7);
+    margin: 0;
+    padding: 0;
+}
+/* akhir halaman error */
