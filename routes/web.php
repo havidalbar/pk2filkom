@@ -13,6 +13,10 @@
 
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+
+Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
+    ->where('name', '(.*)')->name('protected-assets');
+
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.tologin']], function () {
@@ -26,8 +30,18 @@ Route::group(['as' => 'mahasiswa.'], function () {
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
-        Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
-        Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
+        Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
+            Route::get('/', 'JawabanController@index')->name('index');
+            Route::group(['prefix' => '{slug}'], function () {
+                Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
+                Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
+                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
+                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
+                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
+                });
+            });
+        });
+        Route::get('nametag', 'MahasiswaController@getNametag')->name('nametag');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
         Route::get('logout', 'AuthController@logout')->name('logout');
     });

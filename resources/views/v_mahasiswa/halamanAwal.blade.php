@@ -18,21 +18,30 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
+                <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ session('nama') }}
+                        <?php
+                        $nama = session('nama');
+                        $splitNama = explode(' ', $nama);
+                        if (count($splitNama) > 1) {
+                            $nama = $splitNama[0] . ' ' . $splitNama[1][0] . '.';
+                        }
+                        echo $nama;
+                        ?>
                     </a>
                     <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan') }}">Penugasan</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan.index') }}">Penugasan</a>
                         <a class="dropdown-item" href="#">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
-                        <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Name Tag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}"><span><i
-                                    class="fas fa-sign-out-alt"></i></span>
-                            Logout</a>
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
+                            <span><i class="fas fa-sign-out-alt"></i></span>
+                            Keluar
+                        </a>
                     </div>
                 </div>
                 @else

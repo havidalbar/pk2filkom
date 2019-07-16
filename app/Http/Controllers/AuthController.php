@@ -91,7 +91,11 @@ class AuthController extends Controller
                         Session::put('foto', $foto_login);
 
                         if ($data_mahasiswa) {
-                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                            if ($request->redirectTo) {
+                                return redirect($request->redirectTo)->with('alert', 'Anda berhasil login');
+                            } else {
+                                return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                            }
                         } else {
                             return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
                         }

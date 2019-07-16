@@ -45,10 +45,5 @@ $(document).ready(function () {
         orientation: "bottom left",
         defaultViewDate: { year: 2001 }
     });
-    // endDatepicker
-    // Preview video ig
-    $('#input-video-ig').on('input', function() {
-        document.getElementById("preview-video-ig").src = (this.value) + "embed";
-    });
-    // endPreview video ig
+    // endDatepicker    
 });

@@ -1304,6 +1304,60 @@ figure img {
   min-width: 155px;
   min-height: 70px;
 }
+/* Penugasan */
+.bg-penugasan {
+  background-image: url(../img/bg-section/bg-penugasan.png);
+  height: 100%;
+  min-height: calc(100vh - 79px);
+}
+.title-penugasan {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Esphimere-SemiBold";
+  color: white;
+  font-size: 40px;
+}
+.garis-penugasan {
+  display: block;
+  border-bottom: 3px solid #eec950;
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+}
+.list-penugasan{
+  margin-top: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+.list-penugasan a{
+  text-decoration: none;
+}
+.list-penugasan .item-penugasan{
+  font-family: 'Esphimere-semiBold';  
+  background-color: #F1C538;
+  border-radius: 6px;  
+  color: #00185A;  
+  cursor: pointer;
+  padding: 12px 20px 12px 20px;
+  margin-top: 20px;
+}
+.list-penugasan .item-penugasan:hover{  
+  background-color: #ffde77;
+}
+.item-penugasan .nama-tugas{
+  font-size:24px;
+}
+@media (max-width: 767.98px) {
+  .title-penugasan{
+    font-size: 28px;
+  }
+  .item-penugasan .nama-tugas{
+    font-size: 20px;
+  }
+  .list-penugasan{
+    margin-top: 20px;
+  }
+}
 /* endPenugasan */
 /* Desktop Version */
 @media (max-width: 575.98px) {
@@ -1952,7 +2006,7 @@ input::-webkit-inner-spin-button {
     color: white;
     text-align: center;
 }
-.preview-tugas #preview-video-ig {
+.preview-tugas .preview-video-ig {
     width: 320px;
     height: 374px;
     border-radius: 3px;
@@ -1961,8 +2015,8 @@ input::-webkit-inner-spin-button {
     margin-top: 20px;
     width: 100%;
 }
-.form-input-link #input-video-ig {
-    height: 48px;
+.form-input-link .input-video {    
+    height: 48px;    
 }
 .form-input-link .btn-submit-web {
     background-color: #eec950;
@@ -1980,29 +2034,15 @@ input::-webkit-inner-spin-button {
     color: white;
     max-width: 800px;
     padding: 20px;
-}
-.detail-tugas .detail-title {
-    font-family: "Esphimere-SemiBold";
-    text-transform: uppercase;
-    font-size: 28px;
-    text-align: center;
     margin-top: 32px;
 }
-.detail-tugas .detail-list {
-    font-size: 24px;
+.detail-tugas h3,h2,h4{
+    font-family: "Esphimere-SemiBold";    
 }
-.detail-list .nomor-text {
-    width: 20px;
+.detail-tugas p,ol{
+    font-size: 22px;
 }
-.detail-list .text {
-    margin-left: 10px;
-}
-.text a{
-    text-decoration: none;
-}
-.text .nomor-sub-text{
-    margin-right: 10px;
-}
+
 @media (max-width: 767.98px) {
     .titleKumpulVideo {
         font-size: 28px;
@@ -2019,17 +2059,17 @@ input::-webkit-inner-spin-button {
     }
     .preview-tugas .preview-text {
         font-size: 24px;
-    }
-    .preview-tugas #preview-video-ig {
+    }    
+    .preview-tugas .preview-video-ig {
         width: 270px;
         height: 335px;
     }
     .form-input-link{
         width: 100%;
     }
-    .form-input-link #input-video-ig {
+    .form-input-link .input-video {
         height: 36px;
-        border-radius: 3px;
+        border-radius: 3px !important;
     }
     .form-input-link .btn-submit-web {
         display: none;
@@ -2042,14 +2082,27 @@ input::-webkit-inner-spin-button {
         display: block;
         height: 36px;
     }
-    .detail-tugas .detail-title {
+    .detail-tugas h3{
         font-size: 24px;
     }
-    .detail-tugas .detail-list {
+    .detail-tugas p,ol{
         font-size: 20px;
     }
 }
 /* Akhir Halaman kumpul video ig */
+/* Halaman kumpul line */
+.bg-kumpul-line {
+    background-image: url(../img/bg-section/bg-kumpul-line.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleKumpulLine {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
 
 /* Nametag */
 .bg-nametag {
@@ -2064,6 +2117,104 @@ input::-webkit-inner-spin-button {
     color: white;
     font-size: 40px;
 }
+.garisKumpulLine {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 480px;
+    margin: auto;
+}
+.bg-kumpul {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;    
+}
+.preview-tugas{
+    width: 525px;    
+}
+.preview-tugas .pengumpulan-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.preview-tugas #preview-section{
+    display: none;
+}
+.preview-tugas label{
+    font-family: "Esphimere-SemiBold";
+    font-size: 18px;
+    color: white;
+}
+.preview-tugas .preview-box{
+    background-color:#dce3e4;
+    min-width:100px;
+    min-height:100px;
+    padding:10px;
+    border-radius:5px;
+}
+.preview-tugas .preview-gambar {    
+    max-width: 100%;         
+    max-height: 320px;
+    border-radius: 3px;
+    background-color: #e4e4e4;
+    margin-right: 8px;
+}
+.form-input-link .pilih-gambar{
+    cursor:pointer;
+    font-family: "Esphimere-Regular";
+    font-size: 14px;
+    padding: 6px 12px 6px 12px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: black;
+}
+.form-input-link #input-line {    
+    height: 48px;    
+}
+.form-input-link .btn-submit-line {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-line:hover {
+    background-color: #f8bc3f;
+}
+@media (max-width: 767.98px) {
+    .titleKumpulLine {
+        font-size: 28px;
+    }
+    .garisKumpulLine {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .bg-kumpul{
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-kumpul .preview-tugas{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-tugas .pengumpulan-text {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }        
+    .form-input-link #input-line {
+        height: 36px;
+        border-radius: 3px;
+    }    
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;        
+    }
+}
+/* Akhir Halaman kumpul line */
 .garis-nametag {
     display: block;
     border-bottom: 3px solid #eec950;
