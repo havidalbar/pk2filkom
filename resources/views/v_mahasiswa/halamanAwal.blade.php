@@ -483,9 +483,12 @@
                 
             </div>
         </div>
-        <div class="container">
+        <div class="container my-3">
+            <div class="row align-items-center justify-content-center" id="berita">
+                
+            </div>
             <div class="row align-items-center justify-content-center">
-                <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>   
+                <span class="btn btn-berita loadBerita">TAMPILKAN BERITA</span>   
             </div>
         </div>
     </div>
