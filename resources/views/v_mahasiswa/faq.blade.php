@@ -15,7 +15,7 @@
                     <!-- <h2 class="mb-0"> -->
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                         data-target="#collapse{{$faq->id}}" aria-expanded="true" aria-controls="collapse{{$faq->id}}">
-                        {!! $faq->tanya !!}
+                        {{ $faq->tanya }}
                     </button>
                     <!-- </h2> -->
                 </div>
