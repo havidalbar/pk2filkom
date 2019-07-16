@@ -1503,6 +1503,9 @@ figure img {
     .hovereffect p.icon-links a {
         font-size: 18px;
     }
+    .hovereffect-berita .img2{
+        max-height: 171px;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -1544,6 +1547,10 @@ figure img {
     }
     .hovereffect p.icon-links a {
         font-size: 20px;
+    }
+    
+    .hovereffect-berita .img2{
+        max-height: 232px;
     }
 }
 
