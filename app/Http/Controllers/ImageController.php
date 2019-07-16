@@ -4,45 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Mahasiswa;
 use Intervention\Image\ImageManagerStatic as Image;
+// use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 class ImageController extends Controller
 {
-    public function call()
-    {
-        $mahasiswas = Mahasiswa::all();
-        for ($i = 0; $i < count($mahasiswas); $i++) {
-            $this->textOnImage($mahasiswas[$i]->nama, $mahasiswas[$i]->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
-        }
-    }
+    // public function call()
+    // {
+    //     $mahasiswa = Mahasiswa::find(Session::get('nim'));
+    //     $this->textOnImage($mahasiswa->nama, $mahasiswa->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
 
-    public function textOnImage($nama, $nim, $prodi, $cluster, $kelompok, $makan, $obat, $sakit)
+    // }
+
+    public function textOnImageNametag()
     {
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        $nama = $mahasiswa->nama;
+        $nim = $mahasiswa->nim;
+        $prodi = strtoupper($mahasiswa->prodi);
+        $cluster = $mahasiswa->cluster;
+        $kelompok = $mahasiswa->kelompok;
+        $makan = $mahasiswa->alergi_makanan;
+        $obat = $mahasiswa->alergi_obat;
+        $sakit = $mahasiswa->riwayat_penyakit;
         $imgNameTag = "";
         $prodi_singkat = "";
         $imgBagHolder = "";
+
         if (strtoupper($prodi) == "TEKNIK INFORMATIKA") {
-            $imgNameTag = Image::make('img/nametag/TIF.jpg');
-            $imgBagHolder = Image::make('img/bagholder/TIF.jpg');
             $prodi_singkat = "TIF";
         } else if (strtoupper($prodi) == "SISTEM INFORMASI") {
-            $imgNameTag = Image::make('img/nametag/SI.jpg');
-            $imgBagHolder = Image::make('img/bagholder/SI.jpg');
             $prodi_singkat = "SI";
         } else if (strtoupper($prodi) == "TEKNIK KOMPUTER") {
-            $imgNameTag = Image::make('img/nametag/TEKKOM.jpg');
-            $imgBagHolder = Image::make('img/bagholder/TEKKOM.jpg');
             $prodi_singkat = "TEKKOM";
         } else if (strtoupper($prodi) == "PENDIDIKAN TEKNOLOGI INFORMASI") {
-            $imgNameTag = Image::make('img/nametag/PTI.jpg');
-            $imgBagHolder = Image::make('img/bagholder/PTI.jpg');
             $prodi_singkat = "PTI";
         } else if (strtoupper($prodi) == "TEKNOLOGI INFORMASI") {
-            $imgNameTag = Image::make('img/nametag/TI.jpg');
-            $imgBagHolder = Image::make('img/bagholder/TI.jpg');
             $prodi_singkat = "TI";
         }
-        //nametag
-        $imgNameTag->text($nama, 991, 685, function ($font) {
+
+        $imgNameTag = Image::make('img/nametag/' . $prodi_singkat . '.jpg');
+        $imgBagHolder = Image::make('img/bagholder/' . $prodi_singkat . '.jpg');
+
+        // Nametag
+        $centerNametagKanan = $imgNameTag->width() * 0.75;
+        $centerNametagKiri = $imgNameTag->width() * 0.265;
+
+        // Trim Nama
+        $nama_array = explode(' ', strtoupper($nama));
+        $namaText = "";
+        $limit = 32;
+        for ($i = 0; $i < count($nama_array); $i++) {
+            if ($i) {
+                if (strlen($namaText . ' ' . $nama_array[$i]) >= $limit) {
+                    for ($j = $i; $j < count($nama_array); $j++) {
+                        if (strlen($namaText . ' ' . $nama_array[$i][0]) > $limit) {
+                            break 2;
+                        } else {
+                            $namaText = $namaText . ' ' . $nama_array[$i][0];
+                        }
+                    }
+                    break;
+                } else {
+                    $namaText = $namaText . ' ' . $nama_array[$i];
+                }
+            } else {
+                if (strlen($nama_array[$i]) >= $limit) {
+                    $namaText = substr($nama_array[$i], 0, $limit);
+                    break;
+                } else {
+                    $namaText = $namaText . $nama_array[$i];
+                }
+            }
+        }
+
+        $imgNameTag->text($namaText, $centerNametagKanan, 688, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -50,7 +86,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text($nim, 990, 717, function ($font) {
+        $imgNameTag->text($nim, $centerNametagKanan, 720, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(20);
             $font->color('#000');
@@ -58,7 +94,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text($prodi, 989, 800, function ($font) {
+        $imgNameTag->text($prodi, $centerNametagKanan, 804, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -66,7 +102,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text("CLUSTER " . $cluster, 986, 860, function ($font) {
+        $imgNameTag->text('CLUSTER ' . $cluster, $centerNametagKanan, 864, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -74,7 +110,7 @@ class ImageController extends Controller
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->text("KELOMPOK " . $kelompok, 988, 920, function ($font) {
+        $imgNameTag->text('KELOMPOK ' . $kelompok, $centerNametagKanan, 920, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
             $font->size(21);
             $font->color('#000');
@@ -83,62 +119,126 @@ class ImageController extends Controller
             $font->angle(0);
         });
 
-        $imgNameTag->text($makan, 345, 360, function ($font) {
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($makan), $centerNametagKiri, 360, function ($font) {
             $font->file(public_path('/font/Gotham Book Regular.otf'));
             $font->size(21);
+            $font->color('#000');
+            $font->align('center');
+            $font->valign('top');
+            $font->angle(0);
+        });
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($obat), $centerNametagKiri, 580, function ($font) {
+            $font->file(public_path('/font/Gotham Book Regular.otf'));
+            $font->size(21);
+            $font->color('#000');
+            $font->align('center');
+            $font->valign('top');
+            $font->angle(0);
+        });
+        $imgNameTag->text($this->generateWrappedTextKartuKesehatanKendali($sakit), $centerNametagKiri, 795, function ($font) {
+            $font->file(public_path('/font/Gotham Book Regular.otf'));
+            $font->size(21);
+            $font->color('#000');
+            $font->align('center');
+            $font->valign('top');
+            $font->angle(0);
+        });
+        $imgNameTag->encode('data-url', 100);
+        // $imgNameTag->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+        // return $img->response('jpg');
+
+        // Bagholder
+        $bagholderCenter = $imgBagHolder->width() / 2;
+        // Trim Nama
+        $nama_array = explode(' ', strtoupper($namaText));
+        $namaText = "";
+        $limit = 22;
+        for ($i = 0; $i < count($nama_array); $i++) {
+            if ($i) {
+                if (strlen($namaText . ' ' . $nama_array[$i]) >= $limit) {
+                    for ($j = $i; $j < count($nama_array); $j++) {
+                        if (strlen($namaText . ' ' . $nama_array[$i][0]) > $limit) {
+                            break 2;
+                        } else {
+                            $namaText = $namaText . ' ' . $nama_array[$i][0];
+                        }
+                    }
+                    break;
+                } else {
+                    $namaText = $namaText . ' ' . $nama_array[$i];
+                }
+            } else {
+                if (strlen($nama_array[$i]) >= $limit) {
+                    $namaText = substr($nama_array[$i], 0, $limit);
+                    break;
+                } else {
+                    $namaText = $namaText . $nama_array[$i];
+                }
+            }
+        }
+
+        $imgBagHolder->text($namaText, $bagholderCenter, 70, function ($font) {
+            $font->file(public_path('/font/Gotham-Bold.otf'));
+            $font->size(11);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-
-        $imgNameTag->text($obat, 340, 580, function ($font) {
-            $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(21);
+        $imgBagHolder->text('CLUSTER ' . $cluster, $bagholderCenter, 108, function ($font) {
+            $font->file(public_path('/font/Gotham-Bold.otf'));
+            $font->size(11);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-
-        $imgNameTag->text($sakit, 340, 795, function ($font) {
-            $font->file(public_path('/font/Gotham Book Regular.otf'));
-            $font->size(21);
+        $imgBagHolder->text('KELOMPOK ' . $kelompok, $bagholderCenter, 146, function ($font) {
+            $font->file(public_path('/font/Gotham-Bold.otf'));
+            $font->size(11);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgNameTag->save(public_path('img/nametag_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
-        //return $img->response('jpg');
+        $imgBagHolder->encode('data-url', 100);
+        // $imgNametagEncode = 'data:image/' . $imgBagHolder->encode('jpg', 100); . ';base64,' . base64_encode($imgNametag);
+        // $imgBagHolder->save(public_path('img/bagholder_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
+        // return $imgBagHolder->response('jpg');
 
-        //bagholder
-                //bagholder
-                $imgBagHolder->text($nama, 1154, 820, function ($font) {
-                    $font->file(public_path('/font/Gotham-Bold.otf'));
-                    $font->size(27);
-                    $font->color('#000');
-                    $font->align('center');
-                    $font->valign('bottom');
-                    $font->angle(0);
-                });
-                $imgBagHolder->text($cluster, 1153, 862, function ($font) {
-                    $font->file(public_path('/font/Gotham Book Regular.otf'));
-                    $font->size(30);
-                    $font->color('#000');
-                    $font->align('center');
-                    $font->valign('bottom');
-                    $font->angle(0);
-                });
-                $imgBagHolder->text($kelompok, 1152, 945, function ($font) {
-                    $font->file(public_path('/font/Gotham-Bold.otf'));
-                    $font->size(28);
-                    $font->color('#000');
-                    $font->align('center');
-                    $font->valign('bottom');
-                    $font->angle(0);
-                });
-                $imgBagHolder->save(public_path('img/bagholder_edit/' . $prodi_singkat . '/' . $nim . '.jpg'));
-        //return $imgBagHolder->response('jpg');
+        return view('v_mahasiswa/nametag', ['nametag' => $imgNameTag, 'bagholder' => $imgBagHolder]);
+    }
+
+    private function generateWrappedTextKartuKesehatanKendali($text)
+    {
+        $text_array = explode(' ', $text);
+        $result_array = [];
+        $limit = 25;
+        $line = '';
+        for ($i = 0; $i < count($text_array); $i++) {
+            if (count($result_array) >= 4) {
+                break;
+            }
+
+            if (strlen($text_array[$i]) > $limit) {
+                if ($line) {
+                    $result_array[] = $line;
+                    $line = '';
+                }
+                $result_array[] = substr($text_array[$i], 0, $limit - 4) . '...';
+            } else {
+                if (strlen($line . ($line ? ' ' : '') . $text_array[$i]) >= $limit) {
+                    $result_array[] = $line;
+                    $line = $text_array[$i];
+                } else {
+                    $line = $line . ($line ? ' ' : '') . $text_array[$i];
+                }
+            }
+        }
+        if (!$result_array) {
+            $result_array[] = $line;
+        }
+
+        return implode("\n", $result_array);
     }
 }

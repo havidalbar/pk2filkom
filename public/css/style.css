@@ -411,10 +411,7 @@ video#landingPageVideo {
     position: absolute;
     bottom: 0;
 }
-.pk2-jb1 {
-    background-image: url(../img/bg-section/gedfhitamputih.png);
-    background-size: cover;
-    background-position: center;
+.pk2-jb1 {    
     height: 100vh;
 }
 .pk2-jb1::after {
@@ -2095,7 +2092,14 @@ input::-webkit-inner-spin-button {
     margin-left: 10px;
     width: 100%;
 }
-.bg-isi-nametag .btn-download {
+
+.bg-isi-nametag a {
+    padding: 12px 15px 12px 15px;
+    margin: 20px;
+    background-color: none;
+    text-align: center;
+}
+.bg-isi-nametag a .btn-download {
     font-family: "Esphimere-semiBold";
     padding: 12px 15px 12px 15px;
     margin: 20px;
@@ -2126,7 +2130,7 @@ input::-webkit-inner-spin-button {
     .bg-isi-nametag .title-text {
         font-size: 24px;
     }
-    .bg-isi-nametag .btn-download {
+    .bg-isi-nametag a .btn-download {
         padding: 10px 12px 10px 12px;
     }
 }

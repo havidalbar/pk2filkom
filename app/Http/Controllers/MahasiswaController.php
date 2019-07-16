@@ -9,7 +9,15 @@ use App\Mahasiswa;
 
 class MahasiswaController extends Controller
 {
-    public function getFaq(){
+    public function index()
+    {
+        $berita_terakhir = \App\Artikel::orderBy('created_at', 'DESC')->first();
+        $beritas = \App\Artikel::orderBy('created_at', 'DESC')->without('sub')->get(['judul', 'thumbnail', 'slug']);
+        return view('v_mahasiswa/halamanAwal', compact('berita_terakhir', 'beritas'));
+    }
+
+    public function getFaq()
+    {
         $faqs = Faq::all();
         return view('v_mahasiswa.faq', compact('faqs'));
     }

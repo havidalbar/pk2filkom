@@ -14,9 +14,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="title-text">Preview Nametag</p>
-                        <img src="{{asset('img/nametag/TIF DIGABUNG 85.jpg')}}" class="img-nametag">
+                        <img src="{!! $nametag !!}" class="img-nametag">
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-download">Download Nametag</button>
+                            <a download="Nametag.{{ $nametag->extension }}" href="{!! $nametag !!}">
+                                <button class="btn btn-download">Download Nametag</button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -57,10 +59,12 @@
                     <div class="col-md-6">
                         <p class="title-text">Preview Bagholder</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="{{asset('img/bagholder/BAGHOLDER TIF 40.jpg')}}">
+                            <img src="{!! $bagholder !!}">
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-download">Download Bagholder</button>
+                            <a download="Bagholder.{{ $nametag->extension }}" href="{!! $bagholder !!}">
+                                <button class="btn btn-download">Download Bagholder</button>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6">
