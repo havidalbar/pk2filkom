@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top sticky-dekstop">
     <div class="container">
-        <a class="navbar-brand" data-item-ojb="pk2-jb1" href="{{ route('index') }}"><img
+        <a class="navbar-brand" href="{{ route('index') }}"><img
                 src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,8 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a href="{{ route('index') }}" class="nav-item nav-link menu" data-item-ojb="pk2-jb3">TENTANG SIMABA</a>
-                <a href="{{ route('index') }}" class="nav-item nav-link menu" data-item-ojb="pk2-jb5">RANGKAIAN</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">TENTANG SIMABA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link menu">FAQ</a>
                 <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb6">BERITA</a>
                 <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
