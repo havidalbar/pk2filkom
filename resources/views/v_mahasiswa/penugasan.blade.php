@@ -1,58 +1,36 @@
 @extends ('layouts.template')
-@section('title', 'Berita | FILKOM UB')
+@section('title', 'SiMaba! 2019 | FILKOM UB')
 
 @section('content')
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
 
-<div class="jumbotron jumbotron-fluid pk2-dtBerita p-0 mb-4" style="margin-bottom: -1.5rem !important">    
-  <!-- Title -->
-  <div class="title">
+<div class="jumbotron jumbotron-fluid bg-penugasan">
     <div class="container">
-        <div class="row">
-            <div class="titlePk2Maba m-auto multipleChoise">
-                <h1 class="titleSection">penuggasan</h1>
-            </div>
-        </div>
-        
-        <div class="row justify-content-md-center">
-            <div class="col-md-2">
-            Twibbon
-            </div>
-            <div class="col-md-2">
-            Buku Panduan
-            </div>
-            <div class="col-md-2">
-            Video
-            </div>
-            <div class="col-md-2">
-            TTS
-            </div>
-            <div class="col-md-2">
-            Ngopi
-            </div>
-            <div class="col-md-2">
-            FILKOM Mengabdi
-            </div>
-            <div class="col-md-2">
-            Serial FILKOM
-            </div>
-            <div class="col-md-2">
-            PKM
-            </div>
-            <div class="col-md-2">
-            Kuis OH
-            </div>
-            <div class="col-md-2">
-            Trial
+        <div class="title-penugasan">Penugasan</div>
+        <div class="garis-penugasan"></div>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="list-penugasan">
+                @foreach ($penugasans as $penugasan)
+                <a href="{{ route('mahasiswa.penugasan.view-jawaban', ['slug' => $penugasan->slug]) }}">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">{{ $penugasan->judul }}</div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ ($penugasan->soal_count ? $penugasan->soal_count . ' Soal ' : '') . $penugasan->jenis_text }}
+                            </div>
+                            <div class="col-md-4">Mulai : {{ $penugasan->waktu_mulai }}</div>
+                            <div class="col-md-4">Berakhir : {{ $penugasan->waktu_akhir }}</div>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
             </div>
         </div>
     </div>
-  </div>
-  <!-- EndTitle -->
 </div>
-  
+
 <!-- Footer -->
 @include('layouts.footer')
 <!-- Footer -->

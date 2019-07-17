@@ -1,0 +1,73 @@
+/* Include CSS */
+@import url("fontawesome-all.css");
+
+/* Web Font */
+@font-face {
+  font-family: 'logo';
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url("../font/Shellia/Shellia.eot"),
+       url("../font/Shellia/Shellia.ttf") format("truetype"); 
+}
+
+/*  */
+.m-login__logo > a > img {
+    width: 196px;
+    height: 96px;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control {
+    background: rgba(0,0,0,.15);
+    /* border: 1px !important; */
+    border-style: solid !important;
+    border-color: #fff;
+    color: #fff !important;
+    text-shadow: none;
+}
+.m-form.m-form--state .has-danger .form-control, .m-form.m-form--state .has-danger .form-control:focus, .m-form.m-form--state .has-danger .input-group-addon {
+  border-color: #f4516c !important;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .m-login__form-action .m-login__btn.m-login__btn--primary {
+    color: #fff;
+    border-color: #ffffff;
+    box-shadow: 0 5px 10px 2px rgba(255, 255, 255, 0.19);
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  text-shadow: none;
+  opacity: 1; /* Firefox */
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+  text-shadow: none;
+}
+
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: #fff;
+  text-shadow: none;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control:focus::placeholder {
+	color: #fff !important;
+	opacity: 1;
+}
+.m-aside-header-menu-mobile.m-aside-header-menu-mobile--on {
+	left: 0 !important;
+}
+.m-aside-header-menu-mobile {
+	left: -285px !important;
+}
+.m-aside-header-menu-mobile--on .m-aside-header-menu-mobile-close {
+	left: 249px !important;
+}
+.m-aside-header-menu-mobile-close {
+	left: -25px !important;
+}
+.m-form.m-form--label-align-right .m-form__group>label {
+  text-align: left;
+  padding-left: 35px;
+}
+@media (min-width: 993px){
+  .m-grid.m-grid--ver-desktop.m-grid--desktop>.m-grid__item.m-grid__item--fluid {
+    width: 100vh;
+  }
+}
