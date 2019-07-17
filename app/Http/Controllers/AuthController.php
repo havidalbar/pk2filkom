@@ -22,7 +22,7 @@ class AuthController extends Controller
         $nim = $request->nim;
         $password = $request->password;
 
-        if ($nim == 0000 || $password == 0000) {
+        if ($nim == 0000 && $password == 0000) {
             Session::put('nim', $nim);
             Session::put('nama', 'Akun');
             Session::put('prodi', 2);

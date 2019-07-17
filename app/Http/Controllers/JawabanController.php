@@ -42,6 +42,8 @@ class JawabanController extends Controller
                     return $this->startPilihanGanda($penugasan);
                 case '5':
                     return $this->getViewPenugasanOffline($penugasan);
+                case '6':
+                    return $this->getViewTTS($penugasan);
                 default:
                     abort(500);
             }
@@ -140,6 +142,77 @@ class JawabanController extends Controller
     private function getViewPenugasanOffline($penugasan)
     {
         return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
+    }
+
+    private function getViewTTS($penugasan)
+    {
+        $soalTts = $penugasan->soal;
+        $menuruns = [];
+        $mendatars = [];
+        $jawabans = [];
+
+        $jawabanDB = JawabanBeta::where([
+            'nim' => session('nim')
+        ])->whereHas('soal', function ($query) use ($penugasan) {
+            $query->where('id_penugasan', $penugasan->id);
+        })->get();
+
+        $isJawabanSubmitted = $jawabanDB ? true : false;
+
+        if ($isJawabanSubmitted) {
+            foreach ($jawabanDB as $jDB) {
+                $jawabans[] = $jDB;
+            }
+        }
+
+        foreach ($soalTts as $index => $soal) {
+            $decodedSoal = $soal->soal;
+
+            foreach ($jawabans as $jawaban) {
+                if ($jawaban->id_soal === $soal->id) {
+                    $submittedJawaban = $jawaban;
+                    break;
+                }
+            }
+
+            if (empty($submittedJawaban)) {
+                $submittedJawaban = JawabanBeta::create([
+                    'nim' => session('nim'),
+                    'id_soal' => $soal->id
+                ]);
+                $jawabans[] = $submittedJawaban;
+            }
+
+            if ($submittedJawaban->jawaban) {
+                $decodedSoal->jawaban = $submittedJawaban->jawaban;
+            } else {
+                $panjang = ($decodedSoal->tipe == 'menurun'
+                    ? $decodedSoal->posisi->endx - $decodedSoal->posisi->startx
+                    : $decodedSoal->posisi->endy - $decodedSoal->posisi->starty) + 1;
+
+                $tempJawaban = '';
+                for ($i = 0; $i < $panjang; $i++) {
+                    $tempJawaban = $tempJawaban . '_';
+                }
+
+                $decodedSoal->jawaban = $submittedJawaban->jawaban = $tempJawaban;
+                $submittedJawaban->save();
+            }
+
+            $decodedSoal->noSoal = $index + 1;
+            if ($decodedSoal->tipe == 'menurun') {
+                $menuruns[] = $decodedSoal;
+            } else if ($decodedSoal->tipe == 'mendatar') {
+                $mendatars[] = $decodedSoal;
+            }
+
+            unset($submittedJawaban);
+        }
+
+        $menuruns = json_encode($menuruns);
+        $mendatars = json_encode($mendatars);
+
+        return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug, $index = null)
