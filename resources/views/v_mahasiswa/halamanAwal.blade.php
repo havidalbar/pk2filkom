@@ -431,76 +431,83 @@
         <div class="container d-flex align-items-center justify-content-center">
             <div class="row align-items-center justify-content-center">
                 <div class="col-sm-12 col-md-6">
+                    @if (isset($beritas[0]))
                     <div class="hovereffect-berita">
-                        <img class="img1" src="{{asset('img/berita/kartini.png')}}" alt="">
+                        <img class="img1" src="{{ $beritas[0]->thumbnail }}" alt="">
                         <div class="overlay">
-                            <h2>Selamat Hari Kartini 2019</h2>
+                            <h2>{{ $beritas[0]->judul }}</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
                                 <a class="info" href="#">Lihat Berita</a>
                             </div>
                         </div>
                     </div>
+                    @else
+                    <div class="hovereffect-berita empty">
+                        <img class="img2" src="{{ asset('img/berita/empty.png') }}" alt="">
+                        <div class="overlay">
+                            <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
+                            <div class="h-100 d-flex align-items-center justify-content-center">
+                                <a class="info" href="javascript:void(0)">coming soon</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        @for ($index = 1; $index < 5; $index++) @if (isset($beritas[$index])) <div
+                            class="col-sm-12 col-md-6">
                             <div class="hovereffect-berita">
-                                <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
+                                <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
                                 <div class="overlay">
-                                    <h2>Selamat Hari Buruh 2019</h2>
+                                    <h2>{{ $beritas[$index]->judul }}</h2>
                                     <div class="h-100 d-flex align-items-center justify-content-center">
                                         <a class="info" href="#">Lihat Berita</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita empty">
-                                <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
-                                <div class="overlay">
-                                    <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
-                                    <div class="h-100 d-flex align-items-center justify-content-center">
-                                        <a class="info" href="#">coming soon</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita empty">
-                                <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
-                                <div class="overlay">
-                                    <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
-                                    <div class="h-100 d-flex align-items-center justify-content-center">
-                                        <a class="info" href="#">coming soon</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="hovereffect-berita empty">
-                                <img class="img2" src="{{asset('img/berita/empty.png')}}" alt="">
-                                <div class="overlay">
-                                    <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
-                                    <div class="h-100 d-flex align-items-center justify-content-center">
-                                        <a class="info" href="#">coming soon</a>
-                                    </div>
+                    </div>
+                    @else
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita empty">
+                            <img class="img2" src="{{ asset('img/berita/empty.png') }}" alt="">
+                            <div class="overlay">
+                                <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="javascript:void(0)">coming soon</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endif
+                    @endfor
                 </div>
-                
             </div>
-        </div>
-        <div class="container my-3">
-            <div class="row align-items-center justify-content-center" id="berita">
-                
-            </div>
-            <div class="row align-items-center justify-content-center">
-                <span class="btn btn-berita loadBerita">TAMPILKAN BERITA</span>   
+            <div class="col-sm-12 col-md-12" style="padding: 0px; display: none" id="extended-berita">
+                <div class="row">
+                    @for ($index = 1; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
+                        style="padding: 0px">
+                        <div class="hovereffect-berita">
+                            <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                            <div class="overlay">
+                                <h2>{{ $beritas[$index]->judul }}</h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="#">Lihat Berita</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                @endfor
             </div>
         </div>
     </div>
+</div>
+<div class="container my-3">
+    <div class="row align-items-center justify-content-center">
+        <span class="btn btn-berita" id="load-berita">TAMPILKAN BERITA</span>
+    </div>
+</div>
+</div>
 </div>
 <!-- endBerita -->
 
