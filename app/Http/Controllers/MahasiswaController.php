@@ -43,6 +43,12 @@ class MahasiswaController extends Controller
         return view('v_mahasiswa/nametag');
     }
 
+    public function getPenilaian(){
+        set_time_limit(0);
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        return view('v_mahasiswa/halamanPenilaian',compact('mahasiswa'));
+    }
+
     public function getProtectedFile($name)
     {
         $file = \App\ProtectedFile::find($name);
