@@ -67,6 +67,7 @@
                                 <option value="youtube">Link Youtube</option>
                                 <option value="pilgan">Pilihan Ganda</option>
                                 <option value="offline">Penugasan Offline</option>
+                                <option value="tts">Teka-Teki Silang</option>
                             </select>
                             <br>
                             <div id="jumlah-soal-parent">
