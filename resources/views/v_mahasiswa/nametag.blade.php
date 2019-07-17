@@ -59,7 +59,7 @@
                     <div class="col-md-6">
                         <p class="title-text">Preview Bagholder</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="{!! $bagholder !!}">
+                            <img src="{!! $bagholder !!}" class="img-bagholder">
                         </div>
                         <div class="d-flex justify-content-center">
                             <a download="Bagholder.{{ $nametag->extension }}" href="{!! $bagholder !!}">

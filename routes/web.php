@@ -41,7 +41,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
                 });
             });
         });
-        Route::get('nametag', 'MahasiswaController@getNametag')->name('nametag');
+        Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
         Route::get('penilaian', function () {
             return view('v_mahasiswa/halamanPenilaian');
         })->name('penilaian');
