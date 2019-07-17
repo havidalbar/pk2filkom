@@ -2357,7 +2357,7 @@ input::-webkit-inner-spin-button {
     margin-top: 32px;
 }
 .detail-bagholder .img-bagholder{
-    width: 100%;
+    width: 80%;
 }
 @media (max-width: 767.98px) {
     .title-nametag {
