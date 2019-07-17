@@ -37,10 +37,6 @@ $(document).ready(function () {
         }
     });
     // endScrollAnimate
-    
-    // zoom
-    $('.zoom').zoom();
-    // endZoom
 
     //tts 
     let tts = {
@@ -147,7 +143,7 @@ $(document).ready(function () {
     }
     tts.init();
     // endTts
-    
+
     // Datepicker
     $(".tanggal").datepicker({
         language: "id",
@@ -157,4 +153,9 @@ $(document).ready(function () {
         defaultViewDate: { year: 2001 }
     });
     // endDatepicker
+    
+    // zoom
+    $('.zoom').zoom();
+    // endZoom
+
 });
