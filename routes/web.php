@@ -15,10 +15,16 @@ Route::get('/teman-simaba', function () {
 });
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+
+Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
+    ->where('name', '(.*)')->name('protected-assets');
+
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
-    Route::get('login', 'AuthController@login')->name('login');
-    Route::post('login', 'AuthController@loginMahasiswa');
+    Route::group(['middleware' => ['mahasiswa.tologin']], function () {
+        Route::get('login', 'AuthController@login')->name('login');
+        Route::post('login', 'AuthController@loginMahasiswa');
+    });
 
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
@@ -26,9 +32,21 @@ Route::group(['as' => 'mahasiswa.'], function () {
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
-        Route::get('penugasan', 'MahasiswaController@getPenugasan')->name('penugasan');
+        Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
+            Route::get('/', 'JawabanController@index')->name('index');
+            Route::group(['prefix' => '{slug}'], function () {
+                Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
+                Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
+                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
+                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
+                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
+                });
+            });
+        });
         Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
+        Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
+
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
@@ -124,6 +142,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 });
 
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
+                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);

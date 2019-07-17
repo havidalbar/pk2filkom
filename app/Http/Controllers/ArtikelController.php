@@ -110,6 +110,7 @@ class ArtikelController extends Controller
                 }
 
                 $dom = new \domdocument();
+                libxml_use_internal_errors(true);
                 $dom->loadHtml(urldecode($request->sub_konten[$i]), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                 $images = $dom->getelementsbytagname('img');
 
@@ -272,6 +273,7 @@ class ArtikelController extends Controller
                         }
 
                         $dom = new \domdocument();
+                        libxml_use_internal_errors(true);
                         $dom->loadHtml(urldecode($request->sub_konten[$i]), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                         $images = $dom->getelementsbytagname('img');
 
@@ -308,6 +310,7 @@ class ArtikelController extends Controller
                         }
 
                         $dom = new \domdocument();
+                        libxml_use_internal_errors(true);
                         $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                         $images = $dom->getelementsbytagname('img');
 

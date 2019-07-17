@@ -367,15 +367,15 @@ body {
 }
 
 video#landingPageVideo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
 }
 .dropdown .nav-link {
     font-family: "Esphimere-SemiBold";
@@ -411,7 +411,7 @@ video#landingPageVideo {
     position: absolute;
     bottom: 0;
 }
-.pk2-jb1 {    
+.pk2-jb1 {
     height: 100vh;
 }
 .pk2-jb1::after {
@@ -1304,6 +1304,60 @@ figure img {
   min-width: 155px;
   min-height: 70px;
 }
+/* Penugasan */
+.bg-penugasan {
+  background-image: url(../img/bg-section/bg-penugasan.png);
+  height: 100%;
+  min-height: calc(100vh - 79px);
+}
+.title-penugasan {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Esphimere-SemiBold";
+  color: white;
+  font-size: 40px;
+}
+.garis-penugasan {
+  display: block;
+  border-bottom: 3px solid #eec950;
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+}
+.list-penugasan{
+  margin-top: 32px;
+  width: 100%;
+  max-width: 760px;
+}
+.list-penugasan a{
+  text-decoration: none;
+}
+.list-penugasan .item-penugasan{
+  font-family: 'Esphimere-semiBold';
+  background-color: #F1C538;
+  border-radius: 6px;
+  color: #00185A;
+  cursor: pointer;
+  padding: 12px 20px 12px 20px;
+  margin-top: 20px;
+}
+.list-penugasan .item-penugasan:hover{
+  background-color: #ffde77;
+}
+.item-penugasan .nama-tugas{
+  font-size:24px;
+}
+@media (max-width: 767.98px) {
+  .title-penugasan{
+    font-size: 28px;
+  }
+  .item-penugasan .nama-tugas{
+    font-size: 20px;
+  }
+  .list-penugasan{
+    margin-top: 20px;
+  }
+}
 /* endPenugasan */
 /* Desktop Version */
 @media (max-width: 575.98px) {
@@ -1322,115 +1376,111 @@ figure img {
     }
 }
 @media (max-width: 767.98px) {
-  video#landingPageVideo {
-    height: 100vh;
-  }
-  .nav-link {
-      font-size: 16px !important;
-  }
-  .dropdown-menu {
-      padding-bottom: 0 !important;
-      font-size: 15px !important;
-  }
-  .titleSection {
-      font-size: 32px;
-  }
-  .navbar-brand img {
-      width: 120px;
-      height: auto;
-      padding-left: 15px;
-  }
-  .navbar-toggler {
-      margin-right: 15px;
-  }
-  .pk2content {
-      width: 205px;
-      height: 200px;
-  }
-  .pk2imgContent::before,
-  .pk2imgContent::after {
-      border-bottom: 7px solid #f7bb3e;
-      width: 80%;
-  }
-  .pk2imgContent::before {
-      margin-right: -45px;
-  }
-  .pk2imgContent::after {
-      margin-left: -45px;
-  }
-  .afterMovieTxt {
-      font-size: 46px;
-      letter-spacing: 5px;
-  }
-  .afterMovieTxt::after {
-      width: 100%;
-  }
-  .st2::before {
-      border-left: 3px solid #fff;
-      border-top: 3px solid #fff;
-      transform: translate(5px, -14px);
-  }
-  .st2::after {
-      border-right: 3px solid #fff;
-      border-bottom: 3px solid #fff;
-      transform: translate(-5px, 14px);
-  }
-  .title-pk2 {
-      margin-bottom: 12px !important;
-      font-size: 22px;
-      padding: 10px 10px;
-      width: auto;
-  }
-  .pk2ttgsimana .media-body p {
-      font-size: 14px;
-  }
-  .pk2-jb4 {
-      height: 100%;
-      margin-bottom: 1.5rem !important;
-  }
-  .pk2-jb5 {
-      height: 100%;
-  }
-  .pk2-jb6 {
-      background-size: 170px;
-      height: 100%;
-  }
-  .figure {
-      width: 160px !important;
-      height: 160px !important;
-  }
-  .carousel-item .container .row .col-md-6:first-child {
-      padding-bottom: 0 !important;
-  }
-  .media.timeLine .media-body h5 {
-      font-size: 28px;
-  }
-  .media.timeLine .media-body p {
-      font-size: 17px;
-  }
-  .publis {
-      font-size: 19px;
-  }
-  .bg-color-filkom,
-  .bg-gdfilkom {
-      height: 200px !important;
-  }
-  .sep {
-      display: none;
-  }
-  .hovereffect-berita {
-      margin: 10px 0;
-  }
-  .pk2-jb6 .col-md-6:last-child > .row > .col {
-      height: 100%;
-  }
-  .hovereffect-berita .img2 {
-      max-height: none;
-  }
-  .row.justify-content-md-center .col-md-2{
-    margin-top: 5px;
-    margin-bottom: 5px;
-  }
+    video#landingPageVideo {
+        height: 100vh;
+    }
+    .nav-link {
+        font-size: 16px !important;
+    }
+    .dropdown-menu {
+        padding-bottom: 0 !important;
+        font-size: 15px !important;
+    }
+    .titleSection {
+        font-size: 32px;
+    }
+    .navbar-brand img {
+        width: 120px;
+        height: auto;
+        padding-left: 15px;
+    }
+    .navbar-toggler {
+        margin-right: 15px;
+    }
+    .pk2content {
+        width: 205px;
+        height: 200px;
+    }
+    .pk2imgContent::before,
+    .pk2imgContent::after {
+        border-bottom: 7px solid #f7bb3e;
+        width: 80%;
+    }
+    .pk2imgContent::before {
+        margin-right: -45px;
+    }
+    .pk2imgContent::after {
+        margin-left: -45px;
+    }
+    .afterMovieTxt {
+        font-size: 46px;
+        letter-spacing: 5px;
+    }
+    .afterMovieTxt::after {
+        width: 100%;
+    }
+    .st2::before {
+        border-left: 3px solid #fff;
+        border-top: 3px solid #fff;
+        transform: translate(5px, -14px);
+    }
+    .st2::after {
+        border-right: 3px solid #fff;
+        border-bottom: 3px solid #fff;
+        transform: translate(-5px, 14px);
+    }
+    .title-pk2 {
+        margin-bottom: 12px !important;
+        font-size: 22px;
+        padding: 10px 10px;
+        width: auto;
+    }
+    .pk2ttgsimana .media-body p {
+        font-size: 14px;
+    }
+    .pk2-jb4 {
+        height: 100%;
+        margin-bottom: 1.5rem !important;
+    }
+    .pk2-jb5 {
+        height: 100%;
+    }
+    .pk2-jb6 {
+        background-size: 170px;
+        height: 100%;
+    }
+    .figure {
+        width: 160px !important;
+        height: 160px !important;
+    }
+    .carousel-item .container .row .col-md-6:first-child {
+        padding-bottom: 0 !important;
+    }
+    .media.timeLine .media-body h5 {
+        font-size: 28px;
+    }
+    .media.timeLine .media-body p {
+        font-size: 17px;
+    }
+    .publis {
+        font-size: 19px;
+    }
+    .bg-color-filkom,
+    .bg-gdfilkom {
+        height: 200px !important;
+    }
+    .sep {
+        display: none;
+    }
+    .hovereffect-berita {
+        margin: 10px 0;
+    }
+    .pk2-jb6 .col-md-6:last-child > .row > .col {
+        height: 100%;
+    }
+    .hovereffect-berita .img2 {
+        max-height: none;
+    }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
     .nav-link {
@@ -1540,6 +1590,52 @@ figure img {
         content: "";
     }
 }
+/* Login Maba */
+.bg-login {
+    background-image: url(../img/bg-section/gedfhitamputih.png);
+    height: 100vh;
+    min-height: 600px;
+}
+.bg-login::after {
+    background-image: linear-gradient(
+        to left,
+        rgba(247, 187, 62, 0.73),
+        rgba(2, 25, 38, 0.43),
+        rgba(3, 60, 88, 0.95)
+    );
+}
+.bg-login .img-logo {
+    width: 280px;
+}
+.bg-login .form-login {
+    margin-top: 28px;
+    width: 100%;
+    max-width: 420px;
+}
+.form-login .form-group {
+    margin-bottom: 28px;
+}
+.form-login .form-group .input-group-text{
+    border-radius: 10px 0 0 10px;
+}
+.form-login .form-group .form-control {
+    padding: 24px 16px 24px 16px;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Halaman Penilaian */
+.bg-penilaian {
+    background-image: url(../img/bg-section/bg-penilaian.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titlePenilaian {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
 /* Halaman qr code */
 .bg-qr-code {
     background-image: url(../img/bg-section/bg-qr-code.png);
@@ -1596,6 +1692,45 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+.form-login .btn-login {
+    font-size: 20px;
+    color: white;
+    box-shadow: rgba(255, 255, 255, 0.19) 0px 5px 10px 2px;
+    border-color: white;
+    border-radius: 10px;
+    padding: 8px 16px 8px 16px;
+    margin-top: 18px;
+    min-width: 112px;
+}
+.form-login .btn-login:hover {
+    background-color: white;
+    color: black;
+}
+@media (max-width: 767.98px) {
+    .bg-login {
+        background-position: center;
+        background-size: cover;
+        min-height: 100%;
+    }
+    .bg-login .img-logo {
+        width: 200px;
+    }
+    .bg-login .form-login {
+        margin-top: 16px;
+        padding: 0 28px 0 28px;
+    }
+    .form-login .form-group {
+        margin-bottom: 20px;
+    }
+    .form-login .form-group .form-control {
+        padding: 0 16px 0 16px;
+    }
+    .form-login .btn-login {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+}
+/* Akhir Login Maba */
 .alert-form{
   top:10px;
   right:10px
@@ -1640,7 +1775,7 @@ input::-webkit-inner-spin-button {
     padding-top: 5px;
     padding-bottom: 15px;
   }
-  .form-group{
+  .bg-form-data-diri .form-group{
     margin-bottom: 0.7rem !important;
   }
   .invalid-feedback{
@@ -1864,6 +1999,83 @@ input::-webkit-inner-spin-button {
     color: white;
     font-size: 40px;
 }
+.garisPenilaian {
+    display: block;
+    border-bottom: 3px solid #f7bb3e;
+    width: 350px;
+    margin: auto;
+}
+.bg-nilai {
+    margin-top: 20px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+    padding: 20px 40px 20px 40px;
+}
+.bg-nilai .nav-tabs {
+    padding: 0px 20px 0px 20px;
+    border-bottom: 0 !important;
+    text-align: center;
+}
+.bg-nilai .tab-content {
+    padding: 40px 50px 50px 50px;
+}
+.bg-nilai .nav-link {
+    margin-left: 0 !important;
+    border-bottom: 2px solid white;
+}
+.bg-nilai .nav-link.active {
+    background-color: transparent !important;
+    color: #f7bb3e !important;
+    border: none !important;
+    border-bottom: 2px solid #f7bb3e !important;
+}
+.bg-nilai .nav-link.active:hover{
+    background-color: transparent !important;
+    color: #f7bb3e !important;
+    border: none !important;
+    border-bottom: 2px solid #f7bb3e !important;
+}
+.bg-nilai .nav-link:hover {
+    color: #92d6e6 !important;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid #92d6e6 !important;
+}
+.bg-table {
+    background-color: white;
+    border-radius: 5px;
+}
+.table {
+    margin-bottom: 0 !important;
+    font-size: 17px !important;
+}
+.totalPoin{
+    font-family: "Esphimere-SemiBold";
+    font-size:20px;
+    text-align:center;
+}
+@media (max-width: 767.98px) {
+    .titlePenilaian {
+        font-size: 35px;
+    }
+    .garisPenilaian {
+        width: 200px;
+    }
+    .bg-nilai {
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-nilai .tab-content {
+        padding: 20px;
+    }
+    .table {
+        font-size: 15px !important;
+    }
+    .totalPoin{
+        font-size:16px;
+    }
+}
+/* Akhir Halaman Penilaian */
 .garisKumpulVideo {
     display: block;
     border-bottom: 3px solid #eec950;
@@ -1885,7 +2097,7 @@ input::-webkit-inner-spin-button {
     color: white;
     text-align: center;
 }
-.preview-tugas #preview-video-ig {
+.preview-tugas .preview-video-ig {
     width: 320px;
     height: 374px;
     border-radius: 3px;
@@ -1894,7 +2106,7 @@ input::-webkit-inner-spin-button {
     margin-top: 20px;
     width: 100%;
 }
-.form-input-link #input-video-ig {
+.form-input-link .input-video {
     height: 48px;
 }
 .form-input-link .btn-submit-web {
@@ -1913,29 +2125,15 @@ input::-webkit-inner-spin-button {
     color: white;
     max-width: 800px;
     padding: 20px;
-}
-.detail-tugas .detail-title {
-    font-family: "Esphimere-SemiBold";
-    text-transform: uppercase;
-    font-size: 28px;
-    text-align: center;
     margin-top: 32px;
 }
-.detail-tugas .detail-list {
-    font-size: 24px;
+.detail-tugas h3,h2,h4{
+    font-family: "Esphimere-SemiBold";
 }
-.detail-list .nomor-text {
-    width: 20px;
+.detail-tugas p,ol{
+    font-size: 22px;
 }
-.detail-list .text {
-    margin-left: 10px;
-}
-.text a{
-    text-decoration: none;
-}
-.text .nomor-sub-text{
-    margin-right: 10px;
-}
+
 @media (max-width: 767.98px) {
     .titleKumpulVideo {
         font-size: 28px;
@@ -1953,16 +2151,16 @@ input::-webkit-inner-spin-button {
     .preview-tugas .preview-text {
         font-size: 24px;
     }
-    .preview-tugas #preview-video-ig {
+    .preview-tugas .preview-video-ig {
         width: 270px;
         height: 335px;
     }
     .form-input-link{
         width: 100%;
     }
-    .form-input-link #input-video-ig {
+    .form-input-link .input-video {
         height: 36px;
-        border-radius: 3px;
+        border-radius: 3px !important;
     }
     .form-input-link .btn-submit-web {
         display: none;
@@ -1975,14 +2173,27 @@ input::-webkit-inner-spin-button {
         display: block;
         height: 36px;
     }
-    .detail-tugas .detail-title {
+    .detail-tugas h3{
         font-size: 24px;
     }
-    .detail-tugas .detail-list {
+    .detail-tugas p,ol{
         font-size: 20px;
     }
 }
 /* Akhir Halaman kumpul video ig */
+/* Halaman kumpul line */
+.bg-kumpul-line {
+    background-image: url(../img/bg-section/bg-kumpul-line.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleKumpulLine {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
 
 /* Nametag */
 .bg-nametag {
@@ -1997,6 +2208,104 @@ input::-webkit-inner-spin-button {
     color: white;
     font-size: 40px;
 }
+.garisKumpulLine {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 480px;
+    margin: auto;
+}
+.bg-kumpul {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.preview-tugas{
+    width: 525px;
+}
+.preview-tugas .pengumpulan-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.preview-tugas #preview-section{
+    display: none;
+}
+.preview-tugas label{
+    font-family: "Esphimere-SemiBold";
+    font-size: 18px;
+    color: white;
+}
+.preview-tugas .preview-box{
+    background-color:#dce3e4;
+    min-width:100px;
+    min-height:100px;
+    padding:10px;
+    border-radius:5px;
+}
+.preview-tugas .preview-gambar {
+    max-width: 100%;
+    max-height: 320px;
+    border-radius: 3px;
+    background-color: #e4e4e4;
+    margin-right: 8px;
+}
+.form-input-link .pilih-gambar{
+    cursor:pointer;
+    font-family: "Esphimere-Regular";
+    font-size: 14px;
+    padding: 6px 12px 6px 12px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: black;
+}
+.form-input-link #input-line {
+    height: 48px;
+}
+.form-input-link .btn-submit-line {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-line:hover {
+    background-color: #f8bc3f;
+}
+@media (max-width: 767.98px) {
+    .titleKumpulLine {
+        font-size: 28px;
+    }
+    .garisKumpulLine {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .bg-kumpul{
+        padding: 20px 0px 20px 0px;
+    }
+    .bg-kumpul .preview-tugas{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-tugas .pengumpulan-text {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .form-input-link #input-line {
+        height: 36px;
+        border-radius: 3px;
+    }
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;
+    }
+}
+/* Akhir Halaman kumpul line */
 .garis-nametag {
     display: block;
     border-bottom: 3px solid #eec950;
@@ -2047,6 +2356,9 @@ input::-webkit-inner-spin-button {
 .detail-bagholder{
     margin-top: 32px;
 }
+.detail-bagholder .img-bagholder{
+    width: 80%;
+}
 @media (max-width: 767.98px) {
     .title-nametag {
         font-size: 28px;
@@ -2068,6 +2380,59 @@ input::-webkit-inner-spin-button {
     }
 }
 /* Akhir Nametag */
+
+/*awal halaman error*/
+.bg-halError {
+    background-image: url(../img/bg-section/bg-error.png);
+    height: 100vh;
+}
+
+.container.error {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.card.home {
+    width: 30%;
+    margin: 0;
+    background-color: #EEC950;
+    font-family: "Esphimere-Bold";
+    font-size: 35px;
+    color: #0b2939;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card.home:hover {
+    background-color: #e4ba31;
+    cursor: pointer;
+}
+
+.textError {
+    text-align: center;
+    font-family: "Esphimere-Bold";
+    font-size: 50px;
+    color: black;
+    text-shadow:   3px 2px #eec950, 2px 3px #eec950;
+    margin: 0;
+    padding: 0;
+}
+
+.errormsg {
+    text-align: center;
+    font-family: "Esphimere-Light";
+    font-size: 200px;
+    color: rgba(250, 189, 54, 0.7);
+    text-shadow:   7px 6px black, 6px 7px black,
+               13px 12px rgba(6, 62, 89, 0.7), 12px 13px rgba(6, 62, 89, 0.7);
+    margin: 0;
+    padding: 0;
+}
+/* akhir halaman error */
 /* Teman Simaba */
 .bg-teman-simaba{
     background-image: url(../img/bg-section/bg-teman-simaba.png);
@@ -2110,7 +2475,7 @@ input::-webkit-inner-spin-button {
     transition: all 0.4s ease-in-out;
 }
 .teman-simaba-card:hover .overlay {
-    opacity: 1;    
+    opacity: 1;
 }
 .teman-simaba-card img {
     max-width: 100%;

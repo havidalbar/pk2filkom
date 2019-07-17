@@ -31,7 +31,7 @@ class DataDiriMahasiswaRequest extends FormRequest
             'date' => 'Kolom :attribute harus dalam bentuk tanggal',
             'before' => 'Kolom :attribute harus tidak melebihi tanggal saat ini',
             'in' => 'Kolom :attribute tidak valid',
-            'min' => 'Kolom :attribute minimal berisi :max karakter',
+            'min' => 'Kolom :attribute minimal berisi :min karakter',
         ];
     }
 

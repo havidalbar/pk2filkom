@@ -91,56 +91,21 @@
     </div>
     @php
     if (empty($penugasan) || $penugasan->jenis === NULL) {
-    switch ($_GET['tipe_soal']) {
-    case 'instagram':
-    $jenis = 1;
-    break;
-    case 'line':
-    $jenis = 2;
-    break;
-    case 'youtube':
-    $jenis = 3;
-    break;
-    }
+    $jenis = 5;
     } else {
     $jenis = $penugasan->jenis;
     }
     @endphp
     <input name="jenis" type="hidden" value="{{ $jenis ?? '' }}">
-    @if (empty(old('soal')) && empty($penugasan))
-    @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) <div class="form-group m-form__group row align-items-center">
-        <label class="col-2 col-form-label">
-            Soal {{ $i + 1 }}
-        </label>
-        <div class="col-10">
-            <input class="form-control m-input" name="soal[{{ $i }}][soal]" placeholder="Pertanyaan soal {{ $i + 1 }}"
-                type="text" required>
+    <div class="m-portlet__foot m-portlet__foot--fit">
+        <div class="m-form__actions">
+            <button onclick="submitForm()" class="btn btn-primary" type="button">
+                Simpan Tugas
+            </button>
+            <button id="submitter" style="display: none;" type="submit"></button>
+            <button type="reset" class="btn btn-secondary">
+                Reset
+            </button>
         </div>
-</div>
-@endfor
-@elseif (old('soal') || $penugasan->soal)
-@foreach ((old('soal') ?? $penugasan->soal) as $index => $soal)
-<div class="form-group m-form__group row align-items-center">
-    <label class="col-2 col-form-label">
-        Soal {{ $index + 1 }}
-    </label>
-    <div class="col-10">
-        <input class="form-control m-input" name="soal[{{ $index }}][soal]"
-            placeholder="Pertanyaan soal {{ $index + 1 }}" type="text" required value="{{ $soal['soal'] }}">
     </div>
-</div>
-@endforeach
-@endif
-{!! $errors->first('soal', '<div class="form-control-feedback">:message</div>') !!}
-<div class="m-portlet__foot m-portlet__foot--fit">
-    <div class="m-form__actions">
-        <button onclick="submitForm()" class="btn btn-primary" type="button">
-            Simpan Tugas
-        </button>
-        <button id="submitter" style="display: none;" type="submit"></button>
-        <button type="reset" class="btn btn-secondary">
-            Reset
-        </button>
-    </div>
-</div>
 </div>

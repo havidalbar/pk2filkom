@@ -67,6 +67,7 @@ class PenugasanController extends Controller
             $penugasan->judul = $request->judul;
 
             $dom = new \domdocument();
+            libxml_use_internal_errors(true);
             $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $images = $dom->getelementsbytagname('img');
 
@@ -94,6 +95,7 @@ class PenugasanController extends Controller
 
             $penugasan->random = $request->random ? true : false;
             $penugasan->jenis = $request->jenis;
+            $penugasan->waktu_tampil = $request->waktu_tampil;
             $penugasan->waktu_mulai = $request->waktu_mulai;
             $penugasan->waktu_akhir = $request->waktu_akhir;
             $penugasan->batas_waktu = $request->batas_waktu ? $request->batas_waktu : null;
@@ -101,52 +103,14 @@ class PenugasanController extends Controller
 
             $penugasan->save();
 
-            for ($i = 0; $i < count($request->soal); $i++) {
-                $soal = new PenugasanSoalBeta;
+            if ($request->jenis != 5) {
+                for ($i = 0; $i < count($request->soal); $i++) {
+                    $soal = new PenugasanSoalBeta;
 
-                if ($request->jenis == 2) {
-                    $dom = new \domdocument();
-                    $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-                    $images = $dom->getelementsbytagname('img');
-
-                    //loop over img elements, decode their base64 src and save them to public folder,
-                    //and then replace base64 src with stored image URL.
-                    foreach ($images as $k => $img) {
-                        $data = $img->getattribute('src');
-
-                        if (strpos($data, ';') !== false) {
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
-
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
-
-                            file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
-                            $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
-
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
-                        }
-                    }
-                    $soal->soal = $dom->savehtml();
-                } else {
-                    $soal->soal = $request->soal[$i]['soal'];
-                }
-
-                $soal->id_penugasan = $penugasan->id;
-                // $soal->index =
-                $soal->save();
-
-                if ($penugasan->jenis == 2) {
-                    // TODO : Masukkan jawaban
-                    $submitted_pilihan_jawaban = [];
-                    foreach ($request->soal[$i]['pilihan_jawaban'] as $pj) {
-                        $pilihan_jawaban = new PenugasanJawabanBeta;
-
+                    if ($request->jenis == 4) {
                         $dom = new \domdocument();
-                        $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        libxml_use_internal_errors(true);
+                        $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,
@@ -170,16 +134,59 @@ class PenugasanController extends Controller
                                 $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
                             }
                         }
-
-                        $pilihan_jawaban->id_soal = $soal->id;
-                        $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
-
-                        $pilihan_jawaban->save();
-                        $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                        $soal->soal = $dom->savehtml();
+                    } else {
+                        $soal->soal = $request->soal[$i]['soal'];
                     }
 
-                    $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
+                    $soal->id_penugasan = $penugasan->id;
+                    $soal->index = $i;
                     $soal->save();
+
+                    if ($penugasan->jenis == 4) {
+                        // TODO : Masukkan jawaban
+                        $submitted_pilihan_jawaban = [];
+                        foreach ($request->soal[$i]['pilihan_jawaban'] as $pji => $pj) {
+                            $pilihan_jawaban = new PenugasanJawabanBeta;
+
+                            $dom = new \domdocument();
+                            libxml_use_internal_errors(true);
+                            $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                            $images = $dom->getelementsbytagname('img');
+
+                            //loop over img elements, decode their base64 src and save them to public folder,
+                            //and then replace base64 src with stored image URL.
+                            foreach ($images as $k => $img) {
+                                $data = $img->getattribute('src');
+
+                                if (strpos($data, ';') !== false) {
+                                    list($type, $data) = explode(';', $data);
+                                    list(, $data) = explode(',', $data);
+
+                                    $data = base64_decode($data);
+                                    // $image_name = time() . $k . '.png';
+                                    $image_extension = str_replace('data:image/', '', $type);
+                                    $image_name = uniqid() . '.' . $image_extension;
+
+                                    file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
+                                    $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
+
+                                    $img->removeattribute('src');
+                                    $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
+                                }
+                            }
+
+                            $pilihan_jawaban->id_soal = $soal->id;
+                            $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
+                            $pilihan_jawaban->index = $pji;
+
+                            $pilihan_jawaban->save();
+                            $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                        }
+
+                        $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
+                        $soal->save();
+                    }
                 }
             }
             DB::commit();
@@ -193,6 +200,8 @@ class PenugasanController extends Controller
                     unlink($uploaded);
                 }
             }
+
+            dd($ex);
             return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
         }
     }
@@ -227,8 +236,10 @@ class PenugasanController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(PenugasanRequest $request, $slug)
     {
+        // dd($request->deskripsi);
+
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
 
         if ($penugasan) {
@@ -259,6 +270,7 @@ class PenugasanController extends Controller
                 $penugasan->judul = $request->judul;
 
                 $dom = new \domdocument();
+                libxml_use_internal_errors(true);
                 $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                 $images = $dom->getelementsbytagname('img');
 
@@ -285,6 +297,7 @@ class PenugasanController extends Controller
                 }
 
                 $penugasan->random = $request->random ? true : false;
+                $penugasan->waktu_tampil = $request->waktu_tampil;
                 $penugasan->waktu_mulai = $request->waktu_mulai;
                 $penugasan->waktu_akhir = $request->waktu_akhir;
                 $penugasan->batas_waktu = $request->batas_waktu ? $request->batas_waktu : null;
@@ -292,64 +305,15 @@ class PenugasanController extends Controller
 
                 $penugasan->save();
 
-                for ($i = 0; $i < count($request->soal); $i++) {
-                    if (isset($request->soal[$i]['id'])) {
-                        $soal = PenugasanSoalBeta::where('id', $request->soal[$i]['id'])->first();
+                if ($request->jenis != 5) {
+                    $soals = $penugasan->soal;
+                    for ($i = 0; $i < count($request->soal); $i++) {
+                        $soal = $soals[$i];
 
-                        if (!$soal) {
-                            $soal = new PenugasanSoalBeta;
-                        }
-                    } else {
-                        $soal = new PenugasanSoalBeta;
-                    }
-
-                    $dom = new \domdocument();
-                    $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-                    $images = $dom->getelementsbytagname('img');
-
-                    //loop over img elements, decode their base64 src and save them to public folder,
-                    //and then replace base64 src with stored image URL.
-                    foreach ($images as $k => $img) {
-                        $data = $img->getattribute('src');
-
-                        if (strpos($data, ';') !== false) {
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
-
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
-
-                            file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
-                            $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
-
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
-                        }
-                    }
-
-                    $soal->index = $i;
-                    $soal->id_penugasan = $penugasan->id;
-                    $soal->soal = $dom->savehtml();
-                    $soal->save();
-
-                    if ($penugasan->jenis == 2) {
-                        // TODO : Masukkan jawaban
-                        $submitted_pilihan_jawaban = [];
-                        foreach ($request->soal[$i]['pilihan_jawaban'] as $pj) {
-                            if (isset($pj['id'])) {
-                                $pilihan_jawaban = PenugasanJawabanBeta::where('id', $id)->first();
-
-                                if (!$pilihan_jawaban) {
-                                    throw new Exception();
-                                }
-                            } else {
-                                $pilihan_jawaban = new PenugasanJawabanBeta;
-                            }
-
+                        if ($request->jenis == 4) {
                             $dom = new \domdocument();
-                            $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                            libxml_use_internal_errors(true);
+                            $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
                             $images = $dom->getelementsbytagname('img');
 
                             //loop over img elements, decode their base64 src and save them to public folder,
@@ -373,16 +337,55 @@ class PenugasanController extends Controller
                                     $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
                                 }
                             }
-
-                            $pilihan_jawaban->id_soal = $soal->id;
-                            $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
-
-                            $pilihan_jawaban->save();
-                            $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                            $soal->soal = $dom->savehtml();
+                        } else {
+                            $soal->soal = $request->soal[$i]['soal'];
                         }
 
-                        $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
                         $soal->save();
+
+                        if ($penugasan->jenis == 4) {
+                            // TODO : Masukkan jawaban
+                            $submitted_pilihan_jawaban = [];
+                            $piljaws = $soal->pilihan_jawaban;
+                            foreach ($request->soal[$i]['pilihan_jawaban'] as $pji => $pj) {
+                                $pilihan_jawaban = $piljaws[$pji];
+
+                                $dom = new \domdocument();
+                                libxml_use_internal_errors(true);
+                                $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                                $images = $dom->getelementsbytagname('img');
+
+                                //loop over img elements, decode their base64 src and save them to public folder,
+                                //and then replace base64 src with stored image URL.
+                                foreach ($images as $k => $img) {
+                                    $data = $img->getattribute('src');
+
+                                    if (strpos($data, ';') !== false) {
+                                        list($type, $data) = explode(';', $data);
+                                        list(, $data) = explode(',', $data);
+
+                                        $data = base64_decode($data);
+                                        // $image_name = time() . $k . '.png';
+                                        $image_extension = str_replace('data:image/', '', $type);
+                                        $image_name = uniqid() . '.' . $image_extension;
+
+                                        file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
+                                        $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
+
+                                        $img->removeattribute('src');
+                                        $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
+                                    }
+                                }
+
+                                $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
+                                $pilihan_jawaban->save();
+                                $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                            }
+
+                            $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
+                            $soal->save();
+                        }
                     }
                 }
                 DB::commit();
@@ -396,6 +399,8 @@ class PenugasanController extends Controller
                         unlink($uploaded);
                     }
                 }
+
+                dd($ex);
                 return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
             }
         } else {

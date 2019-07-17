@@ -1,75 +1,34 @@
 @extends ('layouts.template')
-@section('title', 'Berita | FILKOM UB')
+@section('title', 'SiMaba! 2019 | FILKOM UB')
 
 @section('content')
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
 
-<div class="jumbotron jumbotron-fluid bg-penugasan p-0 d-flex align-items-center justify-content-center">
-  <!-- Title -->
-  <div class="title">
+<div class="jumbotron jumbotron-fluid bg-penugasan">
     <div class="container">
-        <div class="row">
-            <div class="titlePk2Maba m-auto multipleChoise">
-                <h1 class="titleSection">penuggasan</h1>
-            </div>
-        </div>
-        <div class="row justify-content-md-center alitem">
-            <div class="col-md-2">
-              <a href="/Twibbon">
-                <div class="item-penugasan">Twibbon</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-            <a href="{{ route('mahasiswa.buku-panduan') }}">
-                <div class="item-penugasan">Buku Panduan</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-            <a href="{{ route('mahasiswa.cerita-tentang-aku') }}">
-                <div class="item-penugasan">Cerita Tentang Aku</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Teka-Teki-siMaba">
-                <div class="item-penugasan">Teka Teki siMABA</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-                <a href="/FILKOM-Mengabdi">
-                  <div class="item-penugasan">FILKOM Mengabdi</div>
+        <div class="title-penugasan">Penugasan</div>
+        <div class="garis-penugasan"></div>
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="list-penugasan">
+                @foreach ($penugasans as $penugasan)
+                <a href="{{ route('mahasiswa.penugasan.view-jawaban', ['slug' => $penugasan->slug]) }}">
+                    <div class="item-penugasan">
+                        <div class="nama-tugas">{{ $penugasan->judul }}</div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{ ($penugasan->soal_count ? $penugasan->soal_count . ' Soal ' : '') . $penugasan->jenis_text }}
+                            </div>
+                            <div class="col-md-4">Mulai : {{ $penugasan->waktu_mulai }}</div>
+                            <div class="col-md-4">Berakhir : {{ $penugasan->waktu_akhir }}</div>
+                        </div>
+                    </div>
                 </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Serial-FILKOM">
-                <div class="item-penugasan">Serial FILKOM</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-                <a href="/Ngobrol-Inspiratif">
-                  <div class="item-penugasan">Ngobrol Inspiratif</div>
-                </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/PKM">
-                <div class="item-penugasan">PKM</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Kuis-OH">
-                <div class="item-penugasan">Kuis OH</div>
-              </a>
-            </div>
-            <div class="col-md-2">
-              <a href="/Cobain-Organisasi">
-                <div class="item-penugasan">Cobain Organisasi</div>
-              </a>
+                @endforeach
             </div>
         </div>
     </div>
-  </div>
-  <!-- EndTitle -->
 </div>
 
 <!-- Footer -->

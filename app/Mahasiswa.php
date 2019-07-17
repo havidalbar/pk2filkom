@@ -14,6 +14,7 @@ class Mahasiswa extends Model
     protected $fillable = [
         'nim',
         'nama',
+        'prodi'
     ];
 
     protected $casts = [
@@ -22,7 +23,9 @@ class Mahasiswa extends Model
 
     protected $appends = [
         'rekap_nilai_pk2maba',
+        'rekap_nilai_pkm',
         'rekap_nilai_startup',
+        'rekap_nilai_prodi',
     ];
 
     public function getJenisKelaminAttribute($value)
@@ -94,6 +97,22 @@ class Mahasiswa extends Model
             'absensi' => StartupAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
             'keaktifan' => StartupKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
             'pelanggaran' => StartupPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+        ];
+    }
+
+    public function getRekapNilaiPkmAttribute()
+    {
+        return [
+            'absensi' => PK2MTourAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'keaktifan' => PK2MTourKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'pelanggaran' => PK2MTourPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+        ];
+    }
+
+    public function getRekapNilaiProdiAttribute()
+    {
+        return [
+            'final' => ProdiFinal::setEagerLoads([])->where('nim', $this->nim)->first(),
         ];
     }
 }
