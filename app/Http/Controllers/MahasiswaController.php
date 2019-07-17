@@ -49,6 +49,10 @@ class MahasiswaController extends Controller
         return view('v_mahasiswa/halamanPenilaian',compact('mahasiswa'));
     }
 
+    public function getTemanSimaba(){
+        return view('v_mahasiswa/temanSimaba');
+    }
+
     public function getProtectedFile($name)
     {
         $file = \App\ProtectedFile::find($name);
