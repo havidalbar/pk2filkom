@@ -49,6 +49,9 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
+Route::get('/tts', function () {
+    return view('v_mahasiswa/tts');
+});
 
 // Admin Panel
 Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {

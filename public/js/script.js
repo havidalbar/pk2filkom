@@ -37,6 +37,7 @@ $(document).ready(function () {
         }
     });
     // endScrollAnimate
+
     // Datepicker
     $(".tanggal").datepicker({
         language: "id",
@@ -45,5 +46,10 @@ $(document).ready(function () {
         orientation: "bottom left",
         defaultViewDate: { year: 2001 }
     });
-    // endDatepicker    
+    // endDatepicker
+
+    // zoom
+    $('.zoom').zoom();
+    // endZoom
+
 });

@@ -1269,12 +1269,62 @@ figure img {
   font-weight: bold;
 }
 /* endMedia ICON */
+  
 /* Penugasan */
-.bg-penugasan{
+.bg-penugasan {
     background-image: url(../img/bg-section/bg-penugasan.png);
-    height: calc(100vh - 79px);
-    min-height: 100%;
+    height: 100%;
+    min-height: calc(100vh - 79px);
   }
+  .title-penugasan {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+  }
+  .garis-penugasan {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+  .list-penugasan{
+    margin-top: 32px;
+    width: 100%;
+    max-width: 760px;
+  }
+  .list-penugasan a{
+    text-decoration: none;
+  }
+  .list-penugasan .item-penugasan{
+    font-family: 'Esphimere-semiBold';
+    background-color: #F1C538;
+    border-radius: 6px;
+    color: #00185A;
+    cursor: pointer;
+    padding: 12px 20px 12px 20px;
+    margin-top: 20px;
+  }
+  .list-penugasan .item-penugasan:hover{
+    background-color: #ffde77;
+  }
+  .item-penugasan .nama-tugas{
+    font-size:24px;
+  }
+  @media (max-width: 767.98px) {
+    .title-penugasan{
+      font-size: 28px;
+    }
+    .item-penugasan .nama-tugas{
+      font-size: 20px;
+    }
+    .list-penugasan{
+      margin-top: 20px;
+    }
+  }
+  /* endPenugasan */
 .row.justify-content-md-center{
   margin: 5% 0;
 }
@@ -1304,62 +1354,90 @@ figure img {
   min-width: 155px;
   min-height: 70px;
 }
-/* Penugasan */
-.bg-penugasan {
-  background-image: url(../img/bg-section/bg-penugasan.png);
-  height: 100%;
-  min-height: calc(100vh - 79px);
+
+/* TTS */
+.pk2-dtBerita > .title > .container ol {
+  margin-top: 1.5rem;
+  color: #fff;
+  font-family: 'Esphimere-Light';
 }
-.title-penugasan {
-  text-align: center;
-  text-transform: uppercase;
-  font-family: "Esphimere-SemiBold";
-  color: white;
-  font-size: 40px;
+
+#tts-soal {
+  font-family: 'Esphimere-Light';
+  font-size: 16px;
+  color: #fff;
 }
-.garis-penugasan {
+
+#tts-soal h1 {
+  font-family: 'Esphimere-bold';
+  font-size: 18px;
+}
+#tts-soal ol{    
   display: block;
-  border-bottom: 3px solid #eec950;
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  text-align: justify;
+}
+#tts-soal ol li::before {
+  content: attr(data-noSoal) ". ";
+  margin-left: 2rem;
+  margin-right: 0.45rem;
+  position: absolute;
+  left: 0;
+  text-align: start;
+}
+table#tts-table tr {
   width: 100%;
-  max-width: 320px;
-  margin: auto;
 }
-.list-penugasan{
-  margin-top: 32px;
+table#tts-table td {
+  width: 3.5em;
+  height: 2.5em;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+}
+table#tts-table td input{
   width: 100%;
-  max-width: 760px;
+  height: 100%;
+  padding: 0em;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  background-color: #f4f4f4;
 }
-.list-penugasan a{
-  text-decoration: none;
+.ttsNoSoal {
+  position: absolute;
+  font-size: 10px;
 }
-.list-penugasan .item-penugasan{
-  font-family: 'Esphimere-semiBold';
-  background-color: #F1C538;
-  border-radius: 6px;
-  color: #00185A;
-  cursor: pointer;
-  padding: 12px 20px 12px 20px;
-  margin-top: 20px;
-}
-.list-penugasan .item-penugasan:hover{
-  background-color: #ffde77;
-}
-.item-penugasan .nama-tugas{
-  font-size:24px;
-}
+/* endTTS */
+
+/* tabletVersion */
 @media (max-width: 767.98px) {
-  .title-penugasan{
-    font-size: 28px;
+  .tts .titleSection {
+    font-size: 24px;
   }
-  .item-penugasan .nama-tugas{
-    font-size: 20px;
+  .tts .titleSection::after {
+      width: 110%;
+      transform: translateX(-5%);
   }
-  .list-penugasan{
-    margin-top: 20px;
+  table#tts-table td {
+    width: 3.5em;
+    height: 1.5em;
+  }
+  .nav-link {
+    font-size: 16px !important;
   }
 }
-/* endPenugasan */
-/* Desktop Version */
+/* endTabletVersion */
+
+/* mobileVersion */
 @media (max-width: 575.98px) {
     #swipUp {
         bottom: -65px;
@@ -1373,6 +1451,12 @@ figure img {
     }
     .btn-berita {
         font-size: 14px;
+    }
+    .slick-dots {
+      bottom: -48px;
+    }
+    #tts-soal {
+      padding: 0 15px;
     }
 }
 @media (max-width: 767.98px) {
