@@ -13,6 +13,9 @@
 Route::get('/info-akademik', function () {
     return view('v_mahasiswa/temanSimabaAkademik');
 });
+Route::get('/info-kampus', function () {
+    return view('v_mahasiswa/temanSimabaKampus');
+});
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 // Mahasiswa

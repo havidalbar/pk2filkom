@@ -7,7 +7,9 @@ $(document).ready(function () {
             $('.pk2-jb6').css('height', ($(window).height() - 164) + 'px');
         }
     });
-    
+
+    $('.nav-home .navbar-brand img').attr('src',window.location.origin+'/img/bg-section/lsimaba2@4x.svg');
+        
     // Paralex fixNavbar
     $(window).scroll(function () {
         let navScroll = $(this).scrollTop();
@@ -17,8 +19,16 @@ $(document).ready(function () {
             $('.nav-home').css({
                 'transition': '1.5s'
             });
+            
+            if (window.location.origin+'/info-kampus') {
+                $('.nav-home .navbar-brand img').attr('src',window.location.origin+'/img/bg-section/simaba2@4x.svg');
+            }
+
         } else {
             $('.nav-home').removeClass('sticky-dekstop');
+            if (window.location.origin+'/info-kampus') {
+                $('.nav-home .navbar-brand img').attr('src',window.location.origin+'/img/bg-section/lsimaba2@4x.svg');
+            }
         }
     });
     // endParalex fixNavbar
