@@ -82,37 +82,80 @@ class Mahasiswa extends Model
         }
     }
 
+    public function pk2maba_absensi()
+    {
+        return $this->hasOne('App\PK2MabaAbsensi', 'nim', 'nim');
+    }
+
+    public function pk2maba_keaktifan()
+    {
+        return $this->hasOne('App\PK2MabaKeaktifan', 'nim', 'nim');
+    }
+
+    public function pk2maba_pelanggaran()
+    {
+        return $this->hasOne('App\PK2MabaPelanggaran', 'nim', 'nim');
+    }
+
     public function getRekapNilaiPk2mabaAttribute()
     {
         return [
-            'absensi' => PK2MabaAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'keaktifan' => PK2MabaKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'pelanggaran' => PK2MabaPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'absensi' => $this->pk2maba_absensi,
+            'keaktifan' => $this->pk2maba_keaktifan,
+            'pelanggaran' => $this->pk2maba_pelanggaran,
         ];
+    }
+
+    public function startup_absensi()
+    {
+        return $this->hasOne('App\StartupAbsensi', 'nim', 'nim');
+    }
+
+    public function startup_keaktifan()
+    {
+        return $this->hasOne('App\StartupKeaktifan', 'nim', 'nim');
+    }
+
+    public function startup_pelanggaran()
+    {
+        return $this->hasOne('App\StartupPelanggaran', 'nim', 'nim');
     }
 
     public function getRekapNilaiStartupAttribute()
     {
         return [
-            'absensi' => StartupAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'keaktifan' => StartupKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'pelanggaran' => StartupPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'absensi' => $this->startup_absensi,
+            'keaktifan' => $this->startup_keaktifan,
+            'pelanggaran' => $this->startup_pelanggaran,
         ];
+    }
+
+    public function pkm_absensi()
+    {
+        return $this->hasOne('App\StartupAbsensi', 'nim', 'nim');
+    }
+
+    public function pkm_keaktifan()
+    {
+        return $this->hasOne('App\StartupKeaktifan', 'nim', 'nim');
+    }
+
+    public function pkm_pelanggaran()
+    {
+        return $this->hasOne('App\StartupPelanggaran', 'nim', 'nim');
     }
 
     public function getRekapNilaiPkmAttribute()
     {
         return [
-            'absensi' => PK2MTourAbsensi::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'keaktifan' => PK2MTourKeaktifan::setEagerLoads([])->where('nim', $this->nim)->first(),
-            'pelanggaran' => PK2MTourPelanggaran::setEagerLoads([])->where('nim', $this->nim)->first(),
+            'absensi' => $this->pkm_absensi,
+            'keaktifan' => $this->pkm_keaktifan,
+            'pelanggaran' => $this->pkm_pelanggaran,
         ];
     }
 
-    public function getRekapNilaiProdiAttribute()
+    public function nilai_prodi()
     {
-        return [
-            'final' => ProdiFinal::setEagerLoads([])->where('nim', $this->nim)->first(),
-        ];
+        return $this->hasOne('App\ProdiFinal', 'nim', 'nim');
     }
 }
