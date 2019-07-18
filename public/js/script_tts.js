@@ -1,3 +1,9 @@
+function submitTTS() {
+    // TODO:
+
+    setTimeout(submitTTS, 60 * 1000);
+}
+
 $(document).ready(function () {
     let tbl = ['<table id="tts-table">'];
     for (let i = 1; i <= 24; ++i) {
@@ -23,9 +29,9 @@ $(document).ready(function () {
                             huruf = '';
                         }
                         if (x == dataTts.menurun[i].posisi.startx) {
-                            find.children().length ? '' : find.append('<span class="ttsNoSoal">' + dataTts.menurun[i].noSoal + '</span><input maxlength="1" value="' + huruf + '" type="text"" />');
+                            find.children().length ? '' : find.append(`<span class="ttsNoSoal">${dataTts.menurun[i].noSoal}</span><input maxlength="1" name="jawaban[${x}][${y}]" value="${huruf}" type="text">`);
                         } else {
-                            find.children().length ? '' : find.append('<input maxlength="1" value="' + huruf + '" type="text"" />');
+                            find.children().length ? '' : find.append(`<input maxlength="1" name="jawaban[${x}][${y}]" value="${huruf}" type="text">`);
                         }
                     }
                 }
@@ -45,9 +51,9 @@ $(document).ready(function () {
                             huruf = '';
                         }
                         if (y == dataTts.mendatar[i].posisi.starty) {
-                            find.children().length ? find.prepend('<span class="ttsNoSoal">' + dataTts.mendatar[i].noSoal + '</span>') : find.append('<span class="ttsNoSoal">' + dataTts.mendatar[i].noSoal + '</span><input maxlength="1" value="' + huruf + '" type="text"" />');
+                            find.children().length ? find.prepend(`<span class="ttsNoSoal">${dataTts.mendatar[i].noSoal}</span>`) : find.append(`<span class="ttsNoSoal">${dataTts.mendatar[i].noSoal}</span><input maxlength="1" name="jawaban[${x}][${y}]" value="${huruf}" type="text">`);
                         } else {
-                            find.children().length ? '' : find.append('<input maxlength="1" value="' + huruf + '" type="text"" />');
+                            find.children().length ? '' : find.append(`<input maxlength="1" name="jawaban[${x}][${y}]" value="${huruf}" type="text">`);
                         }
                     }
                 }

@@ -1,6 +1,10 @@
 @extends ('layouts.template')
 @section('title', 'TTS | FILKOM UB')
 
+@section('js')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+@endsection
+
 @section('content')
 <!-- Navbar atas -->
 @include('layouts.header')
@@ -23,17 +27,29 @@
     </div>
     <!-- EndTitle -->
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-auto" id="tts"></div>
-            <div class="row mt-5" id="tts-soal">
+        <form method="post">
+            @csrf
+            <div class="row justify-content-center">
+                <div class="col-auto" id="tts"></div>
+                <input type="submit" value="Submit">
+                <div class="row mt-5" id="tts-soal"></div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <script>
     let dataTts = {"menurun": {!! $menuruns !!}, "mendatar": {!! $mendatars !!}};
+    let submitUrl = `{{ route('api-submit-tts', ['slug' => $penugasan->slug]) }}`;
+    let token = `{{ $jwt }}`;
 </script>
 <script src="{{ asset('js/script_tts.js') }}"></script>
+@if (!$expired)
+<script>
+    $(document).ready(function () {
+        setTimeout(submitTTS, 60 * 1000);
+    });
+</script>
+@endif
 <!-- Footer -->
 @include('layouts.footer')
 <!-- Footer -->
