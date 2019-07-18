@@ -39,13 +39,4 @@ class PenugasanBeta extends Model
                 return 'Teka-Teki Silang';
         }
     }
-
-    public function getSoalAttribute($value)
-    {
-        if ($this->jenis == 6) {
-            return json_decode($value);
-        } else {
-            return $value;
-        }
-    }
 }
