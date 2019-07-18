@@ -1,11 +1,9 @@
 function submitTTS() {
     let formData = {};
 
-    $("input[name^='jawaban']").each(function() {
+    $("input[name^='jawaban']").each(function () {
         formData[this.name] = this.value;
     });
-
-    console.log(new Date());
 
     $.ajax({
         type: 'post',
@@ -14,11 +12,7 @@ function submitTTS() {
         headers: {
             "Authorization": token
         },
-        beforeSend: function () {
-            console.log(formData);
-        },
         success: function () {
-            console.log(new Date());
             console.log('submitted');
         },
         error: function () {
@@ -27,7 +21,7 @@ function submitTTS() {
     });
 
     setTimeout(submitTTS, 60 * 1000);
-}
+};
 
 $(document).ready(function () {
     let tbl = ['<table id="tts-table">'];

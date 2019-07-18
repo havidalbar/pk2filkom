@@ -42,7 +42,7 @@
     let submitUrl = `{{ route('api-submit-tts', ['slug' => $penugasan->slug]) }}`;
     let token = `{{ $jwt }}`;
 </script>
-<script src="{{ asset('js/script_tts.js') }}"></script>
+<script src="{{ asset('js/script_tts_terbaru.js') }}"></script>
 @if (!$expired)
 <script>
     $(document).ready(function () {
