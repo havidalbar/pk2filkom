@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use function GuzzleHttp\json_decode;
 
 class PenugasanBeta extends Model
 {
@@ -35,7 +36,16 @@ class PenugasanBeta extends Model
             case 5:
                 return 'Offline';
             case 6:
-                return 'Teka-teki silang';
+                return 'Teka-Teki Silang';
+        }
+    }
+
+    public function getSoalAttribute($value)
+    {
+        if ($this->jenis == 6) {
+            return json_decode($value);
+        } else {
+            return $value;
         }
     }
 }

@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/teman-simaba', function () {
-    return view('v_mahasiswa/temanSimaba');
-});
+
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');
 
 Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
     ->where('name', '(.*)')->name('protected-assets');

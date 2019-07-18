@@ -113,9 +113,9 @@
 
                                 //prodi
                                 $statusLulusProdi = '';
-                                if($mahasiswa->rekap_nilai_prodi['final']->nilai_full>=190){
+                                if($mahasiswa->nilai_prodi->nilai_full>=190){
                                     $statusLulusProdi = 'LULUS';
-                                }else if($mahasiswa->rekap_nilai_prodi['final']->nilai_full==0){
+                                }else if($mahasiswa->nilai_prodi->nilai_full==0){
                                     $statusLulusProdi = '-';
                                 }else{
                                     $statusLulusProdi = 'TIDAK LULUS';
@@ -301,7 +301,7 @@
                                 <th scope="row">4</th>
                                 <td>OSPEK PRODI</td>
                             <td>{{$statusLulusProdi}}</td>
-                            <td>{{$mahasiswa->rekap_nilai_prodi['final']->nilai_full}}</td>
+                            <td>{{ $mahasiswa->nilai_prodi->nilai_full }}</td>
                             </tr>
                         </tbody>
                     </table>

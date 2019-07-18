@@ -71,7 +71,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $penugasan->judul }}</td>
-                            <td>{{ count($penugasan->soal) }}</td>
+                            <td>{{ $penugasan->soal_count }}</td>
                             <td>{{ $penugasan->waktu_tampil }}</td>
                             <td>{{ $penugasan->waktu_mulai }}</td>
                             <td>{{ $penugasan->waktu_akhir }}</td>
