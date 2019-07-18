@@ -18,7 +18,7 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        $penugasans = PenugasanBeta::all();
+        $penugasans = PenugasanBeta::withCount(['soal'])->get();
         return view('panel-admin.tugas.index', compact('penugasans'));
     }
 
