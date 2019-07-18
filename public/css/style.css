@@ -2578,5 +2578,8 @@ input::-webkit-inner-spin-button {
 .imgRight{
     margin-top: 3rem;
 }
+.info ol {
+    font-size: 18px;
+}
 }
 /* endTemanSimabaKampus */
