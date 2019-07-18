@@ -1,5 +1,30 @@
 function submitTTS() {
-    // TODO:
+    let formData = {};
+
+    $("input[name^='jawaban']").each(function() {
+        formData[this.name] = this.value;
+    });
+
+    console.log(new Date());
+
+    $.ajax({
+        type: 'post',
+        url: submitUrl,
+        data: formData,
+        headers: {
+            "Authorization": token
+        },
+        beforeSend: function () {
+            console.log(formData);
+        },
+        success: function () {
+            console.log(new Date());
+            console.log('submitted');
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
 
     setTimeout(submitTTS, 60 * 1000);
 }

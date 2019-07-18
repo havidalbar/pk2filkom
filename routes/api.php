@@ -18,5 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['mahasiswa.api']], function () {
-    Route::post('submit-tts/{slug}')->name('api-submit-tts');
+    Route::post('submit-tts/{slug}', 'JawabanController@apiSubmitTts')->name('api-submit-tts');
 });

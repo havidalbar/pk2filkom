@@ -17,12 +17,12 @@ class APIMahasiswa
     public function handle($request, Closure $next)
     {
         try {
-            $nim = JWT::decode($request->header('Authorization'), env('SECRET_TOKEN_KEY'), ['HS256']);
-            $request->nim = $nim;
+            $payload = JWT::decode($request->header('Authorization'), env('SECRET_TOKEN_KEY'), ['HS256']);
+            $request->nim = $payload->nim;
 
             return $next($request);
         } catch (\Exception $e) {
-            return response()->json("Unauthorized", 401);
+            return response()->json([], 401);
         }
     }
 }

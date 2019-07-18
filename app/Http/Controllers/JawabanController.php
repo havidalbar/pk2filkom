@@ -444,18 +444,23 @@ class JawabanController extends Controller
         return JWT::encode($payload, env('SECRET_TOKEN_KEY'), 'HS256');
     }
 
-    public function apiSubmitTts(SubmitJawabanRequest $request, $slug)
+    public function apiSubmitTts(Request $request, $slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->first();
         $nim = $request->nim;
 
-        $firstJawaban = JawabanBeta::where('nim', session('nim'))
+        $firstJawaban = JawabanBeta::where('nim', $nim)
             ->whereHas('soal', function ($query) use ($penugasan) {
                 $query->where('id_penugasan', $penugasan->id);
             })->orderBy('created_at', 'asc')->first();
 
+        if (!$firstJawaban) {
+            return response()->json([], 400);
+        }
+
         $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
         $limit = date('Y-m-d H:i:s', $newtimestamp);
+        error_log($limit);
         $now = date('Y-m-d H:i:s');
         if ($now > $limit) {
             return response()->json([], 403);
