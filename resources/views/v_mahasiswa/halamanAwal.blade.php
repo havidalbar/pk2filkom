@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
-                <a href="http://bit.ly/PK2MABAFILKOM">
+                <a href="http://bit.ly/PK2MABAFILKOM" target="_blank">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
                 </a>
             </div>
@@ -387,7 +387,7 @@
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">PKM Final</h5>
-                                        <h6 class="publis">08 September 2019</h6>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -488,7 +488,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
+            <a href="#" class="btn btn-berita mb-2">LIHAT SEMUA BERITA</a>
         </div>
     </div>
 </div>
