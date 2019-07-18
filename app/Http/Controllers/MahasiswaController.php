@@ -44,7 +44,6 @@ class MahasiswaController extends Controller
     }
 
     public function getPenilaian(){
-        set_time_limit(0);
         $mahasiswa = Mahasiswa::find(Session::get('nim'));
         return view('v_mahasiswa/halamanPenilaian',compact('mahasiswa'));
     }
