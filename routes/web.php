@@ -21,7 +21,7 @@ Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
 
     Route::group(['prefix' => 'komentar', 'as' => 'komentar.'], function () {
         Route::post('/', 'KomentarController@store')->name('post');
-        Route::post('balas/{reply}', 'KomentarController@store')->name('reply');
+        Route::post('{reply}/balas', 'KomentarController@store')->name('reply');
         Route::put('{id}', 'KomentarController@update')->name('update');
     });
 });

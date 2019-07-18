@@ -46,7 +46,15 @@ class KomentarController extends Controller
             $komentar->isi = $request->isi;
 
             if ($reply) {
-                $komentar->komentar_ke = $reply;
+                $replied = Komentar::where('id', $reply)
+                    ->whereHas('artikel', function ($query) use ($artikel) {
+                        $query->where('id', $artikel->id);
+                    })->first();
+                if ($replied) {
+                    $komentar->komentar_ke = $reply;
+                } else {
+                    abort(400);
+                }
             }
 
             if (Session::get('nim')) {
@@ -97,6 +105,10 @@ class KomentarController extends Controller
     {
         $komentar = Komentar::where('id', $id)->first();
         if ($komentar) {
+            if (($komentar->nim_mahasiswa && $komentar->nim_mahasiswa != session('nim')) || ($komentar->username_admin && $komentar->username_admin != session('username'))) {
+                abort(403);
+            }
+
             $komentar->isi = $request->isi;
             $komentar->save();
 
