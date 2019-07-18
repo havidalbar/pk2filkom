@@ -8,6 +8,9 @@
         <div class="title-section">
             <div class="title-teman-simaba">Teman Simaba</div>
             <div class="garis-teman-simaba"></div>
+            <div class="text-teman-simaba">TEMAN SIMABA hadir untuk menemani dan mendampingimu membedah lebih dalam tentang FILKOM. Penasaran?
+                Untuk menjawab rasa penasaranmu, yuk cari tahu informasi yang ada di TEMAN SIMABA!
+            </div>
         </div>
         <div class="teman-simaba-card-section">
             <div class="row">
