@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark sticky-top sticky-dekstop">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('index') }}"><img
-                src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover"></a>
+        <a class="navbar-brand" href="{{ route('index') }}"><img src="{{asset('img/bg-section/simaba2@4x.svg')}}"
+                class="imgCover"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,11 +37,12 @@
                             Keluar
                         </a>
                     </div>
-                    @else
-                    <a href="{{ route('mahasiswa.login', ['redirectTo' => Request::path()]) }}"
-                        class="nav-item nav-link ">LOGIN</a>
-                    @endif
                 </div>
+                @else
+                <a href="{{ route('mahasiswa.login', ['redirectTo' => Request::path()]) }}"
+                    class="nav-item nav-link ">LOGIN</a>
+                @endif
             </div>
         </div>
+    </div>
 </nav>
