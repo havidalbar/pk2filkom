@@ -132,17 +132,17 @@ class Mahasiswa extends Model
 
     public function pkm_absensi()
     {
-        return $this->hasOne('App\StartupAbsensi', 'nim', 'nim');
+        return $this->hasOne('App\PK2MTourAbsensi', 'nim', 'nim');
     }
 
     public function pkm_keaktifan()
     {
-        return $this->hasOne('App\StartupKeaktifan', 'nim', 'nim');
+        return $this->hasOne('App\PK2MTourKeaktifan', 'nim', 'nim');
     }
 
     public function pkm_pelanggaran()
     {
-        return $this->hasOne('App\StartupPelanggaran', 'nim', 'nim');
+        return $this->hasOne('App\PK2MTourPelanggaran', 'nim', 'nim');
     }
 
     public function getRekapNilaiPkmAttribute()
