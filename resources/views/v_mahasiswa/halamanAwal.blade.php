@@ -18,7 +18,7 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
+                <a href="{{route('teman-simaba')}}" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
-                <a href="http://bit.ly/PK2MABAFILKOM">
+                <a href="http://bit.ly/PK2MABAFILKOM" target="_blank">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
                 </a>
             </div>
@@ -206,7 +206,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -230,7 +230,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -254,7 +254,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -303,7 +303,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/oh.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -329,7 +329,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -354,7 +354,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/ob.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -379,7 +379,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -387,7 +387,7 @@
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">PKM Final</h5>
-                                        <h6 class="publis">08 September 2019</h6>
+                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -497,8 +497,17 @@
                             </div>
                         </div>
                 </div>
-                @endfor
+
             </div>
+        </div>
+        <div class="container my-3">
+            <div class="row align-items-center justify-content-center" id="berita">
+
+            </div>
+            <div class="row align-items-center justify-content-center">
+                <span class="btn btn-berita loadBerita">TAMPILKAN BERITA</span>
+            </div>
+            {{-- <a href="#" class="btn btn-berita mb-2">LIHAT SEMUA BERITA</a> --}}
         </div>
     </div>
 </div>

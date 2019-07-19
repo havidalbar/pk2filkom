@@ -1,0 +1,208 @@
+{
+  "soalTts": [{
+      "menurun": [
+        {
+          "noSoal": 1,
+          "soal": "Website yang digunakan mahasiswa baru FILKOM selama menjalani PK2MABA & Startup Academy adalah",
+          "jawaban": "simaba",
+          "posisi": {
+            "y": 15,
+            "startx": 1,
+            "endx": 6
+          }
+        },
+        {
+          "noSoal": 4,
+          "soal": "Bapak Tri Astoto merupakan ketua jurusan ...",
+          "jawaban": "teknikinformatika",
+          "posisi": {
+            "y": 12,
+            "startx": 4,
+            "endx": 20
+          }
+        },
+        {
+          "noSoal": 5,
+          "soal": "Gedung B terletak di sebelah ... Gedung F",
+          "jawaban": "utara",
+          "posisi": {
+            "y": 23,
+            "startx": 4,
+            "endx": 8
+          }
+        },
+        {
+          "noSoal": 7,
+          "soal": "Gedung yang menjadi pusat kegiatan organisasi mahasiswa FILKOM adalah ...",
+          "jawaban": "gedungd",
+          "posisi": {
+            "y": 2,
+            "startx": 7,
+            "endx": 13
+          }
+        },
+        {
+          "noSoal": 8,
+          "soal": "Tahun berdirinya Fakultas Ilmu Komputer adalah ...",
+          "jawaban": "duaribusebelas",
+          "posisi": {
+            "y": 5,
+            "startx": 8,
+            "endx": 21
+          }
+        },
+        {
+          "noSoal": 13,
+          "soal": "Program studi S1 di Fakultas Ilmu Komputer berjumlah ...",
+          "jawaban": "lima",
+          "posisi": {
+            "y": 7,
+            "startx": 13,
+            "endx": 16
+          }
+        },
+        {
+          "noSoal": 14,
+          "soal": "Akun resmi Instagram Fakultas Ilmu Komputer bernama ...",
+          "jawaban": "filkomub",
+          "posisi": {
+            "y": 18,
+            "startx": 13,
+            "endx": 20
+          }
+        },
+        {
+          "noSoal": 15,
+          "soal": "Nama dekan Fakultas Ilmu Komputer adalah ... Firdaus Mahmudy, S.Si, M.T.",
+          "jawaban": "wayan",
+          "posisi": {
+            "y": 14,
+            "startx": 14,
+            "endx": 18 
+          }
+        },
+        {
+          "noSoal": 16,
+          "soal": "Fakultas Ilmu Komputer ber-diesnatalis pada bulan ...",
+          "jawaban": "oktober",
+          "posisi": {
+            "y": 10,
+            "startx": 15,
+            "endx": 21
+          }
+        },
+        {
+          "noSoal": 17,
+          "soal": "Teknologi Smart Class di FILKOM disebut dengan ...",
+          "jawaban": "mash",
+          "posisi": {
+            "y": 20,
+            "startx": 16,
+            "endx": 19
+          }
+        },
+        {
+          "noSoal": 19,
+          "soal": "Nama salah satu jaringan wifi yang terdapat di FILKOM adalah ...",
+          "jawaban": "filkomx",
+          "posisi": {
+            "y": 15,
+            "startx": 18,
+            "endx": 24
+          }
+        }
+      ],
+      "mendatar": [
+        {
+          "noSoal": 2,
+          "soal": "Fakultas Ilmu Komputer merupakan gabungan dua program studi pada dua fakultas berbeda, salah satu fakultas tersebut adalah",
+          "jawaban": "fmipa",
+          "posisi": {
+            "starty": 13,
+            "endy": 17,
+            "x": 2
+          }
+        },
+        {
+          "noSoal": 3,
+          "soal": "Gerbang yang berada paling dekat dengan FILKOM adalah ...",
+          "jawaban": "veteran",
+          "posisi": {
+            "starty": 10,
+            "endy": 16,
+            "x": 4
+          }
+        },
+        {
+          "noSoal": 6,
+          "soal": "Edy Santoso, S.Si, M.Kom. merupakan nama wakil dekan III yang membidangi ...",
+          "jawaban": "kemahasiswaaan",
+          "posisi": {
+            "starty": 12,
+            "endy": 24,
+            "x": 6
+          }
+        },
+        {
+          "noSoal": 9,
+          "soal": "Nama lama dari Fakultas Ilmu Komputer adalah ...",
+          "jawaban": "ptiik",
+          "posisi": {
+            "starty": 10,
+            "endy": 14,
+            "x": 8
+          }
+        },
+        {
+          "noSoal": 10,
+          "soal": "Ruangan yang terdapat pada gedung F lantai 7 adalah ...",
+          "jawaban": "dekan",
+          "posisi": {
+            "starty": 20,
+            "endy": 24,
+            "x": 8
+          }
+        },
+        {
+          "noSoal": 11,
+          "soal": "Yang menjabat sebagai wakil dekan II Fakultas Ilmu Komputer adalah Bapak ...",
+          "jawaban": "suprapto",
+          "posisi": {
+            "starty": 1,
+            "endy": 8,
+            "x": 10
+          }
+        },
+        {
+          "noSoal": 12,
+          "soal": "Jumlah lantai gedung F adalah ...",
+          "jawaban": "duabelas",
+          "posisi": {
+            "starty": 2,
+            "endy": 9,
+            "x": 13
+          }
+        },
+        {
+          "noSoal": 18,
+          "soal": "Program studi termuda di FILKOM adalah ...",
+          "jawaban": "teknologiinformasi",
+          "posisi": {
+            "starty": 4,
+            "endy": 21,
+            "x": 18
+          }
+        },
+        {
+          "noSoal": 20,
+          "soal": "Salah satu nama lapangan yang terdapat di FILKOM adalah lapangan ...",
+          "jawaban": "merah",
+          "posisi": {
+            "starty": 2,
+            "endy": 6,
+            "x": 20
+          }
+        }
+      ]
+  }]
+}

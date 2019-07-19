@@ -11,6 +11,9 @@ class JawabanBeta extends Model
 
     protected $table = 'jawaban_beta';
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $fillable = [
         'nim',
         'id_soal'

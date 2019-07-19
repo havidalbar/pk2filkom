@@ -89,23 +89,26 @@
             {!! $errors->first('waktu_akhir', '<div class="form-control-feedback">:message</div>') !!}
         </div>
     </div>
-    @php
+    <?php
     if (empty($penugasan) || $penugasan->jenis === NULL) {
-    switch ($_GET['tipe_soal']) {
-    case 'instagram':
-    $jenis = 1;
-    break;
-    case 'line':
-    $jenis = 2;
-    break;
-    case 'youtube':
-    $jenis = 3;
-    break;
-    }
+        switch ($_GET['tipe_soal']) {
+            case 'instagram':
+                $jenis = 1;
+                break;
+            case 'line':
+                $jenis = 2;
+                break;
+            case 'youtube':
+                $jenis = 3;
+                break;
+            case 'tts':
+                $jenis = 6;
+                break;
+        }
     } else {
-    $jenis = $penugasan->jenis;
+        $jenis = $penugasan->jenis;
     }
-    @endphp
+    ?>
     <input name="jenis" type="hidden" value="{{ $jenis ?? '' }}">
     @if (empty(old('soal')) && empty($penugasan))
     @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) <div class="form-group m-form__group row align-items-center">
