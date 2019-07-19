@@ -177,25 +177,25 @@ class ImageController extends Controller
             }
         }
 
-        $imgBagHolder->text($namaText, $bagholderCenter, 70, function ($font) {
+        $imgBagHolder->text($namaText, $bagholderCenter, 276, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(11);
+            $font->size(40);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgBagHolder->text('CLUSTER ' . $cluster, $bagholderCenter, 108, function ($font) {
+        $imgBagHolder->text('CLUSTER ' . $cluster, $bagholderCenter, 435, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(11);
+            $font->size(40);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');
             $font->angle(0);
         });
-        $imgBagHolder->text('KELOMPOK ' . $kelompok, $bagholderCenter, 146, function ($font) {
+        $imgBagHolder->text('KELOMPOK ' . $kelompok, $bagholderCenter, 595, function ($font) {
             $font->file(public_path('/font/Gotham-Bold.otf'));
-            $font->size(11);
+            $font->size(40);
             $font->color('#000');
             $font->align('center');
             $font->valign('bottom');

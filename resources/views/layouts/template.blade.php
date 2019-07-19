@@ -9,7 +9,8 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
 	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="shortcut icon" href="{{asset('admin/logo.ico')}}" />
 	@yield('css')
 	<!-- JQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="{{asset('js/jquery-3.4.1.min.js')}}"></script>

@@ -26,28 +26,31 @@
                         <div class="list-text">
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">1.</div>
-                                <div class="text">Unduh template nametag & gantungan tas.</div>
+                                <div class="text">Unduh template nametag.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">2.</div>
-                                <div class="text">Nametag dicetak berwarna di kertas HVS (tidak perlu merubah ukuran).
+                                <div class="text">Atur kembali ukuran nametag menjadi 10,5cm x 13,5cm.
                                 </div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">3.</div>
-                                <div class="text">Gunting dan lipat nametag.</div>
+                                <div class="text">Nametag dicetak berwarna di kertas HVS.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">4.</div>
-                                <div class="text">Tempel foto formal dengan ukuran 3x4.</div>
+                                <div class="text">Gunting dan lipat nametag.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">5.</div>
-                                <div class="text">Masukkan ke dalam nametag holder mika ukuran B2, dengan bagian depan
-                                    merupakan nametag dan bagian belakang merupakan kartu kendali.</div>
+                                <div class="text">Tempel foto formal dengan ukuran 3x4.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">6.</div>
+                                <div class="text">Masukkan ke dalam nametag holder mika ukuran B2, dengan bagian depan merupakan nametag dan bagian belakang merupakan kartu kendali.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">7.</div>
                                 <div class="text">Gunakan tali berwarna biru untuk nametag tersebut.</div>
                             </div>
                         </div>
@@ -59,7 +62,7 @@
                     <div class="col-md-6">
                         <p class="title-text">Preview Bagholder</p>
                         <div class="d-flex justify-content-center align-items-center">
-                            <img src="{!! $bagholder !!}">
+                            <img src="{!! $bagholder !!}" class="img-bagholder">
                         </div>
                         <div class="d-flex justify-content-center">
                             <a download="Bagholder.{{ $nametag->extension }}" href="{!! $bagholder !!}">
@@ -72,17 +75,23 @@
                         <div class="list-text">
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">1.</div>
-                                <div class="text">Gantungan tas dicetak berwarna di kertas HVS (tidak perlu merubah
-                                    ukuran).</div>
+                                <div class="text">Unduh template gantungan tas.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">2.</div>
-                                <div class="text">Gunting dan lipat gantungan tas, lalu dilaminasi press.</div>
+                                <div class="text">Atur kembali ukuran gantungan tas menjadi 5cm  x 6,5cm.</div>
                             </div>
                             <div class="d-flex flex-row mb-2">
                                 <div class="nomor-text">3.</div>
-                                <div class="text">Gunakan pita kecil berwarna biru dan ikatkan gantungan tersebut di
-                                    tas.</div>
+                                <div class="text">Gantungan tas dicetak berwarna di kertas HVS.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">4.</div>
+                                <div class="text">Gunting dan lipat gantungan tas, lalu dilaminasi press.</div>
+                            </div>
+                            <div class="d-flex flex-row mb-2">
+                                <div class="nomor-text">5.</div>
+                                <div class="text">Gunakan pita kecil berwarna biru dan ikatkan gantungan tersebut di tas.</div>
                             </div>
                         </div>
                     </div>
