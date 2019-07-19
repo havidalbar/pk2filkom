@@ -14,11 +14,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a href="#" class="nav-item nav-link menu">TENTANG SIMABA</a>
-                <a href="#" class="nav-item nav-link menu">RANGKAIAN</a>
-                <a href="#" class="nav-item nav-link menu">FAQ</a>
-                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">TENTANG SIMABA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">RANGKAIAN</a>
+                <a href="{{ route('faq') }}" class="nav-item nav-link menu">FAQ</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">BERITA</a>
+                <a href="{{route('teman-simaba')}}" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -141,7 +141,7 @@
                         <h1>RUSUNAWA</h1>
                         <p>Alternatif lain yang dapat menjadi opsi kamu yang masih bingung mencari rumah kost nih! Sangan direkomendasikan karena jaraknya lokasinya juga di dalam kampus sehingga kamu tidak perlu repot-repot pakai transportasi menuju kampus.</p>
                     </div>
-                </div>                
+                </div>
             </div>
             <div class="row sub-pelajaran align-items-center text-left">
                 <div class="col-md-5 infoImg col-img">

@@ -31,7 +31,7 @@
                         <div class="overlay">
                             <h2>Info Kampus</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-kampus" class="info">Lihat Info</a>
+                                <a href="{{ route('teman-simaba-kampus') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>

@@ -54,6 +54,9 @@ class MahasiswaController extends Controller
     public function getTemanSimabaAkademik(){
         return view('v_mahasiswa/temanSimabaAkademik');
     }
+    public function getTemanSimabaKampus(){
+        return view('v_mahasiswa/temanSimabaKampus');
+    }
 
     public function getProtectedFile($name)
     {
