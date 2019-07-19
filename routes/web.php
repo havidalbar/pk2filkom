@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::get('/info-mahasiswa', function () {
+    return view('v_mahasiswa/temanSimabaMahasiswa');
+});
+Route::get('/info-kampus', function () {
+    return view('v_mahasiswa/temanSimabaKampus');
+});
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');

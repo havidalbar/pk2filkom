@@ -3047,3 +3047,94 @@ input::-webkit-inner-spin-button {
     }
 }
 /* endTemanSimabaKampus */
+/* temanSimabaMahasiswa */
+.teman-mahasiswa {
+    background-image: url(../img/bg-section/bg-mahasiswa.png);
+    background-position: initial;
+}
+.teman-mahasiswa .intro-text {
+    font-size: 34px;
+    color: white;
+    position: absolute;
+    width: 100%;
+    max-width: 960px;
+    margin-top: 44px;    
+}
+.teman-mahasiswa .img-akademik-text {
+    width: 100%;
+    max-width: 650px;
+    margin-left: -19px;    
+}
+.sub-kanal{
+    font-size: 28px;
+}
+.sub-kanal .kanal-img{
+    max-width: 100%;
+    max-height: 180px;
+    padding: 10px;
+    background-color: white;
+}
+.sub-kanal .kanal-title{
+    color: white;
+}
+.sub-kanal .kanal-web{    
+    color: #4ee1ff;
+    margin-top: 18px;
+}
+.sub-kanal .kanal-web a{    
+    color: #4ee1ff !important;
+    text-decoration-color: #4ee1ff;    
+}
+.sub-kanal .kanal-line{
+    color: #f1c538;
+    margin-top: 14px;
+}
+.sub-akademik .sub-beasiswa{
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 32px 0 50px 0;
+    text-align: center;    
+}
+.sub-beasiswa .beasiswa-text{    
+    color: white;
+    font-size: 24px;
+    line-height: 2;
+}
+.sub-beasiswa a{
+    text-decoration-color: #4ee1ff;
+}
+.sub-beasiswa .beasiswa-link{    
+    font-size: 22px;
+    color: #4ee1ff;
+    text-transform: uppercase;
+    margin-top: 16px;
+}
+@media (max-width: 767.98px) {    
+    .teman-mahasiswa .intro-text {
+        font-size: 20px;
+        position: relative;
+        margin-top: 24px;
+    }
+    .teman-mahasiswa .img-akademik-text {
+        margin-left: 0px;
+    }
+    .sub-kanal{
+        font-size: 24px;
+    }
+    .sub-kanal .kanal-title{
+        margin-top: 20px;
+    }
+    .sub-beasiswa .beasiswa-text{    
+        font-size: 20px;
+    }
+    .sub-beasiswa .beasiswa-link{    
+        font-size: 18px;
+    }
+}
+@media (max-width: 1024px) {    
+    .akademik-intro, .sub-akademik{
+        margin: 0;
+    }
+}
+/* endTemanSimabaMahasiswa */
