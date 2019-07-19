@@ -2561,6 +2561,11 @@ input::-webkit-inner-spin-button {
     justify-content: center;
     border-radius: 10px;
 }
+.logo-lain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .intro-text{
     font-size: 36px;
     color: white;    

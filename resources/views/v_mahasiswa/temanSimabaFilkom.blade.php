@@ -293,7 +293,7 @@
                     <div class="tab-pane fade show active" id="bem" role="tabpanel" aria-labelledby="bem-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/bem.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -318,7 +318,7 @@
                     <div class="tab-pane fade" id="dpm" role="tabpanel" aria-labelledby="dpm-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/dpm.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -393,7 +393,7 @@
                     <div class="tab-pane fade show active" id="raion" role="tabpanel" aria-labelledby="raion-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/raion.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -417,7 +417,7 @@
                     <div class="tab-pane fade" id="display" role="tabpanel" aria-labelledby="display-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/display.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -442,7 +442,7 @@
                     <div class="tab-pane fade" id="krisma" role="tabpanel" aria-labelledby="krisma-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/krisma.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -465,7 +465,7 @@
                     <div class="tab-pane fade" id="optiik" role="tabpanel" aria-labelledby="optiik-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/optiik.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -488,7 +488,7 @@
                     <div class="tab-pane fade" id="poros" role="tabpanel" aria-labelledby="poros-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/poros.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -511,7 +511,7 @@
                     <div class="tab-pane fade" id="bios" role="tabpanel" aria-labelledby="bios-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/bios.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -534,7 +534,7 @@
                     <div class="tab-pane fade" id="amd" role="tabpanel" aria-labelledby="amd-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/amd.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -590,7 +590,7 @@
                     <div class="tab-pane fade show active" id="bcc" role="tabpanel" aria-labelledby="bcc-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/bcc.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -611,7 +611,7 @@
                     <div class="tab-pane fade" id="robotik" role="tabpanel" aria-labelledby="robotik-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/robotik.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -631,7 +631,7 @@
                     <div class="tab-pane fade" id="kontribusi" role="tabpanel" aria-labelledby="kontribusi-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/kontribusi.jpg')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -651,7 +651,7 @@
                     <div class="tab-pane fade" id="gforce" role="tabpanel" aria-labelledby="gforce-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <!-- <img src="{{asset('img/teman-simaba/filkom/optiik.png')}}" class="img-filkom-text"> -->
                                 </div>
                                 <div class="col-md-8">
@@ -670,7 +670,7 @@
                     <div class="tab-pane fade" id="ayodev" role="tabpanel" aria-labelledby="ayodev-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/ayodev.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -694,7 +694,7 @@
                     <div class="tab-pane fade" id="pmk" role="tabpanel" aria-labelledby="pmk-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/pmk.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -713,7 +713,7 @@
                     <div class="tab-pane fade" id="kmk" role="tabpanel" aria-labelledby="kmk-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-lain col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/kmk.jpg')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
