@@ -776,7 +776,7 @@
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <!-- <img src="{{asset('img/teman-simaba/filkom/mash-classroom.png')}}" class="img-filkom-text"> -->
+                                        <img src="{{asset('img/teman-simaba/filkom/filkom-jepang.png')}}" class="img-filkom-text">
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-left description-studi">
@@ -802,7 +802,7 @@
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <!-- <img src="{{asset('img/teman-simaba/filkom/mash-classroom.png')}}" class="img-filkom-text"> -->
+                                        <img src="{{asset('img/teman-simaba/filkom/tokped-corner.png')}}" class="img-filkom-text">
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-left description-studi">
