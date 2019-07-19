@@ -489,17 +489,17 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         <div class="container my-3">
             <div class="row align-items-center justify-content-center" id="berita">
-                
+
             </div>
             <div class="row align-items-center justify-content-center">
-                <span class="btn btn-berita loadBerita">TAMPILKAN BERITA</span>   
+                <span class="btn btn-berita loadBerita">TAMPILKAN BERITA</span>
             </div>
-            <a href="#" class="btn btn-berita mb-2">LIHAT SEMUA BERITA</a>
+            {{-- <a href="#" class="btn btn-berita mb-2">LIHAT SEMUA BERITA</a> --}}
         </div>
     </div>
 </div>
