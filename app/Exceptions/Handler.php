@@ -29,6 +29,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
      * @param  \Exception  $exception
      * @return void
      */
@@ -46,27 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
-        if ($this->isHttpException($exception)) {
-        switch ($exception->getStatusCode()) {
-
-            // not authorized
-            case '403':
-                return \Response::view('v_mahasiswa.halamanError',array(),403);
-                break;
-
-            // not found
-            case '404':
-                return \Response::view('v_mahasiswa.halamanError',array(),404);
-                break;
-
-            // internal error
-            case '500':
-                return \Response::view('v_mahasiswa.halamanError',array(),500);
-                break;
-        }
-    } else {
         return parent::render($request, $exception);
-    }
     }
 }
