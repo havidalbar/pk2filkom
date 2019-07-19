@@ -95,7 +95,7 @@
                     <div class="tab-pane fade show active" id="teknik-informatika" role="tabpanel" aria-labelledby="teknik-informatika-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-prodi col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/tif.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -133,7 +133,7 @@
                     <div class="tab-pane fade" id="teknik-komputer" role="tabpanel" aria-labelledby="teknik-komputer-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="logo-prodi col-md-4">
                                     <img src="{{asset('img/teman-simaba/filkom/tekkom.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
@@ -167,8 +167,8 @@
                     <div class="tab-pane fade" id="sistem-informasi" role="tabpanel" aria-labelledby="sistem-informasi-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- <img src="{{asset('img/teman-simaba/filkom/.png')}}" class="img-filkom-text"> -->
+                                <div class="logo-prodi col-md-4">
+                                    <img src="{{asset('img/teman-simaba/filkom/si.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="text-left description-studi">
@@ -205,8 +205,8 @@
                     <div class="tab-pane fade" id="teknologi-informasi" role="tabpanel" aria-labelledby="teknologi-informasi-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- <img src="{{asset('img/teman-simaba/filkom/.png')}}" class="img-filkom-text"> -->
+                                <div class="logo-prodi col-md-4">
+                                    <img src="{{asset('img/teman-simaba/filkom/ti.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="text-left description-studi">
@@ -236,8 +236,8 @@
                     <div class="tab-pane fade" id="pend-teknologi-informasi" role="tabpanel" aria-labelledby="pend-teknologi-informasi-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- <img src="{{asset('img/teman-simaba/filkom/.png')}}" class="img-filkom-text"> -->
+                                <div class="logo-prodi col-md-4">
+                                    <img src="{{asset('img/teman-simaba/filkom/pti.png')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="text-left description-studi">
@@ -344,17 +344,14 @@
                     <div class="tab-pane fade" id="hima" role="tabpanel" aria-labelledby="hima-tab">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <!-- <img src="{{asset('img/teman-simaba/filkom/dpm.png')}}" class="img-filkom-text"> -->
+                                <div class="description-studi">
+                                    HIMPUNAN MAHASISWA PROGRAM STUDI
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="text-left description-studi">
-                                        HIMPUNAN MAHASISWA PROGRAM STUDI
-                                    </div>
-                                    <div class="text-left sub-text-lo">
-                                        Adanya himpunan mahasiswa disini dimaksudkan untuk menaungi advokasi dan birokrasi mahasiswa
-                                        di lingkup lebih kecil lagi yaitu tingkat program studi.
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-left sub-text-lo">
+                                    Adanya himpunan mahasiswa disini dimaksudkan untuk menaungi advokasi dan birokrasi mahasiswa
+                                    di lingkup lebih kecil lagi yaitu tingkat program studi.
                                 </div>
                             </div>
                         </div>

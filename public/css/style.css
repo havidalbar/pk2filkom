@@ -2538,7 +2538,7 @@ input::-webkit-inner-spin-button {
         transition-delay: 0.2s;
     }
 }
-/* Teman Simaba Akademik */
+/* Teman Simaba Filkom */
 .bg-teman-simaba-filkom{
     background-image: url(../img/bg-section/bg-info-filkom.png);
     height: 100vh;    
@@ -2553,6 +2553,13 @@ input::-webkit-inner-spin-button {
     width: 100%;
     max-width: 560px;
     margin-left: -19px;
+}
+.logo-prodi{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 }
 .intro-text{
     font-size: 36px;
@@ -2665,24 +2672,8 @@ input::-webkit-inner-spin-button {
     padding: 24px 30px 36px 30px;
     text-align: center;
 }
-.sub-studi .tab-content .keminatan{
-    font-size: 32px;    
-    text-transform:capitalize;
-    color: white;
-}
-.sub-studi .tab-content .matkul{
-    font-size: 24px;    
-    color: #f8bc3f;
-    margin-top: 36px;
-}
 .sub-studi .tab-content a{
     text-decoration-color: #54ffee;
-}
-.sub-studi .tab-content .link-matkul{
-    font-size: 24px;        
-    color: #54ffee;
-    text-transform: uppercase;
-    margin-top: 16px;
 }
 .fakta{
     margin-top: 20px;
@@ -2690,27 +2681,6 @@ input::-webkit-inner-spin-button {
 }
 .sub-akademik .sub-persiapan{
     margin-top: 40px;
-}
-.sub-persiapan .persiapan-text{
-    font-size: 24px;
-    font-family: "Esphimere-SemiBold";
-    color: white;
-    line-height: 2;
-}
-.sub-persiapan .sub-website{
-    background-color: rgba(3, 60, 88, 0.86);
-    border-radius: 4px;
-    margin-top: 28px;
-    padding: 16px;
-}
-.sub-website a{
-    text-decoration-color: #f1c538;
-}
-.sub-website .link-website{
-    font-family: "Esphimere-SemiBold";
-    font-size: 24px;    
-    color: #f1c538;
-    text-align: center;
 }
 .sub-filkom .filkom-title{
     font-size: 36px;
@@ -2760,14 +2730,11 @@ input::-webkit-inner-spin-button {
         font-size: 28px;
         text-align: center !important;
     }
-    .sub-akademik .garis-sub-title{        
+    .sub-filkom .garis-sub-title{        
         width: 100%;    
     }
     .sub-filkom .sub-text{
         font-size: 22px;
-    }
-    .sub-pelajaran .order-first{
-        order: 12;
     }
     .sub-studi .nav-link {        
         font-size: 18px !important;
@@ -2784,30 +2751,19 @@ input::-webkit-inner-spin-button {
         font-size: 20px;             
         margin-top: 16px;
     }
-    .sub-persiapan .persiapan-text{
-        font-size: 22px;
-        line-height: 1.5;
-        text-align: left !important;
-    }
-    .sub-website .link-website{
-        font-family: "Esphimere-SemiBold";
-        font-size: 20px;    
-        color: #f1c538;
-        text-align: center;
-    }
-    .sub-akademik .filkom-title{
+    .sub-filkom .filkom-title{
         font-size: 26px;
         font-family: "Esphimere-SemiBold";
         color: #f1c538;
         text-align: center !important;
     }
-    .sub-akademik .filkom-text{
+    .sub-filkom .filkom-text{
         font-size: 22px;
         line-height: 1.5;
         margin-top: 16px;
         text-align: left !important;
     }
-    .sub-akademik .link{
+    .sub-filkom .link{
         font-size: 20px;
     }
 }
