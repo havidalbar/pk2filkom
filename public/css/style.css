@@ -2581,11 +2581,8 @@ input::-webkit-inner-spin-button {
 .teman-akademik{
     background-image: url(../img/bg-section/info-kampus-768.svg);
 }
-.imgLeft{
+.col-img{
     margin-bottom: 3rem;
-}
-.imgRight{
-    margin-top: 3rem;
 }
 .info ol {
     font-size: 18px;

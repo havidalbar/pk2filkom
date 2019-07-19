@@ -72,7 +72,7 @@
             </div>
             <div class="float-right garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-right">
-                <div class="col-md-5 imgLeft">
+                <div class="col-md-5 col-img">
                     <img src="{{asset('img/teman-simaba/kampus/denah svg.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
@@ -104,7 +104,7 @@
             </div>
             <div class="float-left garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-left">
-                <div class="col-md-5 infoImg imgLeft">
+                <div class="col-md-5 infoImg col-img">
                     <img src="{{asset('img/teman-simaba/kampus/ojek.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
@@ -115,14 +115,14 @@
                 </div>
             </div>
             <div class="row sub-pelajaran align-items-center text-left">
-                <div class="col-md-7">
+                <div class="col-md-5 infoImg col-img">
+                    <img src="{{asset('img/teman-simaba/kampus/angkot svg.svg')}}" class="sub-pelajaran-img">
+                </div>
+                <div class="col-md-7 order-first">
                     <div class="info">
                         <h1>ANGKOT</h1>
                         <p>Sedikit konvensional apa salahnya? Dengan menggunakan angkot sebagai transportasi akan meminimalisir jatah pengeluaranmu dan berkontribusi mengurangi macetnya kota Malang.</p>
                     </div>
-                </div>
-                <div class="col-md-5 infoImg imgRight">
-                    <img src="{{asset('img/teman-simaba/kampus/angkot svg.svg')}}" class="sub-pelajaran-img">
                 </div>
             </div>
         </div>
@@ -133,18 +133,18 @@
             </div>
             <div class="float-right garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-left">
-                <div class="col-md-7">
+                <div class="col-md-5 infoImg col-img">
+                    <img src="{{asset('img/teman-simaba/kampus/rusunawa svg.svg')}}" class="sub-pelajaran-img">
+                </div>
+                <div class="col-md-7 order-first">
                     <div class="info">
                         <h1>RUSUNAWA</h1>
                         <p>Alternatif lain yang dapat menjadi opsi kamu yang masih bingung mencari rumah kost nih! Sangan direkomendasikan karena jaraknya lokasinya juga di dalam kampus sehingga kamu tidak perlu repot-repot pakai transportasi menuju kampus.</p>
                     </div>
-                </div>
-                <div class="col-md-5 infoImg imgRight">
-                    <img src="{{asset('img/teman-simaba/kampus/rusunawa svg.svg')}}" class="sub-pelajaran-img">
-                </div>
+                </div>                
             </div>
             <div class="row sub-pelajaran align-items-center text-left">
-                <div class="col-md-5 infoImg imgLeft">
+                <div class="col-md-5 infoImg col-img">
                     <img src="{{asset('img/teman-simaba/kampus/griya ub.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
@@ -162,7 +162,7 @@
             </div>
             <div class="float-left garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-left">
-                <div class="col-md-5 infoImg imgLeft">
+                <div class="col-md-5 infoImg col-img">
                     <img src="{{asset('img/teman-simaba/kampus/gdrive.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
