@@ -20,7 +20,7 @@
                         <div class="overlay">
                             <h2>Info Akademik</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-akademik" class="info">Lihat Info</a>
+                            <a href="{{ route('teman-simaba-akademik') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>
