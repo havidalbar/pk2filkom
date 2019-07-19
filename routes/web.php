@@ -12,9 +12,7 @@
  */
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
-Route::get('/info-filkom', function () {
-    return view('v_mahasiswa/temanSimabaFilkom');
-});
+Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
 Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');
 Route::get('/info-akademik', 'MahasiswaController@getTemanSimabaAkademik')->name('teman-simaba-akademik');
 Route::get('/info-kampus', 'MahasiswaController@getTemanSimabaKampus')->name('teman-simaba-kampus');
@@ -52,7 +50,6 @@ Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
 
         Route::get('logout', 'AuthController@logout')->name('logout');
     });
-});
 Route::get('/tts', function () {
     return view('v_mahasiswa/tts');
 });
@@ -65,7 +62,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::get('logout', 'AuthController@logout')->name('logout');
         });
-    });
 
     // Admin Panel
     Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {

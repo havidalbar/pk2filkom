@@ -5,7 +5,7 @@
 <!-- Navbar atas -->
 <nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('index') }}">
             <img src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -33,12 +33,12 @@
                         ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Penugasan</a>
-                        <a class="dropdown-item" href="#">Penilaian</a>
-                        <a class="dropdown-item" href="#">QR Code</a>
-                        <a class="dropdown-item" href="#">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan.index') }}">Penugasan</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="#">
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
                             Keluar
                         </a>
