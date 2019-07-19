@@ -2251,8 +2251,11 @@ input::-webkit-inner-spin-button {
 }
 .bg-detail-akademik{
     background-image: url(../img/bg-section/bg-info-akademik-2.png);
+    background-position: top;
     height: 100%;
-    background-position: center;    
+    min-height: 100%;
+    max-height: 100%;
+    background-size: 100% 100%;
 }
 .sub-akademik{
     padding-top: 52px;
@@ -2371,21 +2374,21 @@ input::-webkit-inner-spin-button {
     color: #f1c538;
     text-align: center;
 }
-.sub-portal .portal-title{
+.sub-akademik .filkom-title{
     font-size: 36px;
     font-family: "Esphimere-SemiBold";
     color: #f1c538;
 }
-.sub-portal .portal-text{
+.sub-akademik .filkom-text{
     font-size: 24px;    
     font-family: "Esphimere-SemiBold";
     line-height: 2;
     color: white;
 }
-.sub-portal a{
+.sub-akademik a{
     text-decoration-color: #f1c538;
 }
-.sub-portal .portal-link{
+.sub-akademik .link{
     font-size: 20px;    
     font-family: "Esphimere-SemiBold";    
     color: #f1c538;
@@ -2408,6 +2411,9 @@ input::-webkit-inner-spin-button {
         font-size: 20px;
         position: relative;
         margin-top: 24px;
+    }
+    .bg-detail-akademik{        
+        background-size: inherit;
     }
     .sub-akademik{        
         margin: 0 !important;
@@ -2452,6 +2458,7 @@ input::-webkit-inner-spin-button {
     .sub-persiapan .persiapan-text{
         font-size: 22px;
         line-height: 1.5;
+        text-align: left !important;
     }
     .sub-website .link-website{
         font-family: "Esphimere-SemiBold";
@@ -2459,18 +2466,19 @@ input::-webkit-inner-spin-button {
         color: #f1c538;
         text-align: center;
     }
-    .sub-portal .portal-title{
+    .sub-akademik .filkom-title{
         font-size: 26px;
         font-family: "Esphimere-SemiBold";
         color: #f1c538;
-        text-align: center;
+        text-align: center !important;
     }
-    .sub-portal .portal-text{
+    .sub-akademik .filkom-text{
         font-size: 22px;
         line-height: 1.5;
         margin-top: 16px;
+        text-align: left !important;
     }
-    .sub-portal .portal-link{
+    .sub-akademik .link{
         font-size: 20px;
     }
 }

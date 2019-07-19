@@ -153,9 +153,10 @@
                         <div class="keminatan">Keminatan Jaringan Komputer (JK)</div>
                         <div class="matkul">klik tautan di bawah ini untuk melihat mata kuliah apa saja yang akan kamu
                             pelajari!</div>
-                        <a href="http://tif.filkom.ub.ac.id/unit/prodi/tif/read/pg-kurikulum/1cbe28e1fb30fb" target="_blank">
+                        <a href="http://tif.filkom.ub.ac.id/unit/prodi/tif/read/pg-kurikulum/1cbe28e1fb30fb"
+                            target="_blank">
                             <div class="link-matkul">
-                            Kurikulum TIF
+                                Kurikulum TIF
                             </div>
                         </a>
                     </div>
@@ -165,9 +166,10 @@
                         <div class="keminatan">Keminatan Rekayasa Perangkat Cerdas</div>
                         <div class="matkul">klik tautan di bawah ini untuk melihat mata kuliah apa saja yang akan kamu
                             pelajari!</div>
-                        <a href="http://comvis.filkom.ub.ac.id/unit/prodi/tkom/read/kurikulum/f3e30f0b4b4fea" target="_blank">
+                        <a href="http://comvis.filkom.ub.ac.id/unit/prodi/tkom/read/kurikulum/f3e30f0b4b4fea"
+                            target="_blank">
                             <div class="link-matkul">
-                            Kurikulum TEKKOM
+                                Kurikulum TEKKOM
                             </div>
                         </a>
                     </div>
@@ -179,9 +181,10 @@
                         <div class="keminatan">Geoinformatika</div>
                         <div class="matkul">klik tautan di bawah ini untuk melihat mata kuliah apa saja yang akan kamu
                             pelajari!</div>
-                        <a href="http://si.filkom.ub.ac.id/unit/prodi/si/read/jadwal-perkuliahan/39c07d38bf9ee3" target="_blank">
+                        <a href="http://si.filkom.ub.ac.id/unit/prodi/si/read/jadwal-perkuliahan/39c07d38bf9ee3"
+                            target="_blank">
                             <div class="link-matkul">
-                            Kurikulum SI
+                                Kurikulum SI
                             </div>
                         </a>
                     </div>
@@ -193,9 +196,10 @@
                         <div class="keminatan">Keminatan Pengembangan Teknologi Jaringan</div>
                         <div class="matkul">klik tautan di bawah ini untuk melihat mata kuliah apa saja yang akan kamu
                             pelajari!</div>
-                        <a href="http://ti.filkom.ub.ac.id/unit/prodi/ti/read/kurikulum-/761c4bb7d0ae3c" target="_blank">
+                        <a href="http://ti.filkom.ub.ac.id/unit/prodi/ti/read/kurikulum-/761c4bb7d0ae3c"
+                            target="_blank">
                             <div class="link-matkul">
-                            Kurikulum TI
+                                Kurikulum TI
                             </div>
                         </a>
                     </div>
@@ -204,9 +208,10 @@
                         <div class="keminatan">Tenaga Pendidik di bidang TI</div>
                         <div class="matkul">klik tautan di bawah ini untuk melihat mata kuliah apa saja yang akan kamu
                             pelajari!</div>
-                        <a href="http://pti.filkom.ub.ac.id/unit/prodi/pti/read/kurikulum-/8e01bf5ec3419e" target="_blank">
+                        <a href="http://pti.filkom.ub.ac.id/unit/prodi/pti/read/kurikulum-/8e01bf5ec3419e"
+                            target="_blank">
                             <div class="link-matkul">
-                            Kurikulum PTI
+                                Kurikulum PTI
                             </div>
                         </a>
                     </div>
@@ -220,7 +225,7 @@
             </div>
             <div class="float-right garis-sub-title"></div>
             <div class="d-flex flex-column align-items-center sub-persiapan">
-                <div class="persiapan-text">
+                <div class="persiapan-text text-right">
                     Pemrograman bukan ilmu yang bisa dipelajari sehari atau dua hari. Untuk itu kami membagi informasi
                     terkait website yang bisa kamu gunakan untuk belajar pemrograman. Cek di bawah sini ya!
                 </div>
@@ -269,10 +274,10 @@
         <!-- Portal -->
         <div class="sub-akademik">
             <div class="sub-portal">
-                <div class="portal-title">
+                <div class="filkom-title">
                     PORTAL PEMBELAJARAN DI FILKOM
                 </div>
-                <div class="portal-text">
+                <div class="filkom-text">
                     Kamu tahu? Ternyata FILKOM mempunyai portal pembelajar sendiri loh.
                     E-Learning FILKOM biasanya digunakan untuk membagikan informasi
                     terkait mata kuliah yang ada di FILKOM baik berupa bahan ajar, tugas,
@@ -280,9 +285,30 @@
                 </div>
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="https://elearning-filkom.ub.ac.id" target="_blank">
-                        <div class="portal-link">elearning-filkom.ub.ac.id</div>
+                        <div class="link">elearning-filkom.ub.ac.id</div>
                     </a>
                 </div>
+            </div>
+        </div>
+        <!-- Filkom Apps -->
+        <div class="sub-akademik">
+            <div class="sub-filkom-apps">
+                <div class="filkom-title text-right">
+                    KITA PUNYA FILKOM-Apps!
+                </div>
+                <div class="filkom-text text-right">
+                    Untuk apa sih kita punya FILKOM-Apps? Nah tentu masih banyak yang asing dengan istilah FILKOM-Apps.
+                    FILKOM-Apps merupakan platform khusus untuk mahasiswa FILKOM mengakses hal terkait akademik seperti
+                    pengajuan KRS (Kartu Rencana Studi), pengurusan PKL (Praktik Kerja Lapangan), hingga skripsi. Bukan
+                    hanya itu, di FILKOM-Apps kamu juga bisa mengetahui informasi terkait jadwal dosen yang hendak kamu
+                    temui ataupun ruangan-ruangan FILKOM yang 'available' kamu akses untuk keperluan tertentu. Dan masih
+                    banyak lagi! Yuk maksimalkan fasilitas ini.
+                </div>         
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="https://filkom.ub.ac.id/apps" target="_blank">
+                        <div class="link">filkom.ub.ac.id/apps</div>
+                    </a>
+                </div>       
             </div>
         </div>
     </div>
