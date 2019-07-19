@@ -34,7 +34,7 @@
                                 <div class="col-10">
                                     <input
                                         class="form-control m-input {{ $errors->has('password') ? 'form-control-danger' : '' }}"
-                                        name="password" placeholder="Password lama..." type="password"
+                                        name="password_lama" placeholder="Password lama..." type="password"
                                         id="password-input" required>
                                     {!! $errors->first('password','<div class="form-control-feedback">:message</div>')
                                     !!}
