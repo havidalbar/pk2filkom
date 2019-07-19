@@ -652,7 +652,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="logo-lain col-md-4">
-                                    <!-- <img src="{{asset('img/teman-simaba/filkom/optiik.png')}}" class="img-filkom-text"> -->
+                                    <img src="{{asset('img/teman-simaba/filkom/gforce.jpg')}}" class="img-filkom-text">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="text-left description-studi">
@@ -747,7 +747,7 @@
                             <div class="fakta col-md-12">
                                 <div class="row">
                                     <div class="col-md-1"></div>
-                                    <div class="col-md-3">
+                                    <div class="logo-lain col-md-3">
                                         <img src="{{asset('img/teman-simaba/filkom/mash-classroom.png')}}" class="img-filkom-text">
                                     </div>
                                     <div class="col-md-7">
@@ -772,7 +772,7 @@
                             <div class="fakta col-md-12">
                                 <div class="row">
                                     <div class="col-md-1"></div>
-                                    <div class="col-md-3">
+                                    <div class="logo-lain col-md-3">
                                         <img src="{{asset('img/teman-simaba/filkom/filkom-jepang.png')}}" class="img-filkom-text">
                                     </div>
                                     <div class="col-md-7">
@@ -798,7 +798,7 @@
                             <div class="fakta col-md-12">
                                 <div class="row">
                                     <div class="col-md-1"></div>
-                                    <div class="col-md-3">
+                                    <div class="logo-lain col-md-3">
                                         <img src="{{asset('img/teman-simaba/filkom/tokped-corner.png')}}" class="img-filkom-text">
                                     </div>
                                     <div class="col-md-7">
