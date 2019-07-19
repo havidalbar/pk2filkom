@@ -16,7 +16,7 @@ $(document).ready(function () {
             $('.nav-home').css({
                 'transition': '1.5s'
             });
-            
+
             if (window.location.origin+'/info-kampus') {
                 $('.nav-home .navbar-brand img').attr('src',window.location.origin+'/img/bg-section/simaba2@4x.svg');
             }

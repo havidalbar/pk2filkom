@@ -5,7 +5,7 @@
 <!-- Navbar atas -->
 <nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('index') }}">
             <img src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -14,11 +14,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-                <a href="#" class="nav-item nav-link menu">TENTANG SIMABA</a>
-                <a href="#" class="nav-item nav-link menu">RANGKAIAN</a>
-                <a href="#" class="nav-item nav-link menu">FAQ</a>
-                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="#" class="nav-item nav-link menu">TEMAN SIMABA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">TENTANG SIMABA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">RANGKAIAN</a>
+                <a href="{{ route('faq') }}" class="nav-item nav-link menu">FAQ</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">BERITA</a>
+                <a href="{{route('teman-simaba')}}" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -33,12 +33,12 @@
                         ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Penugasan</a>
-                        <a class="dropdown-item" href="#">Penilaian</a>
-                        <a class="dropdown-item" href="#">QR Code</a>
-                        <a class="dropdown-item" href="#">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan.index') }}">Penugasan</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">">Penilaian</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="#">
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
                             Keluar
                         </a>
@@ -303,12 +303,12 @@
                     hanya itu, di FILKOM-Apps kamu juga bisa mengetahui informasi terkait jadwal dosen yang hendak kamu
                     temui ataupun ruangan-ruangan FILKOM yang 'available' kamu akses untuk keperluan tertentu. Dan masih
                     banyak lagi! Yuk maksimalkan fasilitas ini.
-                </div>         
+                </div>
                 <div class="d-flex align-items-center justify-content-center">
                     <a href="https://filkom.ub.ac.id/apps" target="_blank">
                         <div class="link">filkom.ub.ac.id/apps</div>
                     </a>
-                </div>       
+                </div>
             </div>
         </div>
     </div>
