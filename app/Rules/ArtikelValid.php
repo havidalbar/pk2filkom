@@ -26,7 +26,7 @@ class ArtikelValid implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Artikel::where('id', $value)->first('id');
+        return Artikel::where('id', $value)->first(['id']);
     }
 
     /**

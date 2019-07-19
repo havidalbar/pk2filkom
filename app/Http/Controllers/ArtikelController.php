@@ -45,8 +45,7 @@ class ArtikelController extends Controller
 
             $slug = substr(str_slug($request->judul), 0, 180);
             $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-                ->orderBy('slug', 'DESC')->first('slug');
-
+                ->orderBy('slug', 'DESC')->first(['slug']);
             if ($latestSlug) {
                 $slug_element = explode('-', $latestSlug->slug);
                 $latestSlugNumber = end($slug_element);
@@ -198,7 +197,7 @@ class ArtikelController extends Controller
                 if (str_slug($request->judul) != str_slug($artikel->judul)) {
                     $slug = substr(str_slug($request->judul), 0, 180);
                     $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-                        ->orderBy('slug', 'DESC')->first('slug');
+                        ->orderBy('slug', 'DESC')->first(['slug']);
 
                     if ($latestSlug) {
                         $slug_element = explode('-', $latestSlug->slug);

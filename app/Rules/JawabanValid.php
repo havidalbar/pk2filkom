@@ -25,7 +25,7 @@ class JawabanValid implements Rule
      */
     public function passes($attribute, $value)
     {
-        return \App\PenugasanJawabanBeta::where('id', $value)->first('id');
+        return \App\PenugasanJawabanBeta::where('id', $value)->first(['id']);
     }
 
     /**

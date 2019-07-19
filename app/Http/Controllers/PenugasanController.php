@@ -49,7 +49,7 @@ class PenugasanController extends Controller
 
             $slug = substr(str_slug($request->judul), 0, 180);
             $latestSlug = PenugasanBeta::where('slug', 'LIKE', $slug . '%')
-                ->orderBy('slug', 'DESC')->first('slug');
+                ->orderBy('slug', 'DESC')->first(['slug']);
 
             if ($latestSlug) {
                 $slug_element = explode('-', $latestSlug->slug);
@@ -251,7 +251,7 @@ class PenugasanController extends Controller
                 if (str_slug($request->judul) != str_slug($penugasan->judul)) {
                     $slug = substr(str_slug($request->judul), 0, 180);
                     $latestSlug = PenugasanBeta::where('slug', 'LIKE', $slug . '%')
-                        ->orderBy('slug', 'DESC')->first('slug');
+                        ->orderBy('slug', 'DESC')->first(['slug']);
 
                     if ($latestSlug) {
                         $slug_element = explode('-', $latestSlug->slug);

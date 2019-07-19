@@ -26,7 +26,7 @@ class KomentarValid implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Komentar::where('id', $value)->first('id');
+        return Komentar::where('id', $value)->first(['id']);
     }
 
     /**
