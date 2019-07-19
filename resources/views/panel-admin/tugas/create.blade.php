@@ -20,7 +20,7 @@
             <div class="m-portlet__body pt-1">
                 <form action="{{ route('panel.penugasan.store') }}"
                     class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-                    @csrf
+                    {{ csrf_field() }}
                     @if ($_GET['tipe_soal'] == 'pilgan')
                     @include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'tambah'])
                     @elseif ($_GET['tipe_soal'] == 'instagram' || $_GET['tipe_soal'] == 'line' || $_GET['tipe_soal'] ==

@@ -20,8 +20,8 @@
             <div class="m-portlet__body pt-1">
                 <form action="{{ route('panel.penugasan.update', ['slug' => $penugasan->slug]) }}"
                     class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-                    @csrf
-                    @method('PUT')
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     @if ($penugasan->jenis === 4)
                     @include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'edit'])
                     @elseif ($penugasan->jenis === 1 || $penugasan->jenis === 2 || $penugasan->jenis === 3 || $penugasan->jenis === 6)

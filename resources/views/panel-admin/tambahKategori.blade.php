@@ -20,8 +20,8 @@
             <div class="m-portlet__body pt-1">
 
                 <form action="/addKategori" class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-                    @csrf
-                    @method('POST')
+                    {{ csrf_field() }}
+                    {{ method_field('POST') }}
                     @include('panel-admin.coreAdmin.formKategori',['ketForm' => 'tambah'])
                 </form>
 

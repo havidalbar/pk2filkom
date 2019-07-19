@@ -45,7 +45,7 @@
                     @endforeach
                     <div class="d-flex justify-content-center">
                         <form class="form-input-link" method="POST">
-                            @csrf
+                            {{ csrf_field() }}
                             <div class="input-group">
                                 @foreach ($penugasan->soal as $index => $soal)
                                 <?php

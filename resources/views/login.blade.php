@@ -14,7 +14,7 @@ $(function() {
         </div>
         <div class="form-login">
             <form method="POST">
-                @csrf
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label class="input-group">
                         <div class="input-group-prepend">

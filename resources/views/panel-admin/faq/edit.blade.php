@@ -21,8 +21,8 @@
 
                 <form action="{{ route('panel.faq.update', ['id' => $id]) }}"
                     class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-                    @csrf
-                    @method('PUT')
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     @include('panel-admin.faq.form-create-edit', ['ketForm' => 'edit'])
                 </form>
 

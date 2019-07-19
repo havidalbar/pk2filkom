@@ -84,8 +84,8 @@
                                     <form id="delete-penugasan-form-{{ $penugasan->id }}"
                                         action="{{ route('panel.penugasan.destroy', ['slug' => $penugasan->slug]) }}"
                                         method="POST">
-                                        @csrf
-                                        @method('DELETE')
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
                                     </form>
                                     <a href="javascript:void(0)"
                                         onclick="document.getElementById(`delete-penugasan-form-{{ $penugasan->id }}`).submit()"

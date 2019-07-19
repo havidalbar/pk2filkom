@@ -28,7 +28,7 @@
     <!-- EndTitle -->
     <div class="container">
         <form method="post">
-            @csrf
+            {{ csrf_field() }}
             <div class="row justify-content-center">
                 <div class="col-auto" id="tts"></div>
                 <input type="submit" value="Submit">
