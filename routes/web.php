@@ -22,6 +22,7 @@ Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('te
 Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');
 Route::get('/info-akademik', 'MahasiswaController@getTemanSimabaAkademik')->name('teman-simaba-akademik');
 Route::get('/info-kampus', 'MahasiswaController@getTemanSimabaKampus')->name('teman-simaba-kampus');
+Route::get('/info-mahasiswa', 'MahasiswaController@getTemanSimabaMahasiswa')->name('teman-simaba-mahasiswa');
 Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
     ->where('name', '(.*)')->name('protected-assets');
 
