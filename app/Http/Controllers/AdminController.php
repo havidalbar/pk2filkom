@@ -135,22 +135,18 @@ class AdminController extends Controller
         $username = $request->username;
         $password = $request->password;
         $data = Pengguna::find($username);
-        if ($data) {
-            if (Hash::check($password, $data->password)) {
-                Session::put('username', $data->username);
-                Session::put('divisi', $data->divisi);
-                Session::put('is_full_access', $data->is_full_access);
+        if ($data && Hash::check($password, $data->password)) {
+            Session::put('username', $data->username);
+            Session::put('divisi', $data->divisi);
+            Session::put('is_full_access', $data->is_full_access);
 
-                if ($request->redirectTo) {
-                    return redirect($request->redirectTo);
-                } else {
-                    return redirect()->route('panel.dashboard');
-                }
+            if ($request->redirectTo) {
+                return redirect($request->redirectTo);
             } else {
-                return redirect()->back()->with('alert-error', 'Password salah!');
+                return redirect()->route('panel.dashboard');
             }
         } else {
-            return redirect()->back()->with('alert-error', 'Username tidak ditemukan');
+            return redirect()->back()->with('alert-error', 'Informasi login salah');
         }
     }
 
@@ -188,5 +184,11 @@ class AdminController extends Controller
     {
         $mahasiswas = Mahasiswa::get(['nim', 'nama']);
         return view('panel-admin.pk2maba.total', compact('mahasiswas'));
+    }
+
+    public function getStartupTotal()
+    {
+        $mahasiswas = Mahasiswa::get(['nim', 'nama']);
+        return view('panel-admin.startup.total', compact('mahasiswas'));
     }
 }

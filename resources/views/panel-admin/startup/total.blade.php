@@ -56,31 +56,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- foreach ($mahasiswas as $mahasiswa) -->
+							@foreach ($mahasiswas as $mahasiswa)
 							<tr>
 								<td>
-									<!-- $mahasiswa->nim -->
-                                    175150201111072
+									{{$mahasiswa->nim}}
 								</td>
 								<td>
-								<!-- $mahasiswa->nama -->
-                                    Eka Iqbal Virgiawan
+									{{$mahasiswa->nama}}
 								</td>
 								<td>
-									100
-									<!-- $mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->aktif_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->aktif_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->penerapan_nilai_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->penerapan_nilai_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->ringan +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->sedang +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->berat -->
+									{{$mahasiswa->rekap_nilai_startup['absensi']->nilai_rangkaian3 +
+									$mahasiswa->rekap_nilai_startup['absensi']->nilai_rangkaian4 +
+									$mahasiswa->rekap_nilai_startup['absensi']->nilai_rangkaian5 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->aktif_rangkaian3 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->aktif_rangkaian4 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->aktif_rangkaian5 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->penerapan_nilai_rangkaian3 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->penerapan_nilai_rangkaian4 +
+									$mahasiswa->rekap_nilai_startup['keaktifan']->penerapan_nilai_rangkaian5 +
+									$mahasiswa->rekap_nilai_startup['pelanggaran']->ringan +
+									$mahasiswa->rekap_nilai_startup['pelanggaran']->sedang +
+									$mahasiswa->rekap_nilai_startup['pelanggaran']->berat}}
 									
 								</td>
 							</tr>
-							<!-- endforeach -->
+							@endforeach
 						</tbody>
 					</table>
 					<!--end: Datatable -->

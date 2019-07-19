@@ -26,21 +26,48 @@ class MahasiswaController extends Controller
     {
         return view('v_mahasiswa/qrCode');
     }
-    public function getPenugasan()
-    {
-        return view('v_mahasiswa/penugasan');
-    }
+
     public function getBukuPanduan()
     {
         return view('v_mahasiswa/bukpan');
     }
+
     public function getCeritaTentangAku()
     {
         return view('v_mahasiswa/kumpulVideoIG');
     }
+
     public function getNametag()
     {
         $mahasiswa = Mahasiswa::find(Session::get('nim'));
         return view('v_mahasiswa/nametag');
+    }
+
+    public function getPenilaian(){
+        $mahasiswa = Mahasiswa::find(Session::get('nim'));
+        return view('v_mahasiswa/halamanPenilaian',compact('mahasiswa'));
+    }
+
+    public function getTemanSimaba(){
+        return view('v_mahasiswa/temanSimaba');
+    }
+
+    public function getProtectedFile($name)
+    {
+        $file = \App\ProtectedFile::find($name);
+
+        if ($file) {
+            if (session('nim') == $file->jawaban->nim || session('username')) {
+                if (file_exists(storage_path($file->path))) {
+                    return response()->file(storage_path($file->path));
+                } else {
+                    abort(404);
+                }
+            } else {
+                abort(401);
+            }
+        } else {
+            abort(404);
+        }
     }
 }
