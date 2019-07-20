@@ -20,7 +20,7 @@
                         <div class="overlay">
                             <h2>Info Akademik</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-akademik" class="info">Lihat Info</a>
+                            <a href="{{ route('teman-simaba-akademik') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="overlay">
                             <h2>Info Kampus</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-kampus" class="info">Lihat Info</a>
+                                <a href="{{ route('teman-simaba-kampus') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="overlay">
                             <h2>Info Filkom</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-filkom" class="info">Lihat Info</a>
+                                <a href="{{ route('teman-simaba-filkom') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <div class="overlay">
                             <h2>Info Mahasiswa</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a href="/info-mahasiswa" class="info">Lihat Info</a>
+                                <a href="{{ route('teman-simaba-mahasiswa') }}" class="info">Lihat Info</a>
                             </div>
                         </div>
                     </div>

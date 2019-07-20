@@ -11,7 +11,7 @@
                 <a href="{{ route('index') }}" class="nav-item nav-link menu">TENTANG SIMABA</a>
                 <a href="{{ route('index') }}" class="nav-item nav-link menu">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link menu">FAQ</a>
-                <a href="#" class="nav-item nav-link menu" data-item-ojb="pk2-jb6">BERITA</a>
+                <a href="{{ route('index') }}" class="nav-item nav-link menu">BERITA</a>
                 <a href="{{route('teman-simaba')}}" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">

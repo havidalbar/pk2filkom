@@ -18,7 +18,7 @@
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb5">RANGKAIAN</a>
                 <a href="{{ route('faq') }}" class="nav-item nav-link ">FAQ</a>
                 <a href="#" class="nav-item nav-link " data-item-ojb="pk2-jb6">BERITA</a>
-                <a href="{{route('teman-simaba')}}" class="nav-item nav-link menu">TEMAN SIMABA</a>
+                <a href="{{ route('teman-simaba') }}" class="nav-item nav-link menu">TEMAN SIMABA</a>
                 @if (session('nim'))
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -206,7 +206,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/pk2.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -230,7 +230,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/pk2.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -254,7 +254,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/pkm.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -303,7 +303,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/oh.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -329,7 +329,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/pkm.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -354,7 +354,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ob.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -379,7 +379,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/pkm.png')}}"
+                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -427,70 +427,87 @@
 
 <!-- berita -->
 <div class="jumbotron jumbotron-fluid pk2-jb6">
-    <div class="container d-flex align-items-center justify-content-center">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-sm-12 col-md-6">
-                <div class="hovereffect-berita">
-                    <img class="img1" src="{{asset('img/berita/kartini.png')}}" alt="">
-                    <div class="overlay">
-                        <h2>Selamat Hari Kartini 2019</h2>
-                        <div class="h-100 d-flex align-items-center justify-content-center">
-                            <a class="info" href="#">Lihat Berita</a>
+    <div class="container-fluid">
+        <div class="container d-flex align-items-center justify-content-center">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm-12 col-md-6">
+                    @if (isset($beritas[0]))
+                    <div class="hovereffect-berita">
+                        <img class="img1" src="{{ $beritas[0]->thumbnail }}" alt="">
+                        <div class="overlay">
+                            <h2>{{ $beritas[0]->judul }}</h2>
+                            <div class="h-100 d-flex align-items-center justify-content-center">
+                                <a class="info" href="#">Lihat Berita</a>
+                            </div>
                         </div>
                     </div>
+                    @else
+                    <div class="hovereffect-berita empty">
+                        <img class="img2" src="{{ asset('img/berita/empty.png') }}" alt="">
+                        <div class="overlay">
+                            <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
+                            <div class="h-100 d-flex align-items-center justify-content-center">
+                                <a class="info" href="javascript:void(0)">coming soon</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="row">
+                        @for ($index = 1; $index < 5; $index++) @if (isset($beritas[$index])) <div
+                            class="col-sm-12 col-md-6">
+                            <div class="hovereffect-berita">
+                                <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                                <div class="overlay">
+                                    <h2>{{ $beritas[$index]->judul }}</h2>
+                                    <div class="h-100 d-flex align-items-center justify-content-center">
+                                        <a class="info" href="#">Lihat Berita</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    @else
+                    <div class="col-sm-12 col-md-6">
+                        <div class="hovereffect-berita empty">
+                            <img class="img2" src="{{ asset('img/berita/empty.png') }}" alt="">
+                            <div class="overlay">
+                                <h2>Tunggu berita dari kami. <i data-icon="c"></i></h2>
+                                <div class="h-100 d-flex align-items-center justify-content-center">
+                                    <a class="info" href="javascript:void(0)">coming soon</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @endfor
                 </div>
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-12" style="padding: 0px; display: none" id="extended-berita">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
+                    @for ($index = 1; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
+                        style="padding: 0px">
                         <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/myhome.jpg')}}" alt="">
+                            <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
                             <div class="overlay">
-                                <h2>Selamat Hari Buruh 2019</h2>
+                                <h2>{{ $beritas[$index]->judul }}</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
                                     <a class="info" href="#">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/Artboard 4.png')}}" alt="">
-                            <div class="overlay">
-                                <h2>Atribut dan Barang Bawaan</h2>
-                                <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/IMG_0069_birukuning.png')}}" alt="">
-                            <div class="overlay">
-                                <h2>Atribut dan Barang Bawaan</h2>
-                                <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="hovereffect-berita">
-                            <img class="img2" src="{{asset('img/berita/line1.png')}}" alt="">
-                            <div class="overlay">
-                                <h2>Selamat Datang Mahasiswa Baru</h2>
-                                <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                @endfor
             </div>
-            <a href="#" class="btn btn-berita">LIHAT SEMUA BERITA</a>
         </div>
     </div>
+</div>
+<div class="container my-3">
+    <div class="row align-items-center justify-content-center">
+        <span class="btn btn-berita" id="load-berita">TAMPILKAN BERITA</span>
+    </div>
+</div>
+</div>
 </div>
 <!-- endBerita -->
 

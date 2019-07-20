@@ -51,20 +51,19 @@ class Handler extends ExceptionHandler
 
         if ($this->isHttpException($exception)) {
             switch ($exception->getStatusCode()) {
-
                     // not authorized
                 case '403':
-                    return \Response::view('v_mahasiswa.halamanError', array(), 403);
+                    return \Response::view('v_mahasiswa.error.403', array(), 403);
                     break;
 
                     // not found
                 case '404':
-                    return \Response::view('v_mahasiswa.halamanError', array(), 404);
+                    return \Response::view('v_mahasiswa.error.404', array(), 404);
                     break;
 
                     // internal error
                 case '500':
-                    return \Response::view('v_mahasiswa.halamanError', array(), 500);
+                    return \Response::view('v_mahasiswa.error.500', array(), 500);
                     break;
             }
         } else {

@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
 Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');
-
+Route::get('/info-akademik', 'MahasiswaController@getTemanSimabaAkademik')->name('teman-simaba-akademik');
+Route::get('/info-kampus', 'MahasiswaController@getTemanSimabaKampus')->name('teman-simaba-kampus');
+Route::get('/info-mahasiswa', 'MahasiswaController@getTemanSimabaMahasiswa')->name('teman-simaba-mahasiswa');
 Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
     ->where('name', '(.*)')->name('protected-assets');
 
@@ -42,15 +44,12 @@ Route::group(['as' => 'mahasiswa.'], function () {
                 });
             });
         });
-        Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
-        Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
-        Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
-
-        Route::get('logout', 'AuthController@logout')->name('logout');
     });
-});
-Route::get('/tts', function () {
-    return view('v_mahasiswa/tts');
+    Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
+    Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
+    Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
+
+    Route::get('logout', 'AuthController@logout')->name('logout');
 });
 
 // Admin Panel
@@ -199,5 +198,3 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         });
     });
 });
-
-Route::get('/text', 'ImageController@call')->name('textOnImage');
