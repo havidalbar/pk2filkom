@@ -73,7 +73,6 @@
             <div class="media-body">
                 <div class="media-title">
                     <p>
-                        {{$komentar->id}}
                         @if ($komentar->username_admin)
                         <strong>{{ $komentar->username_admin . ' | Admin' }}</strong>
                         @else
@@ -94,8 +93,8 @@
                     $(document).ready(function () {
                         $('#actionComment-{{$index}}').on('click', '#buttonEdit-{{$index}}', function () {                            
                             let parentEdit = $(this).parent().parent().find('#dComment-{{$index}}');
-                            let form = $("<form/>", { action: "{{ route('berita.komentar.update', ['slug' => $berita->slug, $komentar->id]) }}", method:'POST', id: 'editComent-{{$index}}' });
-                            let input = $('<input />', { 'type': 'text', 'name': 'editComent-{{$index}}', 'value': $('#dComment-{{$index}}').text() });
+                            let form = $("<form/>", { action: "{{ route('berita.komentar.update', ['slug' => $berita->slug, 'id' => $komentar->id]) }}", method:'POST', id: 'editComent-{{$index}}' });
+                            let input = $('<input />', { 'type': 'text', 'name': 'isi', 'value': $('#dComment-{{$index}}').text() });
                             let method = $('<input />', { 'type': 'hidden', 'name': '_method', 'value': 'PUT' });
                             let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });                            
                             
@@ -170,8 +169,7 @@
                 <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
                 <div class="media-body">
                     <div class="media-title">
-                        <p>         
-                            {{$komentar->id}}                   
+                        <p>
                             @if ($reply->username_admin)
                             <strong>{{ $reply->username_admin . ' | Admin' }}</strong>
                             @else
@@ -204,7 +202,7 @@
         </div>
 
         <form action="{{ route('berita.komentar.post', ['slug' => $berita->slug]) }}" method="POST">
-            @csrf
+            {{ csrf_field() }}
             <div class="input-group border mb-3">
                 <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi">
                 <div class="input-group-append">
