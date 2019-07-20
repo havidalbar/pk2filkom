@@ -1274,7 +1274,7 @@ figure img {
 .replayComment {
     border-left: 3px solid rgba(7, 60, 118, 0.65);
 }
-form#balasComent {
+form.balasComent {
     display: block;
     width: 100%;
 }

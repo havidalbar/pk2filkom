@@ -19,7 +19,9 @@
     </div>
     <!-- EndTitle -->
     <section class="center slider responsive py-5">
-        @for ($i = 0; $i < 3; $i++) @foreach ($beritas as $berita_top) <div>
+        @for ($i = 0; $i < 3; $i++) 
+        @foreach ($beritas as $berita_top) 
+        <div>
             <div class="hovereffect-berita">
                 <img src="{{ $berita_top->thumbnail }}" style="height: 200px; width: 200px">
                 <div class="overlay">
@@ -30,10 +32,10 @@
                     </div>
                 </div>
             </div>
-</div>
-@endforeach
-@endfor
-</section>
+        </div>
+        @endforeach
+        @endfor
+    </section>
 </div>
 <div class="container-fluid">
     <div class="container">
@@ -45,7 +47,6 @@
             </div>
         </div>
     </div>
-
     @foreach ($berita->sub as $sub)
     <div class="row">
         <div class="col-md-6 px-md-0 vdBerita">
@@ -58,18 +59,15 @@
         </div>
     </div>
     @endforeach
-
     <div class="container">
-
         <div class="commentEventTitle commentEvent">
             <span>{{ count($berita->komentar) }}</span>
             <h1>Komentar</h1>
         </div>
-
-        @foreach ($berita->komentar as $index => $komentar)
+        @foreach ($berita->komentar as $komentar)
         @if (!$komentar->komentar_ke)
         <div class="media commentBerita py-2 px-3">
-            <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
+            <img src="https://api.adorable.io/avatars/400/random-{{$komentar->id}}" class="img commentImg align-self-start mr-3" />
             <div class="media-body">
                 <div class="media-title">
                     <p>
@@ -81,92 +79,100 @@
                         <span class="sub-title" style="display: block">{{ $komentar->created_at }}</span>
                     </p>
                 </div>
-                <p id="dComment-{{$index}}">{{ $komentar->isi }}</p>
+                <p id="dComment-{{$komentar->id}}">{{ $komentar->isi }}</p>
             </div>
             @if (session('username') || session('nim'))
-            <div class="input-group-append actionComment" id="actionComment-{{$index}}">
+            <div class="input-group-append actionComment" id="actionComment-{{$komentar->id}}">
                 @if ((session('username') && session('username') == $komentar->username_admin)
                 || (session('nim') && session('nim') == $komentar->nim_mahasiswa))
-                <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$index}}">Edit</button>
-                <span>|</span>
+                <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$komentar->id}}">Edit</button>
+                <span>|</span>                
+                @endif
+                <button class="btn btn-comment" id="buttonBalas-{{$komentar->id}}">Balas</button>
                 <script type="text/javascript">
                     $(document).ready(function () {
-                        $('#actionComment-{{$index}}').on('click', '#buttonEdit-{{$index}}', function () {                            
-                            let parentEdit = $(this).parent().parent().find('#dComment-{{$index}}');
-                            let form = $("<form/>", { action: "{{ route('berita.komentar.update', ['slug' => $berita->slug, 'id' => $komentar->id]) }}", method:'POST', id: 'editComent-{{$index}}' });
-                            let input = $('<input />', { 'type': 'text', 'name': 'isi', 'value': $('#dComment-{{$index}}').text() });
-                            let method = $('<input />', { 'type': 'hidden', 'name': '_method', 'value': 'PUT' });
-                            let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });                            
-                            
-                            $(parentEdit).parent().append(form.append(token,method,input));
-                            $(parentEdit).remove();
-                            input.putEnd().on("focus", function () {
-                                searchInput.putEnd();
-                            });
+                        $('#actionComment-{{$komentar->id}}').on('click', '#buttonEdit-{{$komentar->id}}', function () {                            
+                            let parentCek = $(this).parent().parent().parent();
+                            if (parentCek.find('form').length > 0) {
+                                alert('Silahkan tutup terlebih dahulu form edit/balas komentar sebelumnya')
+                            }
+                            else{
+                                let value = $('#dComment-{{$komentar->id}}').text();                            
+                                let parentEdit = $(this).parent().parent().find('#dComment-{{$komentar->id}}');
+                                let form = $("<form/>", { action: "{{ route('berita.komentar.update', ['slug' => $berita->slug, 'id' => $komentar->id]) }}", method:'POST', id: 'editComent-{{$komentar->id}}' });
+                                let input = $('<textarea />', { 'class':'w-100' ,'type': 'text', 'name': 'isi', 'maxlength': '500'});
+                                let method = $('<input />', { 'type': 'hidden', 'name': '_method', 'value': 'PUT' });
+                                let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });                            
+                                
+                                $(parentEdit).parent().append(form.append(token,method,input));
+                                $(parentEdit).parent().find('textarea').val(value);
+                                $(parentEdit).remove();
+                                input.putEnd().on("focus", function () {
+                                    searchInput.putEnd();
+                                });
 
-                            let buttonNext = $(this).parent();
-                            buttonNext.empty();
+                                let buttonNext = $(this).parent();
+                                buttonNext.empty();
 
-                            buttonNext.append(`
-                            <button class="btn btn-comment" type="submit" form="editComent-{{$index}}">Kirim</button>
-                                <span>|</span>
-                            <button class="btn btn-comment" id="batalComment-{{$index}}">Batal</button>
-                            `);
+                                buttonNext.append(`
+                                <button class="btn btn-comment" type="submit" form="editComent-{{$komentar->id}}">Kirim</button>
+                                    <span>|</span>
+                                <button class="btn btn-comment" id="batalComment-{{$komentar->id}}">Batal</button>
+                                `);
+                            }                            
                         });
-                        $('#actionComment-{{$index}}').on('click', '#batalComment-{{$index}}', function () {
+                        $('#actionComment-{{$komentar->id}}').on('click', '#batalComment-{{$komentar->id}}', function () {
                             let element = $(this).parent();
-                            let parentEdit = $(this).parent().parent().find('#editComent-{{$index}}');
+                            let parentEdit = $(this).parent().parent().find('#editComent-{{$komentar->id}}');
 
-                            var input = $('<p />', { 'id': 'dComment-{{$index}}', 'text': "{{ $komentar->isi }}" });
+                            var input = $('<p />', { 'id': 'dComment-{{$komentar->id}}', 'text': "{{ $komentar->isi }}" });
                             $(parentEdit).parent().append(input);
                             $(parentEdit).remove();
 
                             element.empty();
                             element.append(`
-                            <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$index}}">Edit</button>
+                            <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$komentar->id}}">Edit</button>
                                 <span>|</span>
-                            <button class="btn btn-comment" id="buttonBalas-{{$index}}">Balas</button>
+                            <button class="btn btn-comment" id="buttonBalas-{{$komentar->id}}">Balas</button>
                             `);
                         });
-                        $('#actionComment-{{$index}}').on('click', '#buttonBalas-{{$index}}', function () {
-                            let parentBalas = $(this).parent().parent();
-                            // console.log(this);
-                            // console.log(parentBalas);
-                            // console.log((parentBalas.find('form#balasComent')));
-                            $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas-{{$index}}">X</button>')
-                            if (parentBalas.find('form#balasComent').length > 0) {
-                                alert('form replay komentar sudah ada!')
+                        $('#actionComment-{{$komentar->id}}').on('click', '#buttonBalas-{{$komentar->id}}', function () {                                
+                            let parentCek = $(this).parent().parent().parent();
+                            if (parentCek.find('form').length > 0) {
+                                alert('Silahkan tutup terlebih dahulu form edit/balas komentar sebelumnya')
                             } else {
-                                let form = $("<form/>", { action: "{{ route('berita.komentar.reply', ['slug' => $berita->slug, $komentar->id]) }}", method:'POST', id: 'balasComent' });
+                                let parentBalas = $(this).parent().parent();   
+                                $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas-{{$komentar->id}}">X</button>');
+                                let form = $("<form/>", { action: "{{ route('berita.komentar.reply', ['slug' => $berita->slug, $komentar->id]) }}", method:'POST', id: 'balasComent-{{$komentar->id}}', class: 'balasComent' });
                                 let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });
                                 let balas = `
                                 <div class="input-group border mb-3">
-                                    <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi">
+                                    <textarea type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi" maxlength= "500"></textarea>
                                     <div class="input-group-append">
                                         <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
                                     </div>
                                 </div>`;
                                 $(parentBalas).append(form.append(token,balas));
+                                let input = parentBalas.find('textarea');
+                                    input.putEnd().on("focus", function () {
+                                    searchInput.putEnd();
+                                });
                             }
                         });
-                        $('#actionComment-{{$index}}').on('click', '#buttonBatalBalas-{{$index}}', function () {
-
-                            let hapusReplay = $(this).parent().parent().find('form#balasComent');
-                            // console.log(hapusReplay)
+                        $('#actionComment-{{$komentar->id}}').on('click', '#buttonBatalBalas-{{$komentar->id}}', function () {
+                            let hapusReplay = $(this).parent().parent().find('form#balasComent-{{$komentar->id}}');                            
                             $(hapusReplay).remove();
-                            $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas-{{$index}}">Balas</button>')
+                            $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas-{{$komentar->id}}">Balas</button>')
                         });
                     });
                 </script>
-                @endif
-                <button class="btn btn-comment" id="buttonBalas-{{$index}}">Balas</button>
             </div>
             @endif
             {{-- Reply --}}
             @foreach ($berita->komentar as $reply)
             @if ($reply->komentar_ke == $komentar->id)
             <div class="media commentBerita replayComment py-2 px-3">
-                <img src="https://via.placeholder.com/64" class="img commentImg align-self-start mr-3" />
+                <img src="https://api.adorable.io/avatars/400/random-{{$reply->id}}" class="img commentImg align-self-start mr-3" />
                 <div class="media-body">
                     <div class="media-title">
                         <p>
@@ -178,16 +184,93 @@
                             <span class="sub-title" style="display: block">{{ $reply->created_at }}</span>
                         </p>
                     </div>
-                    <p id="dComment">{{ $reply->isi }}</p>
+                    <p id="dComment-{{$reply->id}}">{{ $reply->isi }}</p>
                 </div>
                 @if (session('username') || session('nim'))
-                <div class="input-group-append actionComment" id="actionComment">
+                <div class="input-group-append actionComment" id="actionComment-{{$reply->id}}">
                     @if ((session('username') && session('username') == $reply->username_admin)
                     || (session('nim') && session('nim') == $reply->nim_mahasiswa))
-                    <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                    <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$reply->id}}">Edit</button>
                     <span>|</span>
                     @endif
-                    <button class="btn btn-comment" id="buttonBalas">Balas</button>
+                    <button class="btn btn-comment" id="buttonBalas-{{$reply->id}}">Balas</button>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#actionComment-{{$reply->id}}').on('click', '#buttonEdit-{{$reply->id}}', function () {                            
+                                let parentCek = $(this).parent().parent().parent().parent();                                                                                      
+                                if (parentCek.find('form').length > 0) {
+                                    alert('Silahkan tutup terlebih dahulu form edit/balas komentar sebelumnya')
+                                }
+                                else{
+                                    let value = $('#dComment-{{$reply->id}}').text();        
+                                    let parentEdit = $(this).parent().parent().find('#dComment-{{$reply->id}}');
+                                    let form = $("<form/>", { action: "{{ route('berita.komentar.update', ['slug' => $berita->slug, 'id' => $reply->id]) }}", method:'POST', id: 'editComent-{{$reply->id}}' });
+                                    let input = $('<textarea />', { 'class':'w-100' ,'type': 'text', 'name': 'isi', 'maxlength': '500'});
+                                    let method = $('<input />', { 'type': 'hidden', 'name': '_method', 'value': 'PUT' });
+                                    let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });                            
+                                    
+                                    $(parentEdit).parent().append(form.append(token,method,input));
+                                    $(parentEdit).parent().find('textarea').val(value);
+                                    $(parentEdit).remove();
+                                    input.putEnd().on("focus", function () {
+                                        searchInput.putEnd();
+                                    });
+
+                                    let buttonNext = $(this).parent();
+                                    buttonNext.empty();
+
+                                    buttonNext.append(`
+                                    <button class="btn btn-comment" type="submit" form="editComent-{{$reply->id}}">Kirim</button>
+                                        <span>|</span>
+                                    <button class="btn btn-comment" id="batalComment-{{$reply->id}}">Batal</button>
+                                    `);
+                                }                                
+                            });
+                            $('#actionComment-{{$reply->id}}').on('click', '#batalComment-{{$reply->id}}', function () {
+                                let element = $(this).parent();
+                                let parentEdit = $(this).parent().parent().find('#editComent-{{$reply->id}}');
+
+                                var input = $('<p />', { 'id': 'dComment-{{$reply->id}}', 'text': "{{ $reply->isi }}" });
+                                $(parentEdit).parent().append(input);
+                                $(parentEdit).remove();
+
+                                element.empty();
+                                element.append(`
+                                <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$reply->id}}">Edit</button>
+                                    <span>|</span>
+                                <button class="btn btn-comment" id="buttonBalas-{{$reply->id}}">Balas</button>
+                                `);
+                            });
+                            $('#actionComment-{{$reply->id}}').on('click', '#buttonBalas-{{$reply->id}}', function () { 
+                                let parentCek = $(this).parent().parent().parent().parent();            
+                                if (parentCek.find('form').length > 0) {
+                                    alert('Silahkan tutup terlebih dahulu form edit/balas komentar sebelumnya');
+                                } else {
+                                    let parentBalas = $(this).parent().parent().parent();
+                                    $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas-{{$reply->id}}">X</button>');
+                                    let form = $("<form/>", { action: "{{ route('berita.komentar.reply', ['slug' => $berita->slug, $komentar->id]) }}", method:'POST', id: 'balasComent-{{$reply->id}}', class: 'balasComent' });
+                                    let token = $('<input />', { 'type': 'hidden', 'name': '_token', 'value': '{{ csrf_token() }}' });
+                                    let balas = `
+                                    <div class="input-group border mb-3">
+                                        <textarea type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi" maxlength= "500"></textarea>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
+                                        </div>
+                                    </div>`;
+                                    $(parentBalas).append(form.append(token,balas));                                    
+                                    let input = parentBalas.find('textarea');
+                                        input.putEnd().on("focus", function () {
+                                        searchInput.putEnd();
+                                    });
+                                }
+                            });
+                            $('#actionComment-{{$reply->id}}').on('click', '#buttonBatalBalas-{{$reply->id}}', function () {
+                                let hapusReplay = $(this).parent().parent().parent().find('form#balasComent-{{$reply->id}}');                            
+                                $(hapusReplay).remove();
+                                $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas-{{$reply->id}}">Balas</button>')
+                            });
+                        });
+                    </script>
                 </div>
                 @endif
             </div>
@@ -199,18 +282,18 @@
 
         <div class="commentEvent" style="margin-top: 30px">
             <h1>Tambahkan Komentar</h1>
-        </div>
-
+        </div>        
+    </div>
+    <div class="container" style="margin-bottom: 60px">
         <form action="{{ route('berita.komentar.post', ['slug' => $berita->slug]) }}" method="POST">
             {{ csrf_field() }}
             <div class="input-group border mb-3">
-                <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi">
+                <textarea type="text" rows="5" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi" maxlength="500"></textarea>
                 <div class="input-group-append">
                     <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 
