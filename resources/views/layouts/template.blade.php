@@ -21,6 +21,8 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <!-- Zoom JS -->
     <script type="text/javascript" src="{{asset('js/jquery.zoom.min.js')}}"></script>
+    <!-- Moment JS -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     <!-- Javascript -->
     <script type="text/javascript" src="{{asset('js/script.js')}}"></script>
     @yield('js')

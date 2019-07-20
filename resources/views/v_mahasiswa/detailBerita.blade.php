@@ -5,7 +5,6 @@
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/id.js"></script>
 <div class="jumbotron jumbotron-fluid pk2-dtBerita pt-0">
     <!-- Title -->
     <div class="title">
@@ -76,7 +75,11 @@
                         @else
                         <strong>{{ $komentar->pengirim_mahasiswa->nama ?? '' }}</strong>
                         @endif
-                        <span class="sub-title" style="display: block">{{ $komentar->created_at }}</span>
+                        <span class="sub-title" id="waktu-{{$komentar->id}}" style="display: block"></span>
+                        <script type="text/javascript">                                                                                                              
+                            var date = moment.utc("{{ $komentar->created_at }}").local().format("DD-MM-YYYY, h:mm a");                            
+                            document.getElementById("waktu-{{$komentar->id}}").innerHTML = date;
+                        </script>
                     </p>
                 </div>
                 <p id="dComment-{{$komentar->id}}">{{ $komentar->isi }}</p>
@@ -181,7 +184,11 @@
                             @else
                             <strong>{{ $reply->pengirim_mahasiswa->nama ?? '' }}</strong>
                             @endif
-                            <span class="sub-title" style="display: block">{{ $reply->created_at }}</span>
+                            <span class="sub-title" id="waktu-{{$reply->id}}" style="display: block"></span>
+                            <script type="text/javascript">                                                                                                              
+                                var date = moment.utc("{{ $reply->created_at }}").local().format("DD-MM-YYYY, h:mm a");                            
+                                document.getElementById("waktu-{{$reply->id}}").innerHTML = date;
+                            </script>
                         </p>
                     </div>
                     <p id="dComment-{{$reply->id}}">{{ $reply->isi }}</p>
