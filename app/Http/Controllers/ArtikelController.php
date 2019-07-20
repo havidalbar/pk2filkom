@@ -45,8 +45,7 @@ class ArtikelController extends Controller
 
             $slug = substr(str_slug($request->judul), 0, 180);
             $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-                ->orderBy('slug', 'DESC')->first('slug');
-
+                ->orderBy('slug', 'DESC')->first(['slug']);
             if ($latestSlug) {
                 $slug_element = explode('-', $latestSlug->slug);
                 $latestSlugNumber = end($slug_element);
@@ -110,7 +109,8 @@ class ArtikelController extends Controller
                 }
 
                 $dom = new \domdocument();
-                $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                libxml_use_internal_errors(true);
+                $dom->loadHtml(urldecode($request->sub_konten[$i]));
                 $images = $dom->getelementsbytagname('img');
 
                 //loop over img elements, decode their base64 src and save them to public folder,
@@ -198,7 +198,7 @@ class ArtikelController extends Controller
                 if (str_slug($request->judul) != str_slug($artikel->judul)) {
                     $slug = substr(str_slug($request->judul), 0, 180);
                     $latestSlug = Artikel::where('slug', 'LIKE', $slug . '%')
-                        ->orderBy('slug', 'DESC')->first('slug');
+                        ->orderBy('slug', 'DESC')->first(['slug']);
 
                     if ($latestSlug) {
                         $slug_element = explode('-', $latestSlug->slug);
@@ -273,7 +273,8 @@ class ArtikelController extends Controller
                         }
 
                         $dom = new \domdocument();
-                        $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        libxml_use_internal_errors(true);
+                        $dom->loadHtml(urldecode($request->sub_konten[$i]));
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,
@@ -309,7 +310,8 @@ class ArtikelController extends Controller
                         }
 
                         $dom = new \domdocument();
-                        $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        libxml_use_internal_errors(true);
+                        $dom->loadHtml(urldecode($request->sub_konten[$i]));
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,
@@ -334,7 +336,6 @@ class ArtikelController extends Controller
                         $sub_konten->id_artikel = $artikel->id;
                         $sub_konten->deskripsi = $dom->savehtml();
                         $sub_konten->save();
-
                     }
                 }
 

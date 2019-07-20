@@ -21,8 +21,8 @@
 
 				<form action="{{ route('panel.pengguna.update', $dataPengguna->username) }}"
 					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-					@csrf
-					@method('PUT')
+					{{ csrf_field() }}
+					{{ method_field('PUT') }}
 					@include('panel-admin.pengguna.form-create-edit', ['ketForm' => 'edit'])
 				</form>
 

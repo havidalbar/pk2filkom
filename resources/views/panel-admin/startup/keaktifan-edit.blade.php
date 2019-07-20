@@ -21,8 +21,8 @@
 				<div class="m-portlet__body pt-1">
 					<form action="{{ route('panel.kegiatan.startup.keaktifan.update', $startupKeaktifan->nim) }}"
 						class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-						@csrf
-						@method('PUT')
+						{{ csrf_field() }}
+						{{ method_field('PUT') }}
 						<div class="m-portlet__body">
 							<div class="form-group m-form__group m--margin-top-10">
 								<div class="alert m-alert m-alert--default" role="alert">

@@ -14,11 +14,12 @@ class CreateJawabanBetaTable extends Migration
     public function up()
     {
         Schema::create('jawaban_beta', function (Blueprint $table) {
+            $table->string('id', 36)->primary();
             $table->unsignedBigInteger('nim');
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->string('id_soal', 36);
-            $table->foreign('id_soal')->references('id')->on('penugasan_soal_beta')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['nim', 'id_soal']);
+            $table->foreign('id_soal')->references('id')->on('penugasan_soal_beta')
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->text('jawaban')->nullable();
             $table->timestamps();
         });

@@ -47,7 +47,7 @@
 			<div class="col-sm bg-form">
 				<div class="row h-100 justify-content-center align-items-center">
 					<form class="col-sm-12 col-md-9 needs-validation form-container" method="POST" novalidate>
-						@csrf
+						{{ csrf_field() }}
 						<h1 class="text-center text-white font-italic">Form Data Diri</h1>
 						<div class="form-row pt-2">
 							<div class="form-group col-md-6 pt-3">

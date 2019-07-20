@@ -3,15 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use function GuzzleHttp\json_decode;
 
 class PenugasanBeta extends Model
 {
-    use Traits\Slug;
-
     protected $table = 'penugasan_beta';
 
     protected $hidden = [
         'editor', 'created_at', 'updated_at',
+    ];
+
+    protected $appends = [
+        'jenis_text'
     ];
 
     public function soal()
@@ -19,10 +22,21 @@ class PenugasanBeta extends Model
         return $this->hasMany('App\PenugasanSoalBeta', 'id_penugasan', 'id')->orderBy('index');
     }
 
-    public function sluggable()
+    public function getJenisTextAttribute()
     {
-        return [
-            'source' => 'judul',
-        ];
+        switch ($this->jenis) {
+            case 1:
+                return 'Instagram';
+            case 2:
+                return 'Youtube';
+            case 3:
+                return 'LINE';
+            case 4:
+                return 'Pilihan Ganda';
+            case 5:
+                return 'Offline';
+            case 6:
+                return 'Teka-Teki Silang';
+        }
     }
 }

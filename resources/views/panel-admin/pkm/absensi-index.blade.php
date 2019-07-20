@@ -111,8 +111,8 @@
 										<form
 											action="{{ route('panel.kegiatan.pkm.absensi.destroy', $pk2mTourAbsensi->nim) }}"
 											id="delete-pkm-absensi-{{ $pk2mTourAbsensi->nim }}" method="POST">
-											@csrf
-											@method('DELETE')
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
 										</form>
 										<a href="javascript:void(0)"
 											onclick="document.getElementById('delete-pkm-absensi-{{ $pk2mTourAbsensi->nim }}').submit()"
@@ -148,8 +148,8 @@
 			<form action="{{ route('panel.kegiatan.pkm.absensi.store') }}" enctype="multipart/form-data"
 				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
-					@csrf
-					@method("POST")
+					{{ csrf_field() }}
+					{{ method_field('POST') }}
 					<div class="form-group m-form__group row ">
 						<label for="Thumbnail" class="col-4 col-form-label">
 							File PKM TOUR ABSENSI
