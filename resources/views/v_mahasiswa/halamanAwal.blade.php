@@ -485,7 +485,7 @@
             </div>
             <div class="col-sm-12 col-md-12" style="padding: 0px; display: none" id="extended-berita">
                 <div class="row">
-                    @for ($index = 1; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
+                    @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
                         style="padding: 0px">
                         <div class="hovereffect-berita">
                             <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
@@ -510,7 +510,19 @@
 </div>
 </div>
 <!-- endBerita -->
-
+<script>
+    //loadBerita
+    $('#load-berita').click(function () {
+        if ($('#extended-berita').css('display') === 'none') {
+            $('#extended-berita').css('display', '');
+            $('#load-berita').html('SEMBUNYIKAN BERITA');
+        } else {
+            $('#extended-berita').css('display', 'none');
+            $('#load-berita').html('TAMPILKAN BERITA');
+        }
+    });
+    //endLoadBerita
+</script>
 <!-- Footer -->
 @include('layouts.footer')
 <!-- Footer -->
