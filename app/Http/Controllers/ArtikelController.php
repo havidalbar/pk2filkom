@@ -154,7 +154,7 @@ class ArtikelController extends Controller
      */
     public function show($slug)
     {
-        $beritas = Artikel::without('sub')->get(['slug', 'thumbnail']);
+        $beritas = Artikel::without('sub')->get(['slug', 'thumbnail', 'judul']);
         $berita = Artikel::with('komentar')->where('slug', $slug)->first();
 
         if ($berita) {

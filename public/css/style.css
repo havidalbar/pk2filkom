@@ -649,12 +649,13 @@ video#landingPageVideo {
     font-size: 30px;
     color: #033c58;
     padding: 20px 40px;
-    margin-bottom: 40px !important;
     width: 400px;
     margin: auto;
 }
 .pk2ttgsimana .media-body p {
     text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
 }
 .pk2-jb4 .row,
 .pk2-jb4 .row .col-md-6,
@@ -905,6 +906,8 @@ figure img {
     position: relative;
     text-align: center;
     cursor: default;
+    width: 100%;
+    height: 100%;
 }
 .hovereffect-berita .overlay {
     width: 100%;
@@ -921,7 +924,7 @@ figure img {
 .hovereffect-berita .img1 {
     width: 100%;
     height: 100%;
-    max-height: 530px;
+    max-height: 526px;
 }
 .hovereffect-berita .img2 {
     width: 100%;
@@ -1054,6 +1057,9 @@ figure img {
     justify-content: center;
     margin-bottom: 21px;
 }
+.footerLogo img{
+    width: 87px;
+}
 .linkSosmed {
     width: 100%;
     display: inline-block;
@@ -1086,6 +1092,10 @@ figure img {
 }
 .pk2-dtBerita {
     background-image: url(../img/bg-section/bgBerita.png);
+    height: calc(100vh - 79px);
+    background-size: cover;
+    background-position: initial;
+    min-height: 600px;
 }
 .vdBerita {
     min-height: 240px;
@@ -1104,12 +1114,13 @@ figure img {
 .multipleChoise .titleSection::after,
 .detailBerita .titleSection::after {
     width: 140%;
-    transform: translateX(-14%);
+    transform: translateX(-16%);
 }
 .jumbotron.pk2-dtBerita::after {
     clear: both;
     content: "";
     display: block;
+    position: relative;
 }
 .slick-slide img {
     width: 100%;
@@ -1300,34 +1311,83 @@ figure img {
 .input-group-append span {
     align-self: center;
 }
-.slick-slide .hovereffect-berita {
+/* Hover slider berita */
+.slider-berita {
+    border-radius: 5px;
+    max-height: 256px;
+    max-width: 256px;    
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+.slider-berita .overlay {
     width: 100%;
     height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
-
-.slick-slide .hovereffect-berita img:first-child {
-    width: 100% !important;
-    height: 100% !important;
+.slider-berita:hover .overlay {
+    opacity: 1;
 }
-.slick-slide .hovereffect-berita:hover img{
-    transform: scale(.9);
+.slider-berita img {
+    max-width: 100%;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    border-radius: 5px;
 }
-.slick-current.slick-slide > .hovereffect-berita:hover img{
-    transform: scale(1);
+.slider-berita:hover img {
+    -ms-transform: scale(1.07);
+    -webkit-transform: scale(1.07);
+    transform: scale(1.07);
 }
-.slick-slide .hovereffect-berita .overlay{
-    transform:  scale(.9);
+.slider-berita h2 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+    padding: 10px;
 }
-.slick-current.slick-slide > .hovereffect-berita .overlay{
-    transform:  scale(1);
+.slider-berita a.info {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    background-color: transparent;
+    opacity: 0;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    padding: 7px 14px;
 }
+.slider-berita a.info:hover {
+    box-shadow: 0 0 5px #fff;
+}
+.slider-berita:hover a.info {
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+.slider-berita:hover h2,
+.slider-berita:hover a.info {
+    opacity: 1;
+}
+/* Akhir Hover slider berita */
 .commentEventTitle {
     display: inline-flex;
     width: 100%;
     margin-bottom: -23px;
     border-bottom: 1px solid #808080;
 }
-
 .commentEventTitle span {
     /* position: absolute; */
     margin: 0 10px;
@@ -1603,7 +1663,7 @@ table#tts-table td input{
         width: auto;
     }
     .pk2ttgsimana .media-body p {
-        font-size: 14px;
+        font-size: 18px;
     }
     .pk2-jb4 {
         height: 100%;
@@ -1639,8 +1699,8 @@ table#tts-table td input{
     .sep {
         display: none;
     }
-    .hovereffect-berita {
-        margin: 10px 0;
+    .berita-kumpul{
+        margin-top: 20px;
     }
     .pk2-jb6 .col-md-6:last-child > .row > .col {
         height: 100%;
@@ -2581,23 +2641,24 @@ input::-webkit-inner-spin-button {
     display: flex;
     text-align: center;
     flex-direction: column;
+    line-height: normal;
 }
 
 .card.home {
-    width: 30%;
-    margin: 0;
     background-color: #EEC950;
     font-family: "Esphimere-Bold";
     font-size: 35px;
     color: #0b2939;
+    padding: 8px 40px;
+    margin-top: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .card.home:hover {
     background-color: #e4ba31;
-    cursor: pointer;
 }
 
 .textError {
@@ -2606,8 +2667,6 @@ input::-webkit-inner-spin-button {
     font-size: 50px;
     color: black;
     text-shadow:   3px 2px #eec950, 2px 3px #eec950;
-    margin: 0;
-    padding: 0;
 }
 
 .errormsg {
@@ -2617,8 +2676,20 @@ input::-webkit-inner-spin-button {
     color: rgba(250, 189, 54, 0.7);
     text-shadow:   7px 6px black, 6px 7px black,
                13px 12px rgba(6, 62, 89, 0.7), 12px 13px rgba(6, 62, 89, 0.7);
-    margin: 0;
-    padding: 0;
+    margin-bottom: 0;
+}
+@media (max-width: 767.98px) {
+    .textError {
+        font-size: 25px;
+    }
+    .errormsg {
+        font-size: 125px;        
+    }
+    .card.home {
+        font-size: 20px;        
+        padding: 8px 40px;
+        margin-top: 16px;        
+    }
 }
 /* akhir halaman error */
 /* Teman Simaba */
@@ -2926,9 +2997,6 @@ input::-webkit-inner-spin-button {
         position: relative;
         margin-top: 24px;
     }
-    .bg-detail-akademik{
-        background-size: inherit;
-    }
     .sub-akademik{
         margin: 0 !important;
     }
@@ -2998,26 +3066,13 @@ input::-webkit-inner-spin-button {
 }
 /* Akhir Teman Simaba Akademik */
 
-/* coreTemanSimaba */
-.bg-teman-simaba {
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    min-height: 600px;
-}
-/* endCoreTemanSimaba */
-
 /* temanSimabaKampus */
 .teman-akademik {
-    background-image: url(../img/bg-section/bg-kampus_1.png);
+    background-image: url(../img/bg-section/bg-kampus_1.png);    
+    height: 100vh;
+    background-size: cover;
     background-position: initial;
-}
-.bg-detail-akademik {
-    background-position: top !important;
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    background-size: 100% 100%;
+    min-height: 600px;
 }
 .sub-akademik .info {
     height: 100%;
@@ -3184,7 +3239,7 @@ input::-webkit-inner-spin-button {
     font-size: 30px;
     font-family: "Esphimere-Light";
     color: white;
-    /* margin-top: 24px; */
+    margin-top: 24px;
 }
 .sub-studi{
     margin-top: 20px;
@@ -3300,9 +3355,6 @@ input::-webkit-inner-spin-button {
         position: relative;
         margin-top: 24px;
     }
-    .bg-detail-filkom{
-        background-size: inherit;
-    }
     .sub-filkom{
         margin: 0 !important;
     }
@@ -3350,8 +3402,11 @@ input::-webkit-inner-spin-button {
 /* Akhir Teman Simaba Filkom */
 /* temanSimabaMahasiswa */
 .teman-mahasiswa {
-    background-image: url(../img/bg-section/bg-mahasiswa.png);
+    background-image: url(../img/bg-section/bg-mahasiswa.png);    
+    height: 100vh;
+    background-size: cover;
     background-position: initial;
+    min-height: 600px;
 }
 .teman-mahasiswa .intro-text {
     font-size: 34px;

@@ -3,10 +3,10 @@
 
 @section('content')
 <!-- Navbar atas -->
-<nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
+<nav class="navbar nav-home nav-bg-kuning navbar-expand-md navbar-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">
-            <img src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover">
+            <img src="{{asset('img/bg-section/lsimaba2@4x.svg')}}" class="imgCover">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

@@ -206,7 +206,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -230,7 +230,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pk2.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
@@ -254,15 +254,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">PKM Rangkaian 1</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <h5 class="mt-0 title">PKM Rangkaian 1</h5>                                        
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail
@@ -279,15 +278,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/ki.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">Kelas Inspirasi</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <h5 class="mt-0 title">Kelas Inspirasi</h5>                                        
                                         <p>Kelas Inspirasi merupakan rangkaian pertama dari Startup Academy 2019.
                                             Kegiatan ini berupa seminar dan talkshow. Materi yang akan diberikan
                                             adalah leadership, entrepreneurship dan achievement yang akan diisi oleh
@@ -303,15 +301,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/oh.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">Open House</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <h5 class="mt-0 title">Open House</h5>                                    
                                         <p>Open House FILKOM merupakan rangkaian kedua dari Startup Academy 2019.
                                             Kegiatan ini akan diisi dengan pengenalan LSO maupun LO yang ada di
                                             Fakultas Ilmu Komputer. Open House yang akan diselenggarakan akan
@@ -329,15 +326,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">PKM Rangkaian 2</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <h5 class="mt-0 title">PKM Rangkaian 2</h5>                                        
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -354,15 +350,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/ob.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">Outbond</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
+                                        <h5 class="mt-0 title">Outbond</h5>                                        
                                         <p>Outbound merupakan rangkaian ketiga Startup Academy 2019
                                             dimana pada kegiatan ini panitia telah menyiapkan beberapa permainan
                                             menarik yang bertujuan untuk memberikan hiburan sekaligus menanamkan
@@ -379,15 +374,14 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
+                                    <img src="{{asset('img/bg-section/pkm.svg')}}"
                                         class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
-                                        <h5 class="mt-0 title">PKM Final</h5>
-                                        <h6 class="publis">08 September 2019</h6>
+                                        <h5 class="mt-0 title">PKM Final</h5>                                        
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -437,7 +431,7 @@
                         <div class="overlay">
                             <h2>{{ $beritas[0]->judul }}</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a class="info" href="#">Lihat Berita</a>
+                                <a class="info" href="{{ route('berita.show', ['slug' => $beritas[0]->slug]) }}">Lihat Berita</a>
                             </div>
                         </div>
                     </div>
@@ -456,13 +450,13 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="row">
                         @for ($index = 1; $index < 5; $index++) @if (isset($beritas[$index])) <div
-                            class="col-sm-12 col-md-6">
+                            class="col-sm-12 col-md-6 berita-kumpul">
                             <div class="hovereffect-berita">
                                 <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
                                 <div class="overlay">
                                     <h2>{{ $beritas[$index]->judul }}</h2>
                                     <div class="h-100 d-flex align-items-center justify-content-center">
-                                        <a class="info" href="#">Lihat Berita</a>
+                                        <a class="info" href="{{ route('berita.show', ['slug' => $beritas[$index]->slug]) }}">Lihat Berita</a>
                                     </div>
                                 </div>
                             </div>
@@ -485,14 +479,14 @@
             </div>
             <div class="col-sm-12 col-md-12" style="padding: 0px; display: none" id="extended-berita">
                 <div class="row">
-                    @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
+                    @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-12 col-md-3 berita-kumpul"
                         style="padding: 0px">
                         <div class="hovereffect-berita">
                             <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
                             <div class="overlay">
                                 <h2>{{ $beritas[$index]->judul }}</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
+                                    <a class="info" href="{{ route('berita.show', ['slug' => $beritas[$index]->slug]) }}">Lihat Berita</a>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
-<div class="jumbotron jumbotron-fluid pk2-dtBerita pt-0">
+<div class="jumbotron jumbotron-fluid pk2-dtBerita">
     <!-- Title -->
     <div class="title">
         <div class="container">
@@ -17,24 +17,22 @@
         </div>
     </div>
     <!-- EndTitle -->
-    <section class="center slider responsive py-5">
-        @for ($i = 0; $i < 3; $i++) 
+    <div class="center slider responsive py-5">        
         @foreach ($beritas as $berita_top) 
         <div>
-            <div class="hovereffect-berita">
-                <img src="{{ $berita_top->thumbnail }}" style="height: 200px; width: 200px">
+            <div class="slider-berita">
+                <img src="{{ $berita_top->thumbnail }}">
                 <div class="overlay">
-                    <h2>Selamat Hari Kartini 2019</h2>
+                    <h2>{{$berita_top->judul}}</h2>
                     <div class="h-100 d-flex align-items-center justify-content-center">
-                        <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info">Lihat
+                        <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info" target="_blank">Lihat
                             Berita</a>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach
-        @endfor
-    </section>
+        @endforeach        
+    </div>
 </div>
 <div class="container-fluid">
     <div class="container">
@@ -42,7 +40,11 @@
             <div class="infoBerita mx-auto">
                 <h1 class="titleBerita">{{ $berita->judul }}</h1>
                 <span class="creatAt"><i class="far fa-calendar-alt"></i> Dipublikasikan pada :
-                    {{ date($berita->created_at) }}</span>
+                    <span id="waktu-publis"></span></span>
+                <script type="text/javascript">                                                                                                              
+                    var date = moment.utc("{{ date($berita->created_at) }}").local().format("DD-MM-YYYY, h:mm a");                            
+                    document.getElementById("waktu-publis").innerHTML = date;
+                </script>
             </div>
         </div>
     </div>

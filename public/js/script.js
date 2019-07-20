@@ -9,23 +9,16 @@ $(document).ready(function () {
     // });
     // Paralex fixNavbar
     $(window).scroll(function () {
-        let navScroll = $(this).scrollTop();
-        // console.log(navScroll);
+        let navScroll = $(this).scrollTop();        
         if (navScroll) {
             $('.nav-home').addClass('sticky-dekstop');
             $('.nav-home').css({
                 'transition': '1.5s'
-            });
-
-            if (window.location.origin + '/info-kampus') {
-                $('.nav-home .navbar-brand img').attr('src', window.location.origin + '/img/bg-section/simaba2@4x.svg');
-            }
-
+            });            
+             $('.nav-bg-kuning .navbar-brand img').attr('src', window.location.origin + '/img/bg-section/simaba2@4x.svg');            
         } else {
-            $('.nav-home').removeClass('sticky-dekstop');
-            if (window.location.origin + '/info-kampus') {
-                $('.nav-home .navbar-brand img').attr('src', window.location.origin + '/img/bg-section/lsimaba2@4x.svg');
-            }
+            $('.nav-home').removeClass('sticky-dekstop');                        
+            $('.nav-bg-kuning .navbar-brand img').attr('src', window.location.origin + '/img/bg-section/lsimaba2@4x.svg');                        
         }
     });
     // endParalex fixNavbar
