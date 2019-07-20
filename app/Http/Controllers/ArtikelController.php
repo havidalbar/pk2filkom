@@ -110,7 +110,7 @@ class ArtikelController extends Controller
 
                 $dom = new \domdocument();
                 libxml_use_internal_errors(true);
-                $dom->loadHtml(urldecode($request->sub_konten[$i]), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $dom->loadHtml(urldecode($request->sub_konten[$i]));
                 $images = $dom->getelementsbytagname('img');
 
                 //loop over img elements, decode their base64 src and save them to public folder,
@@ -273,7 +273,7 @@ class ArtikelController extends Controller
 
                         $dom = new \domdocument();
                         libxml_use_internal_errors(true);
-                        $dom->loadHtml(urldecode($request->sub_konten[$i]), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        $dom->loadHtml(urldecode($request->sub_konten[$i]));
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,
@@ -310,7 +310,7 @@ class ArtikelController extends Controller
 
                         $dom = new \domdocument();
                         libxml_use_internal_errors(true);
-                        $dom->loadHtml($request->sub_konten[$i], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        $dom->loadHtml(urldecode($request->sub_konten[$i]));
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,

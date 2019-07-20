@@ -68,7 +68,7 @@ class PenugasanController extends Controller
 
             $dom = new \domdocument();
             libxml_use_internal_errors(true);
-            $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $dom->loadHtml(urldecode($request->deskripsi));
             $images = $dom->getelementsbytagname('img');
 
             //loop over img elements, decode their base64 src and save them to public folder,
@@ -110,7 +110,7 @@ class PenugasanController extends Controller
                     if ($request->jenis == 4) {
                         $dom = new \domdocument();
                         libxml_use_internal_errors(true);
-                        $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                        $dom->loadHtml(urldecode($request->soal[$i]['soal']));
                         $images = $dom->getelementsbytagname('img');
 
                         //loop over img elements, decode their base64 src and save them to public folder,
@@ -151,7 +151,7 @@ class PenugasanController extends Controller
 
                             $dom = new \domdocument();
                             libxml_use_internal_errors(true);
-                            $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                            $dom->loadHtml(urldecode($pj));
                             $images = $dom->getelementsbytagname('img');
 
                             //loop over img elements, decode their base64 src and save them to public folder,
@@ -271,7 +271,7 @@ class PenugasanController extends Controller
 
                 $dom = new \domdocument();
                 libxml_use_internal_errors(true);
-                $dom->loadHtml(urldecode($request->deskripsi), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $dom->loadHtml(urldecode($request->deskripsi));
                 $images = $dom->getelementsbytagname('img');
 
                 //loop over img elements, decode their base64 src and save them to public folder,
@@ -313,7 +313,7 @@ class PenugasanController extends Controller
                         if ($request->jenis == 4) {
                             $dom = new \domdocument();
                             libxml_use_internal_errors(true);
-                            $dom->loadHtml(urldecode($request->soal[$i]['soal']), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                            $dom->loadHtml(urldecode($request->soal[$i]['soal']));
                             $images = $dom->getelementsbytagname('img');
 
                             //loop over img elements, decode their base64 src and save them to public folder,
@@ -353,7 +353,7 @@ class PenugasanController extends Controller
 
                                 $dom = new \domdocument();
                                 libxml_use_internal_errors(true);
-                                $dom->loadHtml(urldecode($pj), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                                $dom->loadHtml(urldecode($pj));
                                 $images = $dom->getelementsbytagname('img');
 
                                 //loop over img elements, decode their base64 src and save them to public folder,
