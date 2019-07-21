@@ -21,7 +21,6 @@ Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
         Route::put('{id}', 'KomentarController@update')->name('update');
     });
 });
-
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
@@ -45,6 +44,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
+        Route::get('twibbon', 'MahasiswaController@getTwibbon')->name('twibbon');
         Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
             Route::get('/', 'JawabanController@index')->name('index');
             Route::group(['prefix' => '{slug}'], function () {

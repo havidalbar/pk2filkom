@@ -102,10 +102,10 @@ $(document).ready(function () {
             this.scrollTop = 999999;
         });
     };
-    
+
 
     $('.actionComment').on('click', '#buttonEdit', function () {
-        // let id   = $(this).attr("id"); 
+        // let id   = $(this).attr("id");
         let parentEdit = $(this).parent().parent().find('#dComment');
         let form = $("<form/>", { action: '#', id: 'editComent' });
         let input = $('<input />', { 'type': 'text', 'name': 'editComent', 'value': $('#dComment').text() });
@@ -141,7 +141,7 @@ $(document).ready(function () {
                 <span>|</span>
             <button class="btn btn-comment" id="buttonBalas">Balas</button>
         `);
-    
+
     // console.log(parentEdit)
     // console.log(parentEdit.find('input[name="editComent"]'))
 });
@@ -172,7 +172,7 @@ $(document).ready(function () {
         $(hapusReplay).remove();
         $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
     });
-    
+
     // Datepicker
     if ($(".tanggal").length) {
         $(".tanggal").datepicker({
@@ -184,9 +184,13 @@ $(document).ready(function () {
         });
     }
     // endDatepicker
-      
+
     // zoom
     $('.zoom').zoom();
     // endZoom
-
+    //twibon
+    $('#input-twibbon').on('input', function() {
+        document.getElementById("preview-twibbon").src = (this.value) + "embed";
+    });
+    //endtwibon
 });
