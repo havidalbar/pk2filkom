@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['mahasiswa.api']], function () {
+    Route::post('submit-tts/{slug}', 'JawabanController@apiSubmitTts')->name('api-submit-tts');
+});

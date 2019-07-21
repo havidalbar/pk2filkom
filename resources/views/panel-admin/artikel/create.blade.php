@@ -22,8 +22,8 @@
 				<form action="{{ route('panel.artikel.store') }}"
 					class="m-form m-form--state m-form--fit m-form--label-align-right" enctype="multipart/form-data"
 					method="POST">
-					@csrf
-					@method('POST')
+					{{ csrf_field() }}
+					{{ method_field('POST') }}
 					@include('panel-admin.artikel.form-create-edit', ['ketForm' => 'tambah'])
 				</form>
 

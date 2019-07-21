@@ -11,34 +11,57 @@
 |
  */
 
-Route::get('/', function () {
-    return view('v_mahasiswa/halamanAwal');
-})->name('index');
-
 // Berita
 Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
     Route::get('/', 'ArtikelController@show')->name('show');
 
     Route::group(['prefix' => 'komentar', 'as' => 'komentar.'], function () {
         Route::post('/', 'KomentarController@store')->name('post');
-        Route::post('balas/{reply}', 'KomentarController@store')->name('reply');
+        Route::post('{reply}/balas', 'KomentarController@store')->name('reply');
         Route::put('{id}', 'KomentarController@update')->name('update');
     });
 });
 
+Route::get('/', 'MahasiswaController@index')->name('index');
+Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
+Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
+Route::get('/teman-simaba', 'MahasiswaController@getTemanSimaba')->name('teman-simaba');
+Route::get('/info-akademik', 'MahasiswaController@getTemanSimabaAkademik')->name('teman-simaba-akademik');
+Route::get('/info-kampus', 'MahasiswaController@getTemanSimabaKampus')->name('teman-simaba-kampus');
+Route::get('/info-mahasiswa', 'MahasiswaController@getTemanSimabaMahasiswa')->name('teman-simaba-mahasiswa');
+Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
+    ->where('name', '(.*)')->name('protected-assets');
+
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
-    Route::get('login', 'AuthController@login')->name('login');
-    Route::post('login', 'AuthController@loginMahasiswa');
+    Route::group(['middleware' => ['mahasiswa.tologin']], function () {
+        Route::get('login', 'AuthController@login')->name('login');
+        Route::post('login', 'AuthController@loginMahasiswa');
+    });
 
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
         Route::post('data-diri', 'AuthController@storeDataDiri');
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
-
-        Route::get('logout', 'AuthController@logout');
+        Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
+        Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
+            Route::get('/', 'JawabanController@index')->name('index');
+            Route::group(['prefix' => '{slug}'], function () {
+                Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
+                Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
+                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
+                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
+                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
+                });
+            });
+        });
     });
+    Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
+    Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
+    Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
+
+    Route::get('logout', 'AuthController@logout')->name('logout');
 });
 
 // Admin Panel
@@ -132,6 +155,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 });
 
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
+                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
@@ -187,4 +211,10 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     });
 });
 
-Route::get('/text', 'ImageController@call')->name('textOnImage');
+Route::get('{name}', function ($name) {
+    if (file_exists(public_path($name))) {
+        return redirect(url('public/' . $name));
+    } else {
+        abort(404);
+    }
+})->where('name', '(.*)');

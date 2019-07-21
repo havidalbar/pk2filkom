@@ -85,8 +85,8 @@
 									</a>
 									<form action="{{ route('panel.pengguna.destroy', $penggunas[$i]->username) }}"
 										id="form-delete-pengguna-{{ $penggunas[$i]->username }}" method="POST">
-										@csrf
-										@method('DELETE')
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
 									</form>
 									<a href="javascript:void(0)"
 										onclick="document.getElementById('form-delete-pengguna-{{ $penggunas[$i]->username }}').submit()"

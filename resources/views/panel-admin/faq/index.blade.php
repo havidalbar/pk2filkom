@@ -71,8 +71,8 @@
 									</a>
 									<form id="delete-faq-form-{{ $faq->id }}"
 										action="{{ route('panel.faq.destroy', ['id' => $faq->id]) }}" method="POST">
-										@csrf
-										@method('DELETE')
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
 									</form>
 									<a href="javascript:void(0)"
 										onclick="document.getElementById(`delete-faq-form-{{ $faq->id }}`).submit()"

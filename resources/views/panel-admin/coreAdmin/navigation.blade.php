@@ -234,7 +234,7 @@
 												</a>
 											</li>
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ url('/panel/kegiatan/startup/total') }}"
+												<a href="{{ route('panel.kegiatan.startup.total') }}"
 													class="m-menu__link">
 													<i class="m-menu__link-icon la la-file-text-o"></i>
 													<span class="m-menu__link-text">

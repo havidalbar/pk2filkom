@@ -129,8 +129,8 @@
 											action="{{ route('panel.kegiatan.startup.keaktifan.destroy', $startupKeaktifans[$i]->nim) }}"
 											id="delete-startup-keaktifan-{{ $startupKeaktifans[$i]->nim }}"
 											method="POST">
-											@csrf
-											@method('DELETE')
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
 										</form>
 										<a href="javascript:void(0)"
 											onclick="document.getElementById('delete-startup-keaktifan-{{ $startupKeaktifans[$i]->nim }}').submit()"
@@ -166,8 +166,8 @@
             <form action="{{ route('panel.kegiatan.startup.keaktifan.store') }}" enctype="multipart/form-data"
             class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
-					@csrf
-					@method("POST")
+					{{ csrf_field() }}
+					{{ method_field('POST') }}
 					<div class="form-group m-form__group row ">
 						<label for="Thumbnail" class="col-4 col-form-label">
 							File STARTUP ACADEMY KEAKTIFAN

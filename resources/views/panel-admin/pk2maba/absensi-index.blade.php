@@ -104,8 +104,8 @@
 										<form
 											action="{{ route('panel.kegiatan.pk2maba.absensi.destroy', $pk2mabaAbsensis[$i]->nim) }}"
 											id="delete-pk2maba-absensi-{{ $pk2mabaAbsensis[$i]->nim }}" method="POST">
-											@csrf
-											@method('DELETE')
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
 										</form>
 										<a href="javascript:void(0)"
 											onclick="document.getElementById('delete-pk2maba-absensi-{{ $pk2mabaAbsensis[$i]->nim }}').submit()"
@@ -141,7 +141,7 @@
 			<form action="{{ route('panel.kegiatan.pk2maba.absensi.store') }}" enctype="multipart/form-data"
 				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
-					@csrf
+					{{ csrf_field() }}
 					<div class="form-group m-form__group row ">
 						<label for="import_pk2maba_absensi" class="col-4 col-form-label">
 							File PK2ABSENSI

@@ -21,8 +21,8 @@
 
 				<form action="{{ route('panel.pengguna.store') }}"
 					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
-					@csrf
-					@method('POST')
+					{{ csrf_field() }}
+					{{ method_field('POST') }}
 					@include('panel-admin.pengguna.form-create-edit', ['ketForm' => 'tambah'])
 				</form>
 

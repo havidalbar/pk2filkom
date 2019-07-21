@@ -28,6 +28,6 @@ class Artikel extends Model
 
     public function komentar()
     {
-        return $this->hasMany('App\Komentar', 'id_artikel', 'id');
+        return $this->hasMany('App\Komentar', 'id_artikel', 'id')->orderBy('created_at');
     }
 }

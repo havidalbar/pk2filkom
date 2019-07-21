@@ -76,8 +76,8 @@
 									<form id="delete-artikel-form-{{ $artikel->id }}"
 										action="{{ route('panel.artikel.destroy', ['slug' => $artikel->slug]) }}"
 										method="POST">
-										@csrf
-										@method('DELETE')
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
 									</form>
 									<a href="javascript:void(0)"
 										onclick="document.getElementById(`delete-artikel-form-{{ $artikel->id }}`).submit()"

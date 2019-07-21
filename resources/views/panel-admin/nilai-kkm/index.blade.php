@@ -76,8 +76,8 @@
 									</a>
 									<form action="{{ route('panel.nilai-kkm.destroy', $nilaikkms[$i]->id) }}"
 										id="form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}" method="POST">
-										@csrf
-										@method('DELETE')
+										{{ csrf_field() }}
+										{{ method_field('DELETE') }}
 									</form>
 									<a href="javascript:void(0)" class="m-btn btn btn-danger"
 										onclick="document.getElementById('form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}').submit()">
