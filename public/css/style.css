@@ -2215,45 +2215,76 @@ input::-webkit-inner-spin-button {
 .bg-bukpan {
     background-image: url(../img/bg-section/bukpan.png);
     height: 100%;
+    min-height: calc(100vh - 79px);
 }
-
-.card {
-    border-radius: 70px;
-    justify-content: center;
-    display: flex;
-}
-
-.card.d-flex {
-    align-items: center;
-}
-
-.card.title {
-    background-color: #eec950;
-    margin: 50px;
-    padding: 0;
-    width: 70%;
-    font-family: "Esphimere-Bold";
-    color: #0b2939;
-    font-size: 40px;
+.titleBukpan {
     text-align: center;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
 }
-
-.ketentuan {
-    font-family: "Esphimere-Bold";
-    color: #0b2939;
-    font-size: 30px;
-    text-align: left;
-    margin: 0px;
-    margin-block-end: 0px;
-    margin-block-start: 0px;
-    padding: 0px;
+.garisBukpan {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 450px;
+    margin: auto;
 }
-
-.card.title.download:hover {
-    background-color: #0b2939;
-    color: #eec950;
+.Bukpan {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
 }
+.detail-tugas{
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+.detail-tugas .detail-title {
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 32px;
+}
+.detail-tugas .detail-list {
+    font-size: 22px;
+}
+.detail-list .nomor-text {
+    width: 20px;
+}
+.detail-list .text {
+    margin-left: 10px;
+}
+.detail-list .text-periode{
+    font-family: "Esphimere-semiBold";
+}
+.text a{
+    text-decoration: none;
+}
+.text .nomor-sub-text{
+    margin-right: 10px;
+}
+@media (max-width: 767.98px) {
+    .titleBukpan {
+        font-size: 28px;
+    }
+    .garisBukpan {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .Bukpan{
+        padding: 20px 0px 20px 0px;
+    }
+    .detail-tugas .detail-title {
+        font-size: 24px;
+    }
+    .detail-tugas .detail-list {
+        font-size: 20px;
+    }
+}
+/*end buku panduan*/
 
 /* Halaman kumpul video ig */
 .bg-kumpul-video-ig {
