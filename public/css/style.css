@@ -1511,7 +1511,14 @@ form.balasComent {
 }
 
 /* TTS */
-.pk2-dtBerita > .title > .container ol {
+.pk2-tts {
+    background-image: url(../img/bg-section/bgBerita.png);
+    height: 100%;
+    background-size: cover;
+    background-position: initial;
+    min-height: 600px;
+}
+.pk2-tts > .title > .container ol {
   margin-top: 1.5rem;
   color: #fff;
   font-family: 'Esphimere-Light';
@@ -1570,6 +1577,20 @@ table#tts-table td input{
 .ttsNoSoal {
   position: absolute;
   font-size: 10px;
+}
+.pk2-tts .button-submit-tts {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #0b2939;
+    padding: 10px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 5px;
+}
+.pk2-tts .button-submit-tts:hover {
+    background-color: #f8bc3f;
 }
 /* endTTS */
 
