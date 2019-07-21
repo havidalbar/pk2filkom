@@ -6,32 +6,34 @@
 @include('layouts.header')
 <!-- endNavbar atas -->
 <div class="jumbotron jumbotron-fluid pk2-dtBerita">
-    <!-- Title -->
-    <div class="title">
-        <div class="container">
-            <div class="row">
-                <div class="titlePk2Maba m-auto detailBerita">
-                    <h1 class="titleSection">Berita</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- EndTitle -->
-    <div class="center slider responsive py-5">        
-        @foreach ($beritas as $berita_top) 
-        <div>
-            <div class="slider-berita">
-                <img src="{{ $berita_top->thumbnail }}">
-                <div class="overlay">
-                    <h2>{{$berita_top->judul}}</h2>
-                    <div class="h-100 d-flex align-items-center justify-content-center">
-                        <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info" target="_blank">Lihat
-                            Berita</a>
+    <div class="container-fluid m-auto h-100">
+        <!-- Title -->
+        <div class="title">
+            <div class="container">
+                <div class="row">
+                    <div class="titlePk2Maba m-auto detailBerita">
+                        <h1 class="titleSection">Berita</h1>
                     </div>
                 </div>
             </div>
         </div>
-        @endforeach        
+        <!-- EndTitle -->    
+        <div class="center slider responsive py-5 h-100">    
+            @foreach ($beritas as $berita_top) 
+            <div>
+                <div class="slider-berita">
+                    <img src="{{ $berita_top->thumbnail }}">
+                    <div class="overlay">
+                        <h2>{{$berita_top->judul}}</h2>
+                        <div class="h-100 d-flex align-items-center justify-content-center">
+                            <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info" target="_blank">Lihat
+                                Berita</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach        
+        </div>
     </div>
 </div>
 <div class="container-fluid">
