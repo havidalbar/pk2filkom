@@ -108,8 +108,10 @@
 											{{ method_field('DELETE') }}
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-pk2maba-absensi-{{ $pk2mabaAbsensis[$i]->nim }}').submit()"
-											class="m-btn btn btn-danger">
+											{{-- onclick="document.getElementById('delete-pk2maba-absensi-{{ $pk2mabaAbsensis[$i]->nim }}').submit()" --}}
+											class="m-btn btn btn-danger"
+											id="hapusData"
+											data-target="delete-pk2maba-absensi-{{ $pk2mabaAbsensis[$i]->nim }}">
 											<i class="fa fa-trash-o"></i>
 										</a>
 									</div>

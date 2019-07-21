@@ -182,7 +182,7 @@ $(document).ready(function () {
         defaultViewDate: { year: 2001 }
     });
     // endDatepicker
-
+      
     // zoom
     $('.zoom').zoom();
     // endZoom

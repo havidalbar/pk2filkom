@@ -89,8 +89,9 @@
 										{{ method_field('DELETE') }}
 									</form>
 									<a href="javascript:void(0)"
-										onclick="document.getElementById('form-delete-pengguna-{{ $penggunas[$i]->username }}').submit()"
-										class="m-btn btn btn-danger">
+										class="m-btn btn btn-danger"
+										id="hapusData"
+										data-target="form-delete-pengguna-{{ $penggunas[$i]->username }}">
 										<i class="fa fa-trash-o"></i>
 									</a>
 									@endif
