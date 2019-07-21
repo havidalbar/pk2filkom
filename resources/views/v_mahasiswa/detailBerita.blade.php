@@ -17,22 +17,24 @@
                 </div>
             </div>
         </div>
-        <!-- EndTitle -->    
-        <div class="center slider responsive py-5 h-100">    
-            @foreach ($beritas as $berita_top) 
+        <!-- EndTitle -->
+        <div class="center slider responsive py-5 h-100">
+            @foreach ($beritas as $berita_top)
             <div>
                 <div class="slider-berita">
                     <img src="{{ $berita_top->thumbnail }}">
                     <div class="overlay">
-                        <h2>{{$berita_top->judul}}</h2>
+                        <h2>{{ $berita_top->judul }}</h2>
                         <div class="h-100 d-flex align-items-center justify-content-center">
-                            <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info" target="_blank">Lihat
-                                Berita</a>
+                            <a href="{{ route('berita.show', ['slug' => $berita_top->slug]) }}" class="info"
+                                target="_blank">
+                                Lihat Berita
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            @endforeach        
+            @endforeach
         </div>
     </div>
 </div>
@@ -43,8 +45,8 @@
                 <h1 class="titleBerita">{{ $berita->judul }}</h1>
                 <span class="creatAt"><i class="far fa-calendar-alt"></i> Dipublikasikan pada :
                     <span id="waktu-publis"></span></span>
-                <script type="text/javascript">                                                                                                              
-                    var date = moment.utc("{{ date($berita->created_at) }}").local().format("DD-MM-YYYY, h:mm a");                            
+                <script type="text/javascript">
+                    var date = moment.utc("{{ $berita->created_at }}").local().format("DD-MM-YYYY, h:mm a");                            
                     document.getElementById("waktu-publis").innerHTML = date;
                 </script>
             </div>
@@ -70,7 +72,8 @@
         @foreach ($berita->komentar as $komentar)
         @if (!$komentar->komentar_ke)
         <div class="media commentBerita py-2 px-3">
-            <img src="https://api.adorable.io/avatars/400/random-{{$komentar->id}}" class="img commentImg align-self-start mr-3" />
+            <img src="https://api.adorable.io/avatars/400/random-{{$komentar->id}}"
+                class="img commentImg align-self-start mr-3" />
             <div class="media-body">
                 <div class="media-title">
                     <p>
@@ -80,7 +83,7 @@
                         <strong>{{ $komentar->pengirim_mahasiswa->nama ?? '' }}</strong>
                         @endif
                         <span class="sub-title" id="waktu-{{$komentar->id}}" style="display: block"></span>
-                        <script type="text/javascript">                                                                                                              
+                        <script type="text/javascript">
                             var date = moment.utc("{{ $komentar->created_at }}").local().format("DD-MM-YYYY, h:mm a");                            
                             document.getElementById("waktu-{{$komentar->id}}").innerHTML = date;
                         </script>
@@ -93,7 +96,7 @@
                 @if ((session('username') && session('username') == $komentar->username_admin)
                 || (session('nim') && session('nim') == $komentar->nim_mahasiswa))
                 <button class="btn btn-comment buttonEdit" id="buttonEdit-{{$komentar->id}}">Edit</button>
-                <span>|</span>                
+                <span>|</span>
                 @endif
                 <button class="btn btn-comment" id="buttonBalas-{{$komentar->id}}">Balas</button>
                 <script type="text/javascript">
@@ -179,7 +182,8 @@
             @foreach ($berita->komentar as $reply)
             @if ($reply->komentar_ke == $komentar->id)
             <div class="media commentBerita replayComment py-2 px-3">
-                <img src="https://api.adorable.io/avatars/400/random-{{$reply->id}}" class="img commentImg align-self-start mr-3" />
+                <img src="https://api.adorable.io/avatars/400/random-{{$reply->id}}"
+                    class="img commentImg align-self-start mr-3" />
                 <div class="media-body">
                     <div class="media-title">
                         <p>
@@ -189,7 +193,7 @@
                             <strong>{{ $reply->pengirim_mahasiswa->nama ?? '' }}</strong>
                             @endif
                             <span class="sub-title" id="waktu-{{$reply->id}}" style="display: block"></span>
-                            <script type="text/javascript">                                                                                                              
+                            <script type="text/javascript">
                                 var date = moment.utc("{{ $reply->created_at }}").local().format("DD-MM-YYYY, h:mm a");                            
                                 document.getElementById("waktu-{{$reply->id}}").innerHTML = date;
                             </script>
@@ -293,13 +297,14 @@
 
         <div class="commentEvent" style="margin-top: 30px">
             <h1>Tambahkan Komentar</h1>
-        </div>        
+        </div>
     </div>
     <div class="container" style="margin-bottom: 60px">
         <form action="{{ route('berita.komentar.post', ['slug' => $berita->slug]) }}" method="POST">
             {{ csrf_field() }}
             <div class="input-group border mb-3">
-                <textarea type="text" rows="5" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi" maxlength="500"></textarea>
+                <textarea type="text" rows="5" class="form-control border-0" placeholder="Tuliskan Komentar Anda"
+                    name="isi" maxlength="500"></textarea>
                 <div class="input-group-append">
                     <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
                 </div>

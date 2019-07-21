@@ -163,7 +163,7 @@ class JawabanController extends Controller
                     $query->where('id_penugasan', $penugasan->id);
                 })->orderBy('created_at', 'asc')->first();
 
-            if ($penugasan->batas_waktu) {
+            if ($penugasan->batas_waktu && $firstJawaban) {
                 $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
                 $limit = date('Y-m-d H:i:s', $newtimestamp);
                 if ($now > $limit) {
@@ -255,7 +255,7 @@ class JawabanController extends Controller
                         $query->where('id_penugasan', $penugasan->id);
                     })->orderBy('created_at', 'asc')->first();
 
-                if ($penugasan->batas_waktu) {
+                if ($penugasan->batas_waktu && $firstJawaban) {
                     $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {

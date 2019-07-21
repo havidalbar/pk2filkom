@@ -14,11 +14,11 @@ class Artikel extends Model
 
     public function getThumbnailAttribute($value)
     {
-        // if (file_exists(public_path() . 'uploads/thumbnail/') . $value) {
-        //     return asset('uploads/thumbnail/' . $value);
-        // } else {
+        if (file_exists(public_path() . 'uploads/thumbnail/') . $value) {
+            return asset('uploads/thumbnail/' . $value);
+        } else {
             return 'https://dummyimage.com/200x200/000000/fff&text=+ARTIKEL';
-        // }
+        }
     }
 
     public function sub()
