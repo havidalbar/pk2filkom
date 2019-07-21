@@ -128,7 +128,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">
-					Import data absensi PK2MABA
+					Import Cluster Kelompok
 				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">
@@ -136,17 +136,17 @@
 					</span>
 				</button>
 			</div>
-			<form action="{{ route('panel.kegiatan.pk2maba.absensi.store') }}" enctype="multipart/form-data"
+			<form action="{{ route('panel.mahasiswa.import.cluster.kelompok') }}" enctype="multipart/form-data"
 				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 				<div class="modal-body">
 					{{ csrf_field() }}
 					<div class="form-group m-form__group row ">
-						<label for="import_pk2maba_absensi" class="col-4 col-form-label">
-							File PK2ABSENSI
+						<label for="import_cluster" class="col-4 col-form-label">
+							File Cluster Kelompok
 						</label>
 						<div></div>
 						<div class="col-8">
-							<input type="file" id="import_pk2maba_absensi" name="import_pk2maba_absensi" required="true"
+							<input type="file" id="import_cluster" name="import_cluster" required="true"
 								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>

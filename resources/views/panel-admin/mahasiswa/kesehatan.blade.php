@@ -72,23 +72,25 @@
 						</tr>
 					</thead>
 					<tbody>
+                        @foreach ($mahasiswas as $mahasiswa)
 						<tr>
 							<td>
-								1
+                                {{ $mahasiswa->nim }}
 							</td>
 							<td>
-								1
+                                {{ $mahasiswa->nama }}
 							</td>
 							<td>
-								1
+                                {{ $mahasiswa->alergi_makanan }}
 							</td>
 							<td>
-								1
+                                {{ $mahasiswa->alergi_obat }}
 							</td>
 							<td>
-								1
+                                {{ $mahasiswa->riwayat_penyakit }}
 							</td>
-						</tr>
+                        </tr>
+                        @endforeach
 					</tbody>
 				</table>
 				<!--end: Datatable -->
