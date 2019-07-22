@@ -102,6 +102,77 @@ $(document).ready(function () {
             this.scrollTop = 999999;
         });
     };
+
+
+    $('.actionComment').on('click', '#buttonEdit', function () {
+        // let id   = $(this).attr("id");
+        let parentEdit = $(this).parent().parent().find('#dComment');
+        let form = $("<form/>", { action: '#', id: 'editComent' });
+        let input = $('<input />', { 'type': 'text', 'name': 'editComent', 'value': $('#dComment').text() });
+
+        // console.log(parentEdit)
+        $(parentEdit).parent().append(form.append(input));
+        $(parentEdit).remove();
+        input.putEnd().on("focus", function () {
+            searchInput.putEnd();
+        });
+
+        let buttonNext = $(this).parent();
+        buttonNext.empty();
+
+        buttonNext.append(`
+        <button class="btn btn-comment" id="editComent">Kirim</button>
+            <span>|</span>
+        <button class="btn btn-comment" id="batalComment">Batal</button>
+        `);
+    });
+
+    $('.actionComment').on('click', '#batalComment', function () {
+        let element = $(this).parent();
+        let parentEdit = $(this).parent().parent().find('#editComent');
+
+        var input = $('<p />', { 'id': 'dComment', 'text': $(parentEdit.find('input[name="editComent"]')).val() });
+        $(parentEdit).parent().append(input);
+        $(parentEdit).remove();
+
+        element.empty();
+        element.append(`
+            <button class="btn btn-comment buttonEdit" id="buttonEdit">Edit</button>
+                <span>|</span>
+            <button class="btn btn-comment" id="buttonBalas">Balas</button>
+        `);
+
+    // console.log(parentEdit)
+    // console.log(parentEdit.find('input[name="editComent"]'))
+});
+    $('.actionComment').on('click', '#buttonBalas', function () {
+        let parentBalas = $(this).parent().parent();
+        // console.log(this);
+        // console.log(parentBalas);
+        // console.log((parentBalas.find('form#balasComent')));
+        $(this).replaceWith('<button class="btn btn-comment" id="buttonBatalBalas">X</button>')
+        if (parentBalas.find('form#balasComent').length > 0) {
+            alert('form replay komentar sudah ada!')
+        } else {
+            let form = $("<form/>", { action: '#', id: 'balasComent' });
+            let balas = `
+            <div class="input-group border mb-3">
+                <input type="text" class="form-control border-0" placeholder="Tuliskan Komentar Anda" name="isi">
+                <div class="input-group-append">
+                    <button class="btn btn-comment" type="submit" id="button-addon2">Kirim</button>
+                </div>
+            </div>`;
+            $(parentBalas).append(form.append(balas));
+        }
+    });
+    $('.actionComment').on('click', '#buttonBatalBalas', function () {
+
+        let hapusReplay = $(this).parent().parent().find('form#balasComent');
+        // console.log(hapusReplay)
+        $(hapusReplay).remove();
+        $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
+    });
+
     // Datepicker
     if ($(".tanggal").length) {
         $(".tanggal").datepicker({
@@ -117,5 +188,9 @@ $(document).ready(function () {
     // zoom
     $('.zoom').zoom();
     // endZoom
-
+    //twibon
+    $('#input-twibbon').on('input', function() {
+        document.getElementById("preview-twibbon").src = (this.value) + "embed";
+    });
+    //endtwibon
 });

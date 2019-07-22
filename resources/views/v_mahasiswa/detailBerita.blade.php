@@ -17,6 +17,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- EndTitle -->
         <div class="center slider responsive py-5 h-100">
             @foreach ($beritas as $berita_top)

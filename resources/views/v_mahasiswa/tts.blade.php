@@ -9,7 +9,7 @@
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
-<div class="jumbotron jumbotron-fluid pk2-dtBerita p-0 pb-5 container-fluid" style="margin-bottom: -1.5rem">
+<div class="jumbotron jumbotron-fluid pk2-tts p-0 pb-5 container-fluid" style="margin-bottom: -1.5rem">
     <!-- Title -->
     <div class="title">
         <div class="container">
@@ -31,7 +31,7 @@
             {{ csrf_field() }}
             <div class="row justify-content-center">
                 <div class="col-auto" id="tts"></div>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Submit" class="button-submit-tts">
                 <div class="row mt-5" id="tts-soal"></div>
             </div>
         </form>

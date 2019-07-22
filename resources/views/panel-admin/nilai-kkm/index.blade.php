@@ -79,8 +79,10 @@
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
 									</form>
-									<a href="javascript:void(0)" class="m-btn btn btn-danger"
-										onclick="document.getElementById('form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}').submit()">
+									<a href="javascript:void(0)"
+										class="m-btn btn btn-danger"
+										id="hapusData"
+										data-target="form-delete-nilai-kkm-{{ $nilaikkms[$i]->id }}">
 										<i class="fa fa-trash-o"></i>
 									</a>
 								</div>

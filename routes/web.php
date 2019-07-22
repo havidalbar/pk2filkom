@@ -21,7 +21,6 @@ Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
         Route::put('{id}', 'KomentarController@update')->name('update');
     });
 });
-
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
@@ -45,6 +44,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
 
         Route::get('qr-code', 'MahasiswaController@getQRCodeAbsensiOpenHouse')->name('qr-code');
         Route::get('buku-panduan', 'MahasiswaController@getBukuPanduan')->name('buku-panduan');
+        Route::get('twibbon', 'MahasiswaController@getTwibbon')->name('twibbon');
         Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
             Route::get('/', 'JawabanController@index')->name('index');
             Route::group(['prefix' => '{slug}'], function () {
@@ -86,6 +86,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             })->name('index');
             Route::get('biodata', 'PanelMahasiswaController@getBiodata')->name('biodata');
             Route::get('kesehatan', 'PanelMahasiswaController@getKesehatan')->name('kesehatan');
+            Route::post('importcluster', 'PanelMahasiswaController@importClusterKelompok')->name('import.cluster.kelompok');
         });
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
@@ -180,9 +181,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
 
-                    Route::get('total', function () {
-                        return view('panel-admin.startup.total');
-                    })->name('total');
+                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                 });
 
                 Route::group(['prefix' => 'pkm', 'as' => 'pkm.'], function () {
@@ -198,9 +197,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         'pelanggaran' => 'nim',
                     ])->except(['create', 'show']);
 
-                    Route::get('total', function () {
-                        return view('panel-admin.pkm.total');
-                    })->name('total');
+                    Route::get('total', 'AdminController@getPkmTotal')->name('total');
                 });
 
                 Route::resource('prodi', 'ProdiFinalController')->parameters([

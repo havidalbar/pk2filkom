@@ -1327,7 +1327,7 @@ ul.slick-dots li button{
 .slider-berita {
     border-radius: 5px;
     max-height: 256px;
-    max-width: 256px;    
+    max-width: 256px;
     cursor: pointer;
     overflow: hidden;
     position: relative;
@@ -1511,7 +1511,14 @@ form.balasComent {
 }
 
 /* TTS */
-.pk2-dtBerita > .title > .container ol {
+.pk2-tts {
+    background-image: url(../img/bg-section/bgBerita.png);
+    height: 100%;
+    background-size: cover;
+    background-position: initial;
+    min-height: 600px;
+}
+.pk2-tts > .title > .container ol {
   margin-top: 1.5rem;
   color: #fff;
   font-family: 'Esphimere-Light';
@@ -1570,6 +1577,20 @@ table#tts-table td input{
 .ttsNoSoal {
   position: absolute;
   font-size: 10px;
+}
+.pk2-tts .button-submit-tts {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #0b2939;
+    padding: 10px;
+    margin-top: 40px;
+    border: none;
+    border-radius: 5px;
+}
+.pk2-tts .button-submit-tts:hover {
+    background-color: #f8bc3f;
 }
 /* endTTS */
 
@@ -2194,45 +2215,76 @@ input::-webkit-inner-spin-button {
 .bg-bukpan {
     background-image: url(../img/bg-section/bukpan.png);
     height: 100%;
+    min-height: calc(100vh - 79px);
 }
-
-.card {
-    border-radius: 70px;
-    justify-content: center;
-    display: flex;
-}
-
-.card.d-flex {
-    align-items: center;
-}
-
-.card.title {
-    background-color: #eec950;
-    margin: 50px;
-    padding: 0;
-    width: 70%;
-    font-family: "Esphimere-Bold";
-    color: #0b2939;
-    font-size: 40px;
+.titleBukpan {
     text-align: center;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
 }
-
-.ketentuan {
-    font-family: "Esphimere-Bold";
-    color: #0b2939;
-    font-size: 30px;
-    text-align: left;
-    margin: 0px;
-    margin-block-end: 0px;
-    margin-block-start: 0px;
-    padding: 0px;
+.garisBukpan {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 450px;
+    margin: auto;
 }
-
-.card.title.download:hover {
-    background-color: #0b2939;
-    color: #eec950;
+.Bukpan {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
 }
+.detail-tugas{
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+.detail-tugas .detail-title {
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 32px;
+}
+.detail-tugas .detail-list {
+    font-size: 22px;
+}
+.detail-list .nomor-text {
+    width: 20px;
+}
+.detail-list .text {
+    margin-left: 10px;
+}
+.detail-list .text-periode{
+    font-family: "Esphimere-semiBold";
+}
+.text a{
+    text-decoration: none;
+}
+.text .nomor-sub-text{
+    margin-right: 10px;
+}
+@media (max-width: 767.98px) {
+    .titleBukpan {
+        font-size: 28px;
+    }
+    .garisBukpan {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .Bukpan{
+        padding: 20px 0px 20px 0px;
+    }
+    .detail-tugas .detail-title {
+        font-size: 24px;
+    }
+    .detail-tugas .detail-list {
+        font-size: 20px;
+    }
+}
+/*end buku panduan*/
 
 /* Halaman kumpul video ig */
 .bg-kumpul-video-ig {
@@ -2695,12 +2747,12 @@ input::-webkit-inner-spin-button {
         font-size: 25px;
     }
     .errormsg {
-        font-size: 125px;        
+        font-size: 125px;
     }
     .card.home {
-        font-size: 20px;        
+        font-size: 20px;
         padding: 8px 40px;
-        margin-top: 16px;        
+        margin-top: 16px;
     }
 }
 /* akhir halaman error */
@@ -3080,7 +3132,7 @@ input::-webkit-inner-spin-button {
 
 /* temanSimabaKampus */
 .teman-akademik {
-    background-image: url(../img/bg-section/bg-kampus_1.png);    
+    background-image: url(../img/bg-section/bg-kampus_1.png);
     height: 100vh;
     background-size: cover;
     background-position: initial;
@@ -3414,7 +3466,7 @@ input::-webkit-inner-spin-button {
 /* Akhir Teman Simaba Filkom */
 /* temanSimabaMahasiswa */
 .teman-mahasiswa {
-    background-image: url(../img/bg-section/bg-mahasiswa.png);    
+    background-image: url(../img/bg-section/bg-mahasiswa.png);
     height: 100vh;
     background-size: cover;
     background-position: initial;
@@ -3426,12 +3478,12 @@ input::-webkit-inner-spin-button {
     position: absolute;
     width: 100%;
     max-width: 960px;
-    margin-top: 44px;    
+    margin-top: 44px;
 }
 .teman-mahasiswa .img-akademik-text {
     width: 100%;
     max-width: 650px;
-    margin-left: -19px;    
+    margin-left: -19px;
 }
 .sub-kanal{
     font-size: 28px;
@@ -3445,13 +3497,13 @@ input::-webkit-inner-spin-button {
 .sub-kanal .kanal-title{
     color: white;
 }
-.sub-kanal .kanal-web{    
+.sub-kanal .kanal-web{
     color: #4ee1ff;
     margin-top: 18px;
 }
-.sub-kanal .kanal-web a{    
+.sub-kanal .kanal-web a{
     color: #4ee1ff !important;
-    text-decoration-color: #4ee1ff;    
+    text-decoration-color: #4ee1ff;
 }
 .sub-kanal .kanal-line{
     color: #f1c538;
@@ -3462,9 +3514,9 @@ input::-webkit-inner-spin-button {
     border-radius: 4px;
     padding: 20px;
     margin: 32px 0 50px 0;
-    text-align: center;    
+    text-align: center;
 }
-.sub-beasiswa .beasiswa-text{    
+.sub-beasiswa .beasiswa-text{
     color: white;
     font-size: 24px;
     line-height: 2;
@@ -3472,13 +3524,13 @@ input::-webkit-inner-spin-button {
 .sub-beasiswa a{
     text-decoration-color: #4ee1ff;
 }
-.sub-beasiswa .beasiswa-link{    
+.sub-beasiswa .beasiswa-link{
     font-size: 22px;
     color: #4ee1ff;
     text-transform: uppercase;
     margin-top: 16px;
 }
-@media (max-width: 767.98px) {    
+@media (max-width: 767.98px) {
     .teman-mahasiswa .intro-text {
         font-size: 20px;
         position: relative;
@@ -3493,16 +3545,151 @@ input::-webkit-inner-spin-button {
     .sub-kanal .kanal-title{
         margin-top: 20px;
     }
-    .sub-beasiswa .beasiswa-text{    
+    .sub-beasiswa .beasiswa-text{
         font-size: 20px;
     }
-    .sub-beasiswa .beasiswa-link{    
+    .sub-beasiswa .beasiswa-link{
         font-size: 18px;
     }
 }
-@media (max-width: 1024px) {    
+@media (max-width: 1024px) {
     .akademik-intro, .sub-akademik{
         margin: 0;
     }
 }
 /* endTemanSimabaMahasiswa */
+/*halaman twibbon*/
+.bg-kumpulTwibbon {
+    background-image: url(../img/bg-section/twibbon.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.titleTwibbon {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Esphimere-SemiBold";
+    color: white;
+    font-size: 40px;
+}
+.garisTwibbon {
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 300px;
+    margin: auto;
+}
+.Twibbon {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.preview-twibbon{
+    width: 525px;
+}
+.preview-twibbon .preview-text {
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
+.preview-twibbon #preview-twibbon {
+    width: 320px;
+    height: 374px;
+    border-radius: 3px;
+}
+.form-input-link {
+    margin-top: 20px;
+    width: 100%;
+}
+.form-input-link .input-twibbon {
+    height: 48px;
+}
+.form-input-link .btn-submit-web {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+}
+.form-input-link .btn-submit-web:hover {
+    background-color: #f8bc3f;
+}
+.form-input-link .btn-submit-mobile {
+    display: none;
+}
+.detail-tugas{
+    color: white;
+    max-width: 800px;
+    padding: 20px;
+}
+.detail-tugas .detail-title {
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 32px;
+}
+.detail-tugas .detail-list {
+    font-size: 22px;
+}
+.detail-list .nomor-text {
+    width: 20px;
+}
+.detail-list .text {
+    margin-left: 10px;
+}
+.detail-list .text-periode{
+    font-family: "Esphimere-semiBold";
+}
+.text a{
+    text-decoration: none;
+}
+.text .nomor-sub-text{
+    margin-right: 10px;
+}
+@media (max-width: 767.98px) {
+    .titleTwibbon {
+        font-size: 28px;
+    }
+    .garisTwibbon {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }
+    .Twibbon{
+        padding: 20px 0px 20px 0px;
+    }
+    .Twibbon .preview-twibbon{
+        padding: 0px 16px 0px 16px;
+    }
+    .preview-twibbon .preview-text {
+        font-size: 24px;
+    }
+    .preview-twibbon #preview-twibbon {
+        width: 270px;
+        height: 335px;
+    }
+    .form-input-link{
+        width: 100%;
+    }
+    .form-input-link .input-twibbon {
+        height: 36px;
+        border-radius: 3px !important;
+    }
+    .form-input-link .btn-submit-web {
+        display: none;
+    }
+    .form-input-link .btn-submit-mobile {
+        background-color: #eec950;
+        font-family: "Esphimere-SemiBold";
+        text-transform: uppercase;
+        color: #0b2939;
+        display: block;
+        height: 36px;
+    }
+    .detail-tugas .detail-title {
+        font-size: 24px;
+    }
+    .detail-tugas .detail-list {
+        font-size: 20px;
+    }
+}
+/* endKumpulTwibon */
