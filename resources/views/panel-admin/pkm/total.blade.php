@@ -56,31 +56,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- foreach ($mahasiswas as $mahasiswa) -->
+							@foreach ($mahasiswas as $mahasiswa)
 							<tr>
 								<td>
-									<!-- $mahasiswa->nim -->
-                                    175150201111072
+                                    {{$mahasiswa->nim}}
 								</td>
 								<td>
-								<!-- $mahasiswa->nama -->
-                                    Eka Iqbal Virgiawan
+                                    {{$mahasiswa->nama}}
 								</td>
 								<td>
-									100
-									<!-- $mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->aktif_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->aktif_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->penerapan_nilai_rangkaian1 +
-									$mahasiswa->rekap_nilai_pk2maba['keaktifan']->penerapan_nilai_rangkaian2 +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->ringan +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->sedang +
-									$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->berat -->
-									
+                                    {{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian6 +
+                                    $mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian7 +
+                                    $mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian8 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian6 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian7 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian8 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->penerapan_nilai_rangkaian6 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->penerapan_nilai_rangkaian7 +
+                                    $mahasiswa->rekap_nilai_pkm['keaktifan']->penerapan_nilai_rangkaian8 +
+                                    $mahasiswa->rekap_nilai_pkm['pelanggaran']->ringan +
+                                    $mahasiswa->rekap_nilai_pkm['pelanggaran']->sedang +
+                                    $mahasiswa->rekap_nilai_pkm['pelanggaran']->berat}}
+
 								</td>
 							</tr>
-							<!-- endforeach -->
+							@endforeach
 						</tbody>
 					</table>
 					<!--end: Datatable -->

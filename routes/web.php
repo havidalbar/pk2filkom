@@ -181,9 +181,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
 
-                    Route::get('total', function () {
-                        return view('panel-admin.startup.total');
-                    })->name('total');
+                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                 });
 
                 Route::group(['prefix' => 'pkm', 'as' => 'pkm.'], function () {
@@ -199,9 +197,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         'pelanggaran' => 'nim',
                     ])->except(['create', 'show']);
 
-                    Route::get('total', function () {
-                        return view('panel-admin.pkm.total');
-                    })->name('total');
+                    Route::get('total', 'AdminController@getPkmTotal')->name('total');
                 });
 
                 Route::resource('prodi', 'ProdiFinalController')->parameters([
