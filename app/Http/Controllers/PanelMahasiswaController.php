@@ -29,7 +29,10 @@ class PanelMahasiswaController extends Controller
 
     public function updateBiodataByAdmin(Request $request, $nim)
     {
-        $dataMahasiswa = Mahasiswa::find($nim)->update(['kelompok' => $request->kelompok, 'cluster' => $request->cluster]);
+        $dataMahasiswa = Mahasiswa::find($nim);
+        $dataMahasiswa->kelompok = $request->kelompok;
+        $dataMahasiswa->cluster = $request->cluster;
+        $dataMahasiswa->save();
         return redirect()->route('panel.mahasiswa.biodata')->with('alert-success', 'Berhasil mengubah data mahasiswa');
     }
 
