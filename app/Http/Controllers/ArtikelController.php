@@ -118,18 +118,20 @@ class ArtikelController extends Controller
                 foreach ($images as $k => $img) {
                     $data = $img->getattribute('src');
 
-                    list($type, $data) = explode(';', $data);
-                    list(, $data) = explode(',', $data);
+                    if (strpos($data, ';') !== false) {
+                        list($type, $data) = explode(';', $data);
+                        list(, $data) = explode(',', $data);
 
-                    $data = base64_decode($data);
-                    // $image_name = time() . $k . '.png';
-                    $image_extension = str_replace('data:image/', '', $type);
-                    $image_name = uniqid() . '.' . $image_extension;
+                        $data = base64_decode($data);
+                        // $image_name = time() . $k . '.png';
+                        $image_extension = str_replace('data:image/', '', $type);
+                        $image_name = uniqid() . '.' . $image_extension;
 
-                    file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                        file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                    $img->removeattribute('src');
-                    $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                        $img->removeattribute('src');
+                        $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                    }
                 }
 
                 $sub_konten->id_artikel = $artikel->id;
@@ -289,18 +291,20 @@ class ArtikelController extends Controller
                         foreach ($images as $k => $img) {
                             $data = $img->getattribute('src');
 
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
+                            if (strpos($data, ';') !== false) {
+                                list($type, $data) = explode(';', $data);
+                                list(, $data) = explode(',', $data);
 
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
+                                $data = base64_decode($data);
+                                // $image_name = time() . $k . '.png';
+                                $image_extension = str_replace('data:image/', '', $type);
+                                $image_name = uniqid() . '.' . $image_extension;
 
-                            file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                                $img->removeattribute('src');
+                                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                            }
                         }
                         $sub_kontens[$i]->id_artikel = $artikel->id;
                         $sub_kontens[$i]->deskripsi = $dom->savehtml();
@@ -326,18 +330,20 @@ class ArtikelController extends Controller
                         foreach ($images as $k => $img) {
                             $data = $img->getattribute('src');
 
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
+                            if (strpos($data, ';') !== false) {
+                                list($type, $data) = explode(';', $data);
+                                list(, $data) = explode(',', $data);
 
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
+                                $data = base64_decode($data);
+                                // $image_name = time() . $k . '.png';
+                                $image_extension = str_replace('data:image/', '', $type);
+                                $image_name = uniqid() . '.' . $image_extension;
 
-                            file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                                $img->removeattribute('src');
+                                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                            }
                         }
 
                         $sub_konten->id_artikel = $artikel->id;
