@@ -8,10 +8,14 @@ class SubArtikel extends Model
 {
     protected $table = 'sub_artikel';
 
-    public function getThumbnailAttribute($value)
+    protected $appends = [
+        'thumbnail_src'
+    ];
+
+    public function getThumbnailSrcAttribute()
     {
-        if (file_exists(public_path() . 'uploads/sub_artikel/' . $value)) {
-            return asset('uploads/thumbnail/' . $value);
+        if (file_exists(public_path('uploads/sub_artikel/' . $this->thumbnail))) {
+            return asset('uploads/sub_artikel/' . $this->thumbnail);
         } else {
             return asset('img/berita/empty.png');
         }

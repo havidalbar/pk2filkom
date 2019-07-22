@@ -421,7 +421,7 @@
                 <div class="col-sm-12 col-md-6">
                     @if (isset($beritas[0]))
                     <div class="hovereffect-berita">
-                        <img class="img1" src="{{ $beritas[0]->thumbnail }}" alt="">
+                        <img class="img1" src="{{ $beritas[0]->thumbnail_src }}" alt="">
                         <div class="overlay">
                             <h2>{{ $beritas[0]->judul }}</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
@@ -447,7 +447,7 @@
                         @for ($index = 1; $index < 5; $index++) @if (isset($beritas[$index])) <div
                             class="col-sm-12 col-md-6 berita-kumpul">
                             <div class="hovereffect-berita">
-                                <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                                <img class="img2" src="{{ $beritas[$index]->thumbnail_src }}" alt="">
                                 <div class="overlay">
                                     <h2>{{ $beritas[$index]->judul }}</h2>
                                     <div class="h-100 d-flex align-items-center justify-content-center">
@@ -479,7 +479,7 @@
                     @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-12 col-md-3 berita-kumpul"
                         style="padding: 0px">
                         <div class="hovereffect-berita">
-                            <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                            <img class="img2" src="{{ $beritas[$index]->thumbnail_src }}" alt="">
                             <div class="overlay">
                                 <h2>{{ $beritas[$index]->judul }}</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">

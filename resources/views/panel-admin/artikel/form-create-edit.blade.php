@@ -24,7 +24,7 @@
             <input type="file" name="thumbnail" id="thumbnail"
                 class="{{ $errors->has('thumbnail') ? 'has-danger' : '' }}" accept="image/*">
             @if (isset($artikel))
-            <img src="{{ $artikel->thumbnail }}" style="width: 300px">
+            <img src="{{ $artikel->thumbnail_src }}" style="width: 300px">
             @endif
             {!! $errors->first('thumbnail', '<div class="form-control-feedback">:message</div>') !!}
         </div>
@@ -97,10 +97,11 @@
                 </label>
                 <div class="col-10">
                     <input type="file" name="gambar_sub[]" class="{{ $errors->has('gambar_sub') ? 'has-danger' : '' }}"
-                        accept="image/*" required>
+                        accept="image/*" {{ (isset($artikel) && $artikel->sub[$index] && $artikel->sub[$index]->thumbnail && file_exists(public_path('uploads/sub_artikel/') . $artikel->sub[$index]->thumbnail))
+                        ? '' : 'required' }}>
                     <br>
                     @if (isset($artikel))
-                    <img src="{{ $artikel->sub[$index]->thumbnail }}" style="width: 300px">
+                    <img src="{{ $artikel->sub[$index]->thumbnail_src }}" style="width: 300px">
                     @endif
                     {!! $errors->first('gambar_sub', '<div class="form-control-feedback">:message</div>') !!}
                 </div>
@@ -129,9 +130,10 @@
                     Gambar
                 </label>
                 <div class="col-10">
-                    <input type="file" name="gambar_sub[]" accept="image/*" required>
+                    <input type="file" name="gambar_sub[]" accept="image/*"
+                        {{ ($sub_konten_data->thumbnail && file_exists(public_path('uploads/sub_artikel/') . $sub_konten_data->thumbnail)) ? '' : 'required' }}>
                     <br>
-                    <img src="{{ $sub_konten_data->thumbnail }}" style="width: 300px">
+                    <img src="{{ $sub_konten_data->thumbnail_src }}" style="width: 300px">
                 </div>
             </div>
             <div class="form-group m-form__group row">

@@ -22,7 +22,7 @@
             @foreach ($beritas as $berita_top)
             <div>
                 <div class="slider-berita">
-                    <img src="{{ $berita_top->thumbnail }}">
+                    <img src="{{ $berita_top->thumbnail_src }}">
                     <div class="overlay">
                         <h2>{{ $berita_top->judul }}</h2>
                         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -56,7 +56,7 @@
     <div class="row">
         <div class="col-md-6 px-md-0 vdBerita">
             <div class="zoom">
-                <img src="{{ $sub->thumbnail }}" />
+                <img src="{{ $sub->thumbnail_src }}" />
             </div>
         </div>
         <div class="col-md-6 vdBerita gradientBerita">

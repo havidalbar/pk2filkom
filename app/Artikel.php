@@ -12,10 +12,14 @@ class Artikel extends Model
         'sub',
     ];
 
-    public function getThumbnailAttribute($value)
+    protected $appends = [
+        'thumbnail_src'
+    ];
+
+    public function getThumbnailSrcAttribute()
     {
-        if (file_exists(public_path() . 'uploads/thumbnail/' . $value)) {
-            return asset('uploads/thumbnail/' . $value);
+        if (file_exists(public_path('uploads/thumbnail/' . $this->thumbnail))) {
+            return asset('uploads/thumbnail/' . $this->thumbnail);
         } else {
             return asset('img/berita/empty.png');
         }

@@ -61,7 +61,7 @@ class ArtikelController extends Controller
 
             $artikel->judul = $request->judul;
 
-            $uploadPath = public_path() . '/uploads/';
+            $uploadPath = public_path('uploads/');
 
             // $dom = new \domdocument();
             // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -216,7 +216,7 @@ class ArtikelController extends Controller
 
                 $artikel->judul = $request->judul;
 
-                $uploadPath = public_path() . '/uploads/';
+                $uploadPath = public_path('uploads/');
 
                 // $dom = new \domdocument();
                 // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -269,6 +269,13 @@ class ArtikelController extends Controller
                             $gambar_sub = $request->gambar_sub[$i];
                             $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
                             $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+
+                            if ($sub_kontens[$i]->thumbnail) {
+                                if (file_exists($uploadPath . 'sub_artikel/' . $sub_kontens[$i]->thumbnail)) {
+                                    unlink($uploadPath . 'sub_artikel/' . $sub_kontens[$i]->thumbnail);
+                                }
+                            }
+
                             $sub_kontens[$i]->thumbnail = $gambar_sub_name;
                         }
 
@@ -362,11 +369,9 @@ class ArtikelController extends Controller
         $artikel = Artikel::where('slug', $slug)->first();
 
         if ($artikel) {
-            $uploadPath = public_path() . '/uploads/';
+            $uploadPath = public_path('uploads/');
 
             $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
-
-            $artikel->delete();
 
             if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
                 unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
@@ -378,6 +383,7 @@ class ArtikelController extends Controller
                 }
                 $sub_konten->delete();
             }
+            $artikel->delete();
 
             return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil dihapus');
         } else {
