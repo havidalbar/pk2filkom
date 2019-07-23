@@ -47,7 +47,7 @@ $(document).ready(function () {
         swipe: false,
         centerPadding: '80px',
         focusOnSelect: true,
-        // variableWidth: false,
+        variableWidth: false,
         prevArrow: `
         <a class="slickArrow carousel-control-prev" style="width: 5%;">
         <span class="berita-prev" aria-hidden="true"><i class="far fa-chevron-left"></i></span>

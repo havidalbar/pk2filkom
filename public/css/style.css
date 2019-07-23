@@ -1798,6 +1798,15 @@ table#tts-table td input{
     .hovereffect-berita .img2 {
         max-height: 171px;
     }
+    .slider-berita h2{
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+    .slider-berita a.info{
+        font-size: 10px; 
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
