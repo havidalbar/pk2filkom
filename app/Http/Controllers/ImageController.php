@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Session;
 
 class ImageController extends Controller
 {
-    // public function call()
-    // {
-    //     $mahasiswa = Mahasiswa::find(Session::get('nim'));
-    //     $this->textOnImage($mahasiswa->nama, $mahasiswa->nim, "Teknik Komputer", "1", "0", "MAKA MAKAN MAKAN MAKAN MAKAN", "OBATT OBATT OBATT OBATT OBATT", "SAKITT SAKITT SAKITT SAKITT SAKITT");
-
-    // }
-
     public function textOnImageNametag()
     {
         $mahasiswa = Mahasiswa::find(Session::get('nim'));
@@ -31,20 +24,26 @@ class ImageController extends Controller
         $prodi_singkat = "";
         $imgBagHolder = "";
 
-        if (strtoupper($prodi) == "TEKNIK INFORMATIKA") {
-            $prodi_singkat = "TIF";
-        } else if (strtoupper($prodi) == "SISTEM INFORMASI") {
-            $prodi_singkat = "SI";
-        } else if (strtoupper($prodi) == "TEKNIK KOMPUTER") {
-            $prodi_singkat = "TEKKOM";
-        } else if (strtoupper($prodi) == "PENDIDIKAN TEKNOLOGI INFORMASI") {
-            $prodi_singkat = "PTI";
-        } else if (strtoupper($prodi) == "TEKNOLOGI INFORMASI") {
-            $prodi_singkat = "TI";
+        switch (strtoupper($prodi)) {
+            case 'SISTEM INFORMASI':
+                $prodi_singkat = "SI";
+                break;
+            case 'TEKNIK KOMPUTER':
+                $prodi_singkat = "TEKKOM";
+                break;
+            case 'PENDIDIKAN TEKNOLOGI INFORMASI':
+                $prodi_singkat = "PTI";
+                break;
+            case 'TEKNOLOGI INFORMASI':
+                $prodi_singkat = "TI";
+                break;
+            case 'TEKNIK INFORMATIKA':
+            default:
+                $prodi_singkat = "TIF";
         }
 
-        $imgNameTag = Image::make('img/nametag/' . $prodi_singkat . '.jpg');
-        $imgBagHolder = Image::make('img/bagholder/' . $prodi_singkat . '.jpg');
+        $imgNameTag = Image::make(public_path('img/nametag/' . $prodi_singkat . '.jpg'));
+        $imgBagHolder = Image::make(public_path('img/bagholder/' . $prodi_singkat . '.jpg'));
 
         // Nametag
         $centerNametagKanan = $imgNameTag->width() * 0.75;
