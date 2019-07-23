@@ -222,20 +222,7 @@
 						<button type="submit" class="btn btn-lg btn-block lanjutkan font-semibold">Lanjutkan</button>
 					</form>
 				</div>
-			</div>
-			<div class="alert-form position-fixed">
-				<div class="toast" role="alert" data-animation="true">
-					<div class="toast-header">
-						<strong class="mr-auto">Bootstrap</strong>
-						<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="toast-body">
-						Silahkan lengkapi terlebih dahulu semua data yang dibutuhkan.
-					</div>
-				</div>
-			</div>
+			</div>			
 		</div>
 	</div>
 </div>
