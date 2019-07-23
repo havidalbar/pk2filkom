@@ -139,7 +139,7 @@ class AuthController extends Controller
         $data_mahasiswa->no_telepon = $request->no_telepon;
 
         $data_mahasiswa->save();
-        return redirect()->back()->with('alert', 'Pengisian data diri berhasil');
+        return redirect()->route('index')->with('alert', 'Pengisian data diri berhasil');
     }
 
     public function logout()
