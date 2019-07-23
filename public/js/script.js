@@ -38,8 +38,10 @@ $(document).ready(function () {
         }
     });
     // endScrollAnimate
+    
     $('.center.slider').slick({
-        infinite: true,
+        initialSlide: 2,
+        infinite:  true,
         centerMode: true,
         slidesToShow: 5,
         slidesToScroll: 3,
@@ -84,7 +86,7 @@ $(document).ready(function () {
             }
         ]
     });
-
+    
     // editKomen
     jQuery.fn.putEnd = function () {
         return this.each(function () {
