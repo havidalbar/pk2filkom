@@ -39,8 +39,12 @@ class MahasiswaController extends Controller
 
     public function getNametag()
     {
-        $mahasiswa = Mahasiswa::find(Session::get('nim'));
         return view('v_mahasiswa/nametag');
+    }
+
+    public function getTwibbon()
+    {
+        return view('v_mahasiswa/kumpulTwibbon');
     }
 
     public function getPenilaian(){

@@ -4,7 +4,7 @@
             <div class="col-md-12 align-self-center py-3">
                 <div class="footerContent">
                     <div class="footerLogo">
-                        <img src="{{asset('img/logo3@4x@2x.png')}}" alt="Logo">
+                        <img src="{{asset('img/logo.svg')}}" alt="Logo">
                     </div>
                     <div class="linkSosmed">
                         <p>Contact Us</p>

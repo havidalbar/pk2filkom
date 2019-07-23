@@ -3,10 +3,10 @@
 
 @section('content')
 <!-- Navbar atas -->
-<nav class="navbar nav-home navbar-expand-md navbar-dark fixed-top">
+<nav class="navbar nav-home nav-bg-kuning navbar-expand-md navbar-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">
-            <img src="{{asset('img/bg-section/simaba2@4x.svg')}}" class="imgCover">
+            <img src="{{asset('img/bg-section/lsimaba2@4x.svg')}}" class="imgCover">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item logout" href="#">
+                        <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
                             Keluar
                         </a>

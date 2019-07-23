@@ -1,6 +1,6 @@
 @extends('panel-admin.dashboard', ['menuKiri' => false])
 @section('isiKontent')
-<div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content">
+{{-- <div class="m-grid__item m-grid__item--fluid m-grid m-grid--desktop m-grid--ver-desktop m-body__content"> --}}
 	{{-- <!-- BEGIN: Left Aside -->
 	<button class="m-aside-left-close m-aside-left-close--skin-light" id="m_aside_left_close_btn">
 		<i class="la la-close"></i>
@@ -42,5 +42,5 @@
 	</div>
 	<!-- END: Left Aside --> --}}
 	@yield('assideKontent')
-</div>
+{{-- </div> --}}
 @endsection

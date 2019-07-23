@@ -102,8 +102,9 @@
 											{{ method_field('DELETE') }}
 										</form>
 										<a href="javascript:void(0)"
-											onclick="document.getElementById('delete-prodi-{{ $prodiFinal->nim }}').submit()"
-											class="m-btn btn btn-danger">
+											class="m-btn btn btn-danger"
+											id="hapusData"
+											data-target="delete-prodi-{{ $prodiFinal->nim }}">
 											<i class="fa fa-trash-o"></i>
 										</a>
 									</div>

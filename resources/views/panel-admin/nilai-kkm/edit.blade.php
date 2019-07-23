@@ -19,7 +19,7 @@
 		<div class="m-portlet m-portlet--mobile">
 			<div class="m-portlet__body pt-1">
 
-				<form action="{{ route('panel.full.edit-nilai-kkm', $dataNilai->id) }}"
+				<form action="{{ route('panel.nilai-kkm.update', $dataNilai->id) }}"
 					class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
 					{{ csrf_field() }}
 					{{ method_field('PUT') }}

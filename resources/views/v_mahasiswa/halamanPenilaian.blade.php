@@ -70,7 +70,8 @@
 
                                 //pkm
                                 $totalPKM = $mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian6 +
-								$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian7 +
+                                $mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian7 +
+                                $mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian8 +
 								$mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian6 +
                                 $mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian7 +
                                 $mahasiswa->rekap_nilai_pkm['keaktifan']->aktif_rangkaian8 +

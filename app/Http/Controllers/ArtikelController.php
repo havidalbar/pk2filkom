@@ -61,7 +61,7 @@ class ArtikelController extends Controller
 
             $artikel->judul = $request->judul;
 
-            $uploadPath = public_path() . '/uploads/';
+            $uploadPath = public_path('uploads/');
 
             // $dom = new \domdocument();
             // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -118,18 +118,20 @@ class ArtikelController extends Controller
                 foreach ($images as $k => $img) {
                     $data = $img->getattribute('src');
 
-                    list($type, $data) = explode(';', $data);
-                    list(, $data) = explode(',', $data);
+                    if (strpos($data, ';') !== false) {
+                        list($type, $data) = explode(';', $data);
+                        list(, $data) = explode(',', $data);
 
-                    $data = base64_decode($data);
-                    // $image_name = time() . $k . '.png';
-                    $image_extension = str_replace('data:image/', '', $type);
-                    $image_name = uniqid() . '.' . $image_extension;
+                        $data = base64_decode($data);
+                        // $image_name = time() . $k . '.png';
+                        $image_extension = str_replace('data:image/', '', $type);
+                        $image_name = uniqid() . '.' . $image_extension;
 
-                    file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                        file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                    $img->removeattribute('src');
-                    $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                        $img->removeattribute('src');
+                        $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                    }
                 }
 
                 $sub_konten->id_artikel = $artikel->id;
@@ -154,10 +156,11 @@ class ArtikelController extends Controller
      */
     public function show($slug)
     {
-        $artikel = Artikel::where('slug', $slug)->first();
+        $beritas = Artikel::without('sub')->get(['slug', 'thumbnail', 'judul']);
+        $berita = Artikel::with('komentar')->where('slug', $slug)->first();
 
-        if ($artikel) {
-            // TODO : RETURN TAMPILAN BERITA [Fadhil]
+        if ($berita) {
+            return view('v_mahasiswa/detailBerita', compact('berita', 'beritas'));
         } else {
             abort(404);
         }
@@ -215,7 +218,7 @@ class ArtikelController extends Controller
 
                 $artikel->judul = $request->judul;
 
-                $uploadPath = public_path() . '/uploads/';
+                $uploadPath = public_path('uploads/');
 
                 // $dom = new \domdocument();
                 // $dom->loadHtml($request->deskripsi, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -268,6 +271,13 @@ class ArtikelController extends Controller
                             $gambar_sub = $request->gambar_sub[$i];
                             $gambar_sub_name = uniqid() . '.' . $gambar_sub->getClientOriginalExtension();
                             $gambar_sub->move($uploadPath . 'sub_artikel/', $gambar_sub_name);
+
+                            if ($sub_kontens[$i]->thumbnail) {
+                                if (file_exists($uploadPath . 'sub_artikel/' . $sub_kontens[$i]->thumbnail)) {
+                                    unlink($uploadPath . 'sub_artikel/' . $sub_kontens[$i]->thumbnail);
+                                }
+                            }
+
                             $sub_kontens[$i]->thumbnail = $gambar_sub_name;
                         }
 
@@ -281,18 +291,20 @@ class ArtikelController extends Controller
                         foreach ($images as $k => $img) {
                             $data = $img->getattribute('src');
 
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
+                            if (strpos($data, ';') !== false) {
+                                list($type, $data) = explode(';', $data);
+                                list(, $data) = explode(',', $data);
 
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
+                                $data = base64_decode($data);
+                                // $image_name = time() . $k . '.png';
+                                $image_extension = str_replace('data:image/', '', $type);
+                                $image_name = uniqid() . '.' . $image_extension;
 
-                            file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                                $img->removeattribute('src');
+                                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                            }
                         }
                         $sub_kontens[$i]->id_artikel = $artikel->id;
                         $sub_kontens[$i]->deskripsi = $dom->savehtml();
@@ -318,18 +330,20 @@ class ArtikelController extends Controller
                         foreach ($images as $k => $img) {
                             $data = $img->getattribute('src');
 
-                            list($type, $data) = explode(';', $data);
-                            list(, $data) = explode(',', $data);
+                            if (strpos($data, ';') !== false) {
+                                list($type, $data) = explode(';', $data);
+                                list(, $data) = explode(',', $data);
 
-                            $data = base64_decode($data);
-                            // $image_name = time() . $k . '.png';
-                            $image_extension = str_replace('data:image/', '', $type);
-                            $image_name = uniqid() . '.' . $image_extension;
+                                $data = base64_decode($data);
+                                // $image_name = time() . $k . '.png';
+                                $image_extension = str_replace('data:image/', '', $type);
+                                $image_name = uniqid() . '.' . $image_extension;
 
-                            file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
+                                file_put_contents($uploadPath . 'sub_artikel/' . $image_name, $data);
 
-                            $img->removeattribute('src');
-                            $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                                $img->removeattribute('src');
+                                $img->setattribute('src', asset('/uploads/sub_artikel/' . $image_name));
+                            }
                         }
 
                         $sub_konten->id_artikel = $artikel->id;
@@ -361,11 +375,9 @@ class ArtikelController extends Controller
         $artikel = Artikel::where('slug', $slug)->first();
 
         if ($artikel) {
-            $uploadPath = public_path() . '/uploads/';
+            $uploadPath = public_path('uploads/');
 
             $sub_kontens = SubArtikel::where('id_artikel', $artikel->id)->get();
-
-            $artikel->delete();
 
             if (file_exists($uploadPath . 'thumbnail/' . $artikel->thumbnail)) {
                 unlink($uploadPath . 'thumbnail/' . $artikel->thumbnail);
@@ -377,6 +389,7 @@ class ArtikelController extends Controller
                 }
                 $sub_konten->delete();
             }
+            $artikel->delete();
 
             return redirect()->route('panel.artikel.index')->with('alert-success', 'Artikel berhasil dihapus');
         } else {

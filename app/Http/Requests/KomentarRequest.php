@@ -15,7 +15,7 @@ class KomentarRequest extends FormRequest
      */
     public function authorize()
     {
-        return Session::get('nim') || Session::get('divisi');
+        return session('nim') || session('divisi');
     }
 
     /**
@@ -27,12 +27,11 @@ class KomentarRequest extends FormRequest
     {
         return [
             'isi' => 'required|string|max:65535',
-            'komentar_ke' => [
-                'sometimes',
-                'integer',
-                new ArtikelValid,
-                new KomentarValid,
-            ],
+            // 'komentar_ke' => [
+            //     'sometimes',
+            //     new ArtikelValid,
+            //     new KomentarValid,
+            // ],
         ];
     }
 }

@@ -35,12 +35,63 @@
     <!-- Bootstrap-datetimepicker -->
     <link rel="stylesheet" href="{{asset('admin/bootstrap-datetimepicker.min.css')}}">
 	<script src="{{asset('admin/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	<script>
-    $(function() {
-        $('.tanggal-waktu').datetimepicker({
-			format: 'YYYY-MM-DD HH:mm:ss'
+    $(document).ready(function () {
+        $(function() {
+            $('.tanggal-waktu').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            });
+        });
+        
+		$(document).on('click', '#hapusData', function(e){
+            
+			e.preventDefault();
+            const target = $(this).data('target');
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false,
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Apakah kamu yakin?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Iya',
+            cancelButtonText: 'Tidak',
+            reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    document.getElementById(target).submit();
+                    swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Anda berhasil menghapus data ini.',
+                    'success'
+                    )
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Data tidak terhapus :)',
+                    'error'
+                    )
+                }
+            })
 		});
-    });
+    }); 
     </script>
+	<style>
+		body.swal2-height-auto {
+			height: inherit !important;
+        }
+        .swal2-actions button {
+            margin: 20px;
+        }
+	</style>
 </body>
 @endsection

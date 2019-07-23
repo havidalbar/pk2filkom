@@ -191,4 +191,10 @@ class AdminController extends Controller
         $mahasiswas = Mahasiswa::get(['nim', 'nama']);
         return view('panel-admin.startup.total', compact('mahasiswas'));
     }
+
+    public function getPkmTotal()
+    {
+        $mahasiswas = Mahasiswa::get(['nim', 'nama']);
+        return view('panel-admin.pkm.total', compact('mahasiswas'));
+    }
 }

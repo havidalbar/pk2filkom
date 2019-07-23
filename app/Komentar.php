@@ -17,8 +17,18 @@ class Komentar extends Model
         'balasan',
     ];
 
+    public function artikel()
+    {
+        return $this->belongsTo('App\Artikel', 'id_artikel', 'id');
+    }
+
     public function balasan()
     {
         return $this->hasMany('App\Komentar', 'komentar_ke', 'id');
+    }
+
+    public function pengirim_mahasiswa()
+    {
+        return $this->belongsTo('App\Mahasiswa', 'nim_mahasiswa', 'nim');
     }
 }

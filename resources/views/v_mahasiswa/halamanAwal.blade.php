@@ -56,12 +56,12 @@
 <!-- jumbotronLandingPage -->
 <div class="jumbotron jumbotron-fluid pk2-jb1">
     <video autoplay loop muted id="landingPageVideo">
-        <source src="{{asset('vidio/VIDEO GEDUNG.mp4')}}" type="video/mp4">
+        <source src="{{ asset('vidio/VIDEO GEDUNG.mp4') }}" type="video/mp4">
     </video>
 
     <div class="container d-flex justify-content-center align-items-center animasi slideKeAtas">
         <div class="pk2imgContent">
-            <img src="{{asset('img/bg-section/simaba4@4x.svg')}}" class="img pk2content">
+            <img src="{{ asset('img/bg-section/simaba4@4x.svg') }}" class="img pk2content">
         </div>
         <a href="#" id="swipUp"><i class="fal fa-angle-down"></i></a>
     </div>
@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
-                <a href="http://bit.ly/PK2MABAFILKOM">
+                <a href="http://bit.ly/PK2MABAFILKOM" target="_blank">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
                 </a>
             </div>
@@ -142,7 +142,9 @@
             <div class="row h-100">
                 <div class="col-md-6 imgCover bg-color-filkom">
                     @if ($berita_terakhir)
-                    <h4 class="title-inf">{{ $berita_terakhir->judul }}</h4>
+                    <a data-item-ojb="pk2-jb6">
+                        <h4 class="title-inf">{{ $berita_terakhir->judul }}</h4>
+                    </a>
                     @foreach ($berita_terakhir->sub as $sub)
                     <p class="title-info">{!! $sub->deskripsi !!}</p>
                     @endforeach
@@ -155,7 +157,7 @@
                 </div>
                 <div class="col-md-6 imgCover bg-gdfilkom">
                     <div class="hovereffect">
-                        <img class="img-responsive" src="{{asset('img/bg-section/gedfbidongkuning.png')}}" alt="">
+                        <img class="img-responsive" src="{{ asset('img/bg-section/gedfbidongkuning.png') }}" alt="">
                         <div class="overlay">
                             <p class="icon-links">
                                 <a href="https://www.instagram.com/pk2maba_filkom/"><i data-icon="b"></i></a>
@@ -206,8 +208,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -230,8 +231,7 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -254,15 +254,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">PKM Rangkaian 1</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail
@@ -279,15 +277,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ki.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">Kelas Inspirasi</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>Kelas Inspirasi merupakan rangkaian pertama dari Startup Academy 2019.
                                             Kegiatan ini berupa seminar dan talkshow. Materi yang akan diberikan
                                             adalah leadership, entrepreneurship dan achievement yang akan diisi oleh
@@ -303,15 +299,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/oh.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">Open House</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>Open House FILKOM merupakan rangkaian kedua dari Startup Academy 2019.
                                             Kegiatan ini akan diisi dengan pengenalan LSO maupun LO yang ada di
                                             Fakultas Ilmu Komputer. Open House yang akan diselenggarakan akan
@@ -329,15 +323,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">PKM Rangkaian 2</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -354,15 +346,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ob.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">Outbond</h5>
-                                        {{-- <h6 class="publis">08 September 2019</h6> --}}
                                         <p>Outbound merupakan rangkaian ketiga Startup Academy 2019
                                             dimana pada kegiatan ini panitia telah menyiapkan beberapa permainan
                                             menarik yang bertujuan untuk memberikan hiburan sekaligus menanamkan
@@ -379,15 +369,13 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{asset('img/bg-section/ki2@4x@2x.png')}}"
-                                        class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <div class="media timeLine">
                                     <div class="media-body">
                                         <h5 class="mt-0 title">PKM Final</h5>
-                                        <h6 class="publis">08 September 2019</h6>
                                         <p>PKM adalah bagian dari kegiatan PK2MABA dan Startup Academy.
                                             PKM dilaksanakan dengan cara memberikan bimbingan kepada mahasiswa
                                             baru yang bertujuan untuk mengenalkan hal-hal yang lebih detail pembuatan
@@ -433,11 +421,12 @@
                 <div class="col-sm-12 col-md-6">
                     @if (isset($beritas[0]))
                     <div class="hovereffect-berita">
-                        <img class="img1" src="{{ $beritas[0]->thumbnail }}" alt="">
+                        <img class="img1" src="{{ $beritas[0]->thumbnail_src }}" alt="">
                         <div class="overlay">
                             <h2>{{ $beritas[0]->judul }}</h2>
                             <div class="h-100 d-flex align-items-center justify-content-center">
-                                <a class="info" href="#">Lihat Berita</a>
+                                <a class="info" href="{{ route('berita.show', ['slug' => $beritas[0]->slug]) }}">Lihat
+                                    Berita</a>
                             </div>
                         </div>
                     </div>
@@ -456,13 +445,15 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="row">
                         @for ($index = 1; $index < 5; $index++) @if (isset($beritas[$index])) <div
-                            class="col-sm-12 col-md-6">
+                            class="col-sm-12 col-md-6 berita-kumpul">
                             <div class="hovereffect-berita">
-                                <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                                <img class="img2" src="{{ $beritas[$index]->thumbnail_src }}" alt="">
                                 <div class="overlay">
                                     <h2>{{ $beritas[$index]->judul }}</h2>
                                     <div class="h-100 d-flex align-items-center justify-content-center">
-                                        <a class="info" href="#">Lihat Berita</a>
+                                        <a class="info"
+                                            href="{{ route('berita.show', ['slug' => $beritas[$index]->slug]) }}">Lihat
+                                            Berita</a>
                                     </div>
                                 </div>
                             </div>
@@ -485,14 +476,16 @@
             </div>
             <div class="col-sm-12 col-md-12" style="padding: 0px; display: none" id="extended-berita">
                 <div class="row">
-                    @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-6 col-md-3"
+                    @for ($index = 5; $index < count($beritas); $index++) <div class="col-sm-12 col-md-3 berita-kumpul"
                         style="padding: 0px">
                         <div class="hovereffect-berita">
-                            <img class="img2" src="{{ $beritas[$index]->thumbnail }}" alt="">
+                            <img class="img2" src="{{ $beritas[$index]->thumbnail_src }}" alt="">
                             <div class="overlay">
                                 <h2>{{ $beritas[$index]->judul }}</h2>
                                 <div class="h-100 d-flex align-items-center justify-content-center">
-                                    <a class="info" href="#">Lihat Berita</a>
+                                    <a class="info"
+                                        href="{{ route('berita.show', ['slug' => $beritas[$index]->slug]) }}">Lihat
+                                        Berita</a>
                                 </div>
                             </div>
                         </div>
