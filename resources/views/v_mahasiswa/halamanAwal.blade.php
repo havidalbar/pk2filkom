@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-3 offset-md-1 mtAfterMoviePk2Maba">
                 <h1 class="afterMovieTxt">WATCH <span class="spanAfterMovie">Our</span> VIDEOS</h1>
-                <a href="http://bit.ly/PK2MABAFILKOM">
+                <a href="http://bit.ly/PK2MABAFILKOM" target="_blank">
                     <div class="spanAfterText">LIHAT VIDEO LAINNYA</div>
                 </a>
             </div>
