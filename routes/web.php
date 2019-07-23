@@ -37,7 +37,7 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::get('login', 'AuthController@login')->name('login');
         Route::post('login', 'AuthController@loginMahasiswa');
     });
-
+    Route::get('logout', 'AuthController@logout')->name('logout');
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
         Route::post('data-diri', 'AuthController@storeDataDiri');
@@ -61,7 +61,6 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
 
-        Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
 
