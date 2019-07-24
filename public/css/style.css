@@ -1349,11 +1349,6 @@ ul.slick-dots li button{
     /* width:auto !important; */
     margin:auto !important;
     display: inline-flex;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    -ms-transform: translate3d(0, 0, 0) !important;
-    -o-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
 }
 .btn.btn-comment:focus {
     box-shadow: none;
