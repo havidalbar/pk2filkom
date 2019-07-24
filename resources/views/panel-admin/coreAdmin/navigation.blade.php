@@ -404,7 +404,7 @@
 										<span class="m-menu__arrow"></span>
 										<ul class="m-menu__subnav">
 											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="inner.html" class="m-menu__link">
+                                            <a href="{{route('panel.penugasan.index')}}" class="m-menu__link">
 													<i class="m-menu__link-icon flaticon-chat-1"></i>
 													<span class="m-menu__link-text">
 														DAFTAR PENUGASAAN
