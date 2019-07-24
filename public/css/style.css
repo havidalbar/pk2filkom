@@ -1102,6 +1102,7 @@ figure img {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 .detailBerita .titleSection,
 .multipleChoise .titleSection {
@@ -1199,8 +1200,8 @@ ul.slick-dots li button{
 }
 .infoBerita {
     text-align: center;
-    color: #033c58;
-    margin: 1.5rem;
+    color: white;
+    margin: 44px 0 24px 0;
 }
 
 .infoBerita .titleBerita {
@@ -1215,8 +1216,19 @@ ul.slick-dots li button{
     position: relative;
 }
 .zoom img {
-    width: 100%;
-    height: 100%;
+    max-height: 600px;
+    max-width: 100%;
+    border-radius: 5px;
+}
+.gradientBeritas {
+    height: auto;
+    color: #fff;
+    background-color: #fff;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(3, 60, 88, 1),
+        rgba(85, 85, 85, 1)
+    );    
 }
 .gradientBerita {
     height: auto;
@@ -1227,7 +1239,11 @@ ul.slick-dots li button{
         rgba(3, 60, 88, 1),
         rgba(85, 85, 85, 1)
     );
-    padding: 20px;
+    padding: 40px;
+    border-radius: 5px;
+}
+.gradientBerita .isi-berita{
+    margin-top: 40px;
 }
 .gradientBerita p{
     font-size: 22px;
@@ -1249,16 +1265,16 @@ ul.slick-dots li button{
     border: 1px solid #dee1e6;
 }
 .btn.btn-comment {
-  color: #6c757d;
+  color: white;
+  background-color: #f1c538;
+  font-family: "Esphimere-semiBold";
   align-self: center;
+  height: 100%;
 }
 @media (max-width: 767.98px) {
     .infoBerita .titleBerita {
         font-size: 26px;
-    }
-    .gradientBerita{
-        margin-top: 20px;
-    }
+    }    
     .gradientBerita p{
         font-size: 20px;
     }
@@ -1268,16 +1284,16 @@ ul.slick-dots li button{
 }
 .media-title strong {
     font-size: 18px;
-    color: #1d387b;
+    color: #f1c538;
 }
 .media-title .sub-title {
     font-size: 14px;
-    color: #6c757d;
+    color: wheat;
 }
 .commentEvent h1 {
     font-family: "Esphimere-semiBold";
     font-size: 32px;
-    color: #223b6e;
+    color: #f1c538;
     margin: 1rem 0;
 }
 .question label {
@@ -1429,7 +1445,7 @@ ul.slick-dots li button{
     /* display: inline-block; */
     /* width: 10px; */
     align-self: center;
-    background-color: #223B6E;
+    background-color: #f1c538;
     width: 28px;
     height: 28px;
     text-align: center;
@@ -1440,7 +1456,7 @@ ul.slick-dots li button{
     color: #fff;
 }
 .replayComment {
-    border-left: 3px solid rgba(7, 60, 118, 0.65);
+    border-left: 3px solid rgba(241, 197, 56, 0.65);
 }
 form.balasComent {
     display: block;

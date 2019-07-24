@@ -39,7 +39,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid gradientBeritas">
     <div class="container">
         <div class="row">
             <div class="infoBerita mx-auto">
@@ -54,14 +54,14 @@
         </div>
     </div>
     @foreach ($berita->sub as $sub)
-    <div class="row">
-        <div class="col-md-6 px-md-0 vdBerita">
+    <div class="container">
+        <div class="vdBerita gradientBerita">
             <div class="zoom">
-                <img src="{{ $sub->thumbnail_src }}" />
+                <img src="{{ $sub->thumbnail_src }}"/>
             </div>
-        </div>
-        <div class="col-md-6 vdBerita gradientBerita">
+            <div class="isi-berita">
             {!! $sub->deskripsi !!}
+            </div>
         </div>
     </div>
     @endforeach
@@ -300,10 +300,10 @@
             <h1>Tambahkan Komentar</h1>
         </div>
     </div>
-    <div class="container" style="margin-bottom: 60px">
+    <div class="container" style="padding-bottom: 60px">
         <form action="{{ route('berita.komentar.post', ['slug' => $berita->slug]) }}" method="POST">
             {{ csrf_field() }}
-            <div class="input-group border mb-3">
+            <div class="input-group pb-3">
                 <textarea type="text" rows="5" class="form-control border-0" placeholder="Tuliskan Komentar Anda"
                     name="isi" maxlength="500"></textarea>
                 <div class="input-group-append">
