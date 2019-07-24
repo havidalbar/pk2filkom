@@ -1099,6 +1099,9 @@ figure img {
 }
 .vdBerita {
     min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .detailBerita .titleSection,
 .multipleChoise .titleSection {
@@ -1224,6 +1227,10 @@ ul.slick-dots li button{
         rgba(3, 60, 88, 1),
         rgba(85, 85, 85, 1)
     );
+    padding: 20px;
+}
+.gradientBerita p{
+    font-size: 22px;
 }
 .commentBerita {
     position: relative;
@@ -1244,6 +1251,17 @@ ul.slick-dots li button{
 .btn.btn-comment {
   color: #6c757d;
   align-self: center;
+}
+@media (max-width: 767.98px) {
+    .infoBerita .titleBerita {
+        font-size: 26px;
+    }
+    .gradientBerita{
+        margin-top: 20px;
+    }
+    .gradientBerita p{
+        font-size: 20px;
+    }
 }
 .media-body p {
     margin: 0;
