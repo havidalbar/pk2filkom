@@ -38,6 +38,7 @@ class KomentarController extends Controller
      */
     public function store(KomentarRequest $request, $slug, $reply = null)
     {
+        if(Session::get('nim')!=null || Session::get('username')!=null){
         try {
             DB::beginTransaction();
             $artikel = \App\Artikel::without('sub')->where('slug', $slug)->first(['id']);
@@ -70,6 +71,9 @@ class KomentarController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
         }
+    }else{
+        return redirect()->back()->with('alert','Anda harus login terlebih dahulu');
+    }
     }
 
     /**
@@ -103,6 +107,7 @@ class KomentarController extends Controller
      */
     public function update(KomentarRequest $request, $slug, $id)
     {
+        if(Session::get('nim')!=null || Session::get('username')!=null){
         $komentar = Komentar::where('id', $id)->whereHas('artikel', function ($query) use ($slug) {
             return $query->where('slug', $slug);
         })->first();
@@ -118,6 +123,9 @@ class KomentarController extends Controller
         } else {
             abort(404);
         }
+    }else{
+        return redirect()->back()->with('alert','Anda harus login terlebih dahulu');
+    }
     }
 
     /**
