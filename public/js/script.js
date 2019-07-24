@@ -37,10 +37,8 @@ $(document).ready(function () {
             }, 1250, 'swing');
         }
     });
-    // endScrollAnimate
-    
-    $('.center.slider').slick({
-        // initialSlide: 1,
+    // endScrollAnimate    
+    $('.center.slider').slick({        
         infinite:  true,
         centerMode: true,
         slidesToShow: 5,

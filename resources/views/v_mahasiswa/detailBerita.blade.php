@@ -19,8 +19,7 @@
         </div>
         
         <!-- EndTitle -->
-        <div class="center slider responsive py-5 h-100">
-            
+        <div class="center slider responsive py-5 h-100">            
             @foreach ($beritas as $berita_top)
             <div>
                 <div class="slider-berita">
@@ -36,9 +35,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
-            
-            
+            @endforeach                        
         </div>
     </div>
 </div>
