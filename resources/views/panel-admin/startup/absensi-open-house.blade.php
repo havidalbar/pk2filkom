@@ -22,7 +22,7 @@
 				<div class="m-portlet__body pt-1" style="text-align:center">
 					<video id="preview"></video>
 					<script type="text/javascript">
-						let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+						let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false  });
 						scanner.addListener('scan', function (content) {
 							window.location.href='https://simaba-filkom.ub.ac.id/panel/kegiatan/startup/absensi/open-house' + '?nim_key=' + content;
 						});
