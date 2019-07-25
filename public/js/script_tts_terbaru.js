@@ -14,6 +14,7 @@ function submitTTS() {
         },
         beforeSend: function() {
             console.log('proses');
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-spinner-third fa-spin"></i>');
             $('#prosesSimpan span').text('Data diproses');
             $("#prosesSimpan").fadeIn(2000);
         },
