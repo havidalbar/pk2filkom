@@ -24,7 +24,7 @@
 					<script type="text/javascript">
 						let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 						scanner.addListener('scan', function (content) {
-							window.location.href(window.location.href + '?nim_key=' + content);
+							window.location.href='https://simaba-filkom.ub.ac.id/panel/kegiatan/startup/absensi/open-house' + '?nim_key=' + content;
 						});
 						Instascan.Camera.getCameras().then(function (cameras) {
 							if (cameras.length > 0) {
