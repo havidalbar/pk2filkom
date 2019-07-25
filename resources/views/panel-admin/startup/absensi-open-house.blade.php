@@ -8,7 +8,7 @@
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
 					<h3 class="m-subheader__title" style="transform: translateY(10px);">
-						ABSENSI
+						PENDATAAN
 						<small>
 							Open House
 						</small>
@@ -33,6 +33,7 @@
 							</div>
 						</div>
 					</div>
+					<p style="color:red">*Pilihan booth harap diisi terlebih dahulu sebelum melakukan scan/inputan manual</p>
 					<div>
 						<div class="form-group m-form__group row">
 							<label for="nim-absensi-input" class="col-3 col-form-label">
@@ -68,13 +69,14 @@
 						</div>
 					</div>
 					<!-- END: Subheader Scanner -->
-					<div>
-						<video id="preview"></video>
+					<div class="col-12">
+						<video id="preview" style="max-width:100%"></video>
 					</div>
 					<script type="text/javascript">
 						var booth = "";
 						function pilihanBooth() {
 							booth = document.getElementById('booth').value;
+							document.getElementById("booth_manual").value = booth;
 						}
 						let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false  });
 						scanner.addListener('scan', function (content) {
@@ -112,6 +114,7 @@
 							<div class="col-9 d-flex align-items-center">
 								<input class="form-control m-input" name="nim" placeholder="NIM Mahasiswa" type="number"
 									id="nim-absensi-input" required>
+								<input type="hidden" name="booth" id="booth_manual" value="" required>
 							</div>
 						</div>
 						<div class="m-portlet__foot m-portlet__foot--fit">

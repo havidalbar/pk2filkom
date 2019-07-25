@@ -181,7 +181,7 @@ class StartupAbsensiController extends Controller
                 $nim = $request->nim;
                 $booth = $request->booth;
             } else {
-                return view('panel-admin.startup.absensi-open-house');
+                return view('panel-admin.startup.absensi-open-house',['alert-success'=>'nim atau password tidak boleh dikosongi']);
             }
 
             if (is_numeric($nim)) {
@@ -199,9 +199,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'ROBOTIIK':
@@ -211,9 +211,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'DAI KOZUOKU':
@@ -223,9 +223,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'KONTRIBUSI FILKOM':
@@ -235,9 +235,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'AYODEV':
@@ -247,9 +247,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'PMK':
@@ -259,9 +259,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'KMK':
@@ -271,9 +271,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'POROS':
@@ -283,9 +283,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'BIOS':
@@ -295,9 +295,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'RAION':
@@ -307,9 +307,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'LPM DISPLAY':
@@ -319,9 +319,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'LKI AMD':
@@ -331,9 +331,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'OPTIIK':
@@ -343,9 +343,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'K-RISMA':
@@ -355,9 +355,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'PTI':
@@ -367,9 +367,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'TI':
@@ -379,9 +379,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'SI':
@@ -391,9 +391,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'TIF':
@@ -403,9 +403,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                         case 'TEKKOM':
@@ -415,9 +415,9 @@ class StartupAbsensiController extends Controller
                                 $data->nim = $nim;
                                 $data->absensi = 100;
                                 $data->save();
-                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
+                                return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Pendataan mahasiswa ' . $nim . ' berhasil dimasukkan');
                             }else{
-                                return redirect()->back()->with('alert-success', $nim . ' ini telah terdaftar di pendataan booth '. $booth);
+                                return redirect()->back()->with('alert-success','Maaf nim ini '. $nim . ' telah terdaftar di pendataan booth '. $booth);
                             }
                             break;
                     }
