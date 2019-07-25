@@ -568,10 +568,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="kontribusi-tab" data-toggle="tab" href="#kontribusi" role="tab" aria-controls="kontribusi" aria-selected="false">KONTRIBUSI</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="gforce-tab" data-toggle="tab" href="#gforce" role="tab" aria-controls="gforce" aria-selected="false">G-FORCE</a>
-                    </li>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" id="ayodev-tab" data-toggle="tab" href="#ayodev" role="tab" aria-controls="ayodev" aria-selected="false">AYODEV</a>
                     </li>
@@ -643,26 +640,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="gforce" role="tabpanel" aria-labelledby="gforce-tab">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="logo-lain col-md-4">
-                                    <img src="{{asset('img/teman-simaba/filkom/gforce.jpg')}}" class="img-filkom-text">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="text-left description-studi">
-                                        G-FORCE
-                                    </div>
-                                    <div class="text-left sub-text-lo">
-                                        GFORCE merupakan komunitas peduli lingkungan Fakultas Ilmu Komputer Universitas Brawijaya.
-                                        Beberapa kegiatannya seperti kamis bersih, bank sampah, dan banyak lagi yang tidak kalah menarik. Masih penasaran kan? Ini dia linimasanya!
-                                    </div>
-                                    <div class="text-left sub-text-lo">Instagram : <a href="https://www.instagram.com/gforces.official/" target="_blank">@gforces.official</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
                     <div class="tab-pane fade" id="ayodev" role="tabpanel" aria-labelledby="ayodev-tab">
                         <div class="col-md-12">
                             <div class="row">
