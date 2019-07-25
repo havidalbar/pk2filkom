@@ -46,7 +46,7 @@ class DataDiriMahasiswaRequest extends FormRequest
             'tempat_lahir' => 'required|string|max:191',
             'tanggal_lahir' => 'required|date|before:now',
             'agama' => 'required|in:1,2,3,4,5,6,9',
-            'gol_darah' => 'required|in:A,AB,A,O',
+            'gol_darah' => 'required|in:A,AB,B,O',
             'riwayat_penyakit' => 'required|string|max:65535',
             'alergi_makanan' => 'required|string|max:65535',
             'alergi_obat' => 'required|string|max:65535',
