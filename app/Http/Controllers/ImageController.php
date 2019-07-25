@@ -212,7 +212,7 @@ class ImageController extends Controller
     {
         $text_array = explode(' ', $text);
         $result_array = [];
-        $limit = 25;
+        $limit = 35;
         $line = '';
         for ($i = 0; $i < count($text_array); $i++) {
             if (count($result_array) >= 4) {

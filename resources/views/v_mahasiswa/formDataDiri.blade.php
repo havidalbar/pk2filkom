@@ -164,7 +164,7 @@
 								<div class="input-group-prepend">
 									<div class="input-group-text icon-input"><i class="icon-sakit-biru fa-lg"></i></div>
 								</div>
-								<input type="text" class="form-control form-data-diri shadow-none"
+								<input type="text" class="form-control form-data-diri shadow-none" maxlength="35"
 									name="riwayat_penyakit" placeholder="Riwayat Penyakit"
 									value="{{ old('riwayat_penyakit') ?? $data_mahasiswa->riwayat_penyakit ?? '' }}"
 									required>
@@ -180,7 +180,7 @@
 										<div class="input-group-text icon-input"><i class="icon-alergi-biru fa-lg"></i>
 										</div>
 									</div>
-									<input type="text" class="form-control form-data-diri shadow-none"
+									<input type="text" class="form-control form-data-diri shadow-none" maxlength="35"
 										value="{{ old('alergi_makanan') ?? $data_mahasiswa->alergi_makanan ?? '' }}"
 										name="alergi_makanan" placeholder="Alergi Makanan" required>
 									<div class="invalid-feedback">
@@ -194,7 +194,7 @@
 										<div class="input-group-text icon-input"><i class="icon-alergi-biru fa-lg"></i>
 										</div>
 									</div>
-									<input type="text" class="form-control form-data-diri shadow-none"
+									<input type="text" class="form-control form-data-diri shadow-none" maxlength="35"
 										name="alergi_obat" placeholder="Alergi Obat"
 										value="{{ old('alergi_obat') ?? $data_mahasiswa->alergi_makanan ?? '' }}"
 										required>
@@ -222,7 +222,7 @@
 						<button type="submit" class="btn btn-lg btn-block lanjutkan font-semibold">Lanjutkan</button>
 					</form>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 </div>
