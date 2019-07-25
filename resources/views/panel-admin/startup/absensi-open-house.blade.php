@@ -19,12 +19,66 @@
 		<!-- END: Subheader -->
 		<div class="m-content">
 			<div class="m-portlet m-portlet--mobile">
-				<div class="m-portlet__body pt-1" style="text-align:center">
-					<video id="preview"></video>
+				<div class="m-portlet__body pt-1">
+					<!-- BEGIN: Subheader -->
+					<div class="m-subheader">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title">
+									PENDATAAN DI BOOTH
+									<small>
+										Open House
+									</small>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div class="form-group m-form__group row">
+							<label for="nim-absensi-input" class="col-3 col-form-label">
+								Booth
+							</label>
+							<div class="col-9 d-flex justify-content-left">
+								<select name="booth" id="booth" onchange="pilihanBooth()" required>
+									<option selected disabled value="">Pilih Booth</option>
+									@php
+									$booths = ['ROBOTIIK', 'BCC', 'DAI KOZUOKU', 'KONTRIBUSI FILKOM', 'AYODEV', 'PMK',
+												'KMK', 'POROS','BIOS', 'RAION','LPM DISPLAY','LKI AMD','OPTIIK',
+												'K-RISMA','PTI','TI','SI','TIF','TEKKOM']
+									@endphp
+									@foreach ($booths as $booth)
+									<option value="{{ $booth }}">{{ $booth }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- END: Subheader -->
+					<!-- BEGIN: Subheader Scanner -->
+					<div class="m-subheader">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title">
+									SCAN QR-CODE
+									<small>
+										Open House
+									</small>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<!-- END: Subheader Scanner -->
+					<div>
+						<video id="preview"></video>
+					</div>
 					<script type="text/javascript">
+						var booth = "";
+						function pilihanBooth() {
+							booth = document.getElementById('booth').value;
+						}
 						let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false  });
 						scanner.addListener('scan', function (content) {
-							window.location.href='https://simaba-filkom.ub.ac.id/panel/kegiatan/startup/absensi/open-house' + '?nim_key=' + content;
+							window.location.href='https://simaba-filkom.ub.ac.id/panel/kegiatan/startup/absensi/open-house' + '?nim_key=' + content +'&booth='+ booth;
 						});
 						Instascan.Camera.getCameras().then(function (cameras) {
 							if (cameras.length > 0) {
@@ -40,8 +94,8 @@
 					<div class="m-subheader">
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
-								<h3 class="m-subheader__title" style="transform: translateY(10px);">
-									ABSENSI MANUAL
+								<h3 class="m-subheader__title">
+								PENDATAAN MANUAL
 									<small>
 										Open House
 									</small>
@@ -53,9 +107,9 @@
 					<form>
 						<div class="form-group m-form__group row">
 							<label for="nim-absensi-input" class="col-3 col-form-label">
-								Absensi Manual
+								Pendataan Manual
 							</label>
-							<div class="col-9">
+							<div class="col-9 d-flex align-items-center">
 								<input class="form-control m-input" name="nim" placeholder="NIM Mahasiswa" type="number"
 									id="nim-absensi-input" required>
 							</div>

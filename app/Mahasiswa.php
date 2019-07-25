@@ -158,4 +158,99 @@ class Mahasiswa extends Model
     {
         return $this->hasOne('App\ProdiFinal', 'nim', 'nim');
     }
+
+    public function BCC()
+    {
+        return $this->hasOne('App\BCC', 'nim', 'nim');
+    }
+
+    public function Amd()
+    {
+        return $this->hasOne('App\Amd', 'nim', 'nim');
+    }
+
+    public function Ayodev()
+    {
+        return $this->hasOne('App\Ayodev', 'nim', 'nim');
+    }
+
+    public function Bios()
+    {
+        return $this->hasOne('App\Bios', 'nim', 'nim');
+    }
+
+    public function Display()
+    {
+        return $this->hasOne('App\Display', 'nim', 'nim');
+    }
+
+    public function Kmk()
+    {
+        return $this->hasOne('App\Kmk', 'nim', 'nim');
+    }
+
+    public function Krisma()
+    {
+        return $this->hasOne('App\Krisma', 'nim', 'nim');
+    }
+
+    public function Kontribusi()
+    {
+        return $this->hasOne('App\Kontribusi', 'nim', 'nim');
+    }
+
+    public function Kozuoku()
+    {
+        return $this->hasOne('App\Kozuoku', 'nim', 'nim');
+    }
+
+    public function Pmk()
+    {
+        return $this->hasOne('App\Pmk', 'nim', 'nim');
+    }
+
+    public function Poros()
+    {
+        return $this->hasOne('App\Poros', 'nim', 'nim');
+    }
+
+    public function Raion()
+    {
+        return $this->hasOne('App\Raion', 'nim', 'nim');
+    }
+
+    public function Robotiik()
+    {
+        return $this->hasOne('App\Robotiik', 'nim', 'nim');
+    }
+
+    public function Optiik()
+    {
+        return $this->hasOne('App\Optiik', 'nim', 'nim');
+    }
+
+    public function TIF()
+    {
+        return $this->hasOne('App\TIF', 'nim', 'nim');
+    }
+
+    public function TI()
+    {
+        return $this->hasOne('App\TI', 'nim', 'nim');
+    }
+
+    public function SI()
+    {
+        return $this->hasOne('App\SI', 'nim', 'nim');
+    }
+
+    public function PTI()
+    {
+        return $this->hasOne('App\PTI', 'nim', 'nim');
+    }
+
+    public function TEKKOM()
+    {
+        return $this->hasOne('App\TEKKOM', 'nim', 'nim');
+    }
 }
