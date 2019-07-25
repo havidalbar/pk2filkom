@@ -37,6 +37,10 @@
         </form>
     </div>
 </div>
+<div id="prosesSimpan">
+    <i class="fas fa-spinner-third fa-spin"></i>
+    <span></span>
+</div>
 <script>
     let dataTts = {"menurun": {!! $menuruns !!}, "mendatar": {!! $mendatars !!}};
     let submitUrl = `{{ route('api-submit-tts', ['slug' => $penugasan->slug]) }}`;

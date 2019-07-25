@@ -3725,3 +3725,37 @@ input::-webkit-inner-spin-button {
     }
 }
 /* endKumpulTwibon */
+
+#prosesSimpan {
+    height: auto;
+    width: auto;
+    z-index: 10;
+    color: #fff;
+    font-size: 21px;
+    background-color: rgba(3, 60, 88,.8);
+    position: fixed;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-width: .25rem;
+    border-radius: .5rem;
+    border-color: rgba(252, 188, 60,.8);
+    padding: 6px 19px;
+    padding-left: 7px;
+    box-shadow: 0 0 5px grey;
+    display:none;
+}
+#prosesSimpan span {
+    padding: 0px 2px;
+    padding-left: 35px;
+}
+#prosesSimpan i {
+    margin: 0px 10px;
+    position: absolute;
+    top: 11.5px;
+    left: 0;
+}

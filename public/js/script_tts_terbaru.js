@@ -12,11 +12,22 @@ function submitTTS() {
         headers: {
             "Authorization": token
         },
+        beforeSend: function() {
+            console.log('proses');
+            $('#prosesSimpan span').text('Data diproses');
+            $("#prosesSimpan").fadeIn(2000);
+        },
         success: function () {
             console.log('submitted');
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-check"></i>');
+            $('#prosesSimpan span').text('Data berhasil disimpan');
+            $("#prosesSimpan").fadeOut(2000);
         },
         error: function () {
             console.log('error');
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-times"></i>');
+            $('#prosesSimpan span').text('Data berhasil disimpan');
+            $("#prosesSimpan").fadeOut(2000);
         }
     });
 
