@@ -12,23 +12,20 @@ function submitTTS() {
         headers: {
             "Authorization": token
         },
-        beforeSend: function() {
-            console.log('proses');
-            $('#prosesSimpan i').replaceWith('<i class="fas fa-spinner-third fa-spin"></i>');
-            $('#prosesSimpan span').text('Data diproses');
+        beforeSend: function () {
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-spinner fa-spin"></i>');
+            $('#prosesSimpan span').text('Menyimpan jawaban');
             $("#prosesSimpan").fadeIn(2000);
         },
         success: function () {
-            console.log('submitted');
             $('#prosesSimpan i').replaceWith('<i class="fas fa-check"></i>');
-            $('#prosesSimpan span').text('Data berhasil disimpan');
+            $('#prosesSimpan span').text('Jawaban berhasil disimpan');
             $("#prosesSimpan").fadeOut(2000);
         },
         error: function () {
-            console.log('error');
             $('#prosesSimpan i').replaceWith('<i class="fas fa-times"></i>');
-            $('#prosesSimpan span').text('Data berhasil disimpan');
-            $("#prosesSimpan").fadeOut(2000);
+            $('#prosesSimpan span').text('Jawaban gagal disimpan.<br>Silahkan muat ulang halaman ini.');
+            $("#prosesSimpan").fadeOut(5000);
         }
     });
 

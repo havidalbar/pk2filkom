@@ -460,7 +460,6 @@ class JawabanController extends Controller
 
         $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
         $limit = date('Y-m-d H:i:s', $newtimestamp);
-        error_log($limit);
         $now = date('Y-m-d H:i:s');
         if ($now > $limit) {
             return response()->json([], 403);
@@ -501,7 +500,7 @@ class JawabanController extends Controller
                     if (empty($request->jawaban[$i][$dataSoal->posisi->y]) || !$request->jawaban[$i][$dataSoal->posisi->y]) {
                         $isiJawaban = $isiJawaban . '_';
                     } else {
-                        $isiJawaban = $isiJawaban . $request->jawaban[$i][$dataSoal->posisi->y][0];
+                        $isiJawaban = $isiJawaban . strtoupper($request->jawaban[$i][$dataSoal->posisi->y][0]);
                     }
                 }
             } else {
