@@ -1228,7 +1228,7 @@ ul.slick-dots li button{
         to bottom,
         rgba(3, 60, 88, 1),
         rgba(85, 85, 85, 1)
-    );    
+    );
 }
 .gradientBerita {
     height: auto;
@@ -1274,7 +1274,7 @@ ul.slick-dots li button{
 @media (max-width: 767.98px) {
     .infoBerita .titleBerita {
         font-size: 26px;
-    }    
+    }
     .gradientBerita p{
         font-size: 20px;
     }
@@ -1402,7 +1402,7 @@ ul.slick-dots li button{
     background: rgba(0, 0, 0, 0.6);
     -webkit-transition: all 0.8s ease-in-out;
     transition: all 0.8s ease-in-out;
-    padding: 10px;    
+    padding: 10px;
 }
 .slider-berita a.info {
     text-decoration: none;
@@ -2087,7 +2087,18 @@ input::-webkit-inner-spin-button {
     padding-left: 10px;
     border-radius: 3px;
 }
-@media (max-width: 767.98px) { 
+
+.form-control-feedback{
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    font-size: 80%;
+    padding-left: 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+@media (max-width: 767.98px) {
     .bg-form-data-diri{
         height: 100%;
         padding-bottom:60px;
@@ -2095,8 +2106,12 @@ input::-webkit-inner-spin-button {
     .invalid-feedback{
         font-size: 16px;
     }
+    .form-control-feedback{
+        font-size: 16px;
+    }
 }
-@media (min-width: 767.98px) { 
+
+@media (min-width: 767.98px) {
     .bg-form{
         background-color:rgba(0, 0, 0, 0.4);
     }
@@ -2104,7 +2119,7 @@ input::-webkit-inner-spin-button {
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #EAE3C9 inset !important;
 }
-.form-data-diri{  
+.form-data-diri{
     background-color:#EAE3C9;
     height: 55px;
     border:none;
@@ -2127,7 +2142,7 @@ input:-webkit-autofill {
 .custom-select{
     background-color:#EAE3C9 !important;
 }
-.custom-select:invalid:focus,.custom-select:valid:focus{  
+.custom-select:invalid:focus,.custom-select:valid:focus{
     background-color:white !important;
 }
 .form-container .icon-input{

@@ -61,6 +61,7 @@
 										name="tempat_lahir" placeholder="Tempat Lahir"
 										value="{{ old('tempat_lahir') ?? $data_mahasiswa->tempat_lahir ?? '' }}"
 										required>
+									{!! $errors->first('tempat_lahir', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Masukkan tempat lahir anda.
 									</div>
@@ -75,6 +76,7 @@
 									<input class="tanggal form-control form-data-diri shadow-none" name="tanggal_lahir"
 										value="{{ old('tanggal_lahir') ?? $data_mahasiswa->tanggal_lahir ?? '' }}"
 										placeholder="Tanggal Lahir" onkeydown="false" required>
+										{!! $errors->first('tanggal_lahir', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Pilih tanggal lahir anda.
 									</div>
@@ -101,6 +103,7 @@
 										{{ $agama }}</option>
 									@endforeach
 								</select>
+								{!! $errors->first('agama', '<div class="form-control-feedback">:message</div>') !!}
 								<div class="invalid-feedback">
 									Pilih agama Anda.
 								</div>
@@ -129,6 +132,7 @@
 											{{ $kelamin }}</option>
 										@endforeach
 									</select>
+									{!! $errors->first('jenis_kelamin', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Pilih jenis kelamin anda.
 									</div>
@@ -153,6 +157,7 @@
 											{{ $darah }}</option>
 										@endforeach
 									</select>
+									{!! $errors->first('gol_darah', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Pilih golongan darah anda.
 									</div>
@@ -168,6 +173,7 @@
 									name="riwayat_penyakit" placeholder="Riwayat Penyakit"
 									value="{{ old('riwayat_penyakit') ?? $data_mahasiswa->riwayat_penyakit ?? '' }}"
 									required>
+								{!! $errors->first('riwayat_penyakit', '<div class="form-control-feedback">:message</div>') !!}
 								<div class="invalid-feedback">
 									Masukkan riwayat penyakit yang pernah anda derita. Jika tidak ada isi "Tidak ada".
 								</div>
@@ -183,6 +189,7 @@
 									<input type="text" class="form-control form-data-diri shadow-none" maxlength="35"
 										value="{{ old('alergi_makanan') ?? $data_mahasiswa->alergi_makanan ?? '' }}"
 										name="alergi_makanan" placeholder="Alergi Makanan" required>
+									{!! $errors->first('alergi_makanan', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Masukkan alergi makanan yang anda miliki. Jika tidak ada isi "Tidak ada".
 									</div>
@@ -198,6 +205,7 @@
 										name="alergi_obat" placeholder="Alergi Obat"
 										value="{{ old('alergi_obat') ?? $data_mahasiswa->alergi_makanan ?? '' }}"
 										required>
+									{!! $errors->first('alergi_obat', '<div class="form-control-feedback">:message</div>') !!}
 									<div class="invalid-feedback">
 										Masukkan alergi obat yang anda miliki. Jika tidak ada isi "Tidak ada".
 									</div>
@@ -214,6 +222,7 @@
 								<input type="number" class="form-control form-data-diri shadow-none" name="no_telepon"
 									placeholder="Nomor Telepon"
 									value="{{ old('no_telepon') ?? $data_mahasiswa->no_telepon ?? '' }}" required>
+								{!! $errors->first('no_telepon', '<div class="form-control-feedback">:message</div>') !!}
 								<div class="invalid-feedback">
 									Masukkan nomor telepon anda.
 								</div>
