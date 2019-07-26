@@ -73,7 +73,7 @@
             <div class="float-right garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-right">
                 <div class="col-md-5 col-img">
-                    <img src="{{asset('img/teman-simaba/kampus/denah svg.svg')}}" class="sub-pelajaran-img">
+                    <img src="{{asset('img/teman-simaba/kampus/denah.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
                     <div class="info">
