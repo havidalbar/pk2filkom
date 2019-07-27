@@ -65,6 +65,10 @@ class Handler extends ExceptionHandler
                 case '500':
                     return \Response::view('v_mahasiswa.error.500', array(), 500);
                     break;
+
+                case '503':
+                    return \Response::view('v_mahasiswa.error.503', array(), 503);
+                    break;
             }
         } else {
             return parent::render($request, $exception);
