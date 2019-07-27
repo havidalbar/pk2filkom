@@ -44,13 +44,16 @@
                     <thead>
                         <tr>
                             <th title="NIM">
-                                No
+                                NIM
                             </th>
                             <th title="Nama">
                                 Nama
                             </th>
                             <th title="Nilai">
                                 Nilai
+                            </th>
+                            <th title="Action">
+                                Action
                             </th>
                         </tr>
                     </thead>
@@ -60,6 +63,14 @@
                             <td>{{ $mahasiswa->nim }}</td>
                             <td>{{ $mahasiswa->nama }}</td>
                             <td>{{ $mahasiswa['nilai_' . $penugasan->slug] }}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="First group">
+                                    <a href="{{ route('panel.penugasan.jawaban.detail', ['slug' => $penugasan->slug, 'nim' => $mahasiswa->nim]) }}"
+                                        class="m-btn btn btn-primary">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

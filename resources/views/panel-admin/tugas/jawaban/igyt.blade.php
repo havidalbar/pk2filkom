@@ -44,7 +44,7 @@
                     <thead>
                         <tr>
                             <th title="NIM">
-                                No
+                                NIM
                             </th>
                             <th title="Nama">
                                 Nama
