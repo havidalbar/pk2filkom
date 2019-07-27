@@ -2455,6 +2455,7 @@ input::-webkit-inner-spin-button {
 }
 .form-input-link .input-video {
     height: 48px;
+    border-radius: 4px !important;
 }
 .form-input-link .btn-submit-web {
     background-color: #eec950;

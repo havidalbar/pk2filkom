@@ -19,22 +19,25 @@
                         @if ($penugasan->jenis == 1)
                         <div class="justify-content-center align-content-center d-flex">
                             <iframe id="preview-video-ig-{{ $index }}" class="preview-video-ig"
-                                src="https://www.instagram.com/p/BsDMEbyF_qf/embed" frameborder="0" scrolling="no"
+                                src="https://www.instagram.com/p/BwRlQ2Gldsm/embed" frameborder="0" scrolling="no"
                                 allowtransparency="true">
                             </iframe>
                         </div>
                         @elseif ($penugasan->jenis == 2)
                         <div
                             class="justify-content-center align-content-center d-flex embed-responsive embed-responsive-16by9">
-                            <iframe id="preview-video-yt-{{$index}}" src="https://www.youtube.com/embed/1smZUQs0gIE"
+                            <iframe id="preview-video-yt-{{$index}}" src="https://www.youtube.com/embed/c04R9immWMc"
                                 frameborder="0" scrolling="no" allowtransparency="true">
                             </iframe>
                         </div>
                         @endif
                         <script>
                             $(document).ready(function () {
-                        $('#input-video-ig-{{ $index }}').on('input', function() {
-                            document.getElementById("preview-video-ig-{{$index}}").src = (this.value) + "embed";
+                        $('#input-video-ig-{{ $index }}').on('input', function() {                            
+                            var linkIG = this.value;
+                            var splitLinkIG = linkIG.split("/");
+                            var idLinkIG = splitLinkIG[4];
+                            document.getElementById("preview-video-ig-{{$index}}").src = "https://www.instagram.com/p/" + idLinkIG + "/embed";
                         });
                         $('#input-video-yt-{{ $index }}').on('input', function() {
                             var link = this.value;
@@ -65,7 +68,7 @@
                                 @if ($penugasan->jenis == '1')
                                 <input id="input-video-ig-{{ $index }}" type="url" class="form-control input-video"
                                     placeholder="{{ $soal->soal }}" name="jawaban[{{ $index }}][url]"
-                                    value="{{ $jawabanSoal ? $jawabanSoal->jawaban : '' }}">
+                                    value="{{ $jawabanSoal ? $jawabanSoal->jawaban : '' }}">                                
                                 @elseif ($penugasan->jenis == '2')
                                 <input id="input-video-yt-{{ $index }}" type="url" class="form-control input-video"
                                     placeholder="{{ $soal->soal }}" name="jawaban[{{ $index }}][url]"
