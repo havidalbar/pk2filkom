@@ -20,8 +20,11 @@
                             <div class="col-md-4">
                                 {{ ($penugasan->soal_count ? $penugasan->soal_count . ' Soal ' : '') . $penugasan->jenis_text }}
                             </div>
-                            <div class="col-md-4">Mulai : {{ $penugasan->waktu_mulai }}</div>
-                            <div class="col-md-4">Berakhir : {{ $penugasan->waktu_akhir }}</div>
+                            <div class="col-md-4">Mulai :
+                                {{ date('Y-m-d H:i:s', strtotime("{$penugasan->waktu_mulai} + 7 hour")) }}
+                            </div>
+                            <div class="col-md-4">Berakhir :
+                                {{ date('Y-m-d H:i:s', strtotime("{$penugasan->waktu_akhir} + 7 hour")) }}</div>
                         </div>
                     </div>
                 </a>
