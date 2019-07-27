@@ -305,7 +305,13 @@ class JawabanController extends Controller
                         } else {
                             $urlChecker = 'https://www.youtube.com/oembed?url=';
                         }
-                        if (!$this->checkValidUrl($urlChecker . $jawaban['url'])) {
+                        try {
+                            file_get_contents($urlChecker . $jawaban['url']);
+                            $valid = true;
+                        } catch (\Exception $e) {
+                            $valid = false;
+                        }
+                        if (!$valid) {
                             $errors[] = "jawaban[{$index}]";
                             $error_messages[] = "Link tidak valid";
                             break;
@@ -371,33 +377,6 @@ class JawabanController extends Controller
             return redirect()->back()->with('alert', 'Jawaban berhasil disimpan');
         } else {
             abort(400);
-        }
-    }
-
-    private function checkValidUrl($url)
-    {
-        $options = array(
-            CURLOPT_RETURNTRANSFER => true,     // return web page
-            CURLOPT_HEADER         => false,    // don't return headers
-            CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-            CURLOPT_ENCODING       => "",       // handle all encodings
-            CURLOPT_USERAGENT      => "spider", // who am i
-            CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-            CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-            CURLOPT_TIMEOUT        => 120,      // timeout on response
-            CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-            CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
-        );
-        $ch = curl_init($url);
-        curl_setopt_array($ch, $options);
-        curl_exec($ch);
-        $http_code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        if ($http_code == 200) {
-            return true;
-        } else {
-            return false;
         }
     }
 

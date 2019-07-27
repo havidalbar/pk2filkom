@@ -3591,6 +3591,14 @@ input::-webkit-inner-spin-button {
 }
 /* endTemanSimabaMahasiswa */
 /*halaman twibbon*/
+.btn-submit {
+    background-color: #eec950;
+    font-family: "Esphimere-SemiBold";
+    text-transform: uppercase;
+    color: #0b2939;
+    display: block;
+    height: 36px;
+}
 .bg-kumpulTwibbon {
     background-image: url(../img/bg-section/twibbon.png);
     height: 100%;
