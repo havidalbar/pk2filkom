@@ -11,6 +11,19 @@
        url("../font/Shellia/Shellia.ttf") format("truetype"); 
 }
 
+@font-face {
+  font-family: "Esphimere-Light";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Esphimere-Light"), url(../font/Esphimere/Esphimere-Light.otf);
+}
+@font-face {
+  font-family: "Esphimere-Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Esphimere-Bold"), url(../font/Esphimere/Esphimere-Bold.otf);
+}
+
 /*  congfig style admin */
 .m-login__logo > a > img {
     width: 196px;
@@ -100,4 +113,33 @@ table#tts-table td input{
 .ttsNoSoal {
     position: absolute;
     font-size: 10px;
+}
+
+#tts-soal {
+font-family: 'Esphimere-Light';
+font-size: 16px;
+color: #000;
+}
+
+#tts-soal h1 {
+font-family: 'Esphimere-bold';
+font-size: 18px;
+}
+#tts-soal ol{
+display: block;
+list-style-type: none;
+margin-block-start: 1em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 40px;
+text-align: justify;
+}
+#tts-soal ol li::before {
+content: attr(data-noSoal) ". ";
+margin-left: 2rem;
+margin-right: 0.45rem;
+position: absolute;
+left: 0;
+text-align: start;
 }
