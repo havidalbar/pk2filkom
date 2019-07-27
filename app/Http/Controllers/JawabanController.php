@@ -305,7 +305,13 @@ class JawabanController extends Controller
                         } else {
                             $urlChecker = 'https://www.youtube.com/oembed?url=';
                         }
-                        if (!$this->checkValidUrl($urlChecker . $jawaban['url'])) {
+                        try {
+                            file_get_contents($urlChecker . $jawaban['url']);
+                            $valid = true;
+                        } catch (\Exception $e) {
+                            $valid = false;
+                        }
+                        if (!$valid) {
                             $errors[] = "jawaban[{$index}]";
                             $error_messages[] = "Link tidak valid";
                             break;
@@ -374,33 +380,6 @@ class JawabanController extends Controller
         }
     }
 
-    private function checkValidUrl($url)
-    {
-        $options = array(
-            CURLOPT_RETURNTRANSFER => true,     // return web page
-            CURLOPT_HEADER         => false,    // don't return headers
-            CURLOPT_FOLLOWLOCATION => true,     // follow redirects
-            CURLOPT_ENCODING       => "",       // handle all encodings
-            CURLOPT_USERAGENT      => "spider", // who am i
-            CURLOPT_AUTOREFERER    => true,     // set referer on redirect
-            CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-            CURLOPT_TIMEOUT        => 120,      // timeout on response
-            CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-            CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
-        );
-        $ch = curl_init($url);
-        curl_setopt_array($ch, $options);
-        curl_exec($ch);
-        $http_code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        if ($http_code == 200) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     private function submitJawabanPilihanGanda($request, $penugasan, $index)
     {
         if ($index <= $penugasan->soal_count && $index > 0) {
@@ -460,7 +439,6 @@ class JawabanController extends Controller
 
         $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
         $limit = date('Y-m-d H:i:s', $newtimestamp);
-        error_log($limit);
         $now = date('Y-m-d H:i:s');
         if ($now > $limit) {
             return response()->json([], 403);
@@ -501,7 +479,7 @@ class JawabanController extends Controller
                     if (empty($request->jawaban[$i][$dataSoal->posisi->y]) || !$request->jawaban[$i][$dataSoal->posisi->y]) {
                         $isiJawaban = $isiJawaban . '_';
                     } else {
-                        $isiJawaban = $isiJawaban . $request->jawaban[$i][$dataSoal->posisi->y][0];
+                        $isiJawaban = $isiJawaban . strtoupper($request->jawaban[$i][$dataSoal->posisi->y][0]);
                     }
                 }
             } else {

@@ -28,8 +28,8 @@ class AuthController extends Controller
             Session::put('prodi', 2);
             Session::put('foto', 'https://dummyimage.com/200x200/000000/fff&text=+AKUN');
             return redirect()->back()->with('alert', 'Anda berhasil login');
-        } else if (isset($nim) && isset($password) && isset($request->haloguys)) {
-            if (substr($nim, 0, 5) == '19515') {
+        } else if (isset($nim) && isset($password)) {
+            if (substr($nim, 0, 5)) {
                 $API_EM_APPS = 'https://em.ub.ac.id/redirect/login/loginApps/?nim=' . $nim . '&password=' . $password;
 
                 $responseLogin = json_decode(file_get_contents($API_EM_APPS), true);

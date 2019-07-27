@@ -6,9 +6,9 @@
         <div class="d-flex align-items-center">
             <div class="mr-auto">
                 <h3 class="m-subheader__title" style="transform: translateY(10px);">
-                    DATA
+                    JAWABAN
                     <small>
-                        TUGAS
+                        {{ $penugasan->judul }}
                     </small>
                 </h3>
             </div>
@@ -43,53 +43,44 @@
                 <table class="m-datatable" id="html_table" width="100%">
                     <thead>
                         <tr>
-                            <th title="Judul">
-                                Judul
+                            <th title="NIM">
+                                NIM
                             </th>
-                            <th title="Jumlah soal">
-                                Jumlah soal
+                            <th title="Nama">
+                                Nama
                             </th>
-                            <th title="Waktu mulai">
-                                Waktu mulai
+                            @foreach ($penugasan->soal as $soal)
+                            <th title="Jawaban Soal {{ $soal->index + 1 }}">
+                                {{ $soal->soal }}
                             </th>
-                            <th title="Waktu akhir">
-                                Waktu akhir
-                            </th>
-                            <th title="Action">
-                                Action
-                            </th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($penugasans as $index => $penugasan)
+                        @foreach ($mahasiswas as $mahasiswa)
                         <tr>
-                            <td>{{ $penugasan->judul }}</td>
-                            <td>{{ $penugasan->soal_count }}</td>
-                            <td>{{ $penugasan->waktu_mulai }}</td>
-                            <td>{{ $penugasan->waktu_akhir }}</td>
+                            <td>{{ $mahasiswa->nim }}</td>
+                            <td>{{ $mahasiswa->nama }}</td>
+                            @foreach ($penugasan->soal as $soal)
+                            @foreach ($mahasiswa->jawaban as $jawaban)
+                            @if ($soal->id == $jawaban->id_soal)
+                            @php
+                            $jawabanText = $jawaban->jawaban;
+                            @endphp
+                            @break
+                            @endif
+                            @endforeach
                             <td>
-                                <div class="btn-group" role="group" aria-label="First group">
-                                    <a href="{{ route('panel.penugasan.edit', ['slug' => $penugasan->slug]) }}"
-                                        class="m-btn btn btn-warning">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{ route('panel.penugasan.jawaban.view', ['slug' => $penugasan->slug]) }}"
-                                        class="m-btn btn btn-primary">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <form id="delete-penugasan-form-{{ $penugasan->id }}"
-                                        action="{{ route('panel.penugasan.destroy', ['slug' => $penugasan->slug]) }}"
-                                        method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                    </form>
-                                    <a href="javascript:void(0)"
-                                        onclick="document.getElementById(`delete-penugasan-form-{{ $penugasan->id }}`).submit()"
-                                        class="m-btn btn btn-danger">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a>
-                                </div>
+                                @if (isset($jawabanText))
+                                <a href="{{ $jawabanText }}" target="_blank">{{ $jawabanText }}</a>
+                                @else
+                                -
+                                @endif
                             </td>
+                            @php
+                            unset($jawabanText);
+                            @endphp
+                            @endforeach
                         </tr>
                         @endforeach
                     </tbody>

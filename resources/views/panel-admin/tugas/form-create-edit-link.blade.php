@@ -109,6 +109,19 @@
         $jenis = $penugasan->jenis;
     }
     ?>
+    @if ($jenis == 6)
+    <div class="form-group m-form__group row align-items-center {{ $errors->has('batas_waktu') ? 'has-danger' : '' }}">
+        <label class="col-2 col-form-label">
+            Batas Waktu
+        </label>
+        <div class="col-10">
+            <input class="form-control m-input {{ $errors->has('batas_waktu') ? 'form-control-danger' : '' }}"
+                name="batas_waktu" type="number" placeholder="Batas Waktu Pengerjaan Tugas" required
+                value="{{ old('batas_waktu') ?? $penugasan->batas_waktu ?? '' }}">
+            {!! $errors->first('batas_waktu', '<div class="form-control-feedback">:message</div>') !!}
+        </div>
+    </div>
+    @endif
     <input name="jenis" type="hidden" value="{{ $jenis ?? '' }}">
     @if (empty(old('soal')) && empty($penugasan))
     @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) <div class="form-group m-form__group row align-items-center">
@@ -129,7 +142,7 @@
     </label>
     <div class="col-10">
         <input class="form-control m-input" name="soal[{{ $index }}][soal]"
-            placeholder="Pertanyaan soal {{ $index + 1 }}" type="text" required value="{{ $soal['soal'] }}">
+            placeholder="Pertanyaan soal {{ $index + 1 }}" type="text" required value="{{ ($jenis == 6 && !old('soal')) ? json_encode($soal['soal']) : $soal['soal'] }}">
     </div>
 </div>
 @endforeach
