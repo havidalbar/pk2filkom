@@ -158,4 +158,9 @@ class Mahasiswa extends Model
     {
         return $this->hasOne('App\ProdiFinal', 'nim', 'nim');
     }
+
+    public function jawaban()
+    {
+        return $this->hasMany('App\JawabanBeta', 'nim', 'nim');
+    }
 }

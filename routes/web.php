@@ -60,7 +60,6 @@ Route::group(['as' => 'mahasiswa.'], function () {
         Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
         Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
         Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
-
     });
 });
 
@@ -133,6 +132,11 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::resource('penugasan', 'PenugasanController')->parameters([
                 'penugasan' => 'slug',
             ])->except(['show']);
+
+            Route::group(['prefix' => 'penugasan/{slug}/jawaban', 'as' => 'penugasan.jawaban.'], function () {
+                Route::get('/', 'PenugasanController@viewJawaban')->name('view');
+                Route::get('{nim}', 'PenugasanController@detailJawaban')->name('detail');
+            });
 
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
                 Route::group(['prefix' => 'pk2maba', 'as' => 'pk2maba.'], function () {

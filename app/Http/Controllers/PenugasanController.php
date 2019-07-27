@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PenugasanRequest;
+use App\JawabanBeta;
+use App\Mahasiswa;
 use App\PenugasanBeta;
 use App\PenugasanJawabanBeta;
 use App\PenugasanSoalBeta;
@@ -422,6 +424,120 @@ class PenugasanController extends Controller
             $penugasan->delete();
 
             return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil dihapus');
+        } else {
+            abort(404);
+        }
+    }
+
+    public function viewJawaban($slug)
+    {
+        $penugasan = PenugasanBeta::where('slug', $slug)->with('soal')->withCount(['soal'])->first();
+
+        if ($penugasan) {
+            $idSoal = [];
+            foreach ($penugasan->soal as $soal) {
+                $idSoal[] = $soal->id;
+            }
+
+            $mahasiswas = Mahasiswa::with(['jawaban' => function ($query) use ($idSoal) {
+                return $query->whereIn('id_soal', $idSoal);
+            }])->get();
+
+            switch ($penugasan->jenis) {
+                case '1':
+                case '2':
+                    return view('panel-admin.tugas.jawaban.igyt', compact('penugasan', 'mahasiswas'));
+                case '6':
+                    foreach ($mahasiswas as $mahasiswa) {
+                        $jumlahJawabanBenar = 0;
+                        foreach ($penugasan->soal as $soal) {
+                            foreach ($mahasiswa->jawaban as $jawaban) {
+                                if ($jawaban->id_soal == $soal->id) {
+                                    $jawabanSoalIni = $jawaban;
+                                }
+                            }
+
+                            if (isset($jawabanSoalIni) && strtoupper($jawabanSoalIni->jawaban) == strtoupper($soal->soal->jawaban)) {
+                                $jumlahJawabanBenar++;
+                            }
+
+                            unset($jawabanSoalIni);
+                        }
+
+                        $mahasiswa['nilai_' . $penugasan->slug] = $jumlahJawabanBenar / $penugasan->soal_count * 100;
+                    }
+
+                    return view('panel-admin.tugas.jawaban.tts-index', compact('penugasan', 'mahasiswas'));
+                default:
+                    abort(400);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function detailJawaban($slug, $nim)
+    {
+        $penugasan = PenugasanBeta::where('slug', $slug)->with('soal')->withCount(['soal'])->first();
+        $mahasiswa = Mahasiswa::find($nim);
+
+        if ($penugasan && $mahasiswa) {
+
+            switch ($penugasan->jenis) {
+                case '6':
+                    $soalTts = $penugasan->soal;
+                    $menuruns = [];
+                    $mendatars = [];
+
+                    $jawabans = JawabanBeta::where([
+                        'nim' => $nim
+                    ])->whereHas('soal', function ($query) use ($penugasan) {
+                        $query->where('id_penugasan', $penugasan->id);
+                    })->get();
+
+                    foreach ($soalTts as $index => $soal) {
+                        $decodedSoal = $soal->soal;
+
+                        foreach ($jawabans as $jawaban) {
+                            if ($jawaban->id_soal === $soal->id) {
+                                $submittedJawaban = $jawaban;
+                                break;
+                            }
+                        }
+
+                        if (isset($submittedJawaban) && $submittedJawaban->jawaban) {
+                            $decodedSoal->jawaban = $submittedJawaban->jawaban;
+                        } else {
+                            $panjang = ($decodedSoal->tipe == 'menurun'
+                                ? $decodedSoal->posisi->endx - $decodedSoal->posisi->startx
+                                : $decodedSoal->posisi->endy - $decodedSoal->posisi->starty) + 1;
+
+                            $tempJawaban = '';
+                            for ($i = 0; $i < $panjang; $i++) {
+                                $tempJawaban = $tempJawaban . '_';
+                            }
+
+                            $decodedSoal->jawaban = $tempJawaban;
+                        }
+
+                        $decodedSoal->noSoal = $index + 1;
+                        if ($decodedSoal->tipe == 'menurun') {
+                            $menuruns[] = $decodedSoal;
+                        } else if ($decodedSoal->tipe == 'mendatar') {
+                            $mendatars[] = $decodedSoal;
+                        }
+
+                        unset($submittedJawaban);
+                    }
+
+                    $menuruns = json_encode($menuruns);
+                    $mendatars = json_encode($mendatars);
+
+                    // dd($menuruns, $mendatars);
+                    return view('panel-admin.tugas.jawaban.tts-detail', compact('penugasan', 'mahasiswa', 'jawabans', 'menuruns', 'mendatars'));
+                default:
+                    abort(400);
+            }
         } else {
             abort(404);
         }
