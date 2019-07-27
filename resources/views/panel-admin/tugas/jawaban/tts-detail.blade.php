@@ -27,7 +27,7 @@
                     <!--begin: Datatable -->
                     <div class="row justify-content-center">
                         <div class="col-auto" id="tts"></div>
-                        <input type="submit" value="Submit" class="button-submit-tts">
+                        {{-- <input type="submit" value="Submit" class="button-submit-tts"> --}}
                         <div class="row mt-5" id="tts-soal"></div>
                     </div>
                     <!--end: Datatable -->

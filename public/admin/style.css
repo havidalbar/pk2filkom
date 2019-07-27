@@ -11,7 +11,7 @@
        url("../font/Shellia/Shellia.ttf") format("truetype"); 
 }
 
-/*  */
+/*  congfig style admin */
 .m-login__logo > a > img {
     width: 196px;
     height: 96px;
@@ -70,4 +70,34 @@
   .m-grid.m-grid--ver-desktop.m-grid--desktop>.m-grid__item.m-grid__item--fluid {
     width: 100vh;
   }
+}
+
+/* tts admin */
+
+table#tts-table tr {
+  width: 100%;
+}
+table#tts-table td {
+  width: 3.5em;
+  height: 2.5em;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+}
+table#tts-table td input{
+  width: 100%;
+  height: 100%;
+  padding: 0em;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  background-color: #f4f4f4;
+  text-transform: uppercase;
+}
+.ttsNoSoal {
+    position: absolute;
+    font-size: 10px;
 }
