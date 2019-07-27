@@ -77,10 +77,10 @@ class AuthController extends Controller
                 case 'sistem informasi':
                     $prodi_login = 4;
                     break;
-                case 'teknologi informasi':
+                case 'pendidikan teknologi informasi':
                     $prodi_login = 6;
                     break;
-                case 'pendidikan teknologi informasi':
+                case 'teknologi informasi':
                     $prodi_login = 7;
                     break;
                 case 'teknik informatika':
