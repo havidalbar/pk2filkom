@@ -276,8 +276,8 @@
                         kuliah yaa!
                     </div>
                 </div>
-            </div>
-            <div class="row sub-skm align-items-center text-left">
+            </div>            
+            <div class="row sub-skm sub-poin align-items-center text-left">
                 <div class="col-md-3">
                     <img src="{{asset('img/teman-simaba/mahasiswa/poin.png')}}" class="mx-auto d-block img-skm">
                 </div>
@@ -315,8 +315,7 @@
                         <div class="skm-text-file">Info lengkap nya bisa kamu lihat di panduan SKM pada <a href="{{asset('files/panduan-skm.pdf')}}" target="_blank">link ini</a></div>
                     </div>
                 </div>
-            </div>
-            <div class="bottom"></div>
+            </div>            
         </div>
     </div>
 </div>

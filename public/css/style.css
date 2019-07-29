@@ -3622,8 +3622,8 @@ input::-webkit-inner-spin-button {
     color: #f7bb3e;
     text-decoration-color: #f7bb3e;
 }
-.sub-akademik .bottom{
-    margin-bottom: 72px;
+.sub-akademik .sub-poin{
+    margin: 96px 0;    
 }
 @media (max-width: 767.98px) {
     .teman-mahasiswa .intro-text {
