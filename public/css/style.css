@@ -3578,6 +3578,53 @@ input::-webkit-inner-spin-button {
     text-transform: uppercase;
     margin-top: 16px;
 }
+.sub-akademik .sub-skm{
+    margin-top: 60px;
+}
+.sub-akademik .img-skm{
+    width: 100%;
+}
+.sub-akademik .skm-text{
+    font-size: 26px;
+    font-family: "Esphimere-Light";
+    color: white;
+    line-height: 1.75;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 4px;
+    padding: 24px 32px;    
+}
+.bold-white{
+    font-family: "Esphimere-Bold";
+}
+.skm-text .skm-title{
+    text-align: center;
+    color: #fee187;
+    font-family: "Esphimere-SemiBold";
+}
+.skm-list{
+    display: flex;
+    flex-direction: row;
+    line-height: 2;
+}
+.skm-list .nomor-text{
+    width: 20px;
+}
+.skm-list .text{
+    margin-left: 16px;
+    text-align: left;
+}
+.skm-text .skm-text-file{
+    margin-top: 24px;
+    color: #f7bb3e;
+    text-align: left;
+}
+.skm-text .skm-text-file a{    
+    color: #f7bb3e;
+    text-decoration-color: #f7bb3e;
+}
+.sub-akademik .sub-poin{
+    margin: 96px 0;    
+}
 @media (max-width: 767.98px) {
     .teman-mahasiswa .intro-text {
         font-size: 20px;
@@ -3598,6 +3645,20 @@ input::-webkit-inner-spin-button {
     }
     .sub-beasiswa .beasiswa-link{
         font-size: 18px;
+    }
+    .sub-akademik .sub-skm{
+        margin-top: 40px;
+    }
+    .sub-skm .order-first {
+        order: 12;
+    }
+    .sub-akademik .img-skm{
+        max-width: 220px;
+    }
+    .sub-akademik .skm-text{
+        font-size: 20px;
+        margin-top: 28px;
+        text-align: center;
     }
 }
 @media (max-width: 1024px) {
