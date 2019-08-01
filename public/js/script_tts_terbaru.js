@@ -24,7 +24,7 @@ function submitTTS() {
         },
         error: function () {
             $('#prosesSimpan i').replaceWith('<i class="fas fa-times"></i>');
-            $('#prosesSimpan span').text('Jawaban gagal disimpan.<br>Silahkan muat ulang halaman ini.');
+            $('#prosesSimpan span').text('Jawaban gagal disimpan. Silahkan muat ulang halaman ini.');
             $("#prosesSimpan").fadeOut(5000);
         }
     });

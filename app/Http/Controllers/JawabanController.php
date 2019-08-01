@@ -32,7 +32,25 @@ class JawabanController extends Controller
             $now = date('Y-m-d H:i:s');
             if ($now < $penugasan->waktu_mulai) {
                 return redirect()->route('mahasiswa.penugasan.index')
-                    ->with('alert', 'Penugasan belum dimulai');
+                    ->with('alert', 'Penugasan ini belum dimulai');
+            } else if ($now > $penugasan->waktu_akhir) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan ini telah berakhir');
+            }
+            if ($penugasan->jenis == 4 || $penugasan->jenis == 6) {
+                $firstJawaban = JawabanBeta::where('nim', session('nim'))
+                    ->whereHas('soal', function ($query) use ($penugasan) {
+                        $query->where('id_penugasan', $penugasan->id);
+                    })->orderBy('created_at', 'asc')->first();
+
+                if ($penugasan->batas_waktu && $firstJawaban) {
+                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                    $limit = date('Y-m-d H:i:s', $newtimestamp);
+                    if ($now > $limit) {
+                        return redirect()->route('mahasiswa.penugasan.index')
+                            ->with('alert', 'Waktu pengerjaanmu sudah habis');
+                    }
+                }
             }
             switch ($penugasan->jenis) {
                 case '1':
@@ -153,6 +171,7 @@ class JawabanController extends Controller
         $mendatars = [];
         $jawabans = [];
         $expired = false;
+        $sisaWaktu = 0;
 
         $now = date('Y-m-d H:i:s');
         if ($now < $penugasan->waktu_mulai || $now > $penugasan->waktu_akhir) {
@@ -163,14 +182,18 @@ class JawabanController extends Controller
                     $query->where('id_penugasan', $penugasan->id);
                 })->orderBy('created_at', 'asc')->first();
 
-            if ($penugasan->batas_waktu && $firstJawaban) {
-                $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
-                $limit = date('Y-m-d H:i:s', $newtimestamp);
-                if ($now > $limit) {
-                    $expired = true;
+            if ($penugasan->batas_waktu) {
+                if ($firstJawaban) {
+                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                    $limit = date('Y-m-d H:i:s', $newtimestamp);
+                    if ($now > $limit) {
+                        $expired = true;
+                    }
                 }
+                $sisaWaktu = strtotime($limit) - strtotime($now);
             }
         }
+
 
         $jawabanDB = JawabanBeta::where([
             'nim' => session('nim')
@@ -234,7 +257,7 @@ class JawabanController extends Controller
         $mendatars = json_encode($mendatars);
         $jwt = $this->jwt();
 
-        return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns', 'jwt', 'expired'));
+        return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns', 'jwt', 'expired', 'sisaWaktu'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug, $index = null)
