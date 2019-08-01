@@ -1484,6 +1484,16 @@ form.balasComent {
     width: 100%;
     max-width: 760px;
   }
+  .list-penugasan [data-toggle="collapse"]:not(.collapsed) {    
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .list-penugasan .accordion .card {
+    margin-top: 20px;    
+  }
+  .list-penugasan .accordion .card .item-penugasan{
+    margin-top: 0;
+  }
   .list-penugasan a{
     text-decoration: none;
   }
@@ -3675,6 +3685,9 @@ input::-webkit-inner-spin-button {
     color: #0b2939;
     display: block;
     height: 36px;
+}
+.btn-submit:hover {
+    background-color: #ffde77;
 }
 .bg-kumpulTwibbon {
     background-image: url(../img/bg-section/twibbon.png);
