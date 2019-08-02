@@ -31,10 +31,26 @@
             {{ csrf_field() }}
             <div class="row justify-content-center">
                 <div class="col-auto" id="tts"></div>
-                <input type="submit" value="Submit" class="button-submit-tts">
+                <input type="submit" value="Submit" id="submit-jawaban" class="button-submit-tts">
                 <div class="row mt-5" id="tts-soal"></div>
             </div>
         </form>
+    </div>
+    <div class="fixed-timer d-flex flex-column align-items-center">    
+        <div class="container-timer">
+            <div class="sisa-waktu">Sisa Waktu</div>            
+            <div class="garis-sisa-waktu"></div>
+            <div class="d-flex flex-row">                        
+                <div class="col-timer">
+                    <div class="menit"></div>
+                    <div>Menit</div>
+                </div>
+                <div class="col-timer">
+                    <div class="detik"></div>
+                    <div>Detik</div>
+                </div>
+            </div>        
+        </div>      
     </div>
 </div>
 <div id="prosesSimpan">
@@ -45,6 +61,31 @@
     let dataTts = {"menurun": {!! $menuruns !!}, "mendatar": {!! $mendatars !!}};
     let submitUrl = `{{ route('api-submit-tts', ['slug' => $penugasan->slug]) }}`;
     let token = `{{ $jwt }}`;
+</script>
+<script>
+    window.onload = function(e){
+        var diffTime = {{$sisaWaktu}},
+            duration = moment.duration(diffTime * 1000, 'milliseconds'),
+            interval = 1000;
+        if(diffTime > 0) {        
+            setInterval(function(){
+                if(duration>0){
+                    duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
+                    var m = moment.duration(duration).minutes(),
+                        s = moment.duration(duration).seconds();                    
+
+                    m = $.trim(m).length === 1 ? '0' + m : m;
+                    s = $.trim(s).length === 1 ? '0' + s : s;
+                                                
+                    $(".menit").text(m);
+                    $(".detik").text(s);            
+                }
+                else{                    
+                    $("#submit-jawaban").submit();     
+                }
+            }, interval);
+        }        
+    };
 </script>
 <script src="{{ asset('js/script_tts_terbaru.js') }}"></script>
 @if (!$expired)

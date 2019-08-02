@@ -1636,6 +1636,37 @@ table#tts-table td input{
 .pk2-tts .button-submit-tts:hover {
     background-color: #f8bc3f;
 }
+.pk2-tts .fixed-timer{
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 16px;
+    z-index: 1000;
+}
+.pk2-tts .fixed-timer .container-timer{        
+    width: 160px;
+    border-radius: 6px;
+    background-color: #f8bc3f;
+    font-family: "Esphimere-SemiBold";
+    text-align: center;
+    text-transform: uppercase;
+    padding: 8px;
+}
+.pk2-tts .fixed-timer .container-timer .sisa-waktu{        
+    font-size: 16px;
+    color: #0b2939;    
+}
+.pk2-tts .fixed-timer .container-timer .garis-sisa-waktu{        
+    height: 2px;
+    background-color: #0b2939;
+    border-radius: 2px;
+    margin: 4px 0 8px 0;
+}
+.pk2-tts .fixed-timer .container-timer .col-timer{        
+    width: 50%;
+    font-size: 15px;
+    color: #0b2939;
+}
 /* endTTS */
 
 /* tabletVersion */
