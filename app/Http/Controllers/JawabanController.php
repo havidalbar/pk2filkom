@@ -279,7 +279,8 @@ class JawabanController extends Controller
                     })->orderBy('created_at', 'asc')->first();
 
                 if ($penugasan->batas_waktu && $firstJawaban) {
-                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                    $toleransiBatasWaktu = $penugasan->batas_waktu + 1;
+                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {
                         return redirect()->route('mahasiswa.penugasan.index')
@@ -460,7 +461,8 @@ class JawabanController extends Controller
             return response()->json([], 400);
         }
 
-        $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+        $toleransiBatasWaktu = $penugasan->batas_waktu + 1;
+        $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
         $limit = date('Y-m-d H:i:s', $newtimestamp);
         $now = date('Y-m-d H:i:s');
         if ($now > $limit) {
