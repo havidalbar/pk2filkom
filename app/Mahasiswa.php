@@ -253,9 +253,14 @@ class Mahasiswa extends Model
     {
         return $this->hasOne('App\TEKKOM', 'nim', 'nim');
     }
-    
+
     public function jawaban()
     {
         return $this->hasMany('App\JawabanBeta', 'nim', 'nim');
+    }
+
+    public function nilai_penugasan()
+    {
+        return $this->hasMany('App\PenilaianBeta', 'nim', 'nim');
     }
 }

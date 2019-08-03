@@ -133,9 +133,13 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 'penugasan' => 'slug',
             ])->except(['show']);
 
-            Route::group(['prefix' => 'penugasan/{slug}/jawaban', 'as' => 'penugasan.jawaban.'], function () {
-                Route::get('/', 'PenugasanController@viewJawaban')->name('view');
-                Route::get('{nim}', 'PenugasanController@detailJawaban')->name('detail');
+            Route::group(['prefix' => 'penugasan/{slug}', 'as' => 'penugasan.'], function () {
+                Route::post('impor-nilai', 'PenugasanController@imporNilai')->name('impor-penilaian');
+
+                Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
+                    Route::get('/', 'PenugasanController@viewJawaban')->name('view');
+                    Route::get('{nim}', 'PenugasanController@detailJawaban')->name('detail');
+                });
             });
 
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {

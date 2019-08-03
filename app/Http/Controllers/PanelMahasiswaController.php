@@ -80,7 +80,7 @@ class PanelMahasiswaController extends Controller
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan! ' . $e);
             }
         } else {
             return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');

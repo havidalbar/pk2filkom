@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PenugasanRequest;
 use App\JawabanBeta;
 use App\Mahasiswa;
+use App\PenilaianBeta;
 use App\PenugasanBeta;
 use App\PenugasanJawabanBeta;
 use App\PenugasanSoalBeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet;
 
 class PenugasanController extends Controller
 {
@@ -537,6 +539,76 @@ class PenugasanController extends Controller
                     return view('panel-admin.tugas.jawaban.tts-detail', compact('penugasan', 'mahasiswa', 'jawabans', 'menuruns', 'mendatars'));
                 default:
                     abort(400);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function imporNilai(Request $request, $slug)
+    {
+        $penugasan = PenugasanBeta::where('slug', $slug)->first();
+        if ($penugasan) {
+            if ($penugasan->jenis != 3 && $penugasan->jenis != 5 || $penugasan->jenis != 6) {
+                $uploadedExcel = $request->file('nilai_penugasan');
+
+                $reader = new PhpSpreadsheet\Reader\Xlsx();
+                $reader->setReadDataOnly(true);
+                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->slug);
+
+                /** Load $inputFileName to a Spreadsheet Object  **/
+                $spreadsheet = $reader->load($uploadedExcel->getPathName());
+                $spreadsheetArray = $spreadsheet->getActiveSheet()->toArray();
+
+                foreach ($spreadsheetArray[0] as $column_index => $data_key) {
+                    switch ($data_key) {
+                        case 'NIM':
+                            $nim_index = $column_index;
+                            break;
+                        case 'nilai':
+                            $nilai_index = $column_index;
+                            break;
+                    }
+                }
+
+                if (isset($nim_index) && isset($nilai_index)) {
+                    $error_row = null;
+                    try {
+                        DB::beginTransaction();
+                        // database queries here
+                        for ($i = 1; $i < count($spreadsheetArray); $i++) {
+                            $data_row = $spreadsheetArray[$i];
+                            $error_row = $i;
+
+                            $nilaiMahasiswa = PenilaianBeta::where([
+                                'nim' => $data_row[$nim_index],
+                                'id_penugasan' => $penugasan->id
+                            ])->first();
+
+                            if ($nilaiMahasiswa) {
+                                $nilaiMahasiswa->update([
+                                    'nilai' => $data_row[$nilai_index]
+                                ]);
+                            } else {
+                                $nilaiMahasiswa = new PenilaianBeta;
+                                $nilaiMahasiswa->nim = $data_row[$nim_index];
+                                $nilaiMahasiswa->id_penugasan = $penugasan->id;
+                                $nilaiMahasiswa->nilai = $data_row[$nilai_index];
+                                $nilaiMahasiswa->save();
+                            }
+                        }
+                        DB::commit();
+                        return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
+                    } catch (\PDOException $e) {
+                        // Woopsy
+                        DB::rollBack();
+                        return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan! ' . $e);
+                    }
+                } else {
+                    return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
+                }
+            } else {
+                abort(500);
             }
         } else {
             abort(404);
