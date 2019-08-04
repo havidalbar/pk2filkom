@@ -22,95 +22,20 @@ class AuthController extends Controller
         $nim = $request->nim;
         $password = $request->password;
 
-        if ($nim == '0000' && $password == '0000') {
-            Session::put('nim', $nim);
-            Session::put('nama', 'Akun');
-            Session::put('prodi', 2);
-            Session::put('foto', 'https://dummyimage.com/200x200/000000/fff&text=+AKUN');
-            return redirect()->back()->with('alert', 'Anda berhasil login');
-        } else if (isset($nim) && isset($password)) {
-            if (substr($nim, 0, 5)) {
-                $API_EM_APPS = 'https://em.ub.ac.id/redirect/login/loginApps/?nim=' . $nim . '&password=' . $password;
+        if (isset($nim) && isset($password)) {
+            $mahasiswa = Mahasiswa::where('nim', $nim)->first();
+            if ($mahasiswa) {
+                Session::put('nim', $mahasiswa->nim);
+                Session::put('nama', $mahasiswa->nama);
+                Session::put('prodi', $mahasiswa->prodi);
 
-                $responseLogin = json_decode(file_get_contents($API_EM_APPS), true);
-
-                if (!$responseLogin['status']) {
-                    return redirect()->back()->with('alert', 'NIM atau password salah');
+                if ($request->redirectTo) {
+                    return redirect($request->redirectTo)->with('alert', 'Anda berhasil login');
                 } else {
-                    if (strtolower($responseLogin['fak']) == 'fakultas ilmu komputer') {
-                        $nim_login = $responseLogin['nim'];
-                        $nama_login = $responseLogin['nama'];
-                        switch (strtolower($responseLogin['prodi'])) {
-                            case 'teknik informatika':
-                                $prodi_login = 2;
-                                break;
-                            case 'teknik komputer':
-                                $prodi_login = 3;
-                                break;
-                            case 'sistem informasi':
-                                $prodi_login = 4;
-                                break;
-                            case 'teknologi informasi':
-                                $prodi_login = 6;
-                                break;
-                            case 'pendidikan teknologi informasi':
-                                $prodi_login = 7;
-                                break;
-                            default:
-                                $prodi_login = 0;
-                        }
-                        $foto_login = $responseLogin['foto'];
-
-                        // Cek sudah pernah isi data atau belum
-                        $data_mahasiswa = Mahasiswa::where('nim', $nim)->exists();
-                        if (!$data_mahasiswa) {
-                            try {
-                                DB::beginTransaction();
-
-                                $mahasiswa = Mahasiswa::create([
-                                    'nim' => $nim_login,
-                                    'nama' => $nama_login,
-                                    'prodi' => $prodi_login
-                                ]);
-                                \App\PK2MabaAbsensi::create(['nim' => $mahasiswa->nim]);
-                                \App\PK2MabaKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                \App\PK2MabaPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                \App\PK2MTourAbsensi::create(['nim' => $mahasiswa->nim]);
-                                \App\PK2MTourKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                \App\PK2MTourPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                \App\StartupAbsensi::create(['nim' => $mahasiswa->nim]);
-                                \App\StartupKeaktifan::create(['nim' => $mahasiswa->nim]);
-                                \App\StartupPelanggaran::create(['nim' => $mahasiswa->nim]);
-                                \App\ProdiFinal::create(['nim' => $mahasiswa->nim]);
-
-                                DB::commit();
-                            } catch (Exception $e) {
-                                DB::rollBack();
-
-                                return redirect()->back()->with('alert', 'Login gagal');
-                            }
-                        }
-
-                        Session::put('nim', $nim_login);
-                        Session::put('nama', $nama_login);
-                        Session::put('prodi', $prodi_login);
-                        Session::put('foto', $foto_login);
-
-                        if ($data_mahasiswa) {
-                            if ($request->redirectTo) {
-                                return redirect($request->redirectTo)->with('alert', 'Anda berhasil login');
-                            } else {
-                                return redirect()->route('index')->with('alert', 'Anda berhasil login');
-                            }
-                        } else {
-                            return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
-                        }
-                    } else {
-                        return redirect()->back()->with('alert', 'Hanya untuk mahasiswa FILKOM');
-                    }
+                    return redirect()->route('index')->with('alert', 'Anda berhasil login');
                 }
             } else {
-                return redirect()->back()->with('alert', 'Hanya untuk angkatan 2019');
+                return redirect()->back()->with('alert', 'Mahasiswa tidak ditemukan');
             }
         } else {
             return redirect()->back()->with('alert', 'Masukan tidak valid');

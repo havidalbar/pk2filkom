@@ -9,6 +9,7 @@ use App\Http\Requests\SubmitJawabanRequest;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JawabanController extends Controller
 {
@@ -63,7 +64,7 @@ class JawabanController extends Controller
                 case '5':
                     return $this->getViewPenugasanOffline($penugasan);
                 case '6':
-                    return $this->getViewTTS($penugasan);
+                    return $this->getViewTTS($penugasan, $firstJawaban);
                 default:
                     abort(500);
             }
@@ -164,7 +165,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
     }
 
-    private function getViewTTS($penugasan)
+    private function getViewTTS($penugasan, $firstJawaban)
     {
         $soalTts = $penugasan->soal;
         $menuruns = [];
@@ -177,23 +178,28 @@ class JawabanController extends Controller
         if ($now < $penugasan->waktu_mulai || $now > $penugasan->waktu_akhir) {
             $expired = true;
         } else {
-            $firstJawaban = JawabanBeta::where('nim', session('nim'))
-                ->whereHas('soal', function ($query) use ($penugasan) {
-                    $query->where('id_penugasan', $penugasan->id);
-                })->orderBy('created_at', 'asc')->first();
-
             if ($penugasan->batas_waktu) {
                 if ($firstJawaban) {
+                    if (!$firstJawaban->updated_at) {
+                        return redirect()->route('mahasiswa.penugasan.index')
+                            ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                    }
                     $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {
                         $expired = true;
                     }
+                    $sisaWaktu = strtotime($limit) - strtotime($now);
+                } else {
+                    $sisaWaktu = strtotime(
+                        date(
+                            'Y-m-d H:i:s',
+                            strtotime("{$now} + {$penugasan->batas_waktu} minute")
+                        )
+                    ) - strtotime($now);
                 }
-                $sisaWaktu = strtotime($limit) - strtotime($now);
             }
         }
-
 
         $jawabanDB = JawabanBeta::where([
             'nim' => session('nim')
@@ -299,7 +305,17 @@ class JawabanController extends Controller
                 case '6':
                     $nim = session('nim');
                     $this->submitTts($request, $penugasan, $nim);
-                    return redirect()->back()->with('alert', 'Jawaban berhasil disimpan');;
+                    $idSoal = [];
+
+                    foreach ($penugasan->soal as $soal) {
+                        $idSoal[] = $soal->id;
+                    }
+                    DB::table('jawaban_beta')
+                        ->where('nim', $nim)
+                        ->whereIn('id_soal', $idSoal)
+                        ->update(['updated_at' => null]);
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Jawaban berhasil disimpan');
                 default:
                     abort(500);
             }
@@ -444,7 +460,7 @@ class JawabanController extends Controller
         ];
         // As you can see we are passing `JWT_SECRET` as the second parameter that will
         // be used to decode the token in the future.
-        return JWT::encode($payload, env('SECRET_TOKEN_KEY'), 'HS256');
+        return JWT::encode($payload, env('SECRET_TOKEN_KEY', 'test-server-simaba'), 'HS256');
     }
 
     public function apiSubmitTts(Request $request, $slug)
@@ -513,7 +529,7 @@ class JawabanController extends Controller
                     if (empty($request->jawaban[$dataSoal->posisi->x][$i]) || !$request->jawaban[$dataSoal->posisi->x][$i]) {
                         $isiJawaban = $isiJawaban . '_';
                     } else {
-                        $isiJawaban = $isiJawaban . $request->jawaban[$dataSoal->posisi->x][$i][0];
+                        $isiJawaban = $isiJawaban . strtoupper($request->jawaban[$dataSoal->posisi->x][$i][0]);
                     }
                 }
             }

@@ -18,20 +18,15 @@
                     <h1 class="titleSection">{{ $penugasan->judul }}</h1>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <div class="detail-tugas">
-                    {!! $penugasan->deskripsi !!}
-                </div>
-            </div>
         </div>
     </div>
     <!-- EndTitle -->
     <div class="container">
-        <form method="post" autocomplete="off">
+        <form method="POST" autocomplete="off" id="form-jawaban-tts">
             {{ csrf_field() }}
             <div class="row justify-content-center">
                 <div class="col-auto" id="tts"></div>
-                <input type="submit" value="Submit" id="submit-jawaban" class="button-submit-tts">
+                <input type="submit" value="Selesai" class="button-submit-tts">
                 <div class="row mt-5" id="tts-soal"></div>
             </div>
         </form>
@@ -87,7 +82,7 @@
                     $(".menit").text(m);
                     $(".detik").text(s);
                 } else {
-                    $("#submit-jawaban").submit();
+                    $("#form-jawaban-tts").submit();
                 }
             }, interval);
         }

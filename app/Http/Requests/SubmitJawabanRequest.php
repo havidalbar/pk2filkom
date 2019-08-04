@@ -65,6 +65,8 @@ class SubmitJawabanRequest extends FormRequest
                 'jawaban.*.url' => 'required|string|max:191',
                 'jawaban.*.screenshot' => 'required|image|max:4096'
             ];
+        } else if ($penugasan->jenis == 6) {
+            return [];
         } else {
             return [
                 'jawaban.id' => 'required|string|size:36',
