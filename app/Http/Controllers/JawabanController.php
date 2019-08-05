@@ -62,7 +62,7 @@ class JawabanController extends Controller
                 case '4':
                     return $this->startPilihanGanda($penugasan);
                 case '5':
-                    return $this->getViewPenugasanOffline($penugasan);
+                    abort(404);
                 case '6':
                     return $this->getViewTTS($penugasan, $firstJawaban);
                 default:

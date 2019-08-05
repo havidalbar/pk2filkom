@@ -21,7 +21,7 @@
                         $nama = session('nama');
                         $splitNama = explode(' ', $nama);
                         if (count($splitNama) > 1) {
-                            $nama = $splitNama[0] . ' ' . $splitNama[1][0] . '.';
+                            $nama = $splitNama[0] . ' ' . (isset($splitNama[1][0]) ? $splitNama[1][0] . '.' : '');
                         }
                         echo $nama;
                         ?>

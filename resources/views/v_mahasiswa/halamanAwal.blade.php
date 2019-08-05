@@ -27,7 +27,7 @@
                         $nama = session('nama');
                         $splitNama = explode(' ', $nama);
                         if (count($splitNama) > 1) {
-                            $nama = $splitNama[0] . ' ' . $splitNama[1][0] . '.';
+                            $nama = $splitNama[0] . ' ' . (isset($splitNama[1][0]) ? $splitNama[1][0] . '.' : '');
                         }
                         echo $nama;
                         ?>
@@ -208,7 +208,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -231,7 +232,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -254,7 +256,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -277,7 +280,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/ki.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ki.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -299,7 +303,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/oh.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/oh.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -323,7 +328,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -346,7 +352,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/ob.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ob.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -369,7 +376,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -504,7 +512,7 @@
 </div>
 <!-- endBerita -->
 <script>
-    //loadBerita
+    // loadBerita
     $('#load-berita').click(function () {
         if ($('#extended-berita').css('display') === 'none') {
             $('#extended-berita').css('display', '');
@@ -514,7 +522,7 @@
             $('#load-berita').html('TAMPILKAN BERITA');
         }
     });
-    //endLoadBerita
+    // endLoadBerita
 </script>
 <!-- Footer -->
 @include('layouts.footer')
