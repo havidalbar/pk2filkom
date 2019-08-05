@@ -23,19 +23,91 @@ class AuthController extends Controller
         $password = $request->password;
 
         if (isset($nim) && isset($password)) {
-            $mahasiswa = Mahasiswa::where('nim', $nim)->first();
-            if ($mahasiswa) {
-                Session::put('nim', $mahasiswa->nim);
-                Session::put('nama', $mahasiswa->nama);
-                Session::put('prodi', $mahasiswa->prodi);
+            if (substr($nim, 0, 5)) {
+                $cl = new Client;
+                $cr = $cl->request('GET', 'https://siam.ub.ac.id/');
+                $form = $cr->selectButton('Masuk')->form();
+                $cr = $cl->submit($form, array('username' => $nim, 'password' => $password));
 
-                if ($request->redirectTo) {
-                    return redirect($request->redirectTo)->with('alert', 'Anda berhasil login');
+                $cek = $cr->filter('small.error-code')->each(function ($result) {
+                    return $result->text();
+                });
+
+                if (isset($cek[0])) {
+                    return redirect()->back()->with('alert', 'NIM atau password salah');
                 } else {
-                    return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                    $data = $cr->filter('div[class="bio-info"] > div')->each(function ($result) {
+                        return $result->text();
+                    });
+
+                    if (strtolower(trim(substr($data[2], 19))) == 'ilmu komputer') {
+                        $nim_login = $data[0];
+                        $nama_login = $data[1];
+                        switch (strtolower(substr($data[4], 13))) {
+                            case 'teknik informatika':
+                                $prodi_login = 2;
+                                break;
+                            case 'teknik komputer':
+                                $prodi_login = 3;
+                                break;
+                            case 'sistem informasi':
+                                $prodi_login = 4;
+                                break;
+                            case 'teknologi informasi':
+                                $prodi_login = 6;
+                                break;
+                            case 'pendidikan teknologi informasi':
+                                $prodi_login = 7;
+                                break;
+                            default:
+                                $prodi_login = 0;
+                        }
+
+                        // Cek sudah pernah isi data atau belum
+                        $data_mahasiswa = Mahasiswa::where('nim', $nim)->exists();
+                        if (!$data_mahasiswa) {
+                            try {
+                                DB::beginTransaction();
+
+                                $mahasiswa = Mahasiswa::create([
+                                    'nim' => $nim_login,
+                                    'nama' => $nama_login,
+                                    'prodi' => $prodi_login
+                                ]);
+                                \App\PK2MabaAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MabaKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MabaPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\PK2MTourPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupAbsensi::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupKeaktifan::create(['nim' => $mahasiswa->nim]);
+                                \App\StartupPelanggaran::create(['nim' => $mahasiswa->nim]);
+                                \App\ProdiFinal::create(['nim' => $mahasiswa->nim]);
+
+                                DB::commit();
+                            } catch (Exception $e) {
+                                DB::rollBack();
+
+                                return redirect()->back()->with('alert', 'Login gagal');
+                            }
+                        }
+
+                        Session::put('nim', $nim_login);
+                        Session::put('nama', $nama_login);
+                        Session::put('prodi', $prodi_login);
+
+                        if ($data_mahasiswa) {
+                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
+                        } else {
+                            return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
+                        }
+                    } else {
+                        return redirect()->back()->with('alert', 'Hanya untuk mahasiswa FILKOM');
+                    }
                 }
             } else {
-                return redirect()->back()->with('alert', 'Mahasiswa tidak ditemukan');
+                return redirect()->back()->with('alert', 'Hanya untuk angkatan 2019');
             }
         } else {
             return redirect()->back()->with('alert', 'Masukan tidak valid');
