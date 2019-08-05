@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\PenugasanBeta;
 
 class Mahasiswa extends Model
 {
@@ -26,6 +27,7 @@ class Mahasiswa extends Model
         'rekap_nilai_pkm',
         'rekap_nilai_startup',
         'rekap_nilai_prodi',
+        'nilai_penugasan_full'
     ];
 
     public function getJenisKelaminAttribute($value)
@@ -262,5 +264,53 @@ class Mahasiswa extends Model
     public function nilai_penugasan()
     {
         return $this->hasMany('App\PenilaianBeta', 'nim', 'nim');
+    }
+
+    public function getNilaiPenugasanFullAttribute()
+    {
+        $penugasans = PenugasanBeta::withCount(['soal'])->get();
+        $nilais = [];
+        foreach ($penugasans as $penugasan) {
+            if ($penugasan->jenis == 5) {
+                continue;
+            }
+
+            $nilai['id_penugasan'] = $penugasan->id;
+            $nilai['judul_penugasan'] = $penugasan->judul;
+
+            switch ($penugasan->jenis) {
+                case 6:
+                    $jumlahJawabanBenar = 0;
+                    foreach ($penugasan->soal as $soal) {
+                        foreach ($this->jawaban as $jawaban) {
+                            if ($jawaban->id_soal == $soal->id) {
+                                $jawabanSoalIni = $jawaban;
+                            }
+                        }
+
+                        if (isset($jawabanSoalIni) && strtoupper($jawabanSoalIni->jawaban) == strtoupper($soal->soal->jawaban)) {
+                            $jumlahJawabanBenar++;
+                        }
+
+                        unset($jawabanSoalIni);
+                    }
+
+                    $nilai['nilai'] = $jumlahJawabanBenar / $penugasan->soal_count * 100;
+                    break;
+                default:
+                    $nilai['nilai'] = 0;
+
+                    foreach ($this->nilai_penugasan as $nilai_penugasan) {
+                        if ($nilai_penugasan->id_penugasan == $penugasan->id) {
+                            $nilai['nilai'] = $nilai_penugasan['nilai'];
+                            break;
+                        }
+                    }
+                    break;
+            }
+            $nilais[] = $nilai;
+            unset($nilai);
+        }
+        return $nilais;
     }
 }
