@@ -35,8 +35,7 @@ class JawabanController extends Controller
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan ini belum dimulai');
             } else if ($now > $penugasan->waktu_akhir) {
-                return redirect()->route('mahasiswa.penugasan.index')
-                    ->with('alert', 'Penugasan ini telah berakhir');
+                $expired = true;
             }
             if ($penugasan->jenis == 4 || $penugasan->jenis == 6) {
                 $firstJawaban = JawabanBeta::where('nim', session('nim'))
@@ -48,10 +47,21 @@ class JawabanController extends Controller
                     $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {
-                        return redirect()->route('mahasiswa.penugasan.index')
-                            ->with('alert', 'Waktu pengerjaanmu sudah habis');
+                        if (isset($expired) && $expired) {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Penugasan ini telah berakhir');
+                        } else {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Waktu pengerjaanmu sudah habis');
+                        }
                     }
+                } else if (isset($expired) && $expired) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Penugasan ini telah berakhir');
                 }
+            } else if (isset($expired) && $expired) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan ini telah berakhir');
             }
             switch ($penugasan->jenis) {
                 case '1':
@@ -160,11 +170,6 @@ class JawabanController extends Controller
         }
     }
 
-    private function getViewPenugasanOffline($penugasan)
-    {
-        return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
-    }
-
     private function getViewTTS($penugasan, $firstJawaban)
     {
         $soalTts = $penugasan->soal;
@@ -175,29 +180,22 @@ class JawabanController extends Controller
         $sisaWaktu = 0;
 
         $now = date('Y-m-d H:i:s');
-        if ($now < $penugasan->waktu_mulai || $now > $penugasan->waktu_akhir) {
-            $expired = true;
-        } else {
-            if ($penugasan->batas_waktu) {
-                if ($firstJawaban) {
-                    if (!$firstJawaban->updated_at) {
-                        return redirect()->route('mahasiswa.penugasan.index')
-                            ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
-                    }
-                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
-                    $limit = date('Y-m-d H:i:s', $newtimestamp);
-                    if ($now > $limit) {
-                        $expired = true;
-                    }
-                    $sisaWaktu = strtotime($limit) - strtotime($now);
-                } else {
-                    $sisaWaktu = strtotime(
-                        date(
-                            'Y-m-d H:i:s',
-                            strtotime("{$now} + {$penugasan->batas_waktu} minute")
-                        )
-                    ) - strtotime($now);
+        if ($penugasan->batas_waktu) {
+            if ($firstJawaban) {
+                if (!$firstJawaban->updated_at) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
                 }
+                $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                $limit = date('Y-m-d H:i:s', $newtimestamp);
+                $sisaWaktu = strtotime($limit) - strtotime($now);
+            } else {
+                $sisaWaktu = strtotime(
+                    date(
+                        'Y-m-d H:i:s',
+                        strtotime("{$now} + {$penugasan->batas_waktu} minute")
+                    )
+                ) - strtotime($now);
             }
         }
 
@@ -276,9 +274,9 @@ class JawabanController extends Controller
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan belum dimulai');
             } else if ($now > $penugasan->waktu_akhir) {
-                return redirect()->route('mahasiswa.penugasan.index')
-                    ->with('alert', 'Waktu penugasan telah berakhir');
-            } else {
+                $expired = true;
+            }
+            if ($penugasan->jenis == 4 || $penugasan->jenis == 6) {
                 $firstJawaban = JawabanBeta::where('nim', session('nim'))
                     ->whereHas('soal', function ($query) use ($penugasan) {
                         $query->where('id_penugasan', $penugasan->id);
@@ -289,10 +287,21 @@ class JawabanController extends Controller
                     $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {
-                        return redirect()->route('mahasiswa.penugasan.index')
-                            ->with('alert', 'Waktu pengerjaanmu telah habis');
+                        if (isset($expired) && $expired) {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Penugasan ini telah berakhir');
+                        } else {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Waktu pengerjaanmu telah habis');
+                        }
                     }
+                } else if (isset($expired) && $expired) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Penugasan ini telah berakhir');
                 }
+            } else if (isset($expired) && $expired) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan ini telah berakhir');
             }
 
             switch ($penugasan->jenis) {
