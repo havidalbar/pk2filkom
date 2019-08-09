@@ -5,16 +5,6 @@
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
-<script>
-function previewImage(preview, unggah) {
-    var oFReader = new FileReader();
-    oFReader.readAsDataURL(document.getElementById(unggah).files[0]);
-    oFReader.onload = function(oFREvent) {
-        document.getElementById("preview-section").style.display = "block";
-        document.getElementById(preview).src = oFREvent.target.result;
-    };
-};
-</script>
 <div class="jumbotron jumbotron-fluid bg-kumpul-line">
     <div class="container">
         <h1 class="titleKumpulLine">Ngobrol Inspiratif</h1>
@@ -22,47 +12,19 @@ function previewImage(preview, unggah) {
         <div class="container bg-kumpul">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="preview-tugas">
-                    <p class="pengumpulan-text">Pengumpulan Tugas</p>
-                    <div id="preview-section">
-                        <label>Preview Screenshot</label>
-                        <div class="d-flex flex-row justify-content-center align-items-center preview-box">
-                            <div><img class="preview-gambar" id="gambar1"></div>
-                            <div><img class="preview-gambar" id="gambar2"></div>
-                            <div><img class="preview-gambar" id="gambar3"></div>
-                        </div>
-                    </div>
+                    <p class="pengumpulan-text">Pengumpulan Tugas</p>                    
                     <div class="d-flex justify-content-center">
                         <form class="form-input-link" method="GET">
                             <div class="form-group">
                                 <label>Link Post Line 1</label>
                                 <input id="input-line" type="url" class="form-control"
                                     placeholder="ex: https://www.instagram.com/p/BsDMEbyF_qf/" name="linkLine1" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Screenshot Post Line 1</label>
-                                <div>
-                                    <label for="unggah-gambar1" class="pilih-gambar">
-                                        Pilih Gambar
-                                    </label>
-                                </div>
-                                <input type="file" id="unggah-gambar1" class="form-control" name="screenshotPost1"
-                                    onchange="previewImage('gambar1','unggah-gambar1')" style="display: none" required>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <label>Link Post Line 2</label>
                                 <input id="input-line" type="url" class="form-control"
                                     placeholder="ex: https://www.instagram.com/p/BsDMEbyF_qf/" name="linkLine2" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Screenshot Post Line 2</label>
-                                <div>
-                                    <label for="unggah-gambar2" class="pilih-gambar">
-                                        Pilih Gambar
-                                    </label>
-                                </div>
-                                <input type="file" id="unggah-gambar2" class="form-control" name="screenshotPost2"
-                                    onchange="previewImage('gambar2','unggah-gambar2')" style="display: none" required>
-                            </div>
+                            </div>                            
                             <div class="d-flex justify-content-center mt-4">
                                 <button type="submit" class="btn btn-submit-line">submit tugas</button>
                             </div>
