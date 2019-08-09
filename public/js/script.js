@@ -193,4 +193,16 @@ $(document).ready(function () {
         document.getElementById("preview-twibbon").src = (this.value) + "embed";
     });
     //endtwibon
+    //dropdown pilih bidang pkm
+    $(".dropdown-menu li").click(function(){        
+        $(this).parents(".dropdown").find('.btn-dropdown-pkm').html($(this).find('.nama-bidang-pkm').text());        
+        $(this).parents(".dropdown").find('#pilih-bidang-pkm').val($(this).find('div').data('value'));
+    });
+    //enddropdown pilih bidang pkm
+    //dropdown pilih bidang pkm
+    $(".identitas-container .dropdown-menu li").click(function(){        
+        $(this).parents(".dropdown").find('.btn-dropdown-prodi').html($(this).text());        
+        $(this).parents(".dropdown").find('.pilih-prodi').val($(this).find('div').data('value'));
+    });
+    //enddropdown pilih bidang pkm
 });

@@ -3854,7 +3854,7 @@ input::-webkit-inner-spin-button {
     }
 }
 /* endKumpulTwibon */
-
+/*halaman tts proses*/
 #prosesSimpan {
     height: auto;
     width: auto;
@@ -3888,3 +3888,204 @@ input::-webkit-inner-spin-button {
     top: 11.5px;
     left: 0;
 }
+/*endhalaman tts proses*/
+/* Halaman pendataan kelompok pkm */
+.garisPendataanPkm{    
+    display: block;
+    border-bottom: 3px solid #eec950;
+    width: 360px;
+    margin: auto;
+}
+.bg-pendataan-pkm {
+    margin-top: 40px;
+    padding: 60px 84px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 3px;
+}
+.form-pendataan-pkm .dropdown{
+    margin-bottom: 52px;
+}
+.form-pendataan-pkm .btn-dropdown-pkm{
+    font-family: "Esphimere-Regular";
+    font-size: 24px;
+    text-align: left;
+    color: #243e58;
+    background-color: #f1c538;
+    border: none;
+    border-radius: 4px;
+    padding: 22px 32px;
+}
+.form-pendataan-pkm .dropdown-toggle[aria-expanded="true"]{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-pendataan-pkm .btn-dropdown-pkm.dropdown-toggle::after{
+    border: none;
+    vertical-align: 0;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    content: "\f107";
+    float: right;    
+}
+.form-pendataan-pkm .btn-dropdown-pkm.dropdown-toggle[aria-expanded="true"]::after{    
+    content: "\f106";    
+}
+.form-pendataan-pkm .btn-dropdown-pkm:hover{
+    background-color: #f6cc45;
+}
+.form-pendataan-pkm .dropdown-menu{
+    width: 100%;
+    max-height:300px;
+    overflow-y:scroll;    
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0;   
+    padding-top: 0; 
+}
+.form-pendataan-pkm .dropdown-menu::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
+}
+.form-pendataan-pkm .dropdown-menu li{
+    padding: 16px 32px;    
+    cursor: pointer;
+}
+.form-pendataan-pkm .dropdown-menu li:hover{
+    background-color: #f6f5f1 !important;  
+}
+.form-pendataan-pkm .dropdown-menu .nama-bidang-pkm{
+    font-family: "Esphimere-Regular";
+    font-size: 22px;
+    color: #243e58;
+}
+.form-pendataan-pkm .dropdown-menu .deskripsi-bidang-pkm{
+    font-family: "Esphimere-Light";
+    font-size: 14px;
+    color: #243e58;
+}
+.form-pendataan-pkm .dropdown-menu .kuota-bidang-pkm{
+    font-family: "Esphimere-Regular";
+    text-align: right;
+    font-size: 20px;
+    color: #e79520;
+}
+.form-pendataan-pkm .dropdown-menu .dropdown-divider{
+    margin-bottom: 0;
+}
+.form-pendataan-pkm .divider-pendataan-pkm{    
+    border: 3px solid #999898;
+}
+.form-pendataan-pkm .data-anggota-pkm{
+    font-family: "Esphimere-Light";
+    margin: 24px 0 36px 0;    
+}
+.form-pendataan-pkm .judul-text{    
+    color:white;
+    text-align: center;
+    font-size: 32px;
+}
+.data-anggota-pkm .identitas-container{    
+    margin: 12px 0;
+    font-size: 26px;
+    color: white;
+}
+.data-anggota-pkm .identitas-container .posisi-anggota{        
+    color: #e9c538;
+    margin-bottom: 12px;
+}
+.data-anggota-pkm .identitas-container input{        
+    padding: 0 16px;
+}
+.data-anggota-pkm .identitas-container .dropdown{
+    margin-bottom: 0;
+}
+.data-anggota-pkm .btn-dropdown-prodi{    
+    text-align: left;
+    color: #6c757d;
+    background-color: white;
+    border: none;    
+    padding: 7px 16px;
+}
+.data-anggota-pkm .dropdown-toggle[aria-expanded="true"]{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.data-anggota-pkm .btn-dropdown-prodi.dropdown-toggle::after{
+    border: none;
+    vertical-align: 0;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    content: "\f107";
+    float: right;    
+}
+.form-pendataan-pkm .btn-dropdown-prodi.dropdown-toggle[aria-expanded="true"]::after{    
+    content: "\f106";    
+}
+.data-anggota-pkm .dropdown-menu{    
+    font-size: 16px;    
+    width: 100%;    
+    border: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0;   
+    padding-top: 0; 
+}
+.data-anggota-pkm .dropdown-menu li{
+    padding: 16px;    
+    cursor: pointer;
+}
+.data-anggota-pkm .dropdown-menu li:hover{
+    background-color: #f6f5f1 !important;  
+}
+.form-pendataan-pkm .abstraksi-pkm{
+    font-family: "Esphimere-Light";
+    margin: 24px 0 36px 0;
+}
+.form-pendataan-pkm .abstraksi-pkm .textarea-abstraksi{
+    width: 100%;
+    height: 280px;
+    border-radius: 4px;
+    padding: 16px 20px ;
+    margin-top: 20px;
+}
+.form-pendataan-pkm .btn-submit-pkm {    
+    font-family: "Esphimere-SemiBold";
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #0b2939;
+    background-color: #f1c538;
+    padding: 4px 28px;
+}
+.form-pendataan-pkm .btn-submit-pkm:hover {        
+    background-color: #f6cc45;
+}
+@media (max-width: 767.98px) {    
+    .garisPendataanPkm {
+        width: 100%;
+        border-bottom: 2px solid #eec950;
+    }    
+    .bg-pendataan-pkm {
+        padding: 20px;
+    }
+    .form-pendataan-pkm .btn-dropdown-pkm{
+        font-size: 20px;
+        padding: 16px 24px;
+    }
+    .form-pendataan-pkm .dropdown-menu li{
+        padding: 16px 24px;    
+    }
+    .form-pendataan-pkm .dropdown-menu .nama-bidang-pkm{
+        font-size: 18px;
+    }
+    .form-pendataan-pkm .dropdown-menu .deskripsi-bidang-pkm{
+        font-size: 14px;
+    }
+    .form-pendataan-pkm .dropdown-menu .kuota-bidang-pkm{
+        text-align: left;
+        font-size: 16px;
+    }
+}
+/* Akhir Halaman pendataan kelompok pkm */
