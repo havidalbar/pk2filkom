@@ -12,7 +12,7 @@
  */
 
 Route::get('/a', function () {
-    return view('v_mahasiswa/multipleChoise');
+    return view('v_mahasiswa/pendataanPkmIndividu');
 });
 
 // Berita
