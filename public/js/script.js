@@ -165,12 +165,27 @@ $(document).ready(function () {
             $(parentBalas).append(form.append(balas));
         }
     });
+
     $('.actionComment').on('click', '#buttonBatalBalas', function () {
 
         let hapusReplay = $(this).parent().parent().find('form#balasComent');
         // console.log(hapusReplay)
         $(hapusReplay).remove();
         $(this).replaceWith('<button class="btn btn-comment" id="buttonBalas">Balas</button>')
+    });
+
+    $('#pilgan input[type="radio"]').prop('disabled', true);
+
+    $('#pilgan').on('click', '#mulaiQuiz', function () {
+        $('#pilgan input[type="radio"]').prop('disabled', false);
+        $(this).replaceWith('<button type="button" id="akhiriQuiz" class="kirimJwb align-self-center"><span class="toggle">Selesai</span></button>');
+        $("#prosesSimpan.waktuPilgan").fadeIn();
+    });
+
+    $('#pilgan').on('click', '#akhiriQuiz', function () {
+        $('#pilgan input[type="radio"]').prop('disabled', true);
+        $(this).replaceWith('<button type="button" id="akhirQuiz" data-icon="c" class="kirimJwb align-self-center">Makasih</button>');
+        $("#prosesSimpan.waktuPilgan").fadeOut();
     });
 
     // Datepicker

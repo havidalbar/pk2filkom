@@ -11,6 +11,10 @@
 |
  */
 
+Route::get('/a', function () {
+    return view('v_mahasiswa/multipleChoise');
+});
+
 // Berita
 Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
     Route::get('/', 'ArtikelController@show')->name('show');

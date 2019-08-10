@@ -1315,6 +1315,8 @@ ul.slick-dots li button{
     margin-left: auto;
     margin-right: auto;
     border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 .kirimJwb span {
     cursor: pointer;
@@ -1331,6 +1333,17 @@ ul.slick-dots li button{
     right: -10px;
     transition: 0.5s;
 }
+.kirimJwb span.toggle:after {
+    font-family: "Font Awesome 5 Pro";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+    content: "\f00c";
+    line-height: 1.4;
+    margin-right: -.2rem !important;
+}
 .kirimJwb:hover span {
     padding-right: 15px;
 }
@@ -1338,11 +1351,59 @@ ul.slick-dots li button{
     opacity: 1;
     right: 0;
 }
-.pk2-dtBerita > .title > .container ul {
+.pk2-dtBerita.postTest {
+    height: auto !important;
+}
+.title.titlePostTest {
+    position: inherit !important;
+}
+.pk2-dtBerita  .title.titlePostTest > .container ul {
     margin-top: 1rem;
     color: #fff;
     font-family: "Esphimere-semiBold";
     font-weight: bold;
+    padding-left: 15px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 6px;
+    padding: 3rem;
+}
+.question {
+    margin-top: 1rem;
+    color: #fff;
+    font-family: "Esphimere-semiBold";
+    font-weight: bold;
+    padding-left: 25px;
+}
+#prosesSimpan.waktuPilgan {
+    padding: .4rem;
+    font-size: 18px;
+    bottom: 9px;
+    top: auto;
+    left: auto;
+    right: 0;
+    transform: translate(-5%, 0);
+}
+
+#prosesSimpan.waktuPilgan p {
+    margin: 0;
+}
+
+#akhirQuiz:before {
+    content: '';
+}
+
+#akhirQuiz:after {
+    font-family: "media" !important;
+    content: attr(data-icon);
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: .3rem;
 }
 /* endMedia ICON */
 .slick-track {
