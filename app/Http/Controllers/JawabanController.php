@@ -601,6 +601,6 @@ class JawabanController extends Controller
         $submitJawabanAbstraksi->jawaban = $request->abstraksi;
         $submitJawabanAbstraksi->save();
 
-        return redirect()->back()->with('alert', 'Jawaban berhasil disimpan');
+        return redirect()->route('index')->with('alert', 'Jawaban berhasil disimpan');
     }
 }
