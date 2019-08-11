@@ -67,7 +67,7 @@
         var duration = moment.duration(diffTime * 1000, 'milliseconds');
         var interval = 1000;
         if (diffTime > 0) {
-            setInterval(function() {
+            var intervalFunc = setInterval(function() {
                 if (duration > 0) {
                     duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
                     let h = Math.floor(duration / (60 * 60 * 1000));
@@ -83,6 +83,7 @@
                     $(".detik").text(s);
                 } else {
                     $("#form-jawaban-tts").submit();
+                    clearInterval(intervalFunc);
                 }
             }, interval);
         }

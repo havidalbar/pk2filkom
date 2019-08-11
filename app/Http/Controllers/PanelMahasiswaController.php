@@ -36,7 +36,8 @@ class PanelMahasiswaController extends Controller
         return redirect()->route('panel.mahasiswa.biodata')->with('alert-success', 'Berhasil mengubah data mahasiswa');
     }
 
-    public function importClusterKelompok(Request $request){
+    public function importClusterKelompok(Request $request)
+    {
         $uploadedExcel = $request->file('import_cluster');
 
         $reader = new PhpSpreadsheet\Reader\Xlsx();
@@ -71,9 +72,13 @@ class PanelMahasiswaController extends Controller
                     $error_row = $i;
 
                     $mahasiswa = Mahasiswa::find($data_row[$nim_index]);
-                    $mahasiswa->cluster = $data_row[$cluster_index];
-                    $mahasiswa->kelompok = $data_row[$kelompok_index];
-                    $mahasiswa->save();
+                    if (!$mahasiswa) {
+                        continue;
+                    } else {
+                        $mahasiswa->cluster = $data_row[$cluster_index];
+                        $mahasiswa->kelompok = $data_row[$kelompok_index];
+                        $mahasiswa->save();
+                    }
                 }
                 DB::commit();
                 return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
