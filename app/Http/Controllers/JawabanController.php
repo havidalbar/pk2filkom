@@ -37,7 +37,7 @@ class JawabanController extends Controller
             } else if ($now > $penugasan->waktu_akhir) {
                 $expired = true;
             }
-            if ($penugasan->jenis == 4 || $penugasan->jenis == 6) {
+            if ($penugasan->jenis == 4 || $penugasan->jenis == 6 || $penugasan->jenis == 7) {
                 $firstJawaban = JawabanBeta::where('nim', session('nim'))
                     ->whereHas('soal', function ($query) use ($penugasan) {
                         $query->where('id_penugasan', $penugasan->id);
@@ -76,7 +76,12 @@ class JawabanController extends Controller
                 case '6':
                     return $this->getViewTTS($penugasan, $firstJawaban);
                 case '7':
-                    return $this->getViewAbstraksi($penugasan);
+                    if ($firstJawaban) {
+                        return redirect()->route('mahasiswa.penugasan.index')
+                            ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                    } else {
+                        return $this->getViewAbstraksi($penugasan);
+                    }
                 default:
                     abort(500);
             }
@@ -601,6 +606,6 @@ class JawabanController extends Controller
         $submitJawabanAbstraksi->jawaban = $request->abstraksi;
         $submitJawabanAbstraksi->save();
 
-        return redirect()->route('index')->with('alert', 'Jawaban berhasil disimpan');
+        return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
     }
 }
