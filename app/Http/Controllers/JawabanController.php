@@ -118,7 +118,7 @@ class JawabanController extends Controller
         foreach ($jawabans as $jawaban) {
             if ($penugasan->soal[0]->id == $jawaban->id_soal) {
                 $jawabanBidang = $jawaban->jawaban;
-            } else if ($penugasan->soal[0]->id == $jawaban->id_soal) {
+            } else if ($penugasan->soal[1]->id == $jawaban->id_soal) {
                 $jawabanAbstraksi = $jawaban->jawaban;
             }
         }

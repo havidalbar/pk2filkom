@@ -75,7 +75,7 @@ class SubmitJawabanRequest extends FormRequest
             case 7:
                 return [
                     'bidang' => 'required|string|in:GFK,GT,K,KC,M,PE,PSH,T',
-                    'abstraksi' => 'required|string|min:400|max:10000',
+                    'abstraksi' => 'required|string|min:100|max:10000',
                 ];
             default:
                 return [

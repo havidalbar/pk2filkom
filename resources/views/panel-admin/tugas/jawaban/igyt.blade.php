@@ -96,7 +96,11 @@
                                 @endforeach
                                 <td>
                                     @if (isset($jawabanText))
+                                    @if ($penugasan->jenis == 7)
+                                    {{ $jawabanText }}
+                                    @else
                                     <a href="{{ $jawabanText }}" target="_blank">{{ $jawabanText }}</a>
+                                    @endif
                                     @else
                                     -
                                     @endif

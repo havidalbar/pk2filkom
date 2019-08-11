@@ -140,7 +140,7 @@
                 <div class="abstraksi-pkm">
                     <div class="judul-text">Abstraksi PKM</div>
                     <textarea class="textarea-abstraksi" name="abstraksi"
-                        placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanBidang }}</textarea>
+                        placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanAbstraksi }}</textarea>
                     {!! $errors->first('abstraksi','<div>:message</div>') !!}
                 </div>
                 <div class="d-flex justify-content-center">

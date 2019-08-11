@@ -464,6 +464,7 @@ class PenugasanController extends Controller
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
+                case '7':
                     return view('panel-admin.tugas.jawaban.igyt', compact('penugasan', 'mahasiswas'));
                 case '6':
                     foreach ($mahasiswas as $mahasiswa) {
