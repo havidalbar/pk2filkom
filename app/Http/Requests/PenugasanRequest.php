@@ -26,7 +26,7 @@ class PenugasanRequest extends FormRequest
     {
         return [
             'judul' => 'required|string|max:191',
-            'jenis' => 'required|in:1,2,3,4,5,6',
+            'jenis' => 'required|in:1,2,3,4,5,6,7',
             'random' => 'sometimes',
             'waktu_tampil' => 'required|date_format:Y-m-d H:i:s',
             'waktu_mulai' => 'required|date_format:Y-m-d H:i:s',

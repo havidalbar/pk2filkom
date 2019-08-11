@@ -75,6 +75,8 @@ class JawabanController extends Controller
                     abort(404);
                 case '6':
                     return $this->getViewTTS($penugasan, $firstJawaban);
+                case '7':
+                    return $this->getViewAbstraksi($penugasan);
                 default:
                     abort(500);
             }
@@ -101,6 +103,27 @@ class JawabanController extends Controller
             $query->where('id_penugasan', $penugasan->id);
         })->get();
         return view('v_mahasiswa/kumpulLine', compact('penugasan', 'jawabans'));
+    }
+
+    private function getViewAbstraksi($penugasan)
+    {
+        $jawabans = JawabanBeta::where([
+            'nim' => session('nim')
+        ])->whereHas('soal', function ($query) use ($penugasan) {
+            $query->where('id_penugasan', $penugasan->id);
+        })->get();
+
+        $jawabanBidang = $jawabanAbstraksi = '';
+
+        foreach ($jawabans as $jawaban) {
+            if ($penugasan->soal[0]->id == $jawaban->id_soal) {
+                $jawabanBidang = $jawaban->jawaban;
+            } else if ($penugasan->soal[0]->id == $jawaban->id_soal) {
+                $jawabanAbstraksi = $jawaban->jawaban;
+            }
+        }
+
+        return view('v_mahasiswa/pendataanPkmIndividu', compact('penugasan', 'jawabanBidang', 'jawabanAbstraksi'));
     }
 
     private function startPilihanGanda($penugasan)
@@ -325,6 +348,8 @@ class JawabanController extends Controller
                         ->update(['updated_at' => null]);
                     return redirect()->route('mahasiswa.penugasan.index')
                         ->with('alert', 'Jawaban berhasil disimpan');
+                case '7':
+                    return $this->submitAbstraksi($request, $penugasan);
                 default:
                     abort(500);
             }
@@ -546,5 +571,36 @@ class JawabanController extends Controller
             $jawabSoal->jawaban = $isiJawaban;
             $jawabSoal->save();
         }
+    }
+
+    private function submitAbstraksi($request, $penugasan)
+    {
+        $submitJawabanBidang = JawabanBeta::where([
+            'nim' => session('nim'),
+            'id_soal' => $penugasan->soal[0]->id
+        ])->first();
+
+        if (!$submitJawabanBidang) {
+            $submitJawabanBidang = new JawabanBeta;
+            $submitJawabanBidang->nim = session('nim');
+            $submitJawabanBidang->id_soal = $penugasan->soal[0]->id;
+        }
+        $submitJawabanBidang->jawaban = $request->bidang;
+        $submitJawabanBidang->save();
+
+        $submitJawabanAbstraksi = JawabanBeta::where([
+            'nim' => session('nim'),
+            'id_soal' => $penugasan->soal[1]->id
+        ])->first();
+
+        if (!$submitJawabanAbstraksi) {
+            $submitJawabanAbstraksi = new JawabanBeta;
+            $submitJawabanAbstraksi->nim = session('nim');
+            $submitJawabanAbstraksi->id_soal = $penugasan->soal[1]->id;
+        }
+        $submitJawabanAbstraksi->jawaban = $request->abstraksi;
+        $submitJawabanAbstraksi->save();
+
+        return redirect()->back()->with('alert', 'Jawaban berhasil disimpan');
     }
 }
