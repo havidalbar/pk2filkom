@@ -54,6 +54,15 @@
 											Import Data
 										</span>
 									</span>
+                                </a>
+                                <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon" data-toggle="modal"
+									data-target="#importMhs">
+									<span>
+										<i class="la la-cloud-download"></i>
+										<span>
+											Import Mahasiswa Baru
+										</span>
+									</span>
 								</a>
 								<div class="m-separator m-separator--dashed d-xl-none"></div>
 							</div>
@@ -147,6 +156,46 @@
 						<div></div>
 						<div class="col-8">
 							<input type="file" id="import_cluster" name="import_cluster" required="true"
+								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Send
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="importMhs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Import Mahasiswa
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<form action="{{ route('panel.mahasiswa.import.mahasiswa') }}" enctype="multipart/form-data"
+				class="m-form m-form--state m-form--fit m-form--label-align-right" method="POST">
+				<div class="modal-body">
+					{{ csrf_field() }}
+					<div class="form-group m-form__group row ">
+						<label for="import_cluster" class="col-4 col-form-label">
+							File Mahasiswa
+						</label>
+						<div></div>
+						<div class="col-8">
+							<input type="file" id="import_mahasiswa" name="import_mahasiswa" required="true"
 								accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
 						</div>
 					</div>

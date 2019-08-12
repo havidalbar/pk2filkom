@@ -86,6 +86,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::get('biodata', 'PanelMahasiswaController@getBiodata')->name('biodata');
             Route::get('kesehatan', 'PanelMahasiswaController@getKesehatan')->name('kesehatan');
             Route::post('importcluster', 'PanelMahasiswaController@importClusterKelompok')->name('import.cluster.kelompok');
+            Route::post('importmahasiswa', 'PanelMahasiswaController@importMahasiswa')->name('import.mahasiswa');
         });
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
