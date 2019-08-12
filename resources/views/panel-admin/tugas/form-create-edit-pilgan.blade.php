@@ -4,6 +4,17 @@
             Form {{ $ketForm }} data tugas.
         </div>
     </div>
+    @if (isset($penugasan) && $penugasan && $penugasan->id)
+    <div class="form-group m-form__group row align-items-center">
+        <label for="kode_penugasan" class="col-2 col-form-label">
+            Kode Penugasan
+        </label>
+        <div class="col-10">
+            <input id="kode_penugasan" class="form-control m-input" type="text" required disabled
+                value="{{ $penugasan->id }}">
+        </div>
+    </div>
+    @endif
     <div class="form-group m-form__group row align-items-center {{ $errors->has('judul') ? 'has-danger' : '' }}">
         <label for="judul_tugas" class="col-2 col-form-label">
             Judul Tugas
@@ -116,11 +127,11 @@
     <input class="form-control m-input" name="tipe" type="hidden" value="pilihan_ganda">
     <div class="border border-dark pt-4 pb-4 mt-4 mb-4">
         @if (empty(old('soal')) && empty($penugasan))
-        @for ($i = 0; $i < $_GET['jumlah_soal']; $i++) 
+        @for ($i = 0; $i < $_GET['jumlah_soal']; $i++)
         <div class="form-group m-form__group row align-items-center">
             <label class="col-2 col-form-label">
                 Soal {{ $i + 1 }}
-            </label>            
+            </label>
             <div class="col-12">
                 <div class="col-12">
                     <!-- The toolbar will be rendered in this container. -->
@@ -133,14 +144,14 @@
                 <input id="soal_input_{{$i}}" name="soal[{{ $i }}][soal]" type="hidden" required>
                 {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
             </div>
-        </div>     
+        </div>
         <div class="form-group m-form__group row align-items-center">
             <label class="col-form-label">
                 Pilihan jawaban
             </label>
         </div>
         <div style="margin-left:24px">
-            @for($j = 0; $j < 4; $j++) 
+            @for($j = 0; $j < 4; $j++)
             <div class="form-group m-form__group d-flex flex-row align-items-center">
                 <input type="radio" name="soal[{{ $i }}][jawaban_benar]" value="{{ $j }}">
                 <div style="width:100%;margin-left:16px">
@@ -169,13 +180,13 @@
                     .then(editor => {
                         document.querySelector('#jawaban-editor-container-{{$i}}-{{$j}}')
                             .appendChild(editor.ui.view.toolbar.element);
-                    })                
+                    })
                     .catch(error => {
                         console.error(error);
                     });
             </script>
             @endfor
-        </div>  
+        </div>
 
         <script>
             DecoupledEditor
@@ -186,12 +197,12 @@
                 .then(editor => {
                     document.querySelector('#soal-editor-container-{{$i}}')
                         .appendChild(editor.ui.view.toolbar.element);
-                })                
+                })
                 .catch(error => {
                     console.error(error);
                 });
         </script>
-        @endfor        
+        @endfor
         @endif
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">

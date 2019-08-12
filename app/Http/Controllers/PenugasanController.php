@@ -554,7 +554,7 @@ class PenugasanController extends Controller
 
                 $reader = new PhpSpreadsheet\Reader\Xlsx();
                 $reader->setReadDataOnly(true);
-                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->slug);
+                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->id);
 
                 /** Load $inputFileName to a Spreadsheet Object  **/
                 $spreadsheet = $reader->load($uploadedExcel->getPathName());
