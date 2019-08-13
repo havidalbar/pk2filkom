@@ -400,22 +400,6 @@ class JawabanController extends Controller
                             $error_messages[] = "Link tidak valid";
                             break;
                         }
-                    } else {
-                        if ($jawaban['screenshot']) {
-                            try {
-                                $screenshot = $request->file("jawaban[{$index}][screenshot]");
-                                $path = $screenshot->store('storage/uploads');
-                                $savePath = str_replace_first('storage', '', $path);
-                            } catch (\Exception $e) {
-                                $errors[] = "jawaban[{$index}]";
-                                $error_messages[] = "Gambar tidak dapat disimpan";
-                                break;
-                            }
-                        } else {
-                            $errors[] = "jawaban[{$index}]";
-                            $error_messages[] = "Gambar tidak dapat disimpan";
-                            break;
-                        }
                     }
 
                     $submitJawaban = JawabanBeta::where([
@@ -427,24 +411,10 @@ class JawabanController extends Controller
                         $submitJawaban = new JawabanBeta;
                         $submitJawaban->nim = session('nim');
                         $submitJawaban->id_soal = $soal->id;
-                    } else {
-                        if ($penugasan->jenis == 3 && file_exists(storage_path($submitJawaban->screenshot))) {
-                            unlink(storage_path($submitJawaban->screenshot));
-
-                            $existFile = ProtectedFiles::find($submitJawaban->screenshot);
-                            $existFile->delete();
-                        }
                     }
 
                     $submitJawaban->jawaban = $jawaban['url'];
                     $submitJawaban->save();
-
-                    if ($penugasan->jenis == 3) {
-                        ProtectedFile::create([
-                            'id_jawaban' => $submitJawaban->id,
-                            'path' => $savePath
-                        ]);
-                    }
                 } else {
                     $errors[] = "jawaban[{$index}]";
                     $error_messages[] = "ID soal tidak valid";

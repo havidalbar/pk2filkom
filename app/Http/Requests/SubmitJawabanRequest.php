@@ -29,11 +29,10 @@ class SubmitJawabanRequest extends FormRequest
             'size' => 'Data jawaban tidak valid',
             'array' => 'Data jawaban tidak valid',
             'image' => 'File yang diunggah harus berupa gambar',
-            'jawaban.url.max' => 'Masukan harus tidak lebih dari :max karakter',
-            'jawaban.screenshot.max' => 'File yang diunggah harus tidak lebih dari :max KB',
+            'jawaban.*.url.max' => 'Masukan harus tidak lebih dari :max karakter',
             'in' => 'Pilihan Anda tidak valid',
             'abstraksi.min' => 'Abstraksi minimal terdiri dari :min karakter',
-            'jawaban.screenshot.max' => 'Abstraksi maksimal terdiri dari :max karakter',
+            'abstraksi.max' => 'Abstraksi maksimal terdiri dari :max karakter',
         ];
     }
 
@@ -58,17 +57,11 @@ class SubmitJawabanRequest extends FormRequest
         switch ($penugasan->jenis) {
             case 1:
             case 2:
-                return [
-                    'jawaban' => 'required|array|size:' . $penugasan->soal_count,
-                    'jawaban.*.id' => 'required|string|size:36',
-                    'jawaban.*.url' => 'required|string|max:191',
-                ];
             case 3:
                 return [
                     'jawaban' => 'required|array|size:' . $penugasan->soal_count,
                     'jawaban.*.id' => 'required|string|size:36',
                     'jawaban.*.url' => 'required|string|max:191',
-                    'jawaban.*.screenshot' => 'required|image|max:4096'
                 ];
             case 6:
                 return [];
