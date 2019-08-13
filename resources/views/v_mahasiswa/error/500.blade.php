@@ -5,12 +5,11 @@
 <div class="jumbotron jumbotron-fluid bg-halError">
     <div class="container error">
         <div class="textError">
-            <p class="errormsg">500</p>
-            <p>Internal Error</p>
-            <p>Belum move on? Halaman ini aja udah :)</p>
+            <p>Tampaknya terjadi kesalahan data</p>
+            <p>Silahkan muat ulang kembali halaman sebelumnya :)</p>
         </div>
-        <div class="card home" onclick="window.location.href='/'">
-            HOME
+        <div class="card home" onclick="window.history.back()">
+            KEMBALI
         </div>
     </div>
 </div>

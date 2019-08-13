@@ -13,6 +13,14 @@
                         </small>
                     </h3>
                 </div>
+                <div class="mr-auto">
+                    <h3 class="m-subheader__title" style="transform: translateY(10px);">
+                        KODE PENUGASAN : 
+                        <small>
+                            {{ $penugasan->id }}
+                        </small>
+                    </h3>
+                </div>
             </div>
         </div>
         <!-- END: Subheader -->
