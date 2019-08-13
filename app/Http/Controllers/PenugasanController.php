@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PenugasanRequest;
 use App\JawabanBeta;
 use App\Mahasiswa;
+use App\PenilaianBeta;
 use App\PenugasanBeta;
 use App\PenugasanJawabanBeta;
 use App\PenugasanSoalBeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet;
 
 class PenugasanController extends Controller
 {
@@ -105,55 +107,30 @@ class PenugasanController extends Controller
 
             $penugasan->save();
 
-            if ($request->jenis != 5) {
-                for ($i = 0; $i < count($request->soal); $i++) {
-                    $soal = new PenugasanSoalBeta;
+            switch ($request->jenis) {
+                case 5:
+                    break;
+                case 7:
+                    $soalBidang = new PenugasanSoalBeta;
+                    $soalBidang->id_penugasan = $penugasan->id;
+                    $soalBidang->soal = 'Bidang PKM';
+                    $soalBidang->index = 0;
+                    $soalBidang->save();
 
-                    if ($request->jenis == 4) {
-                        $dom = new \domdocument();
-                        libxml_use_internal_errors(true);
-                        $dom->loadHtml(urldecode($request->soal[$i]['soal']));
-                        $images = $dom->getelementsbytagname('img');
+                    $soalAbstraksi = new PenugasanSoalBeta;
+                    $soalAbstraksi->id_penugasan = $penugasan->id;
+                    $soalAbstraksi->soal = 'Abstraksi PKM';
+                    $soalAbstraksi->index = 1;
+                    $soalAbstraksi->save();
+                    break;
+                default:
+                    for ($i = 0; $i < count($request->soal); $i++) {
+                        $soal = new PenugasanSoalBeta;
 
-                        //loop over img elements, decode their base64 src and save them to public folder,
-                        //and then replace base64 src with stored image URL.
-                        foreach ($images as $k => $img) {
-                            $data = $img->getattribute('src');
-
-                            if (strpos($data, ';') !== false) {
-                                list($type, $data) = explode(';', $data);
-                                list(, $data) = explode(',', $data);
-
-                                $data = base64_decode($data);
-                                // $image_name = time() . $k . '.png';
-                                $image_extension = str_replace('data:image/', '', $type);
-                                $image_name = uniqid() . '.' . $image_extension;
-
-                                file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
-                                $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
-
-                                $img->removeattribute('src');
-                                $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
-                            }
-                        }
-                        $soal->soal = $dom->savehtml();
-                    } else {
-                        $soal->soal = $request->soal[$i]['soal'];
-                    }
-
-                    $soal->id_penugasan = $penugasan->id;
-                    $soal->index = $i;
-                    $soal->save();
-
-                    if ($penugasan->jenis == 4) {
-                        // TODO : Masukkan jawaban
-                        $submitted_pilihan_jawaban = [];
-                        foreach ($request->soal[$i]['pilihan_jawaban'] as $pji => $pj) {
-                            $pilihan_jawaban = new PenugasanJawabanBeta;
-
+                        if ($request->jenis == 4) {
                             $dom = new \domdocument();
                             libxml_use_internal_errors(true);
-                            $dom->loadHtml(urldecode($pj));
+                            $dom->loadHtml(urldecode($request->soal[$i]['soal']));
                             $images = $dom->getelementsbytagname('img');
 
                             //loop over img elements, decode their base64 src and save them to public folder,
@@ -177,19 +154,61 @@ class PenugasanController extends Controller
                                     $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
                                 }
                             }
-
-                            $pilihan_jawaban->id_soal = $soal->id;
-                            $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
-                            $pilihan_jawaban->index = $pji;
-
-                            $pilihan_jawaban->save();
-                            $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                            $soal->soal = $dom->savehtml();
+                        } else {
+                            $soal->soal = $request->soal[$i]['soal'];
                         }
 
-                        $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
+                        $soal->id_penugasan = $penugasan->id;
+                        $soal->index = $i;
                         $soal->save();
+
+                        if ($penugasan->jenis == 4) {
+                            // TODO : Masukkan jawaban
+                            $submitted_pilihan_jawaban = [];
+                            foreach ($request->soal[$i]['pilihan_jawaban'] as $pji => $pj) {
+                                $pilihan_jawaban = new PenugasanJawabanBeta;
+
+                                $dom = new \domdocument();
+                                libxml_use_internal_errors(true);
+                                $dom->loadHtml(urldecode($pj));
+                                $images = $dom->getelementsbytagname('img');
+
+                                //loop over img elements, decode their base64 src and save them to public folder,
+                                //and then replace base64 src with stored image URL.
+                                foreach ($images as $k => $img) {
+                                    $data = $img->getattribute('src');
+
+                                    if (strpos($data, ';') !== false) {
+                                        list($type, $data) = explode(';', $data);
+                                        list(, $data) = explode(',', $data);
+
+                                        $data = base64_decode($data);
+                                        // $image_name = time() . $k . '.png';
+                                        $image_extension = str_replace('data:image/', '', $type);
+                                        $image_name = uniqid() . '.' . $image_extension;
+
+                                        file_put_contents($uploadPath . 'penugasan/' . $image_name, $data);
+                                        $uploadQueue[] = $uploadPath . 'penugasan/' . $image_name;
+
+                                        $img->removeattribute('src');
+                                        $img->setattribute('src', asset('/uploads/penugasan/' . $image_name));
+                                    }
+                                }
+
+                                $pilihan_jawaban->id_soal = $soal->id;
+                                $pilihan_jawaban->pilihan_jawaban = $dom->savehtml();
+                                $pilihan_jawaban->index = $pji;
+
+                                $pilihan_jawaban->save();
+                                $submitted_pilihan_jawaban[] = $pilihan_jawaban;
+                            }
+
+                            $soal->id_jawaban_benar = $submitted_pilihan_jawaban[$request->soal[$i]['jawaban_benar']]->id;
+                            $soal->save();
+                        }
                     }
-                }
+                    break;
             }
             DB::commit();
 
@@ -307,7 +326,7 @@ class PenugasanController extends Controller
 
                 $penugasan->save();
 
-                if ($request->jenis != 5) {
+                if ($request->jenis != 5 && $request->jenis != 7) {
                     $soals = $penugasan->soal;
                     for ($i = 0; $i < count($request->soal); $i++) {
                         $soal = $soals[$i];
@@ -402,7 +421,6 @@ class PenugasanController extends Controller
                     }
                 }
 
-                dd($ex);
                 return redirect()->back()->withInput()->with('alert-error', 'Terjadi kesalahan data!');
             }
         } else {
@@ -446,6 +464,7 @@ class PenugasanController extends Controller
             switch ($penugasan->jenis) {
                 case '1':
                 case '2':
+                case '7':
                     return view('panel-admin.tugas.jawaban.igyt', compact('penugasan', 'mahasiswas'));
                 case '6':
                     foreach ($mahasiswas as $mahasiswa) {
@@ -537,6 +556,76 @@ class PenugasanController extends Controller
                     return view('panel-admin.tugas.jawaban.tts-detail', compact('penugasan', 'mahasiswa', 'jawabans', 'menuruns', 'mendatars'));
                 default:
                     abort(400);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function imporNilai(Request $request, $slug)
+    {
+        $penugasan = PenugasanBeta::where('slug', $slug)->first();
+        if ($penugasan) {
+            if ($penugasan->jenis != 3 && $penugasan->jenis != 5 || $penugasan->jenis != 6) {
+                $uploadedExcel = $request->file('nilai_penugasan');
+
+                $reader = new PhpSpreadsheet\Reader\Xlsx();
+                $reader->setReadDataOnly(true);
+                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->slug);
+
+                /** Load $inputFileName to a Spreadsheet Object  **/
+                $spreadsheet = $reader->load($uploadedExcel->getPathName());
+                $spreadsheetArray = $spreadsheet->getActiveSheet()->toArray();
+
+                foreach ($spreadsheetArray[0] as $column_index => $data_key) {
+                    switch ($data_key) {
+                        case 'NIM':
+                            $nim_index = $column_index;
+                            break;
+                        case 'nilai':
+                            $nilai_index = $column_index;
+                            break;
+                    }
+                }
+
+                if (isset($nim_index) && isset($nilai_index)) {
+                    $error_row = null;
+                    try {
+                        DB::beginTransaction();
+                        // database queries here
+                        for ($i = 1; $i < count($spreadsheetArray); $i++) {
+                            $data_row = $spreadsheetArray[$i];
+                            $error_row = $i;
+
+                            $nilaiMahasiswa = PenilaianBeta::where([
+                                'nim' => $data_row[$nim_index],
+                                'id_penugasan' => $penugasan->id
+                            ])->first();
+
+                            if ($nilaiMahasiswa) {
+                                $nilaiMahasiswa->update([
+                                    'nilai' => $data_row[$nilai_index]
+                                ]);
+                            } else {
+                                $nilaiMahasiswa = new PenilaianBeta;
+                                $nilaiMahasiswa->nim = $data_row[$nim_index];
+                                $nilaiMahasiswa->id_penugasan = $penugasan->id;
+                                $nilaiMahasiswa->nilai = $data_row[$nilai_index];
+                                $nilaiMahasiswa->save();
+                            }
+                        }
+                        DB::commit();
+                        return redirect()->back()->with('alert-success', 'Impor nilai berhasil');
+                    } catch (\PDOException $e) {
+                        // Woopsy
+                        DB::rollBack();
+                        return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan! ' . $e->getMessage());
+                    }
+                } else {
+                    return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
+                }
+            } else {
+                abort(500);
             }
         } else {
             abort(404);

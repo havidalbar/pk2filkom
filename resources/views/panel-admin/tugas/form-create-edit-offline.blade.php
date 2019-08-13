@@ -28,7 +28,7 @@
 
                 <!-- This container will become the editable. -->
                 <div id="deskripsi-editor" style="border: 1px solid grey">{!! old('deskripsi') ?
-                    urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
+                    urldecode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
             </div>
             <input id="deskripsi_input" name="deskripsi" type="hidden" required>
             {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
@@ -89,13 +89,20 @@
             {!! $errors->first('waktu_akhir', '<div class="form-control-feedback">:message</div>') !!}
         </div>
     </div>
-    @php
+    <?php
     if (empty($penugasan) || $penugasan->jenis === NULL) {
-    $jenis = 5;
+        switch ($_GET['tipe_soal']) {
+            case 'offline':
+                $jenis = 5;
+                break;
+            case 'abstraksi':
+                $jenis = 7;
+                break;
+        }
     } else {
-    $jenis = $penugasan->jenis;
+        $jenis = $penugasan->jenis;
     }
-    @endphp
+    ?>
     <input name="jenis" type="hidden" value="{{ $jenis ?? '' }}">
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">

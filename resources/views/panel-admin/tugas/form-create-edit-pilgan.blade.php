@@ -28,7 +28,7 @@
 
                 <!-- This container will become the editable. -->
                 <div id="deskripsi-editor" style="border: 1px solid grey">{!! old('deskripsi') ?
-                    urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
+                    urldecode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
             </div>
             <input id="deskripsi_input" name="deskripsi" type="hidden" required>
             {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}

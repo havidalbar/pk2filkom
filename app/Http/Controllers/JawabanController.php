@@ -9,6 +9,7 @@ use App\Http\Requests\SubmitJawabanRequest;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JawabanController extends Controller
 {
@@ -32,7 +33,35 @@ class JawabanController extends Controller
             $now = date('Y-m-d H:i:s');
             if ($now < $penugasan->waktu_mulai) {
                 return redirect()->route('mahasiswa.penugasan.index')
-                    ->with('alert', 'Penugasan belum dimulai');
+                    ->with('alert', 'Penugasan ini belum dimulai');
+            } else if ($now > $penugasan->waktu_akhir) {
+                $expired = true;
+            }
+            if ($penugasan->jenis == 4 || $penugasan->jenis == 6 || $penugasan->jenis == 7) {
+                $firstJawaban = JawabanBeta::where('nim', session('nim'))
+                    ->whereHas('soal', function ($query) use ($penugasan) {
+                        $query->where('id_penugasan', $penugasan->id);
+                    })->orderBy('created_at', 'asc')->first();
+
+                if ($penugasan->batas_waktu && $firstJawaban) {
+                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                    $limit = date('Y-m-d H:i:s', $newtimestamp);
+                    if ($now > $limit) {
+                        if (isset($expired) && $expired) {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Penugasan ini telah berakhir');
+                        } else {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Waktu pengerjaanmu sudah habis');
+                        }
+                    }
+                } else if (isset($expired) && $expired) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Penugasan ini telah berakhir');
+                }
+            } else if (isset($expired) && $expired) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan ini telah berakhir');
             }
             switch ($penugasan->jenis) {
                 case '1':
@@ -43,9 +72,16 @@ class JawabanController extends Controller
                 case '4':
                     return $this->startPilihanGanda($penugasan);
                 case '5':
-                    return $this->getViewPenugasanOffline($penugasan);
+                    abort(404);
                 case '6':
-                    return $this->getViewTTS($penugasan);
+                    return $this->getViewTTS($penugasan, $firstJawaban);
+                case '7':
+                    if ($firstJawaban) {
+                        return redirect()->route('mahasiswa.penugasan.index')
+                            ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                    } else {
+                        return $this->getViewAbstraksi($penugasan);
+                    }
                 default:
                     abort(500);
             }
@@ -72,6 +108,27 @@ class JawabanController extends Controller
             $query->where('id_penugasan', $penugasan->id);
         })->get();
         return view('v_mahasiswa/kumpulLine', compact('penugasan', 'jawabans'));
+    }
+
+    private function getViewAbstraksi($penugasan)
+    {
+        $jawabans = JawabanBeta::where([
+            'nim' => session('nim')
+        ])->whereHas('soal', function ($query) use ($penugasan) {
+            $query->where('id_penugasan', $penugasan->id);
+        })->get();
+
+        $jawabanBidang = $jawabanAbstraksi = '';
+
+        foreach ($jawabans as $jawaban) {
+            if ($penugasan->soal[0]->id == $jawaban->id_soal) {
+                $jawabanBidang = $jawaban->jawaban;
+            } else if ($penugasan->soal[1]->id == $jawaban->id_soal) {
+                $jawabanAbstraksi = $jawaban->jawaban;
+            }
+        }
+
+        return view('v_mahasiswa/pendataanPkmIndividu', compact('penugasan', 'jawabanBidang', 'jawabanAbstraksi'));
     }
 
     private function startPilihanGanda($penugasan)
@@ -141,34 +198,32 @@ class JawabanController extends Controller
         }
     }
 
-    private function getViewPenugasanOffline($penugasan)
-    {
-        return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan'));
-    }
-
-    private function getViewTTS($penugasan)
+    private function getViewTTS($penugasan, $firstJawaban)
     {
         $soalTts = $penugasan->soal;
         $menuruns = [];
         $mendatars = [];
         $jawabans = [];
         $expired = false;
+        $sisaWaktu = 0;
 
         $now = date('Y-m-d H:i:s');
-        if ($now < $penugasan->waktu_mulai || $now > $penugasan->waktu_akhir) {
-            $expired = true;
-        } else {
-            $firstJawaban = JawabanBeta::where('nim', session('nim'))
-                ->whereHas('soal', function ($query) use ($penugasan) {
-                    $query->where('id_penugasan', $penugasan->id);
-                })->orderBy('created_at', 'asc')->first();
-
-            if ($penugasan->batas_waktu && $firstJawaban) {
+        if ($penugasan->batas_waktu) {
+            if ($firstJawaban) {
+                if (!$firstJawaban->updated_at) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                }
                 $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
                 $limit = date('Y-m-d H:i:s', $newtimestamp);
-                if ($now > $limit) {
-                    $expired = true;
-                }
+                $sisaWaktu = strtotime($limit) - strtotime($now);
+            } else {
+                $sisaWaktu = strtotime(
+                    date(
+                        'Y-m-d H:i:s',
+                        strtotime("{$now} + {$penugasan->batas_waktu} minute")
+                    )
+                ) - strtotime($now);
             }
         }
 
@@ -234,7 +289,7 @@ class JawabanController extends Controller
         $mendatars = json_encode($mendatars);
         $jwt = $this->jwt();
 
-        return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns', 'jwt', 'expired'));
+        return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns', 'jwt', 'expired', 'sisaWaktu'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug, $index = null)
@@ -247,22 +302,34 @@ class JawabanController extends Controller
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan belum dimulai');
             } else if ($now > $penugasan->waktu_akhir) {
-                return redirect()->route('mahasiswa.penugasan.index')
-                    ->with('alert', 'Waktu penugasan telah berakhir');
-            } else {
+                $expired = true;
+            }
+            if ($penugasan->jenis == 4 || $penugasan->jenis == 6 || $penugasan->jenis == 7) {
                 $firstJawaban = JawabanBeta::where('nim', session('nim'))
                     ->whereHas('soal', function ($query) use ($penugasan) {
                         $query->where('id_penugasan', $penugasan->id);
                     })->orderBy('created_at', 'asc')->first();
 
                 if ($penugasan->batas_waktu && $firstJawaban) {
-                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                    $toleransiBatasWaktu = $penugasan->batas_waktu + 1;
+                    $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
                     $limit = date('Y-m-d H:i:s', $newtimestamp);
                     if ($now > $limit) {
-                        return redirect()->route('mahasiswa.penugasan.index')
-                            ->with('alert', 'Waktu pengerjaanmu telah habis');
+                        if (isset($expired) && $expired) {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Penugasan ini telah berakhir');
+                        } else {
+                            return redirect()->route('mahasiswa.penugasan.index')
+                                ->with('alert', 'Waktu pengerjaanmu telah habis');
+                        }
                     }
+                } else if (isset($expired) && $expired) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Penugasan ini telah berakhir');
                 }
+            } else if (isset($expired) && $expired) {
+                return redirect()->route('mahasiswa.penugasan.index')
+                    ->with('alert', 'Penugasan ini telah berakhir');
             }
 
             switch ($penugasan->jenis) {
@@ -275,7 +342,24 @@ class JawabanController extends Controller
                 case '6':
                     $nim = session('nim');
                     $this->submitTts($request, $penugasan, $nim);
-                    return redirect()->back()->with('alert', 'Jawaban berhasil disimpan');;
+                    $idSoal = [];
+
+                    foreach ($penugasan->soal as $soal) {
+                        $idSoal[] = $soal->id;
+                    }
+                    DB::table('jawaban_beta')
+                        ->where('nim', $nim)
+                        ->whereIn('id_soal', $idSoal)
+                        ->update(['updated_at' => null]);
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Jawaban berhasil disimpan');
+                case '7':
+                    if ($firstJawaban) {
+                        return redirect()->route('mahasiswa.penugasan.index')
+                            ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                    } else {
+                        return $this->submitAbstraksi($request, $penugasan);
+                    }
                 default:
                     abort(500);
             }
@@ -420,7 +504,7 @@ class JawabanController extends Controller
         ];
         // As you can see we are passing `JWT_SECRET` as the second parameter that will
         // be used to decode the token in the future.
-        return JWT::encode($payload, env('SECRET_TOKEN_KEY'), 'HS256');
+        return JWT::encode($payload, env('SECRET_TOKEN_KEY', 'test-server-simaba'), 'HS256');
     }
 
     public function apiSubmitTts(Request $request, $slug)
@@ -437,7 +521,8 @@ class JawabanController extends Controller
             return response()->json([], 400);
         }
 
-        $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+        $toleransiBatasWaktu = $penugasan->batas_waktu + 1;
+        $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
         $limit = date('Y-m-d H:i:s', $newtimestamp);
         $now = date('Y-m-d H:i:s');
         if ($now > $limit) {
@@ -488,7 +573,7 @@ class JawabanController extends Controller
                     if (empty($request->jawaban[$dataSoal->posisi->x][$i]) || !$request->jawaban[$dataSoal->posisi->x][$i]) {
                         $isiJawaban = $isiJawaban . '_';
                     } else {
-                        $isiJawaban = $isiJawaban . $request->jawaban[$dataSoal->posisi->x][$i][0];
+                        $isiJawaban = $isiJawaban . strtoupper($request->jawaban[$dataSoal->posisi->x][$i][0]);
                     }
                 }
             }
@@ -496,5 +581,36 @@ class JawabanController extends Controller
             $jawabSoal->jawaban = $isiJawaban;
             $jawabSoal->save();
         }
+    }
+
+    private function submitAbstraksi($request, $penugasan)
+    {
+        $submitJawabanBidang = JawabanBeta::where([
+            'nim' => session('nim'),
+            'id_soal' => $penugasan->soal[0]->id
+        ])->first();
+
+        if (!$submitJawabanBidang) {
+            $submitJawabanBidang = new JawabanBeta;
+            $submitJawabanBidang->nim = session('nim');
+            $submitJawabanBidang->id_soal = $penugasan->soal[0]->id;
+        }
+        $submitJawabanBidang->jawaban = $request->bidang;
+        $submitJawabanBidang->save();
+
+        $submitJawabanAbstraksi = JawabanBeta::where([
+            'nim' => session('nim'),
+            'id_soal' => $penugasan->soal[1]->id
+        ])->first();
+
+        if (!$submitJawabanAbstraksi) {
+            $submitJawabanAbstraksi = new JawabanBeta;
+            $submitJawabanAbstraksi->nim = session('nim');
+            $submitJawabanAbstraksi->id_soal = $penugasan->soal[1]->id;
+        }
+        $submitJawabanAbstraksi->jawaban = $request->abstraksi;
+        $submitJawabanAbstraksi->save();
+
+        return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
     }
 }

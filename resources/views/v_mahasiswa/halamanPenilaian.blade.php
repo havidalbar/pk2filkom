@@ -31,6 +31,10 @@
                     <a class="nav-link" id="cluster-tab" data-toggle="tab" href="#cluster" role="tab"
                         aria-controls="cluster" aria-selected="false">CLUSTER</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="penugasan-tab" data-toggle="tab" href="#penugasan" role="tab"
+                        aria-controls="penugasan" aria-selected="false">PENUGASAN</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active table-responsive bg-table" id="semua" role="tabpanel"
@@ -284,25 +288,25 @@
                                 <th scope="row">1</th>
                                 <td>PK2MABA</td>
                                 <td>{{$statusLulusPk2}}</td>
-                            <td>{{$totalPK2}}</td>
+                                <td>{{$totalPK2}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>PKM</td>
-                            <td>{{$statusLulusPKM}}</td>
-                            <td>{{$totalPKM}}</td>
+                                <td>{{$statusLulusPKM}}</td>
+                                <td>{{$totalPKM}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td>STARTUP ACADEMY</td>
-                            <td>{{$statusLulusStartup}}</td>
-                            <td>{{$totalStartup}}</td>
+                                <td>{{$statusLulusStartup}}</td>
+                                <td>{{$totalStartup}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
                                 <td>OSPEK PRODI</td>
-                            <td>{{$statusLulusProdi}}</td>
-                            <td>{{ $mahasiswa->nilai_prodi->nilai_full }}</td>
+                                <td>{{$statusLulusProdi}}</td>
+                                <td>{{ $mahasiswa->nilai_prodi->nilai_full }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -322,8 +326,8 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Presensi Hari Ke-1</td>
-                            <td>{{$statusPk2h1}}</td>
-                            <td>{{$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian1}}</td>
+                                <td>{{$statusPk2h1}}</td>
+                                <td>{{$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian1}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -340,18 +344,18 @@
                             <tr>
                                 <th scope="row">4</th>
                                 <td>Nilai Keaktifan</td>
-                            <td>{{$statusAktifPk2}}</td>
-                            <td>{{$nilaiAktifPk2}}</td>
+                                <td>{{$statusAktifPk2}}</td>
+                                <td>{{$nilaiAktifPk2}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
                                 <td>Pelanggaran</td>
-                            <td>{{$statusPelanggaranPk2}}</td>
-                            <td>{{$nilaiPelanggaranPk2}}</td>
+                                <td>{{$statusPelanggaranPk2}}</td>
+                                <td>{{$nilaiPelanggaranPk2}}</td>
                             </tr>
                             <tr>
                                 <td class="totalPoin" colspan="3">Total Poin</td>
-                            <td>{{$totalPK2}}</td>
+                                <td>{{$totalPK2}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -370,19 +374,19 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Presensi PKM 1</td>
-                            <td>{{$statusPkmh1}}</td>
-                            <td>{{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian6}}</td>
+                                <td>{{$statusPkmh1}}</td>
+                                <td>{{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian6}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>Presensi PKM 2</td>
                                 <td>{{$statusPkmh2}}</td>
-                            <td>{{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian7}}</td>
+                                <td>{{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian7}}</td>
                             </tr>
                             <tr>
-                                    <th scope="row">3</th>
-                                    <td>Presensi PKM 3</td>
-                                    <td>{{$statusPkmh3}}</td>
+                                <th scope="row">3</th>
+                                <td>Presensi PKM 3</td>
+                                <td>{{$statusPkmh3}}</td>
                                 <td>{{$mahasiswa->rekap_nilai_pkm['absensi']->nilai_rangkaian8}}</td>
                             </tr>
                             <tr>
@@ -407,7 +411,7 @@
                                 <th scope="row">7</th>
                                 <td>Nilai Keaktifan</td>
                                 <td>{{$statusAktifPkm}}</td>
-                            <td>{{$nilaiAktifPkm}}</td>
+                                <td>{{$nilaiAktifPkm}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">8</th>
@@ -423,7 +427,7 @@
                             </tr>
                             <tr>
                                 <td class="totalPoin" colspan="3">Total Poin</td>
-                            <td>{{$totalPKM}}</td>
+                                <td>{{$totalPKM}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -478,7 +482,7 @@
                             </tr>
                             <tr>
                                 <td class="totalPoin" colspan="3">Total Poin</td>
-                            <td>{{$totalStartup}}</td>
+                                <td>{{$totalStartup}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -517,6 +521,27 @@
                                 <td class="totalPoin" colspan="3">Total Poin</td>
                                 <td>0</td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade table-responsive bg-table" id="penugasan" role="tabpanel"
+                    aria-labelledby="penugasan-tab">
+                    <table class="table table-striped table-borderless" style="text-align:center">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Nama Penugasan</th>
+                                <th scope="col">Nilai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($mahasiswa->nilai_penugasan_full as $index => $nilai_penugasan)
+                            <tr>
+                                <th scope="row">{{ $index + 1 }}</th>
+                                <td>{{ $nilai_penugasan['judul_penugasan'] }}</td>
+                                <td>{{ $nilai_penugasan['nilai'] }}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
