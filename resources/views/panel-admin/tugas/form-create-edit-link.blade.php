@@ -106,10 +106,10 @@
             case 'instagram':
                 $jenis = 1;
                 break;
-            case 'line':
+            case 'youtube':
                 $jenis = 2;
                 break;
-            case 'youtube':
+            case 'line':
                 $jenis = 3;
                 break;
             case 'tts':
