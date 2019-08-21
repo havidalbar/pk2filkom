@@ -27,7 +27,8 @@ class Mahasiswa extends Model
         'rekap_nilai_pkm',
         'rekap_nilai_startup',
         'rekap_nilai_prodi',
-        'nilai_penugasan_full'
+        'nilai_penugasan_full',
+        'kelompok_pkm'
     ];
 
     public function getJenisKelaminAttribute($value)
@@ -312,5 +313,27 @@ class Mahasiswa extends Model
             unset($nilai);
         }
         return $nilais;
+    }
+
+    public function kelompok_pkm_ketua()
+    {
+        return $this->hasOne('App\KelompokPKM', 'nim_ketua', 'nim');
+    }
+
+    public function kelompok_pkm_anggota1()
+    {
+        return $this->hasOne('App\KelompokPKM', 'nim_anggota1', 'nim');
+    }
+
+    public function kelompok_pkm_anggota2()
+    {
+        return $this->hasOne('App\KelompokPKM', 'nim_anggota2', 'nim');
+    }
+
+    public function getKelompokPkmAttribute()
+    {
+        return $this->kelompok_pkm_ketua
+            ?? $this->kelompok_pkm_anggota1
+            ?? $this->kelompok_pkm_anggota2;
     }
 }

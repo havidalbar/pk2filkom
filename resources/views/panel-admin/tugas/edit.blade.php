@@ -25,9 +25,9 @@
                     @if ($penugasan->jenis === 4)
                     @include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'edit'])
                     @elseif ($penugasan->jenis === 1 || $penugasan->jenis === 2 || $penugasan->jenis === 3 ||
-                    $penugasan->jenis === 6)
+                    $penugasan->jenis === 6 || $penugasan->jenis === 9)
                     @include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'edit'])
-                    @elseif ($penugasan->jenis === 5 || $penugasan->jenis === 7)
+                    @elseif ($penugasan->jenis === 5 || $penugasan->jenis === 7 || $penugasan->jenis === 8)
                     @include('panel-admin.tugas.form-create-edit-offline', ['ketForm' => 'edit'])
                     @endif
                 </form>

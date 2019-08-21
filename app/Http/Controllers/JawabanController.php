@@ -17,10 +17,15 @@ class JawabanController extends Controller
     {
         $now = date('Y-m-d H:i:s');
         $penugasans = PenugasanBeta::where('waktu_tampil', '<', $now)
+            ->whereNotIn('jenis', [8, 9])
             ->withCount(['soal'])
             ->orderBy('waktu_mulai', 'ASC')
             ->orderBy('waktu_akhir', 'ASC')
             ->get();
+
+        foreach ($penugasans as $penugasan) {
+            $penugasan->link_view = route('mahasiswa.penugasan.view-jawaban', ['slug' => $penugasan->slug]);
+        }
 
         return view('v_mahasiswa/penugasan', compact('penugasans'));
     }

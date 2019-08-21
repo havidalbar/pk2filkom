@@ -93,267 +93,270 @@
                     </li>
                     @endif
 
-					<li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click"
-						aria-haspopup="true">
-						<a href="#" class="m-menu__link m-menu__toggle">
-							<span class="m-menu__item-here"></span>
-							<span class="m-menu__link-text">
-								Rekap Kegiatan
-							</span>
-							<i class="m-menu__hor-arrow la la-angle-down"></i>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-						<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
-							<span class="m-menu__arrow m-menu__arrow--adjust"></span>
-							<ul class="m-menu__subnav">
-								<li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
-									data-redirect="true" aria-haspopup="true">
-									<a href="#" class="m-menu__link m-menu__toggle">
-										<i class="m-menu__link-icon la la-list-alt"></i>
-										<span class="m-menu__link-text">
-											PK2MABA
-										</span>
-										<i class="m-menu__hor-arrow la la-angle-right"></i>
-										<i class="m-menu__ver-arrow la la-angle-right"></i>
-									</a>
-									<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-										<span class="m-menu__arrow"></span>
-										<ul class="m-menu__subnav">
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pk2maba.absensi.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Absensi
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pk2maba.keaktifan.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Keaktifan
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pk2Tugas" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Tugas
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pk2maba.pelanggaran.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Pelanggaran
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pk2maba.total') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Total
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
-									data-redirect="true" aria-haspopup="true">
-									<a href="#" class="m-menu__link m-menu__toggle">
-										<i class="m-menu__link-icon la la-list-alt"></i>
-										<span class="m-menu__link-text">
-											STARTUP ACADEMY
-										</span>
-										<i class="m-menu__hor-arrow la la-angle-right"></i>
-										<i class="m-menu__ver-arrow la la-angle-right"></i>
-									</a>
-									<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-										<span class="m-menu__arrow"></span>
-										<ul class="m-menu__subnav">
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.absensi.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														ABSENSI
-													</span>
+                    <li class="m-menu__item m-menu__item--submenu m-menu__item--rel" data-menu-submenu-toggle="click"
+                        aria-haspopup="true">
+                        <a href="#" class="m-menu__link m-menu__toggle">
+                            <span class="m-menu__item-here"></span>
+                            <span class="m-menu__link-text">
+                                Rekap Kegiatan
+                            </span>
+                            <i class="m-menu__hor-arrow la la-angle-down"></i>
+                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                        </a>
+                        <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                            <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                            <ul class="m-menu__subnav">
+                                <li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
+                                    data-redirect="true" aria-haspopup="true">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
+                                        <i class="m-menu__link-icon la la-list-alt"></i>
+                                        <span class="m-menu__link-text">
+                                            PK2MABA
+                                        </span>
+                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
+                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                    </a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pk2maba.absensi.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Absensi
+                                                    </span>
                                                 </a>
                                             </li>
                                             <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.absensi.open-house') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														ABSENSI OPEN HOUSE
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.keaktifan.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														KEAKTIFAN
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.tugas.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														TUGAS
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.tugas.deep-talk') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														TUGAS DEEP TALK
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.tugas.filkom-tv') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														TUGAS FILKOM TV
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.pelanggaran.index') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Pelanggaran
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.startup.total') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Total
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
-									data-redirect="true" aria-haspopup="true">
-									<a href="#" class="m-menu__link m-menu__toggle">
-										<i class="m-menu__link-icon la la-list-alt"></i>
-										<span class="m-menu__link-text">
-											PK2M TOUR
-										</span>
-										<i class="m-menu__hor-arrow la la-angle-right"></i>
-										<i class="m-menu__ver-arrow la la-angle-right"></i>
-									</a>
-									<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-										<span class="m-menu__arrow"></span>
-										<ul class="m-menu__subnav">
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pkm.absensi.index') }}" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														ABSENSI
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pkm.keaktifan.index') }}" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														KEAKTIFAN
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmKelompok" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														KELOMPOK
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmTugas" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														TUGAS
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="/pkmTugasAbstraksi" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														TUGAS ABSTRAKSI
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.pkm.pelanggaran.index') }}" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														PELANGGARAN
-													</span>
-												</a>
-											</li>
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ url('/panel/kegiatan/pkm/total') }}"
-													class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														Total
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
-									data-redirect="true" aria-haspopup="true">
-									<a href="#" class="m-menu__link m-menu__toggle">
-										<i class="m-menu__link-icon la la-list-alt"></i>
-										<span class="m-menu__link-text">
-											TINGKAT PRODI
-										</span>
-										<i class="m-menu__hor-arrow la la-angle-right"></i>
-										<i class="m-menu__ver-arrow la la-angle-right"></i>
-									</a>
-									<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
-										<span class="m-menu__arrow"></span>
-										<ul class="m-menu__subnav">
-											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-												<a href="{{ route('panel.kegiatan.prodi.index') }}" class="m-menu__link">
-													<i class="m-menu__link-icon la la-file-text-o"></i>
-													<span class="m-menu__link-text">
-														FINAL
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</li>
+                                                <a href="{{ route('panel.kegiatan.pk2maba.keaktifan.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Keaktifan
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="/pk2Tugas" class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Tugas
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pk2maba.pelanggaran.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Pelanggaran
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pk2maba.total') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Total
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
+                                    data-redirect="true" aria-haspopup="true">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
+                                        <i class="m-menu__link-icon la la-list-alt"></i>
+                                        <span class="m-menu__link-text">
+                                            STARTUP ACADEMY
+                                        </span>
+                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
+                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                    </a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.absensi.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        ABSENSI
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.absensi.open-house') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        ABSENSI OPEN HOUSE
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.keaktifan.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        KEAKTIFAN
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        TUGAS
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.deep-talk') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        TUGAS DEEP TALK
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.tugas.filkom-tv') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        TUGAS FILKOM TV
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.pelanggaran.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Pelanggaran
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.startup.total') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Total
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
+                                    data-redirect="true" aria-haspopup="true">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
+                                        <i class="m-menu__link-icon la la-list-alt"></i>
+                                        <span class="m-menu__link-text">
+                                            PK2M TOUR
+                                        </span>
+                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
+                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                    </a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pkm.absensi.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        ABSENSI
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pkm.keaktifan.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        KEAKTIFAN
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="/pkmKelompok" class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        KELOMPOK
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="/pkmTugas" class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        TUGAS
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="/pkmTugasAbstraksi" class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        TUGAS ABSTRAKSI
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.pkm.pelanggaran.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        PELANGGARAN
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ url('/panel/kegiatan/pkm/total') }}" class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        Total
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="m-menu__item m-menu__item--submenu" data-menu-submenu-toggle="hover"
+                                    data-redirect="true" aria-haspopup="true">
+                                    <a href="#" class="m-menu__link m-menu__toggle">
+                                        <i class="m-menu__link-icon la la-list-alt"></i>
+                                        <span class="m-menu__link-text">
+                                            TINGKAT PRODI
+                                        </span>
+                                        <i class="m-menu__hor-arrow la la-angle-right"></i>
+                                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                    </a>
+                                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right">
+                                        <span class="m-menu__arrow"></span>
+                                        <ul class="m-menu__subnav">
+                                            <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                                <a href="{{ route('panel.kegiatan.prodi.index') }}"
+                                                    class="m-menu__link">
+                                                    <i class="m-menu__link-icon la la-file-text-o"></i>
+                                                    <span class="m-menu__link-text">
+                                                        FINAL
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                     <li class="m-menu__item m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"
                         data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
@@ -403,6 +406,14 @@
                                         <i class="m-menu__link-icon flaticon-chat-1"></i>
                                         <span class="m-menu__link-text">
                                             PENUGASAN
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+                                    <a href="{{ route('panel.penugasan-kelompok-pkm.index') }}" class="m-menu__link">
+                                        <i class="m-menu__link-icon flaticon-chat-1"></i>
+                                        <span class="m-menu__link-text">
+                                            PENUGASAN KELOMPOK PKM
                                         </span>
                                     </a>
                                 </li>

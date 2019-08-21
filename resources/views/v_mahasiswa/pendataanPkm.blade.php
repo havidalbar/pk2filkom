@@ -7,20 +7,21 @@
 <!-- endNavbar atas -->
 <div class="jumbotron jumbotron-fluid bg-kumpul-video-ig">
     <div class="container">
-        <h1 class="titleKumpulVideo">KRS PKM</h1>
+        <h1 class="titleKumpulVideo">{{ $penugasan->judul }}</h1>
         <div class="garisPendataanPkm"></div>
         <div class="container bg-pendataan-pkm">
-            <form class="form-pendataan-pkm" method="GET">
+            <form class="form-pendataan-pkm" method="POST">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <div class="dropdown">
-                        <input id="pilih-bidang-pkm" type="hidden" name="bidang_pkm" required>
+                        <input id="pilih-bidang-pkm" type="hidden" name="bidang" required>
                         <button class="btn btn-block btn-dropdown-pkm dropdown-toggle" type="button"
                             id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Pilih Bidang PKM
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdown-bidang-pkm">
                             <li>
-                                <div data-value="pkm_gt">
+                                <div data-value="GT">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-GT</div>
@@ -34,7 +35,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_kc">
+                                <div data-value="KC">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-KC</div>
@@ -48,7 +49,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_t">
+                                <div data-value="T">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-T</div>
@@ -62,7 +63,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_m">
+                                <div data-value="M">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-M</div>
@@ -76,7 +77,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_k">
+                                <div data-value="K">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-K</div>
@@ -90,7 +91,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_pe">
+                                <div data-value="PE">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-PE</div>
@@ -104,7 +105,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_psh">
+                                <div data-value="PSH">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-PSH</div>
@@ -118,7 +119,7 @@
                             </li>
                             <div class="dropdown-divider"></div>
                             <li>
-                                <div data-value="pkm_gfk">
+                                <div data-value="GFK">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
                                             <div class="nama-bidang-pkm">PKM-GFK</div>
@@ -139,19 +140,21 @@
                     <div class="judul-text">Data Anggota</div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">KETUA TIM</div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Nama</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nama_ketua" placeholder="Masukkan Nama Ketua Tim">
+                                <input type="text" class="form-control" name="nama_ketua"
+                                    placeholder="Masukkan Nama Ketua Tim">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
-                            <label class="col-md-2">Nim</label>
+                            <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_ketua" placeholder="Masukkan Nim Ketua Tim">
+                                <input type="text" class="form-control" name="nim_ketua"
+                                    placeholder="Masukkan NIM Ketua Tim">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Prodi</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
@@ -185,23 +188,25 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">ANGGOTA 1</div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Nama</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nama_anggota_1" placeholder="Masukkan nama anggota 1">
+                                <input type="text" class="form-control" name="nama_anggota_1"
+                                    placeholder="Masukkan nama anggota 1">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
-                            <label class="col-md-2">Nim</label>
+                            <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_anggota_1" placeholder="Masukkan nim anggota 1">
+                                <input type="text" class="form-control" name="nim_anggota1"
+                                    placeholder="Masukkan NIM anggota 1">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Prodi</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
@@ -235,23 +240,25 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">ANGGOTA 2</div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Nama</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nama_anggota_2" placeholder="Masukkan nama anggota 2">
+                                <input type="text" class="form-control" name="nama_anggota_2"
+                                    placeholder="Masukkan nama anggota 2">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group row">
-                            <label class="col-md-2">Nim</label>
+                            <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_anggota_2" placeholder="Masukkan nim anggota 2">
+                                <input type="text" class="form-control" name="nim_anggota2"
+                                    placeholder="Masukkan NIM anggota 2">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label class="col-md-2">Prodi</label>
                             <div class="col-md-10">
                                 <div class="dropdown">
@@ -285,16 +292,17 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="divider-pendataan-pkm"></div>
                 <div class="abstraksi-pkm">
-                    <div class="judul-text">Abstraksi PKM</div> 
-                    <textarea class="textarea-abstraksi" name="abstraksi" placeholder="Masukkan abstraksi PKM"></textarea>                   
+                    <div class="judul-text">Abstraksi PKM</div>
+                    <textarea class="textarea-abstraksi" name="abstraksi"
+                        placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') }}</textarea>
                 </div>
                 <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-submit-pkm">Submit</button>
+                    <button type="submit" class="btn btn-submit-pkm">Submit</button>
                 </div>
             </form>
         </div>

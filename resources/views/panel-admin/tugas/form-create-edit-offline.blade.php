@@ -98,6 +98,9 @@
             case 'abstraksi':
                 $jenis = 7;
                 break;
+            case 'abstraksi-kelompok':
+                $jenis = 8;
+                break;
         }
     } else {
         $jenis = $penugasan->jenis;

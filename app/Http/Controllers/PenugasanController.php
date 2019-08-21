@@ -22,7 +22,7 @@ class PenugasanController extends Controller
      */
     public function index()
     {
-        $penugasans = PenugasanBeta::withCount(['soal'])->get();
+        $penugasans = PenugasanBeta::whereNotIn('jenis', [8, 9])->withCount(['soal'])->get();
         return view('panel-admin.tugas.index', compact('penugasans'));
     }
 
@@ -123,6 +123,13 @@ class PenugasanController extends Controller
                     $soalAbstraksi->index = 1;
                     $soalAbstraksi->save();
                     break;
+                case 8:
+                    $soalAbstraksi = new PenugasanSoalBeta;
+                    $soalAbstraksi->id_penugasan = $penugasan->id;
+                    $soalAbstraksi->soal = 'Abstraksi PKM Kelompok';
+                    $soalAbstraksi->index = 0;
+                    $soalAbstraksi->save();
+                    break;
                 default:
                     for ($i = 0; $i < count($request->soal); $i++) {
                         $soal = new PenugasanSoalBeta;
@@ -212,7 +219,8 @@ class PenugasanController extends Controller
             }
             DB::commit();
 
-            return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil dibuat');
+            return redirect()->route('panel.index')
+                ->with('alert-success', 'Penugasan berhasil dibuat');
         } catch (\Exception $ex) {
             DB::rollBack();
 
@@ -326,7 +334,7 @@ class PenugasanController extends Controller
 
                 $penugasan->save();
 
-                if ($request->jenis != 5 && $request->jenis != 7) {
+                if ($request->jenis != 5 && $request->jenis != 7 && $request->jenis != 8) {
                     $soals = $penugasan->soal;
                     for ($i = 0; $i < count($request->soal); $i++) {
                         $soal = $soals[$i];
@@ -411,7 +419,8 @@ class PenugasanController extends Controller
                 }
                 DB::commit();
 
-                return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil diubah');
+                return redirect()->route('panel.index')
+                    ->with('alert-success', 'Penugasan berhasil diubah');
             } catch (\Exception $ex) {
                 DB::rollBack();
 
@@ -441,7 +450,8 @@ class PenugasanController extends Controller
         if ($penugasan) {
             $penugasan->delete();
 
-            return redirect()->route('panel.penugasan.index')->with('alert-success', 'Penugasan berhasil dihapus');
+            return redirect()->route('panel.index')
+                ->with('alert-success', 'Penugasan berhasil dihapus');
         } else {
             abort(404);
         }

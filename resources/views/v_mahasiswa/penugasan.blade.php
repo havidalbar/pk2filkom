@@ -39,8 +39,7 @@
                                 <div>{!! $penugasan->deskripsi !!}</div>
                                 @if ($penugasan->jenis != 5)
                                 <div class="d-flex justify-content-end">
-                                    <a class="btn btn-submit"
-                                        href="{{ route('mahasiswa.penugasan.view-jawaban', ['slug' => $penugasan->slug]) }}">MULAI</a>
+                                    <a class="btn btn-submit" href="{{ $penugasan->link_view }}">MULAI</a>
                                 </div>
                                 @endif
                             </div>
@@ -48,7 +47,7 @@
                     </div>
                 </div>
                 @else
-                <a href="{{ route('mahasiswa.penugasan.view-jawaban', ['slug' => $penugasan->slug]) }}">
+                <a href="{{ $penugasan->link_view }}">
                     <div class="item-penugasan">
                         <div class="nama-tugas">{{ $penugasan->judul }}</div>
                         <div class="row">

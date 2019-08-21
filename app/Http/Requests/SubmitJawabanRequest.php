@@ -58,6 +58,7 @@ class SubmitJawabanRequest extends FormRequest
             case 1:
             case 2:
             case 3:
+            case 9:
                 return [
                     'jawaban' => 'required|array|size:' . $penugasan->soal_count,
                     'jawaban.*.id' => 'required|string|size:36',
@@ -67,6 +68,14 @@ class SubmitJawabanRequest extends FormRequest
                 return [];
             case 7:
                 return [
+                    'bidang' => 'required|string|in:GFK,GT,K,KC,M,PE,PSH,T',
+                    'abstraksi' => 'required|string|min:100|max:10000',
+                ];
+            case 8:
+                return [
+                    'nim_ketua' => 'required|size:15',
+                    'nim_anggota1' => 'required|size:15',
+                    'nim_anggota2' => 'required|size:15',
                     'bidang' => 'required|string|in:GFK,GT,K,KC,M,PE,PSH,T',
                     'abstraksi' => 'required|string|min:100|max:10000',
                 ];

@@ -104,6 +104,9 @@
             case 'tts':
                 $jenis = 6;
                 break;
+            case 'link-umum-kelompok':
+                $jenis = 9;
+                break;
         }
     } else {
         $jenis = $penugasan->jenis;
