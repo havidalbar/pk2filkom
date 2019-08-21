@@ -4,6 +4,17 @@
             Form {{ $ketForm }} data tugas.
         </div>
     </div>
+    @if (isset($penugasan) && $penugasan && $penugasan->id)
+    <div class="form-group m-form__group row align-items-center">
+        <label for="kode_penugasan" class="col-2 col-form-label">
+            Kode Penugasan
+        </label>
+        <div class="col-10">
+            <input id="kode_penugasan" class="form-control m-input" type="text" required disabled
+                value="{{ $penugasan->id }}">
+        </div>
+    </div>
+    @endif
     <div class="form-group m-form__group row align-items-center {{ $errors->has('judul') ? 'has-danger' : '' }}">
         <label for="judul_tugas" class="col-2 col-form-label">
             Judul Tugas
@@ -46,7 +57,7 @@
 			    .catch(error => {
 			    	console.error(error);
                 });
-            
+
             function submitForm() {
                 $('#deskripsi_input').val(encodeURI($('#deskripsi-editor').html()));
                 $('#submitter').click();

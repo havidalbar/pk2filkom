@@ -582,7 +582,7 @@ class PenugasanController extends Controller
 
                 $reader = new PhpSpreadsheet\Reader\Xlsx();
                 $reader->setReadDataOnly(true);
-                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->slug);
+                $reader->setLoadSheetsOnly('nilai_penugasan_' . $penugasan->id);
 
                 /** Load $inputFileName to a Spreadsheet Object  **/
                 $spreadsheet = $reader->load($uploadedExcel->getPathName());
@@ -614,9 +614,8 @@ class PenugasanController extends Controller
                             ])->first();
 
                             if ($nilaiMahasiswa) {
-                                $nilaiMahasiswa->update([
-                                    'nilai' => $data_row[$nilai_index]
-                                ]);
+                                $nilaiMahasiswa->nilai = $data_row[$nilai_index];
+                                $nilaiMahasiswa->save();
                             } else {
                                 $nilaiMahasiswa = new PenilaianBeta;
                                 $nilaiMahasiswa->nim = $data_row[$nim_index];
