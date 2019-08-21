@@ -53,25 +53,15 @@ class JawabanKelompokPKMController extends Controller
 
     private function getViewAbstraksiKelompok($penugasan)
     {
-        $jawabans = JawabanKelompokPKMBeta::whereHas('kelompok', function ($query) {
+        $jawabanAbstraksi = JawabanKelompokPKMBeta::whereHas('kelompok', function ($query) {
             return $query->where('nim_ketua', session('nim'))
                 ->orWhere('nim_anggota1', session('nim'))
                 ->orWhere('nim_anggota2', session('nim'));
         })->whereHas('soal', function ($query) use ($penugasan) {
             $query->where('id_penugasan', $penugasan->id);
-        })->get();
+        })->first();
 
-        $jawabanBidang = $jawabanAbstraksi = '';
-
-        foreach ($jawabans as $jawaban) {
-            if ($penugasan->soal[0]->id == $jawaban->id_soal) {
-                $jawabanBidang = $jawaban->jawaban;
-            } else if ($penugasan->soal[1]->id == $jawaban->id_soal) {
-                $jawabanAbstraksi = $jawaban->jawaban;
-            }
-        }
-
-        return view('v_mahasiswa/pendataanPkm', compact('penugasan', 'jawabanBidang', 'jawabanAbstraksi'));
+        return view('v_mahasiswa/pendataanPkm', compact('penugasan', 'jawabanAbstraksi'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug)
@@ -192,7 +182,7 @@ class JawabanKelompokPKMController extends Controller
             $submitJawabanAbstraksi->save();
             DB::commit();
 
-            return redirect()->route('mahasiswa.penugasan-kelompok-pkm.index')
+            return redirect()->back()
                 ->with('alert', 'Pendataan dan abstraksi berhasil disimpan');
         } catch (\Exception $e) {
             DB::rollBack();
