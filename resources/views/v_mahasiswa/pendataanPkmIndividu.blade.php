@@ -147,6 +147,11 @@
                     <button type="submit" class="btn btn-submit-pkm">Submit</button>
                 </div>
             </form>
+            <div class="d-flex justify-content-center">
+                <div class="detail-tugas">
+                    {!! $penugasan->deskripsi !!}
+                </div>
+            </div>
         </div>
     </div>
 </div>
