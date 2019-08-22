@@ -14,10 +14,14 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="dropdown">
-                        <input id="pilih-bidang-pkm" type="hidden" name="bidang" required>
+                        <input id="pilih-bidang-pkm" type="hidden" name="bidang" value="{{ old('bidang') ?? $jawabanAbstraksi->jawaban ?? '' }}" required>
                         <button class="btn btn-block btn-dropdown-pkm dropdown-toggle" type="button"
                             id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pilih Bidang PKM
+                            @if (($jawabanAbstraksi && $jawabanAbstraksi->jawaban) || old('bidang'))
+                                {{'PKM-'.(old('bidang') ?? $jawabanAbstraksi->jawaban)}}
+                            @else
+                                {!! 'Pilih Bidang PKM' !!}
+                            @endif                            
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdown-bidang-pkm">
                             <li>
@@ -28,7 +32,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Gagasan Tertulis</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 45 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 45 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +46,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Karsa Cipta</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 35 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 35 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +60,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Teknologi</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 35 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 35 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -70,7 +74,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Pengabdian Masyarakat</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 35 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 35 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +88,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Kewirausahaan</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 35 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 35 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +102,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Penelitian Eksakta</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 25 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 25 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +116,7 @@
                                             <div class="deskripsi-bidang-pkm">PKM-Penelitian Sosial Humaniora</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 25 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 25 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +131,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Kuota : 15 tim</div>
+                                            <!-- <div class="kuota-bidang-pkm">Kuota : 15 tim</div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +145,7 @@
                     <div class="judul-text">Abstraksi PKM</div>
                     <textarea class="textarea-abstraksi" name="abstraksi"
                         placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanAbstraksi }}</textarea>
-                    {!! $errors->first('abstraksi','<div>:message</div>') !!}
+                    {!! $errors->first('abstraksi','<div class="pkm-error">:message</div>') !!}
                 </div>
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn btn-submit-pkm">Submit</button>

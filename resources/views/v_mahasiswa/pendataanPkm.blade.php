@@ -14,10 +14,16 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="dropdown">
-                        <input id="pilih-bidang-pkm" type="hidden" name="bidang" required>
+                        <input id="pilih-bidang-pkm" type="hidden" name="bidang"
+                            value="{{ old('bidang') ??  $jawabanAbstraksi->kelompok->bidang ?? '' }}" required>
                         <button class="btn btn-block btn-dropdown-pkm dropdown-toggle" type="button"
-                            id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pilih Bidang PKM
+                            id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            disabled={{$jawabanAbstraksi ? true : false}}>
+                            @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
+                            {{'PKM-'.(old('bidang') ?? $jawabanAbstraksi->kelompok->bidang)}}
+                            @else
+                            {!! 'Pilih Bidang PKM' !!}
+                            @endif
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdown-bidang-pkm">
                             <li>
@@ -151,7 +157,9 @@
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" name="nim_ketua"
-                                    placeholder="Masukkan NIM Ketua Tim">
+                                    placeholder="Masukkan NIM Ketua Tim"
+                                    value="{{ old('nim_ketua') ??  $jawabanAbstraksi->kelompok->ketua->nim ?? '' }}"
+                                    disabled={{$jawabanAbstraksi ? true : false}}>
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -203,7 +211,9 @@
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" name="nim_anggota1"
-                                    placeholder="Masukkan NIM anggota 1">
+                                    placeholder="Masukkan NIM anggota 1"
+                                    value="{{ old('nim_anggota1') ??  $jawabanAbstraksi->kelompok->anggota1->nim ?? '' }}"
+                                    disabled={{$jawabanAbstraksi ? true : false}}>
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -255,7 +265,9 @@
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" name="nim_anggota2"
-                                    placeholder="Masukkan NIM anggota 2">
+                                    placeholder="Masukkan NIM anggota 2"
+                                    value="{{ old('nim_anggota2') ??  $jawabanAbstraksi->kelompok->anggota2->nim ?? '' }}"
+                                    disabled={{$jawabanAbstraksi ? true : false}}>
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -298,13 +310,22 @@
                 <div class="divider-pendataan-pkm"></div>
                 <div class="abstraksi-pkm">
                     <div class="judul-text">Abstraksi PKM</div>
-                    <textarea class="textarea-abstraksi" name="abstraksi"
-                        placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') }}</textarea>
+                    <textarea class="textarea-abstraksi" name="abstraksi" placeholder="Masukkan abstraksi PKM"
+                        disabled={{$jawabanAbstraksi ? true : false}}>{{ old('abstraksi') ?? $jawabanAbstraksi->jawaban }}</textarea>
                 </div>
                 <div class="d-flex justify-content-center">
+                    @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
+                    <a href="{{route('mahasiswa.penugasan-kelompok-pkm.index')}}" class="btn btn-submit-pkm">Kembali</a>
+                    @else
                     <button type="submit" class="btn btn-submit-pkm">Submit</button>
+                    @endif
                 </div>
             </form>
+            <div class="d-flex justify-content-center">
+                <div class="detail-tugas">
+                    {!! $penugasan->deskripsi !!}
+                </div>
+            </div>
         </div>
     </div>
 </div>
