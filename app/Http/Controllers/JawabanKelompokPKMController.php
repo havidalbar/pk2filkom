@@ -61,7 +61,9 @@ class JawabanKelompokPKMController extends Controller
             $query->where('id_penugasan', $penugasan->id);
         })->first();
 
-        return view('v_mahasiswa/pendataanPkm', compact('penugasan', 'jawabanAbstraksi'));
+        $bidangs = Bidang::all();
+
+        return view('v_mahasiswa/pendataanPkm', compact('penugasan', 'jawabanAbstraksi', 'bidangs'));
     }
 
     public function submitJawaban(SubmitJawabanRequest $request, $slug)
