@@ -4112,6 +4112,18 @@ input::-webkit-inner-spin-button {
     padding: 16px 20px ;
     margin-top: 20px;
 }
+.form-pendataan-pkm .link-kumpul{    
+    margin: 12px 0;    
+}
+.form-pendataan-pkm .link-kumpul .judul-text{    
+    color:white;
+    text-align: center;
+    font-size: 32px;
+}
+.form-pendataan-pkm .link-kumpul input{        
+    padding: 0 16px;
+    margin: 20px 0 36px 0;
+}
 .form-pendataan-pkm .btn-submit-pkm {    
     font-family: "Esphimere-SemiBold";
     font-size: 20px;

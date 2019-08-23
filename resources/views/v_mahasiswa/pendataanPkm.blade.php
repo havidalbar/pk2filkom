@@ -5,6 +5,17 @@
 <!-- Navbar atas -->
 @include('layouts.header')
 <!-- endNavbar atas -->
+@section('js')
+<script>
+$(document).ready(function() {
+    if ("{{$jawabanAbstraksi}}") {
+        $(".set-disable").attr("disabled", true);
+    } else {
+        $(".set-disable").removeAttr("disabled");
+    }
+});
+</script>
+@endsection
 <div class="jumbotron jumbotron-fluid bg-kumpul-video-ig">
     <div class="container">
         <h1 class="titleKumpulVideo">{{ $penugasan->judul }}</h1>
@@ -16,9 +27,8 @@
                     <div class="dropdown">
                         <input id="pilih-bidang-pkm" type="hidden" name="bidang"
                             value="{{ old('bidang') ??  $jawabanAbstraksi->kelompok->bidang ?? '' }}" required>
-                        <button class="btn btn-block btn-dropdown-pkm dropdown-toggle" type="button"
-                            id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            disabled={{$jawabanAbstraksi ? true : false}}>
+                        <button class="btn btn-block btn-dropdown-pkm dropdown-toggle set-disable" type="button"
+                            id="dropdown-bidang-pkm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
                             {{'PKM-'.(old('bidang') ?? $jawabanAbstraksi->kelompok->bidang)}}
                             @else
@@ -26,118 +36,23 @@
                             @endif
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdown-bidang-pkm">
+                            @foreach ($bidangs as $dataBidang)
                             <li>
-                                <div data-value="GT">
+                                <div data-value="{{$dataBidang->bidang}}">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-GT</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Gagasan Tertulis</div>
+                                            <div class="nama-bidang-pkm">PKM-{{$dataBidang->bidang}}</div>
+                                            <div class="deskripsi-bidang-pkm">PKM-{{$dataBidang->panjang}}</div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 45 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="KC">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-KC</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Karsa Cipta</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 35 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="T">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-T</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Teknologi</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 35 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="M">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-M</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Pengabdian Masyarakat</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 35 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="K">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-K</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Kewirausahaan</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 35 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="PE">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-PE</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Penelitian Eksakta</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 25 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="PSH">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-PSH</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Penelitian Sosial Humaniora</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 25 tim</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <li>
-                                <div data-value="GFK">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-md-6">
-                                            <div class="nama-bidang-pkm">PKM-GFK</div>
-                                            <div class="deskripsi-bidang-pkm">PKM-Gagasan Futuristik Konstruktif
+                                            <div class="kuota-bidang-pkm">Sisa Kuota : {{$dataBidang->sisa_kuota}} tim
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="kuota-bidang-pkm">Sisa Kuota : 15 tim</div>
-                                        </div>
                                     </div>
                                 </div>
                             </li>
+                            <div class="dropdown-divider"></div>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -156,10 +71,9 @@
                         <div class="form-group row">
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_ketua"
+                                <input type="text" class="form-control set-disable" name="nim_ketua"
                                     placeholder="Masukkan NIM Ketua Tim"
-                                    value="{{ old('nim_ketua') ??  $jawabanAbstraksi->kelompok->ketua->nim ?? '' }}"
-                                    disabled={{$jawabanAbstraksi ? true : false}}>
+                                    value="{{ old('nim_ketua') ??  $jawabanAbstraksi->kelompok->ketua->nim ?? '' }}">
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -210,10 +124,9 @@
                         <div class="form-group row">
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_anggota1"
+                                <input type="text" class="form-control set-disable" name="nim_anggota1"
                                     placeholder="Masukkan NIM anggota 1"
-                                    value="{{ old('nim_anggota1') ??  $jawabanAbstraksi->kelompok->anggota1->nim ?? '' }}"
-                                    disabled={{$jawabanAbstraksi ? true : false}}>
+                                    value="{{ old('nim_anggota1') ??  $jawabanAbstraksi->kelompok->anggota1->nim ?? '' }}">
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -264,10 +177,9 @@
                         <div class="form-group row">
                             <label class="col-md-2">NIM</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="nim_anggota2"
+                                <input type="text" class="form-control set-disable" name="nim_anggota2"
                                     placeholder="Masukkan NIM anggota 2"
-                                    value="{{ old('nim_anggota2') ??  $jawabanAbstraksi->kelompok->anggota2->nim ?? '' }}"
-                                    disabled={{$jawabanAbstraksi ? true : false}}>
+                                    value="{{ old('nim_anggota2') ??  $jawabanAbstraksi->kelompok->anggota2->nim ?? '' }}">
                             </div>
                         </div>
                         {{-- <div class="form-group row">
@@ -310,8 +222,13 @@
                 <div class="divider-pendataan-pkm"></div>
                 <div class="abstraksi-pkm">
                     <div class="judul-text">Abstraksi PKM</div>
-                    <textarea class="textarea-abstraksi" name="abstraksi" placeholder="Masukkan abstraksi PKM"
-                        disabled={{$jawabanAbstraksi ? true : false}}>{{ old('abstraksi') ?? $jawabanAbstraksi->jawaban }}</textarea>
+                    <textarea class="textarea-abstraksi set-disable" name="abstraksi"
+                        placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanAbstraksi->jawaban ?? '' }}</textarea>
+                </div>
+                <div class="link-kumpul">
+                    <div class="judul-text">Link Kumpul PPT</div>
+                    <input type="text" class="form-control set-disable" name="link_ppt"
+                        placeholder="Masukkan Link Google Drive" value="{{ old('link_ppt') ?? '' }}">
                 </div>
                 <div class="d-flex justify-content-center">
                     @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
