@@ -73,7 +73,7 @@
         @foreach ($berita->komentar as $komentar)
         @if (!$komentar->komentar_ke)
         <div class="media commentBerita py-2 px-3">
-            <img src="https://api.adorable.io/avatars/400/random-{{$komentar->id}}"
+            <img src="https://api.adorable.io/avatars/400/random-{{$komentar->username_admin ?? $komentar->pengirim_mahasiswa->nama ?? ''}}"
                 class="img commentImg align-self-start mr-3" />
             <div class="media-body">
                 <div class="media-title">
@@ -183,7 +183,7 @@
             @foreach ($berita->komentar as $reply)
             @if ($reply->komentar_ke == $komentar->id)
             <div class="media commentBerita replayComment py-2 px-3">
-                <img src="https://api.adorable.io/avatars/400/random-{{$reply->id}}"
+                <img src="https://api.adorable.io/avatars/400/random-{{$reply->username_admin ?? $reply->pengirim_mahasiswa->nama ?? ''}}"
                     class="img commentImg align-self-start mr-3" />
                 <div class="media-body">
                     <div class="media-title">

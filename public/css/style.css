@@ -1264,7 +1264,13 @@ ul.slick-dots li button{
     height: 64px;
     border: 1px solid #dee1e6;
 }
-.btn.btn-comment {
+.actionComment .btn.btn-comment {
+  color: white;
+  background-color: #f1c538;
+  font-family: "Esphimere-semiBold";
+  align-self: center;  
+}
+textarea + .input-group-append .btn.btn-comment {
   color: white;
   background-color: #f1c538;
   font-family: "Esphimere-semiBold";
