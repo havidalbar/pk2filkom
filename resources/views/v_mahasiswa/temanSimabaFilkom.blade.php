@@ -35,6 +35,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -68,7 +69,7 @@
             <div class="text-right sub-title">
                 Ada program studi apa aja sih di filkom?
             </div>
-            <div class="float-right garis-sub-title"></div>            
+            <div class="float-right garis-sub-title"></div>
             <div class="sub-studi">
                 <ul class="nav nav-tabs justify-content-center align-items-center" id="tab-kurikulum" role="tablist">
                     <li class="nav-item">
@@ -568,7 +569,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="kontribusi-tab" data-toggle="tab" href="#kontribusi" role="tab" aria-controls="kontribusi" aria-selected="false">KONTRIBUSI</a>
-                    </li>                    
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" id="ayodev-tab" data-toggle="tab" href="#ayodev" role="tab" aria-controls="ayodev" aria-selected="false">AYODEV</a>
                     </li>
@@ -640,7 +641,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="tab-pane fade" id="ayodev" role="tabpanel" aria-labelledby="ayodev-tab">
                         <div class="col-md-12">
                             <div class="row">

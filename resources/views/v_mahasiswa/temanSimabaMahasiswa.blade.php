@@ -37,6 +37,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -276,7 +277,7 @@
                         kuliah yaa!
                     </div>
                 </div>
-            </div>            
+            </div>
             <div class="row sub-skm sub-poin align-items-center text-left">
                 <div class="col-md-3">
                     <img src="{{asset('img/teman-simaba/mahasiswa/poin.png')}}" class="mx-auto d-block img-skm">
@@ -315,7 +316,7 @@
                         <div class="skm-text-file">Info lengkap nya bisa kamu lihat di panduan SKM pada <a href="{{asset('files/panduan-skm.pdf')}}" target="_blank">link ini</a></div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 </div>
