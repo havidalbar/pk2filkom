@@ -225,11 +225,11 @@ $(document).ready(function() {
                     <textarea class="textarea-abstraksi set-disable" name="abstraksi"
                         placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanAbstraksi->jawaban ?? '' }}</textarea>
                 </div>
-                <div class="link-kumpul">
+                {{-- <div class="link-kumpul">
                     <div class="judul-text">Link Kumpul PPT</div>
                     <input type="text" class="form-control set-disable" name="link_ppt"
                         placeholder="Masukkan Link Google Drive" value="{{ old('link_ppt') ?? '' }}">
-                </div>
+                </div> --}}
                 <div class="d-flex justify-content-center">
                     @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
                     <a href="{{route('mahasiswa.penugasan-kelompok-pkm.index')}}" class="btn btn-submit-pkm">Kembali</a>
