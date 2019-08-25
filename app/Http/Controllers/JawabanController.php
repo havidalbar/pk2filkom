@@ -588,4 +588,20 @@ class JawabanController extends Controller
 
         return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
     }
+
+    public function testDummyPilgan() {
+        $soals = [];
+
+        for ($i = 0; $i < 10; $i++) {
+            $soal = json_decode('{}');
+            $soal->id = $i;
+            $soal->soal = 'Soal ke-' . $i;
+            $soal->pilihan_jawaban = ['A', 'B', 'C', 'D', 'E'];
+
+            $soals[] = $soal;
+        }
+        return response()->json(
+            $soals
+        );
+    }
 }
