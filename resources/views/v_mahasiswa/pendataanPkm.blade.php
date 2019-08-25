@@ -169,7 +169,7 @@
                     <input type="hidden" class="form-control set-disable" name="jawaban[{{ $index }}][id]"
                         value="{{ $soal->id }}">
                     <input type="text" class="form-control set-disable" name="jawaban[{{ $index }}][url]"
-                        placeholder="{{ $soal->soal }}" value="{{ old('link_kumpul') ?? '' }}">
+                        placeholder="{{ $soal->soal }}" value="{{ old('link_kumpul') ?? $jawabanAbstraksi->jawaban ?? '' }}">
                     @foreach ($errors->get('jawaban.' . $index . '*') as $message)
                     <div class="pkm-error">
                         {{ $message[0] }}
