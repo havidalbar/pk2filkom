@@ -42,6 +42,7 @@ class JawabanKelompokPKMController extends Controller
             }
             switch ($penugasan->jenis) {
                 case 8:
+                case 9:
                     return $this->getViewAbstraksiKelompok($penugasan);
                 default:
                     abort(500);

@@ -4144,6 +4144,15 @@ input::-webkit-inner-spin-button {
 
 .pkm-error{
     color: red;
+    font-size: 18px;
+}
+
+.link-deskripsi{
+    margin: 8px 0;
+    font-size: 26px;
+    color: white;
+    color: #e9c538;
+    margin-bottom: 12px
 }
 @media (max-width: 767.98px) {    
     .garisPendataanPkm {
@@ -4169,6 +4178,9 @@ input::-webkit-inner-spin-button {
     .form-pendataan-pkm .dropdown-menu .kuota-bidang-pkm{
         text-align: left;
         font-size: 16px;
+    }
+    .link-deskripsi{
+        font-size: 14px;
     }
 }
 /* Akhir Halaman pendataan kelompok pkm */

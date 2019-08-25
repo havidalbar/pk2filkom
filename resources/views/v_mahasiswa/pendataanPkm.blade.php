@@ -46,8 +46,8 @@ $(document).ready(function() {
                                         </div>
                                         <div class="col-md-6">
                                             <div class="kuota-bidang-pkm">Sisa Kuota : {{$dataBidang->sisa_kuota}} tim
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -56,6 +56,7 @@ $(document).ready(function() {
                         </ul>
                     </div>
                 </div>
+                {!! $errors->first('bidang','<div class="pkm-error">:message</div>') !!}
                 <div class="divider-pendataan-pkm"></div>
                 <div class="data-anggota-pkm">
                     <div class="judul-text">Data Anggota</div>
@@ -111,6 +112,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div> --}}
+                        {!! $errors->first('nim_ketua','<div class="pkm-error">:message</div>') !!}
                     </div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">ANGGOTA 1</div>
@@ -164,6 +166,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div> --}}
+                        {!! $errors->first('nim_ketua','<div class="pkm-error">:message</div>') !!}
                     </div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">ANGGOTA 2</div>
@@ -217,21 +220,32 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div> --}}
+                        {!! $errors->first('nim_ketua','<div class="pkm-error">:message</div>') !!}
                     </div>
                 </div>
                 <div class="divider-pendataan-pkm"></div>
+                @if($penugasan->jenis==8)
                 <div class="abstraksi-pkm">
                     <div class="judul-text">Abstraksi PKM</div>
                     <textarea class="textarea-abstraksi set-disable" name="abstraksi"
                         placeholder="Masukkan abstraksi PKM">{{ old('abstraksi') ?? $jawabanAbstraksi->jawaban ?? '' }}</textarea>
+                        {!! $errors->first('abstraksi','<div class="pkm-error">:message</div>') !!}
                 </div>
-                {{-- <div class="link-kumpul">
-                    <div class="judul-text">Link Kumpul PPT</div>
-                    <input type="text" class="form-control set-disable" name="link_ppt"
-                        placeholder="Masukkan Link Google Drive" value="{{ old('link_ppt') ?? '' }}">
-                </div> --}}
+
+                @elseif($penugasan->jenis==9)
+                <div class="link-kumpul">
+                    <div class="judul-text">Link Kumpul</div>
+                    @foreach ($penugasan->soal as $index => $soal)
+                    <label for="" class="link-deskripsi">
+                        {{ $soal->soal }}
+                    </label>
+                    <input type="text" class="form-control set-disable" name="url[{{ $index }}]"
+                        placeholder="{{ $soal->soal }}" value="{{ old('link_kumpul') ?? '' }}">
+                    @endforeach
+                </div>
+                @endif
                 <div class="d-flex justify-content-center">
-                    @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang) || old('bidang'))
+                    @if (($jawabanAbstraksi && $jawabanAbstraksi->kelompok->bidang))
                     <a href="{{route('mahasiswa.penugasan-kelompok-pkm.index')}}" class="btn btn-submit-pkm">Kembali</a>
                     @else
                     <button type="submit" class="btn btn-submit-pkm">Submit</button>
