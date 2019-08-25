@@ -4119,7 +4119,7 @@ input::-webkit-inner-spin-button {
     margin-top: 20px;
 }
 .form-pendataan-pkm .link-kumpul{    
-    margin: 12px 0;    
+    margin: 24px 0 36px 0;    
 }
 .form-pendataan-pkm .link-kumpul .judul-text{    
     color:white;
@@ -4128,7 +4128,7 @@ input::-webkit-inner-spin-button {
 }
 .form-pendataan-pkm .link-kumpul input{        
     padding: 0 16px;
-    margin: 20px 0 36px 0;
+    margin-bottom: 20px;
 }
 .form-pendataan-pkm .btn-submit-pkm {    
     font-family: "Esphimere-SemiBold";
@@ -4141,18 +4141,15 @@ input::-webkit-inner-spin-button {
 .form-pendataan-pkm .btn-submit-pkm:hover {        
     background-color: #f6cc45;
 }
-
 .pkm-error{
     color: red;
     font-size: 18px;
 }
-
 .link-deskripsi{
-    margin: 8px 0;
+    margin: 12px 0 20px 0;
     font-size: 26px;
     color: white;
-    color: #e9c538;
-    margin-bottom: 12px
+    color: #e9c538;    
 }
 @media (max-width: 767.98px) {    
     .garisPendataanPkm {

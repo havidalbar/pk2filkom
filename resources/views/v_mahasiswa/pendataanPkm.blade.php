@@ -166,7 +166,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div> --}}
-                        {!! $errors->first('nim_ketua','<div class="pkm-error">:message</div>') !!}
+                        {!! $errors->first('nim_anggota1','<div class="pkm-error">:message</div>') !!}
                     </div>
                     <div class="identitas-container">
                         <div class="posisi-anggota">ANGGOTA 2</div>
@@ -220,7 +220,7 @@ $(document).ready(function() {
                                 </div>
                             </div>
                         </div> --}}
-                        {!! $errors->first('nim_ketua','<div class="pkm-error">:message</div>') !!}
+                        {!! $errors->first('nim_anggota2','<div class="pkm-error">:message</div>') !!}
                     </div>
                 </div>
                 <div class="divider-pendataan-pkm"></div>
@@ -241,6 +241,8 @@ $(document).ready(function() {
                     </label>
                     <input type="text" class="form-control set-disable" name="url[{{ $index }}]"
                         placeholder="{{ $soal->soal }}" value="{{ old('link_kumpul') ?? '' }}">
+                    <!-- {!! $errors->first('url[{{ $index }}]','<div class="pkm-error">:message</div>') !!} -->
+                    <div class="pkm-error">Cek error</div>
                     @endforeach
                 </div>
                 @endif
