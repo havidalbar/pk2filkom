@@ -24,9 +24,9 @@ class SubmitJawabanRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Data jawaban tidak valid',
-            'string' => 'Data jawaban tidak valid',
-            'size' => 'Data jawaban tidak valid',
+            'required' => 'Jawaban tidak valid',
+            'string' => 'Jawaban tidak sesuai',
+            'size' => 'Data jawaban tidak sesuai',
             'array' => 'Data jawaban tidak valid',
             'image' => 'File yang diunggah harus berupa gambar',
             'jawaban.*.url.max' => 'Masukan harus tidak lebih dari :max karakter',
