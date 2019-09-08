@@ -155,6 +155,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 Route::get('/', 'PenugasanKelompokPKMController@index')->name('index');
 
                 Route::group(['prefix' => '{slug}'], function () {
+                    Route::get('ekspor-jawaban', 'PenugasanKelompokPKMController@exportJawaban')->name('ekspor-jawaban');
                     Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
                         Route::get('/', 'PenugasanKelompokPKMController@viewJawaban')->name('view');
                     });

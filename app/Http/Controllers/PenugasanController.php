@@ -12,6 +12,7 @@ use App\PenugasanSoalBeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -677,7 +678,7 @@ class PenugasanController extends Controller
 
                     $mahasiswa_index = 2;
                     foreach ($mahasiswas as $mahasiswa) {
-                        $sheet->setCellValue('A' . $mahasiswa_index, $mahasiswa->nim);
+                        $sheet->setCellValueExplicit('A' . $mahasiswa_index, strval($mahasiswa->nim), DataType::TYPE_STRING);
                         $sheet->setCellValue('B' . $mahasiswa_index, $mahasiswa->nama);
                         $charStart = 'C';
                         foreach ($penugasan->soal as $soal) {
