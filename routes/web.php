@@ -140,6 +140,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::group(['prefix' => 'penugasan/{slug}', 'as' => 'penugasan.'], function () {
                 Route::post('impor-nilai', 'PenugasanController@imporNilai')->name('impor-penilaian');
+                Route::get('ekspor-jawaban', 'PenugasanController@exportJawaban')->name('ekspor-jawaban');
 
                 Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
                     Route::get('/', 'PenugasanController@viewJawaban')->name('view');

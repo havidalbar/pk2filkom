@@ -118,8 +118,7 @@ class PanelMahasiswaController extends Controller
             }
         }
 
-
-        if (isset($nim_index) && isset($nama_index) && isset($jk_index)) {
+        if (isset($nim_index) && isset($nama_index)) {
             $error_row = null;
             try {
                 DB::beginTransaction();
@@ -135,7 +134,9 @@ class PanelMahasiswaController extends Controller
                             $mahasiswa = new Mahasiswa;
                             $mahasiswa->nim = $data_row[$nim_index];
                             $mahasiswa->nama = $data_row[$nama_index];
-                            $mahasiswa->jenis_kelamin = $data_row[$jk_index] == 'L' ? 1 : 2;
+                            if (isset($jk_index)) {
+                                $mahasiswa->jenis_kelamin = $data_row[$jk_index] == 'L' ? 1 : 2;
+                            }
                             $mahasiswa->save();
                             $mahasiswa = Mahasiswa::find($data_row[$nim_index]);
                             $mahasiswa->prodi = ((string) $mahasiswa->nim)[6];
