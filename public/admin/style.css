@@ -1,0 +1,145 @@
+/* Include CSS */
+@import url("fontawesome-all.css");
+
+/* Web Font */
+@font-face {
+  font-family: 'logo';
+  font-style: normal;
+  font-weight: normal;
+  font-display: auto;
+  src: url("../font/Shellia/Shellia.eot"),
+       url("../font/Shellia/Shellia.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: "Esphimere-Light";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Esphimere-Light"), url(../font/Esphimere/Esphimere-Light.otf);
+}
+@font-face {
+  font-family: "Esphimere-Bold";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Esphimere-Bold"), url(../font/Esphimere/Esphimere-Bold.otf);
+}
+
+/*  congfig style admin */
+.m-login__logo > a > img {
+    width: 196px;
+    height: 96px;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control {
+    background: rgba(0,0,0,.15);
+    /* border: 1px !important; */
+    border-style: solid !important;
+    border-color: #fff;
+    color: #fff !important;
+    text-shadow: none;
+}
+.m-form.m-form--state .has-danger .form-control, .m-form.m-form--state .has-danger .form-control:focus, .m-form.m-form--state .has-danger .input-group-addon {
+  border-color: #f4516c !important;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .m-login__form-action .m-login__btn.m-login__btn--primary {
+    color: #fff;
+    border-color: #ffffff;
+    box-shadow: 0 5px 10px 2px rgba(255, 255, 255, 0.19);
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  text-shadow: none;
+  opacity: 1; /* Firefox */
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #fff;
+  text-shadow: none;
+}
+
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: #fff;
+  text-shadow: none;
+}
+.m-login.m-login--2.m-login-2--skin-1 .m-login__container .m-login__form .form-control:focus::placeholder {
+	color: #fff !important;
+	opacity: 1;
+}
+.m-aside-header-menu-mobile.m-aside-header-menu-mobile--on {
+	left: 0 !important;
+}
+.m-aside-header-menu-mobile {
+	left: -285px !important;
+}
+.m-aside-header-menu-mobile--on .m-aside-header-menu-mobile-close {
+	left: 249px !important;
+}
+.m-aside-header-menu-mobile-close {
+	left: -25px !important;
+}
+.m-form.m-form--label-align-right .m-form__group>label {
+  text-align: left;
+  padding-left: 35px;
+}
+@media (min-width: 993px){
+  .m-grid.m-grid--ver-desktop.m-grid--desktop>.m-grid__item.m-grid__item--fluid {
+    width: 100vh;
+  }
+}
+
+/* tts admin */
+
+table#tts-table tr {
+  width: 100%;
+}
+table#tts-table td {
+  width: 3.5em;
+  height: 2.5em;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  position: relative;
+}
+table#tts-table td input{
+  width: 100%;
+  height: 100%;
+  padding: 0em;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  background-color: #f4f4f4;
+  text-transform: uppercase;
+}
+.ttsNoSoal {
+    position: absolute;
+    font-size: 10px;
+}
+
+#tts-soal {
+font-family: 'Esphimere-Light';
+font-size: 16px;
+color: #000;
+}
+
+#tts-soal h1 {
+font-family: 'Esphimere-bold';
+font-size: 18px;
+}
+#tts-soal ol{
+display: block;
+list-style-type: none;
+margin-block-start: 1em;
+margin-block-end: 1em;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 40px;
+text-align: justify;
+}
+#tts-soal ol li::before {
+content: attr(data-noSoal) ". ";
+margin-left: 2rem;
+margin-right: 0.45rem;
+position: absolute;
+left: 0;
+text-align: start;
+}

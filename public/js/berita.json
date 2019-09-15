@@ -1,0 +1,24 @@
+{
+    "dataBerita": [
+        {
+            "judulBerita": "selamat datang!!!1",
+            "diBuatTgl": "20-02-2000",
+            "gambar": "kartini.png"
+        },
+        {
+            "judulBerita": "selamat datang!!!2",
+            "diBuatTgl": "20-02-2000",
+            "gambar": "kartini.png"
+        },
+        {
+            "judulBerita": "selamat datang!!!3",
+            "diBuatTgl": "20-02-2000",
+            "gambar": "kartini.png"
+        },
+        {
+            "judulBerita": "selamat datang!!!4",
+            "diBuatTgl": "20-02-2000",
+            "gambar": "kartini.png"
+        }
+    ]
+}
