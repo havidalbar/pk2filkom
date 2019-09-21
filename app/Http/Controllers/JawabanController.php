@@ -6,6 +6,7 @@ use App\JawabanBeta;
 use App\PenugasanBeta;
 use App\ProtectedFile;
 use App\Http\Requests\SubmitJawabanRequest;
+use App\PenugasanSoalBeta;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -154,10 +155,6 @@ class JawabanController extends Controller
             }
         }
 
-        if ($penugasan->random) {
-            shuffle($soalBelumDijawab);
-        }
-
         $thisSesssionNim = session('nim');
 
         foreach ($soalBelumDijawab as $jawabSoal) {
@@ -167,15 +164,6 @@ class JawabanController extends Controller
             ]);
 
             $soalSudahDijawab[] = $jawaban;
-        }
-
-        foreach ($soalSudahDijawab as $index => $jawabSoal) {
-            if (!$jawabSoal->jawaban) {
-                return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
-                    'slug' => $penugasan->slug,
-                    'index' => $index + 1,
-                ]);
-            }
         }
 
         return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
@@ -190,14 +178,17 @@ class JawabanController extends Controller
         $penugasan = PenugasanBeta::where('slug', $slug)->withCount(['soal'])
             ->first();
         if ($index <= $penugasan->soal_count && $index > 0) {
-            $jawabans = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
-                $query->where('id_penugasan', $penugasan->id);
-            })->get(['jawaban']);
-            $jawaban = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
-                $query->where('id_penugasan', $penugasan->id);
-            })->skip($index - 1)->first();
+            $jawabans = JawabanBeta::where('nim', session('nim'))->with(['soal'])
+                ->whereHas('soal', function ($query) use ($penugasan) {
+                    $query->where('id_penugasan', $penugasan->id);
+                })->get();
+            $soal = PenugasanSoalBeta::where('id', $jawabans[$index - 1]->id_soal)
+                ->with(['pilihan_jawaban'])->first();
 
-            return view('v_mahasiswa/detailPenugasanOffline', compact('penugasan', 'jawaban', 'jawabans'));
+            return response()->json([
+                'soal' => $soal,
+                'jawabans' => $jawabans,
+            ]);
         } else {
             abort(400);
         }
@@ -442,28 +433,15 @@ class JawabanController extends Controller
     private function submitJawabanPilihanGanda($request, $penugasan, $index)
     {
         if ($index <= $penugasan->soal_count && $index > 0) {
-            $jawaban = JawabanBeta::where('nim', session('nim'))->whereHas('soal', function ($query) use ($penugasan) {
-                $query->where('id_penugasan', $penugasan->id);
-            })->skip($index - 1)->first();
+            $jawaban = JawabanBeta::where('nim', session('nim'))
+                ->whereHas('soal', function ($query) use ($penugasan) {
+                    $query->where('id_penugasan', $penugasan->id);
+                })->skip($index - 1)->first();
 
             $jawaban->jawaban = $request->jawaban;
             $jawaban->save();
 
-            if ($request->action) {
-                switch ($request->action) {
-                    case 'next':
-                        return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
-                            'slug' => $penugasan->slug,
-                            'index' => $index + 1,
-                        ]);
-                    case 'done':
-                        return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
-                    default:
-                        return redirect()->back();
-                }
-            } else {
-                return redirect()->back();
-            }
+            return response()->json();
         } else {
             abort(400);
         }
@@ -589,7 +567,8 @@ class JawabanController extends Controller
         return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
     }
 
-    public function testDummyPilgan() {
+    public function testDummyPilgan()
+    {
         $soals = [];
 
         for ($i = 0; $i < 10; $i++) {

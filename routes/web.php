@@ -36,7 +36,7 @@ Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.tologin']], function () {
         Route::get('login', 'AuthController@loginManual')->name('login');
-//        Route::get('login-manual', 'AuthController@loginManual')->name('loginManual');
+        //        Route::get('login-manual', 'AuthController@loginManual')->name('loginManual');
         Route::post('login', 'AuthController@loginMahasiswa');
     });
     Route::get('logout', 'AuthController@logout')->name('logout');
@@ -52,10 +52,6 @@ Route::group(['as' => 'mahasiswa.'], function () {
             Route::group(['prefix' => '{slug}'], function () {
                 Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
                 Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
-                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
-                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
-                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
-                });
             });
         });
 
