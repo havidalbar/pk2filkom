@@ -39,7 +39,7 @@ class JawabanController extends Controller
             if ($now < $penugasan->waktu_mulai) {
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan ini belum dimulai');
-            } else if ($now > $penugasan->waktu_akhir) {
+            } elseif ($now > $penugasan->waktu_akhir) {
                 $expired = true;
             }
             if ($penugasan->jenis == 4 || $penugasan->jenis == 6 || $penugasan->jenis == 7) {
@@ -60,11 +60,11 @@ class JawabanController extends Controller
                                 ->with('alert', 'Waktu pengerjaanmu sudah habis');
                         }
                     }
-                } else if (isset($expired) && $expired) {
+                } elseif (isset($expired) && $expired) {
                     return redirect()->route('mahasiswa.penugasan.index')
                         ->with('alert', 'Penugasan ini telah berakhir');
                 }
-            } else if (isset($expired) && $expired) {
+            } elseif (isset($expired) && $expired) {
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan ini telah berakhir');
             }
@@ -78,6 +78,7 @@ class JawabanController extends Controller
                     return $this->startPilihanGanda($penugasan);
                 case '5':
                     abort(404);
+                    // no break
                 case '6':
                     return $this->getViewTTS($penugasan, $firstJawaban);
                 case '7':
@@ -87,6 +88,7 @@ class JawabanController extends Controller
                     } else {
                         return $this->getViewAbstraksi($penugasan);
                     }
+                    // no break
                 default:
                     abort(500);
             }
@@ -128,7 +130,7 @@ class JawabanController extends Controller
         foreach ($jawabans as $jawaban) {
             if ($penugasan->soal[0]->id == $jawaban->id_soal) {
                 $jawabanBidang = $jawaban->jawaban;
-            } else if ($penugasan->soal[1]->id == $jawaban->id_soal) {
+            } elseif ($penugasan->soal[1]->id == $jawaban->id_soal) {
                 $jawabanAbstraksi = $jawaban->jawaban;
             }
         }
@@ -283,7 +285,7 @@ class JawabanController extends Controller
             $decodedSoal->noSoal = $index + 1;
             if ($decodedSoal->tipe == 'menurun') {
                 $menuruns[] = $decodedSoal;
-            } else if ($decodedSoal->tipe == 'mendatar') {
+            } elseif ($decodedSoal->tipe == 'mendatar') {
                 $mendatars[] = $decodedSoal;
             }
 
@@ -306,7 +308,7 @@ class JawabanController extends Controller
             if ($now < $penugasan->waktu_mulai) {
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan belum dimulai');
-            } else if ($now > $penugasan->waktu_akhir) {
+            } elseif ($now > $penugasan->waktu_akhir) {
                 $expired = true;
             }
             if ($penugasan->jenis == 4 || $penugasan->jenis == 6 || $penugasan->jenis == 7) {
@@ -328,11 +330,11 @@ class JawabanController extends Controller
                                 ->with('alert', 'Waktu pengerjaanmu telah habis');
                         }
                     }
-                } else if (isset($expired) && $expired) {
+                } elseif (isset($expired) && $expired) {
                     return redirect()->route('mahasiswa.penugasan.index')
                         ->with('alert', 'Penugasan ini telah berakhir');
                 }
-            } else if (isset($expired) && $expired) {
+            } elseif (isset($expired) && $expired) {
                 return redirect()->route('mahasiswa.penugasan.index')
                     ->with('alert', 'Penugasan ini telah berakhir');
             }
@@ -365,6 +367,7 @@ class JawabanController extends Controller
                     } else {
                         return $this->submitAbstraksi($request, $penugasan);
                     }
+                    // no break
                 default:
                     abort(500);
             }
@@ -589,19 +592,18 @@ class JawabanController extends Controller
         return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
     }
 
-    public function testDummyPilgan() {
-        $soals = [];
-
-        for ($i = 0; $i < 10; $i++) {
+    public function testDummyPilgan($index)
+    {
+        if ($index >= 1 && $index < 26) {
             $soal = json_decode('{}');
-            $soal->id = $i;
-            $soal->soal = 'Soal ke-' . $i;
+            $soal->id = $index;
+            $soal->soal = 'Soal ke-' . $index;
             $soal->pilihan_jawaban = ['A', 'B', 'C', 'D', 'E'];
-
-            $soals[] = $soal;
+            return response()->json(
+                $soal
+            );
+        } else {
+            abort(400);
         }
-        return response()->json(
-            $soals
-        );
     }
 }

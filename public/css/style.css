@@ -4181,3 +4181,59 @@ input::-webkit-inner-spin-button {
     }
 }
 /* Akhir Halaman pendataan kelompok pkm */
+/* Halaman pilihan ganda */
+.bg-pilgan{
+    background-image: url(../img/bg-section/bg-pilgan.png);
+    height: 100%;
+    min-height: calc(100vh - 79px);
+}
+.container-pilgan{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.container-soal {
+    margin-top: 40px;    
+}
+.container-pertanyaan-navigasi {
+    padding: 40px;
+    background-color: rgba(3, 60, 88, 0.76);
+    border-radius: 10px;    
+}
+.nomor-navigasi{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    margin: 10px;
+}
+.container-icon-soal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-soal{
+  color: yellow;  
+}
+@media (min-width: 576px){
+    .container-pilgan {
+        max-width: 540px;
+    }
+}
+@media (min-width: 768px){
+    .container-pilgan {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px){
+    .container-pilgan {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1280px){
+    .container-pilgan {
+        max-width: 1220px;
+    }
+}
+/* Akhir Halaman pilihan ganda */
