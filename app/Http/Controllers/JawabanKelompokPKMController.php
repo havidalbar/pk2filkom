@@ -155,8 +155,12 @@ class JawabanKelompokPKMController extends Controller
 
         foreach ($mahasiswas as $mahasiswa) {
             $mahasiswa_obj = Mahasiswa::where('nim', $mahasiswa)->first();
-            if ($mahasiswa_obj->kelompok_pkm) {
-                return redirect()->back()->with('alert', 'Mahasiswa ' . $mahasiswa . ' sudah terdaftar dalam kelompok lain');
+            if ($mahasiswa_obj) {
+                if ($mahasiswa_obj->kelompok_pkm) {
+                    return redirect()->back()->with('alert', 'Mahasiswa ' . $mahasiswa . ' sudah terdaftar dalam kelompok lain');
+                }
+            } else {
+                return redirect()->back()->with('alert', 'Mahasiswa ' . $mahasiswa . ' tidak dikenali');
             }
         }
 

@@ -19,4 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['mahasiswa.api']], function () {
     Route::post('submit-tts/{slug}', 'JawabanController@apiSubmitTts')->name('api-submit-tts');
+    Route::group(['as' => 'mahasiswa.'], function () {
+        Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
+            Route::group(['prefix' => '{slug}'], function () {
+                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
+                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
+                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
+                });
+            });
+        });
+    });
 });

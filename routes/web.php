@@ -38,7 +38,8 @@ Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.tologin']], function () {
-        Route::get('login', 'AuthController@login')->name('login');
+        Route::get('login', 'AuthController@loginManual')->name('login');
+        //        Route::get('login-manual', 'AuthController@loginManual')->name('loginManual');
         Route::post('login', 'AuthController@loginMahasiswa');
     });
     Route::get('logout', 'AuthController@logout')->name('logout');
@@ -54,10 +55,6 @@ Route::group(['as' => 'mahasiswa.'], function () {
             Route::group(['prefix' => '{slug}'], function () {
                 Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
                 Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
-                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
-                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
-                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
-                });
             });
         });
 
@@ -143,7 +140,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
             Route::group(['prefix' => 'penugasan/{slug}', 'as' => 'penugasan.'], function () {
                 Route::post('impor-nilai', 'PenugasanController@imporNilai')->name('impor-penilaian');
-
+                Route::get('ekspor-jawaban', 'PenugasanController@exportJawaban')->name('ekspor-jawaban');
                 Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
                     Route::get('/', 'PenugasanController@viewJawaban')->name('view');
                     Route::get('{nim}', 'PenugasanController@detailJawaban')->name('detail');
@@ -157,6 +154,7 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 Route::get('/', 'PenugasanKelompokPKMController@index')->name('index');
 
                 Route::group(['prefix' => '{slug}'], function () {
+                    Route::get('ekspor-jawaban', 'PenugasanKelompokPKMController@exportJawaban')->name('ekspor-jawaban');
                     Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
                         Route::get('/', 'PenugasanKelompokPKMController@viewJawaban')->name('view');
                     });

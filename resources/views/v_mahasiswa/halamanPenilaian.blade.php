@@ -64,7 +64,7 @@
 								$mahasiswa->rekap_nilai_pk2maba['pelanggaran']->sedang +
                                 $mahasiswa->rekap_nilai_pk2maba['pelanggaran']->berat;
                                 $statusLulusPk2 = '';
-                                if($totalPK2>=100){
+                                if($totalPK2>=90){
                                     $statusLulusPk2 = 'LULUS';
                                 }else if($totalPK2==0){
                                     $statusLulusPk2 = '-';
@@ -86,7 +86,7 @@
 								$mahasiswa->rekap_nilai_pkm['pelanggaran']->sedang +
                                 $mahasiswa->rekap_nilai_pkm['pelanggaran']->berat;
                                 $statusLulusPKM = '';
-                                if($totalPKM>=100){
+                                if($totalPKM>=150){
                                     $statusLulusPKM = 'LULUS';
                                 }else if($totalPKM==0){
                                     $statusLulusPKM = '-';
@@ -335,12 +335,12 @@
                                 <td>{{$statusPk2h2}}</td>
                                 <td>{{$mahasiswa->rekap_nilai_pk2maba['absensi']->nilai_rangkaian2}}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th scope="row">3</th>
                                 <td>Tugas (Online)</td>
                                 <td>-</td>
                                 <td>0</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <th scope="row">4</th>
                                 <td>Nilai Keaktifan</td>
@@ -471,7 +471,7 @@
                             <tr>
                                 <th scope="row">5</th>
                                 <td>Tugas</td>
-                                <td>Hadir</td>
+                                <td>-</td>
                                 <td>0</td>
                             </tr>
                             <tr>

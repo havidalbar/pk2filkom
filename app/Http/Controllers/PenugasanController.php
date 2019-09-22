@@ -12,6 +12,9 @@ use App\PenugasanSoalBeta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class PenugasanController extends Controller
 {
@@ -636,6 +639,72 @@ class PenugasanController extends Controller
                 }
             } else {
                 abort(500);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+
+    public function exportJawaban(Request $request, $slug)
+    {
+        $penugasan = PenugasanBeta::where('slug', $slug)->with('soal')->withCount(['soal'])->first();
+
+        if ($penugasan) {
+            $idSoal = [];
+            foreach ($penugasan->soal as $soal) {
+                $idSoal[] = $soal->id;
+            }
+
+            $mahasiswas = Mahasiswa::with(['jawaban' => function ($query) use ($idSoal) {
+                return $query->whereIn('id_soal', $idSoal);
+            }])->get();
+
+            switch ($penugasan->jenis) {
+                case '1':
+                case '2':
+                case '3':
+                case '7':
+                    $spreadsheet = new Spreadsheet();
+                    $sheet = $spreadsheet->getActiveSheet();
+                    $sheet->setCellValue('A1', 'NIM');
+                    $sheet->setCellValue('B1', 'Nama');
+
+                    $charStart = 'C';
+                    foreach ($penugasan->soal as $soal) {
+                        $sheet->setCellValue($charStart . '1', $soal->soal);
+                        $charStart++;
+                    }
+
+                    $mahasiswa_index = 2;
+                    foreach ($mahasiswas as $mahasiswa) {
+                        $sheet->setCellValueExplicit('A' . $mahasiswa_index, strval($mahasiswa->nim), DataType::TYPE_STRING);
+                        $sheet->setCellValue('B' . $mahasiswa_index, $mahasiswa->nama);
+                        $charStart = 'C';
+                        foreach ($penugasan->soal as $soal) {
+                            $currentJawaban = '-';
+                            foreach ($mahasiswa->jawaban as $jawaban) {
+                                if ($jawaban->id_soal == $soal->id) {
+                                    $currentJawaban = $jawaban->jawaban;
+                                    break;
+                                }
+                            }
+                            $sheet->setCellValue($charStart . $mahasiswa_index, $currentJawaban);
+                            $charStart++;
+                        }
+                        $mahasiswa_index++;
+                    }
+
+                    $filename = 'jawaban_penugasan_' . $penugasan->slug;
+
+                    $writer = new Xlsx($spreadsheet);
+                    // Set the content-type:
+                    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                    header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+
+                    return $writer->save('php://output'); // download file
+                default:
+                    abort(400);
             }
         } else {
             abort(404);

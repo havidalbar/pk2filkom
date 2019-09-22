@@ -46,18 +46,18 @@
                                 </div>
                             </div>
                             <div class="col-xl-4 order-1 order-xl-1 m--align-right">
-                                <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon">
+                                <a href="{{ route('panel.penugasan.ekspor-jawaban', ['slug' => $penugasan->slug]) }}" class="btn btn-accent m-btn m-btn--custom m-btn--icon">
                                     <span>
-                                        <i class="la la-cloud-upload"></i>
+                                        <i class="la la-cloud-download"></i>
                                         <span>
-                                            Ekspor Nilai
+                                            Ekspor Jawaban
                                         </span>
                                     </span>
                                 </a>
                                 <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon" data-toggle="modal"
                                     data-target="#import">
                                     <span>
-                                        <i class="la la-cloud-download"></i>
+                                        <i class="la la-cloud-upload"></i>
                                         <span>
                                             Impor Nilai
                                         </span>
