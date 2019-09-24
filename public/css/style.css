@@ -1703,15 +1703,15 @@ table#tts-table td input{
 .pk2-tts .button-submit-tts:hover {
     background-color: #f8bc3f;
 }
-.pk2-tts .fixed-timer{
+.fixed-timer{
     position: fixed;
     right: 0;
     left: 0;
     bottom: 16px;
     z-index: 1000;
 }
-.pk2-tts .fixed-timer .container-timer{        
-    width: 160px;
+.fixed-timer .container-timer{        
+    width: 240px;
     border-radius: 6px;
     background-color: #f8bc3f;
     font-family: "Esphimere-SemiBold";
@@ -1719,19 +1719,19 @@ table#tts-table td input{
     text-transform: uppercase;
     padding: 8px;
 }
-.pk2-tts .fixed-timer .container-timer .sisa-waktu{        
-    font-size: 16px;
+.fixed-timer .container-timer .sisa-waktu{        
+    font-size: 20px;
     color: #0b2939;    
 }
-.pk2-tts .fixed-timer .container-timer .garis-sisa-waktu{        
+.fixed-timer .container-timer .garis-sisa-waktu{        
     height: 2px;
     background-color: #0b2939;
     border-radius: 2px;
     margin: 4px 0 8px 0;
 }
-.pk2-tts .fixed-timer .container-timer .col-timer{        
+.fixed-timer .container-timer .col-timer{        
     width: 50%;
-    font-size: 15px;
+    font-size: 17px;
     color: #0b2939;
 }
 /* endTTS */
@@ -4197,24 +4197,95 @@ input::-webkit-inner-spin-button {
 .container-soal {
     margin-top: 40px;    
 }
+.container-timer-pilgan{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: "Esphimere-SemiBold";
+    font-size: 40px;
+    color: white;    
+}
 .container-pertanyaan-navigasi {
     padding: 40px;
     background-color: rgba(3, 60, 88, 0.76);
     border-radius: 10px;    
 }
-.nomor-navigasi{
-    width: 40px;
-    height: 40px;
-    background-color: white;
+.navigasi{
+    width: 40px;    
     margin: 10px;
+    padding: 0;
+    border-radius: 4px 4px 0 0;    
+    border: none;
+}
+.navigasi .nomor-navigasi{
+    height: 30px;
+    background-color: #f8bc3f;
+    color: #053D58;
+    font-family: "Esphimere-SemiBold";
+    font-size: 20px;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+}
+.navigasi .status-navigasi{
+    height: 14px;
+    background-color: #053D58;    
+}
+.container-pertanyaan-navigasi .btn-selesai-pilgan{
+    width: 50%;
+    margin-top: 20px;
+    background-color: white;
+    font-family: "Esphimere-SemiBold";
+    font-size: 20px;
+    color: #053D58;
+    text-transform: uppercase;    
+    border-radius: 8px;
+    padding: 2px 7px;    
+}
+.container-pertanyaan{
+    display: flex;
+}
+.container-text-soal{
+    margin: 0px 20px;
 }
 .container-icon-soal{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.container-icon-soal .button-icon{
+    background: transparent;
+    border: none;
+}
 .icon-soal{
-  color: yellow;  
+    color: #f8bc3f;  
+    font-size: 64px;
+}
+.pertanyaan .nomor-soal{
+    color:#f8bc3f;
+    font-family: "Esphimere-SemiBold";
+    font-size: 28px;
+    text-transform: uppercase;
+}
+.pertanyaan .text-soal{
+    color:white;    
+    font-size: 22px;
+}
+.pertanyaan .container-pilihan{
+    margin-top: 12px;
+}
+.container-pilihan .custom-radio{
+    margin-top: 10px;
+    color: white;
+    font-size: 18px;
+}
+.container-pilihan .custom-control-input:checked~.custom-control-label::before {    
+    border-color: #f8bc3f;
+    background-color: #f8bc3f;
+}
+.custom-control-label:hover{
+    cursor: pointer;
 }
 @media (min-width: 576px){
     .container-pilgan {
@@ -4233,7 +4304,29 @@ input::-webkit-inner-spin-button {
 }
 @media (min-width: 1280px){
     .container-pilgan {
-        max-width: 1220px;
+        max-width: 1260px;
+    }
+}
+@media (max-width: 767.98px){
+    .container-soal {
+        margin-top: 20px;    
+    }
+    .container-pertanyaan-navigasi {
+        margin-top: 20px;
+        padding: 20px 16px;
+    }
+    .container-pilihan .custom-radio{        
+        font-size: 16px;
+    }
+    .icon-soal{        
+        font-size: 40px;
+    }
+    .pertanyaan .nomor-soal{
+        font-size: 22px;
+    }
+    .pertanyaan .text-soal{
+        color:white;    
+        font-size: 18px;
     }
 }
 /* Akhir Halaman pilihan ganda */

@@ -1,11 +1,20 @@
 $(document).ready(function() {
     $.getJSON("http://127.0.0.1:8000/testDummyPilgan/1", function(soalJson) {
-        $("#pilgan .pertanyaan .no-soal").text("soal "+soalJson.id);
-        $("#pilgan .pertanyaan .text-soal").text(soalJson.soal);
+        console.log(soalJson.id);
+        // $(".pertanyaan .nomor-soal").text("soal "+soalJson.id);
+        // $(".pertanyaan .text-soal").text(soalJson.soal);
+    });
+    $('#selesai-pilgan').click(function(){    
+        $(".jumbotron .container").css("z-index","0");        
+        $(".container-pilgan").css("position","initial");        
+    });
+    $('.close-modal').click(function(){    
+        $(".jumbotron .container").css("z-index","5");        
+        $(".container-pilgan").css("position","relative");        
     });
 });
 
-function gantiSoal(nomorSoal) {
+function gantiSoal(nomorSoal) {        
     console.log(nomorSoal);
     if (nomorSoal == 1) {        
         $("#pilgan #prevQuiz").attr("hidden", true);
