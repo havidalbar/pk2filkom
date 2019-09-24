@@ -21,6 +21,8 @@ class AdminController extends Controller
         'PENDAMPING',
         'PIT',
         'SQC',
+        'PERKAP',
+        'LEMBAGA'
     ];
 
     /**

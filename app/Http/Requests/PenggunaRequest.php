@@ -28,7 +28,7 @@ class PenggunaRequest extends FormRequest
             'username' => 'sometimes|required|min:3|max:30|unique:pengguna,username',
 			'password' => 'sometimes|required|min:4|max:20',
 			'password_baru' => 'sometimes|required|min:4|max:20|confirmed',
-            'divisi' => 'required_with:username|in:BPI,DDM,HUMAS,KESTARI,KOMKES,PENDAMPING,PIT,SQC',
+            'divisi' => 'required_with:username|in:BPI,DDM,HUMAS,KESTARI,KOMKES,PENDAMPING,PIT,SQC,LEMBAGA,PERKAP',
         ];
     }
 }

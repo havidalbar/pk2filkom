@@ -84,8 +84,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         Route::get('dashboard', 'AdminController@getDashboard')->name('dashboard');
 
         // DIVISI UMUM
-        Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
-            Route::get('/', function ($id) {
+        Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.', 'middleware' => ['admin.internal']], function () {
+            Route::get('/', function () {
                 return redirect()->route('panel.mahasiswa.biodata');
             })->name('index');
             Route::get('biodata', 'PanelMahasiswaController@getBiodata')->name('biodata');
@@ -110,6 +110,14 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::resource('faq', 'FaqController')->parameters([
                 'faq' => 'id',
             ])->except(['show']);
+        });
+
+        // LEMBAGA - ABSENSI OPEN HOUSE
+        Route::group(['middleware' => ['admin.lembaga']], function () {
+            Route::get(
+                'kegiatan/startup/absensi/open-house',
+                'StartupAbsensiController@absensiOpenHouse'
+            )->name('kegiatan.startup.absensi.open-house');
         });
 
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
@@ -184,8 +192,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
-                    // ABSENSI OPEN HOUSE
-                    Route::get('absensi/open-house', 'StartupAbsensiController@absensiOpenHouse')->name('absensi.open-house');
 
                     Route::resource('keaktifan', 'StartupKeaktifanController')->parameters([
                         'keaktifan' => 'nim',
