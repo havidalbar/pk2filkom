@@ -8,25 +8,6 @@ use App\StartupAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
-use App\BCC;
-use App\Ayodev;
-use App\Bios;
-use App\Display;
-use App\Amd;
-use App\Kmk;
-use App\Krisma;
-use App\Kontribusi;
-use App\Kozuoku;
-use App\Pmk;
-use App\Poros;
-use App\Raion;
-use App\Robotiik;
-use App\Optiik;
-use App\TIF;
-use App\TI;
-use App\SI;
-use App\TEKKOM;
-use App\PTI;
 
 
 class StartupAbsensiController extends Controller
@@ -186,9 +167,6 @@ class StartupAbsensiController extends Controller
                 $booth = session('username');
 
                 if ($mahasiswa) {
-                    // $update = StartupAbsensi::where('nim', $nim)->update([
-                    //     'nilai_rangkaian4' => 100,
-                    // ]);
                     $absensiBooth = AbsensiOH::where([
                         'nim' => $nim,
                         'booth' => $booth
@@ -200,6 +178,9 @@ class StartupAbsensiController extends Controller
                         $absensiBooth->absensi = 100;
                         $absensiBooth->booth = $booth;
                         $absensiBooth->save();
+                        $update = StartupAbsensi::where('nim', $nim)->update([
+                            'nilai_rangkaian4' => 100,
+                        ]);
                     }
                     return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
                 } else {
