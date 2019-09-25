@@ -8,25 +8,6 @@ use App\StartupAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet;
-use App\BCC;
-use App\Ayodev;
-use App\Bios;
-use App\Display;
-use App\Amd;
-use App\Kmk;
-use App\Krisma;
-use App\Kontribusi;
-use App\Kozuoku;
-use App\Pmk;
-use App\Poros;
-use App\Raion;
-use App\Robotiik;
-use App\Optiik;
-use App\TIF;
-use App\TI;
-use App\SI;
-use App\TEKKOM;
-use App\PTI;
 
 
 class StartupAbsensiController extends Controller
