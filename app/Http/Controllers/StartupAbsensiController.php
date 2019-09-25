@@ -192,10 +192,10 @@ class StartupAbsensiController extends Controller
                     $absensiBooth = AbsensiOH::where([
                         'nim' => $nim,
                         'booth' => $booth
-                    ]);
+                    ])->first();
 
                     if (!$absensiBooth) {
-                        $absensiBooth = new AbsensiBooth;
+                        $absensiBooth = new AbsensiOH;
                         $absensiBooth->nim = $nim;
                         $absensiBooth->absensi = 100;
                         $absensiBooth->booth = $booth;
