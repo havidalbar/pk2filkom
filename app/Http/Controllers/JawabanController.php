@@ -76,10 +76,9 @@ class JawabanController extends Controller
                 case '3':
                     return $this->getViewFormLine($penugasan);
                 case '4':
-                    return $this->startPilihanGanda($penugasan);
+                    return $this->startPilihanGanda($penugasan, $firstJawaban);
                 case '5':
-                    abort(404);
-                    // no break
+                    return abort(404);
                 case '6':
                     return $this->getViewTTS($penugasan, $firstJawaban);
                 case '7':
@@ -139,7 +138,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/pendataanPkmIndividu', compact('penugasan', 'jawabanBidang', 'jawabanAbstraksi'));
     }
 
-    private function startPilihanGanda($penugasan)
+    private function startPilihanGanda($penugasan, $firstJawaban)
     {
         $soalBelumDijawab = [];
         $soalSudahDijawab = [];
@@ -168,24 +167,46 @@ class JawabanController extends Controller
             $soalSudahDijawab[] = $jawaban;
         }
 
-        return redirect()->route('mahasiswa.penugasan.pilihan-ganda.view', [
-            'slug' => $penugasan->slug,
-            'index' => 1,
-        ]);
+        $jwt = $this->jwt();
+
+        $sisaWaktu = 0;
+
+        $now = date('Y-m-d H:i:s');
+        if ($penugasan->batas_waktu) {
+            if ($firstJawaban) {
+                if (!$firstJawaban->updated_at) {
+                    return redirect()->route('mahasiswa.penugasan.index')
+                        ->with('alert', 'Anda telah selesai mengerjakan penugasan ini');
+                }
+                $newtimestamp = strtotime("{$firstJawaban->created_at} + {$penugasan->batas_waktu} minute");
+                $limit = date('Y-m-d H:i:s', $newtimestamp);
+                $sisaWaktu = strtotime($limit) - strtotime($now);
+            } else {
+                $sisaWaktu = strtotime(
+                    date(
+                        'Y-m-d H:i:s',
+                        strtotime("{$now} + {$penugasan->batas_waktu} minute")
+                    )
+                ) - strtotime($now);
+            }
+        }
+
+        return view('v_mahasiswa/pilihan-ganda', compact('jwt', 'penugasan', 'sisaWaktu'));
     }
 
-    public function getSoalPilihanGanda($slug, $index)
+    public function getSoalPilihanGanda(Request $request, $slug, $index)
     {
         // TODO : Binding Pilihan Ganda
         $penugasan = PenugasanBeta::where('slug', $slug)->withCount(['soal'])
             ->first();
         if ($index <= $penugasan->soal_count && $index > 0) {
-            $jawabans = JawabanBeta::where('nim', session('nim'))->with(['soal'])
+            $jawabans = JawabanBeta::where('nim', $request->nim)
                 ->whereHas('soal', function ($query) use ($penugasan) {
                     $query->where('id_penugasan', $penugasan->id);
                 })->get();
             $soal = PenugasanSoalBeta::where('id', $jawabans[$index - 1]->id_soal)
                 ->with(['pilihan_jawaban'])->first();
+            $soal->jawaban = $jawabans[$index - 1];
 
             return response()->json([
                 'soal' => $soal,
@@ -193,6 +214,28 @@ class JawabanController extends Controller
             ]);
         } else {
             abort(400);
+        }
+    }
+
+    private function selesaiPilihanGanda($penugasan)
+    {
+        try {
+            DB::beginTransaction();
+
+            $idSoal = [];
+            foreach ($penugasan->soal as $soal) {
+                $idSoal[] = $soal->id;
+            }
+
+            DB::table('jawaban_beta')
+                ->where('nim', session('nim'))
+                ->whereIn('id_soal', $idSoal)
+                ->update(['updated_at' => null]);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return abort(400);
         }
     }
 
@@ -336,7 +379,11 @@ class JawabanController extends Controller
                 case '3':
                     return $this->submitIGYTLine($request, $penugasan);
                 case '4':
-                    return $this->submitJawabanPilihanGanda($request, $penugasan, $index);
+                    if ($index) {
+                        return $this->submitJawabanPilihanGanda($request, $penugasan, $index);
+                    } else {
+                        return $this->selesaiPilihanGanda($penugasan);
+                    }
                 case '6':
                     $nim = session('nim');
                     $this->submitTts($request, $penugasan, $nim);
@@ -586,5 +633,4 @@ class JawabanController extends Controller
             $soals
         );
     }
-
 }
