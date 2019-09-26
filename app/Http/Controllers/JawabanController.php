@@ -333,7 +333,7 @@ class JawabanController extends Controller
         return view('v_mahasiswa/tts', compact('penugasan', 'mendatars', 'menuruns', 'jwt', 'expired', 'sisaWaktu'));
     }
 
-    public function submitJawaban(SubmitJawabanRequest $request, $slug, $index = null)
+    public function submitJawaban(SubmitJawabanRequest $request, $slug)
     {
         $penugasan = PenugasanBeta::where('slug', $slug)->withCount(['soal'])->first();
 
@@ -379,11 +379,7 @@ class JawabanController extends Controller
                 case '3':
                     return $this->submitIGYTLine($request, $penugasan);
                 case '4':
-                    if ($index) {
-                        return $this->submitJawabanPilihanGanda($request, $penugasan, $index);
-                    } else {
-                        return $this->selesaiPilihanGanda($penugasan);
-                    }
+                    return $this->selesaiPilihanGanda($penugasan);
                 case '6':
                     $nim = session('nim');
                     $this->submitTts($request, $penugasan, $nim);
@@ -480,14 +476,34 @@ class JawabanController extends Controller
         }
     }
 
-    private function submitJawabanPilihanGanda($request, $penugasan, $index)
+    public function submitJawabanPilihanGanda(Request $request, $slug)
     {
-        if ($index <= $penugasan->soal_count && $index > 0) {
-            $jawaban = JawabanBeta::where('nim', session('nim'))
-                ->whereHas('soal', function ($query) use ($penugasan) {
-                    $query->where('id_penugasan', $penugasan->id);
-                })->skip($index - 1)->first();
+        $penugasan = PenugasanBeta::where('slug', $slug)->first();
+        $nim = $request->nim;
 
+        $firstJawaban = JawabanBeta::where('nim', $nim)
+            ->whereHas('soal', function ($query) use ($penugasan) {
+                $query->where('id_penugasan', $penugasan->id);
+            })->orderBy('created_at', 'asc')->first();
+
+        if (!$firstJawaban) {
+            return response()->json([], 400);
+        }
+
+        $toleransiBatasWaktu = $penugasan->batas_waktu + 1;
+        $newtimestamp = strtotime("{$firstJawaban->created_at} + {$toleransiBatasWaktu} minute");
+        $limit = date('Y-m-d H:i:s', $newtimestamp);
+        $now = date('Y-m-d H:i:s');
+        if ($now > $limit) {
+            return response()->json([], 403);
+        }
+
+        $jawaban = JawabanBeta::where([
+            'nim' => session('nim'),
+            'id_soal' => $request->id_soal
+        ])->first();
+
+        if ($jawaban) {
             $jawaban->jawaban = $request->jawaban;
             $jawaban->save();
 
@@ -615,22 +631,5 @@ class JawabanController extends Controller
         $submitJawabanAbstraksi->save();
 
         return redirect()->route('mahasiswa.penugasan.index')->with('alert', 'Jawaban berhasil disimpan');
-    }
-
-    public function testDummyPilgan()
-    {
-        $soals = [];
-
-        for ($i = 0; $i < 10; $i++) {
-            $soal = json_decode('{}');
-            $soal->id = $i;
-            $soal->soal = 'Soal ke-' . $i;
-            $soal->pilihan_jawaban = ['A', 'B', 'C', 'D', 'E'];
-
-            $soals[] = $soal;
-        }
-        return response()->json(
-            $soals
-        );
     }
 }

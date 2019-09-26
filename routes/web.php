@@ -235,8 +235,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
     });
 });
 
-Route::get('testDummyPilgan/{index}', 'JawabanController@testDummyPilgan');
-
 Route::get('{name}', function ($name) {
     if (file_exists(public_path($name))) {
         return redirect(url('public/' . $name));

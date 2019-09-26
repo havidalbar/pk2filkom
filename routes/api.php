@@ -22,9 +22,9 @@ Route::group(['middleware' => ['mahasiswa.api']], function () {
     Route::group(['as' => 'mahasiswa.'], function () {
         Route::group(['prefix' => 'penugasan', 'as' => 'penugasan.'], function () {
             Route::group(['prefix' => '{slug}'], function () {
+                Route::post('submit', 'JawabanController@submitJawabanPilihanGanda')->name('submit-pilihan-ganda');
                 Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
                     Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
-                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
                 });
             });
         });
