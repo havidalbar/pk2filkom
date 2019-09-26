@@ -241,4 +241,9 @@ class Mahasiswa extends Model
             ?? $this->kelompok_pkm_anggota1
             ?? $this->kelompok_pkm_anggota2;
     }
+
+    public function absensi_oh()
+    {
+        return $this->hasMany('App\AbsensiOH', 'nim', 'nim');
+    }
 }

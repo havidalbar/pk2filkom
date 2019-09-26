@@ -7,7 +7,9 @@ use App\Mahasiswa;
 use App\StartupAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpOffice\PhpSpreadsheet;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 
 class StartupAbsensiController extends Controller
@@ -194,5 +196,37 @@ class StartupAbsensiController extends Controller
         } catch (Exception $e) {
             return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-error', 'Kesalahan pengolahan data');
         }
+    }
+
+    public function viewHasilAbsensiOH()
+    {
+        $mahasiswas = Mahasiswa::with(['absensi_oh'])->get();
+
+        return view('panel-admin.startup.rank-open-house', compact('mahasiswas'));
+    }
+
+    public function exportHasilAbsensiOH()
+    {
+        $mahasiswas = Mahasiswa::with(['absensi_oh'])->get();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'NIM');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Jumlah Scan');
+
+        foreach ($mahasiswas as $index => $mahasiswa) {
+            $sheet->setCellValueExplicit('A' . ($index + 2), strval($mahasiswa->nim), DataType::TYPE_STRING);
+            $sheet->setCellValue('B' . ($index + 2), $mahasiswa->nama);
+            $sheet->setCellValue('C' . ($index + 2), count($mahasiswa->absensi_oh));
+        }
+
+        $filename = 'absensi_oh';
+        $writer = new Xlsx($spreadsheet);
+        // Set the content-type:
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+
+        return $writer->save('php://output'); // download file
     }
 }

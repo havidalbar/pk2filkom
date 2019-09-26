@@ -188,7 +188,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 });
 
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
-                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
@@ -211,6 +210,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
 
+                    Route::get('absensi/open-house/hasil', 'StartupAbsensiController@viewHasilAbsensiOH')->name('absensi.open-house.hasil');
+                    Route::get('absensi/open-house/hasil/export', 'StartupAbsensiController@exportHasilAbsensiOH')->name('absensi.open-house.hasil.export');
                     Route::get('total', 'AdminController@getStartupTotal')->name('total');
                 });
 
