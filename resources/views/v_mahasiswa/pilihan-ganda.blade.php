@@ -43,8 +43,7 @@
             }, interval);
         }
     };
-    function submitForm() {
-        console.log("submit form");
+    function submitForm() {        
         submitPilihanJawaban();
         $("#form-jawaban-pilgan").submit();
     }
