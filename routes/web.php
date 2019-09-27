@@ -11,6 +11,9 @@
 |
  */
 
+Route::get('/pilihan-ganda',function(){
+    return view("v_mahasiswa/pilihan-ganda");
+});
 // Berita
 Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
     Route::get('/', 'ArtikelController@show')->name('show');
@@ -238,8 +241,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         });
     });
 });
-
-Route::get('testDummyPilgan', 'JawabanController@testDummyPilgan');
 
 Route::get('{name}', function ($name) {
     if (file_exists(public_path($name))) {

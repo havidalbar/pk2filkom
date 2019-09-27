@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     //
-    public function login()
+    public function loginManual()
     {
         return view('login');
     }

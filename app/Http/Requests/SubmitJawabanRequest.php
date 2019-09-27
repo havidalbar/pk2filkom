@@ -80,15 +80,7 @@ class SubmitJawabanRequest extends FormRequest
                     'abstraksi' => 'required|string|min:100|max:10000',
                 ];
             default:
-                return [
-                    'jawaban.id' => 'required|string|size:36',
-                    'jawaban.jawaban' => [
-                        'required',
-                        'string',
-                        'size:36',
-                        new \App\Rules\JawabanValid
-                    ],
-                ];
+                return [];
         }
     }
 }
