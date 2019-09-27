@@ -1703,14 +1703,10 @@ table#tts-table td input{
 .pk2-tts .button-submit-tts:hover {
     background-color: #f8bc3f;
 }
-.fixed-timer{
+.container-timer{        
     position: fixed;
-    right: 0;
-    left: 0;
     bottom: 16px;
     z-index: 1000;
-}
-.fixed-timer .container-timer{        
     width: 240px;
     border-radius: 6px;
     background-color: #f8bc3f;
@@ -1719,17 +1715,17 @@ table#tts-table td input{
     text-transform: uppercase;
     padding: 8px;
 }
-.fixed-timer .container-timer .sisa-waktu{        
+.container-timer .sisa-waktu{        
     font-size: 20px;
     color: #0b2939;    
 }
-.fixed-timer .container-timer .garis-sisa-waktu{        
+.container-timer .garis-sisa-waktu{        
     height: 2px;
     background-color: #0b2939;
     border-radius: 2px;
     margin: 4px 0 8px 0;
 }
-.fixed-timer .container-timer .col-timer{        
+.container-timer .col-timer{        
     width: 50%;
     font-size: 17px;
     color: #0b2939;
@@ -4221,7 +4217,7 @@ input::-webkit-inner-spin-button {
 }
 .navigasi .nomor-navigasi{
     height: 30px;
-    background-color: #f8bc3f;
+    background-color: white;
     color: #053D58;
     font-family: "Esphimere-SemiBold";
     font-size: 20px;
@@ -4245,9 +4241,12 @@ input::-webkit-inner-spin-button {
 }
 .container-pertanyaan{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container-text-soal{
     margin: 0px 20px;
+    width: 100%;
 }
 .container-icon-soal{
     display: flex;
@@ -4263,14 +4262,26 @@ input::-webkit-inner-spin-button {
     font-size: 64px;
 }
 .pertanyaan .nomor-soal{
+    display: flex;
+    flex-direction: row;
     color:#f8bc3f;
     font-family: "Esphimere-SemiBold";
     font-size: 28px;
     text-transform: uppercase;
 }
+
+.pertanyaan .nomor-soal .angka-nomor-soal{
+    margin-left: 10px;
+}
 .pertanyaan .text-soal{
     color:white;    
     font-size: 22px;
+}
+.pertanyaan .text-soal .icon-loading{
+    text-align: center;
+}
+.pertanyaan .text-soal .fa-spinner{
+    font-size: 64px;    
 }
 .pertanyaan .container-pilihan{
     margin-top: 12px;
@@ -4286,6 +4297,12 @@ input::-webkit-inner-spin-button {
 }
 .custom-control-label:hover{
     cursor: pointer;
+}
+.custom-control-label p{
+    margin-bottom: 0;
+}
+.container-pertanyaan-navigasi .modal{
+    font-family: "Esphimere-Regular";   
 }
 @media (min-width: 576px){
     .container-pilgan {
@@ -4327,6 +4344,9 @@ input::-webkit-inner-spin-button {
     .pertanyaan .text-soal{
         color:white;    
         font-size: 18px;
+    }
+    .pertanyaan .text-soal .fa-spinner{
+        font-size: 40px;    
     }
 }
 /* Akhir Halaman pilihan ganda */

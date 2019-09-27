@@ -484,7 +484,7 @@ class JawabanController extends Controller
         $firstJawaban = JawabanBeta::where('nim', $nim)
             ->whereHas('soal', function ($query) use ($penugasan) {
                 $query->where('id_penugasan', $penugasan->id);
-            })->orderBy('created_at', 'asc')->first();
+            })->orderBy('created_at', 'asc')->first();                
 
         if (!$firstJawaban) {
             return response()->json([], 400);
@@ -499,10 +499,10 @@ class JawabanController extends Controller
         }
 
         $jawaban = JawabanBeta::where([
-            'nim' => session('nim'),
+            'nim' => $request->nim,
             'id_soal' => $request->id_soal
         ])->first();
-
+        
         if ($jawaban) {
             $jawaban->jawaban = $request->jawaban;
             $jawaban->save();
