@@ -185,6 +185,24 @@ class Mahasiswa extends Model
             $nilai['judul_penugasan'] = $penugasan->judul;
 
             switch ($penugasan->jenis) {
+                case 4:
+                    $jumlahJawabanBenar = 0;
+                    foreach ($penugasan->soal as $soal) {
+                        foreach ($this->jawaban as $jawaban) {
+                            if ($jawaban->id_soal == $soal->id) {
+                                $jawabanSoalIni = $jawaban;
+                            }
+                        }
+
+                        if (isset($jawabanSoalIni) && $jawabanSoalIni->jawaban === $soal->id_jawaban_benar) {
+                            $jumlahJawabanBenar++;
+                        }
+
+                        unset($jawabanSoalIni);
+                    }
+
+                    $nilai['nilai'] = $jumlahJawabanBenar / $penugasan->soal_count * 100;
+                    break;
                 case 6:
                     $jumlahJawabanBenar = 0;
                     foreach ($penugasan->soal as $soal) {

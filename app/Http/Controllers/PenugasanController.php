@@ -480,6 +480,8 @@ class PenugasanController extends Controller
                 case '3':
                 case '7':
                     return view('panel-admin.tugas.jawaban.igyt', compact('penugasan', 'mahasiswas'));
+                case '4':
+                    return view('panel-admin.tugas.jawaban.pilgan-index', compact('penugasan', 'mahasiswas'));
                 case '6':
                     foreach ($mahasiswas as $mahasiswa) {
                         $jumlahJawabanBenar = 0;
