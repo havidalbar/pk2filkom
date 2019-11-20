@@ -11,6 +11,9 @@
 |
  */
 
+Route::get('/pilihan-ganda',function(){
+    return view("v_mahasiswa/pilihan-ganda");
+});
 // Berita
 Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
     Route::get('/', 'ArtikelController@show')->name('show');
@@ -21,6 +24,7 @@ Route::group(['prefix' => 'berita/{slug}', 'as' => 'berita.'], function () {
         Route::put('{id}', 'KomentarController@update')->name('update');
     });
 });
+
 Route::get('/', 'MahasiswaController@index')->name('index');
 Route::get('faq', 'MahasiswaController@getFaq')->name('faq');
 Route::get('/info-filkom', 'MahasiswaController@getTemanSimabaFilkom')->name('teman-simaba-filkom');
@@ -34,10 +38,11 @@ Route::get('protected-assets/{name}', 'MahasiswaController@getProtectedFile')
 // Mahasiswa
 Route::group(['as' => 'mahasiswa.'], function () {
     Route::group(['middleware' => ['mahasiswa.tologin']], function () {
-        Route::get('login', 'AuthController@login')->name('login');
+        Route::get('login', 'AuthController@loginManual')->name('login');
+        //        Route::get('login-manual', 'AuthController@loginManual')->name('loginManual');
         Route::post('login', 'AuthController@loginMahasiswa');
     });
-
+    Route::get('logout', 'AuthController@logout')->name('logout');
     Route::group(['middleware' => ['mahasiswa.loggedin']], function () {
         Route::get('data-diri', 'AuthController@getDataDiri')->name('data-diri');
         Route::post('data-diri', 'AuthController@storeDataDiri');
@@ -50,18 +55,19 @@ Route::group(['as' => 'mahasiswa.'], function () {
             Route::group(['prefix' => '{slug}'], function () {
                 Route::get('/', 'JawabanController@getViewJawaban')->name('view-jawaban');
                 Route::post('/', 'JawabanController@submitJawaban')->name('submit-jawaban');
-                Route::group(['prefix' => '{index}', 'as' => 'pilihan-ganda.'], function () {
-                    Route::get('/', 'JawabanController@getSoalPilihanGanda')->name('view');
-                    Route::post('/', 'JawabanController@submitJawaban')->name('submit');
-                });
+            });
+        });
+
+        Route::group(['prefix' => 'penugasan-kelompok-pkm', 'as' => 'penugasan-kelompok-pkm.'], function () {
+            Route::get('/', 'JawabanKelompokPKMController@index')->name('index');
+            Route::group(['prefix' => '{slug}'], function () {
+                Route::get('/', 'JawabanKelompokPKMController@getViewJawaban')->name('view-jawaban');
+                Route::post('/', 'JawabanKelompokPKMController@submitJawaban')->name('submit-jawaban');
             });
         });
 
         Route::get('nametag', 'ImageController@textOnImageNametag')->name('nametag');
         Route::get('penilaian', 'MahasiswaController@getPenilaian')->name('penilaian');
-        Route::get('cerita-tentang-aku', 'MahasiswaController@getCeritaTentangAku')->name('cerita-tentang-aku');
-
-        Route::get('logout', 'AuthController@logout')->name('logout');
     });
 });
 
@@ -81,13 +87,14 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
         Route::get('dashboard', 'AdminController@getDashboard')->name('dashboard');
 
         // DIVISI UMUM
-        Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.'], function () {
-            Route::get('/', function ($id) {
+        Route::group(['prefix' => 'mahasiswa', 'as' => 'mahasiswa.', 'middleware' => ['admin.internal']], function () {
+            Route::get('/', function () {
                 return redirect()->route('panel.mahasiswa.biodata');
             })->name('index');
             Route::get('biodata', 'PanelMahasiswaController@getBiodata')->name('biodata');
             Route::get('kesehatan', 'PanelMahasiswaController@getKesehatan')->name('kesehatan');
             Route::post('importcluster', 'PanelMahasiswaController@importClusterKelompok')->name('import.cluster.kelompok');
+            Route::post('importmahasiswa', 'PanelMahasiswaController@importMahasiswa')->name('import.mahasiswa');
         });
 
         Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
@@ -98,10 +105,6 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
 
         // DIVISI HUMAS
         Route::group(['middleware' => ['admin.publikasi']], function () {
-            // UNUSED FUNCTION : [Fadhil]
-            // Route::resource('kategori', 'KategoriController')->parameters([
-            //     'kategori' => 'slug'
-            // ])->except(['show']);
 
             Route::resource('artikel', 'ArtikelController')->parameters([
                 'artikel' => 'slug',
@@ -110,6 +113,14 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
             Route::resource('faq', 'FaqController')->parameters([
                 'faq' => 'id',
             ])->except(['show']);
+        });
+
+        // LEMBAGA - ABSENSI OPEN HOUSE
+        Route::group(['middleware' => ['admin.lembaga']], function () {
+            Route::get(
+                'kegiatan/startup/absensi/open-house',
+                'StartupAbsensiController@absensiOpenHouse'
+            )->name('kegiatan.startup.absensi.open-house');
         });
 
         // DIVISI FULL ACCESS ['BPI', 'PIT', 'SQC']
@@ -135,6 +146,29 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 'penugasan' => 'slug',
             ])->except(['show']);
 
+            Route::group(['prefix' => 'penugasan/{slug}', 'as' => 'penugasan.'], function () {
+                Route::post('impor-nilai', 'PenugasanController@imporNilai')->name('impor-penilaian');
+                Route::get('ekspor-jawaban', 'PenugasanController@exportJawaban')->name('ekspor-jawaban');
+                Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
+                    Route::get('/', 'PenugasanController@viewJawaban')->name('view');
+                    Route::get('{nim}', 'PenugasanController@detailJawaban')->name('detail');
+                });
+            });
+
+            Route::resource('penugasan-kelompok-pkm', 'PenugasanController')->parameters([
+                'penugasan-kelompok-pkm' => 'slug',
+            ])->except(['index', 'show']);
+            Route::group(['prefix' => 'penugasan-kelompok-pkm', 'as' => 'penugasan-kelompok-pkm.'], function () {
+                Route::get('/', 'PenugasanKelompokPKMController@index')->name('index');
+
+                Route::group(['prefix' => '{slug}'], function () {
+                    Route::get('ekspor-jawaban', 'PenugasanKelompokPKMController@exportJawaban')->name('ekspor-jawaban');
+                    Route::group(['prefix' => 'jawaban', 'as' => 'jawaban.'], function () {
+                        Route::get('/', 'PenugasanKelompokPKMController@viewJawaban')->name('view');
+                    });
+                });
+            });
+
             Route::group(['prefix' => 'kegiatan', 'as' => 'kegiatan.'], function () {
                 Route::group(['prefix' => 'pk2maba', 'as' => 'pk2maba.'], function () {
                     Route::get('total', 'AdminController@getPK2MabaTotal')->name('total');
@@ -157,12 +191,9 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                 });
 
                 Route::group(['prefix' => 'startup', 'as' => 'startup.'], function () {
-                    Route::get('total', 'AdminController@getStartupTotal')->name('total');
                     Route::resource('absensi', 'StartupAbsensiController')->parameters([
                         'absensi' => 'nim',
                     ])->except(['create', 'show']);
-                    // ABSENSI OPEN HOUSE
-                    Route::get('absensi/open-house', 'StartupAbsensiController@absensiOpenHouse')->name('absensi.open-house');
 
                     Route::resource('keaktifan', 'StartupKeaktifanController')->parameters([
                         'keaktifan' => 'nim',
@@ -182,6 +213,8 @@ Route::group(['prefix' => 'panel', 'as' => 'panel.'], function () {
                         Route::post('filkom-tv', 'StartupTugasController@importFilkomTv')->name('import-filkom-tv');
                     });
 
+                    Route::get('absensi/open-house/hasil', 'StartupAbsensiController@viewHasilAbsensiOH')->name('absensi.open-house.hasil');
+                    Route::get('absensi/open-house/hasil/export', 'StartupAbsensiController@exportHasilAbsensiOH')->name('absensi.open-house.hasil.export');
                     Route::get('total', 'AdminController@getStartupTotal')->name('total');
                 });
 

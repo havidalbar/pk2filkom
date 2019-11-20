@@ -35,6 +35,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -68,7 +69,7 @@
             <div class="text-right sub-title">
                 Ada program studi apa aja sih di filkom?
             </div>
-            <div class="float-right garis-sub-title"></div>            
+            <div class="float-right garis-sub-title"></div>
             <div class="sub-studi">
                 <ul class="nav nav-tabs justify-content-center align-items-center" id="tab-kurikulum" role="tablist">
                     <li class="nav-item">
@@ -570,9 +571,6 @@
                         <a class="nav-link" id="kontribusi-tab" data-toggle="tab" href="#kontribusi" role="tab" aria-controls="kontribusi" aria-selected="false">KONTRIBUSI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="gforce-tab" data-toggle="tab" href="#gforce" role="tab" aria-controls="gforce" aria-selected="false">G-FORCE</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" id="ayodev-tab" data-toggle="tab" href="#ayodev" role="tab" aria-controls="ayodev" aria-selected="false">AYODEV</a>
                     </li>
                     <li class="nav-item">
@@ -640,25 +638,6 @@
                                         dan lapakan di gazebo FILKOM. Masih banyak yang ingin kamu tahu? Yuk ikuti linimasanya!
                                     </div>
                                     <div class="text-left sub-text-lo">Instagram : <a href="https://www.instagram.com/kontribusifilkom/" target="_blank">@kontribusifilkom</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="gforce" role="tabpanel" aria-labelledby="gforce-tab">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="logo-lain col-md-4">
-                                    <img src="{{asset('img/teman-simaba/filkom/gforce.jpg')}}" class="img-filkom-text">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="text-left description-studi">
-                                        G-FORCE
-                                    </div>
-                                    <div class="text-left sub-text-lo">
-                                        GFORCE merupakan komunitas peduli lingkungan Fakultas Ilmu Komputer Universitas Brawijaya.
-                                        Beberapa kegiatannya seperti kamis bersih, bank sampah, dan banyak lagi yang tidak kalah menarik. Masih penasaran kan? Ini dia linimasanya!
-                                    </div>
-                                    <div class="text-left sub-text-lo">Instagram : <a href="https://www.instagram.com/gforces.official/" target="_blank">@gforces.official</a></div>
                                 </div>
                             </div>
                         </div>

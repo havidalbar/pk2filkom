@@ -8,7 +8,7 @@
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
 					<h3 class="m-subheader__title" style="transform: translateY(10px);">
-						ABSENSI
+						PENDATAAN
 						<small>
 							Open House
 						</small>
@@ -19,16 +19,32 @@
 		<!-- END: Subheader -->
 		<div class="m-content">
 			<div class="m-portlet m-portlet--mobile">
-				<div class="m-portlet__body pt-1" style="text-align:center">
-					<video id="preview"></video>
+				<div class="m-portlet__body pt-1">
+					<!-- BEGIN: Subheader Scanner -->
+					<div class="m-subheader">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title">
+									SCAN QR-CODE
+									<small>
+										Open House
+									</small>
+								</h3>
+							</div>
+						</div>
+					</div>
+					<!-- END: Subheader Scanner -->
+					<div class="col-12">
+						<video id="preview" style="max-width:100%"></video>
+					</div>
 					<script type="text/javascript">
-						let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+						let scanner = new Instascan.Scanner({ video: document.getElementById('preview'), mirror: false });
 						scanner.addListener('scan', function (content) {
-							window.location.href(window.location.href + '?nim_key=' + content);
+							window.location.href='https://simaba-filkom.ub.ac.id/panel/kegiatan/startup/absensi/open-house' + '?nim_key=' + content;
 						});
 						Instascan.Camera.getCameras().then(function (cameras) {
 							if (cameras.length > 0) {
-								scanner.start(cameras[0]);
+								scanner.start(cameras[1]);
 							} else {
 								alert('Perangkat kamera tidak ditemukan');
 							}
@@ -40,8 +56,8 @@
 					<div class="m-subheader">
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
-								<h3 class="m-subheader__title" style="transform: translateY(10px);">
-									ABSENSI MANUAL
+								<h3 class="m-subheader__title">
+								PENDATAAN MANUAL
 									<small>
 										Open House
 									</small>
@@ -53,11 +69,12 @@
 					<form>
 						<div class="form-group m-form__group row">
 							<label for="nim-absensi-input" class="col-3 col-form-label">
-								Absensi Manual
+								Pendataan Manual
 							</label>
-							<div class="col-9">
+							<div class="col-9 d-flex align-items-center">
 								<input class="form-control m-input" name="nim" placeholder="NIM Mahasiswa" type="number"
 									id="nim-absensi-input" required>
+								<input type="hidden" name="booth" id="booth_manual" value="" required>
 							</div>
 						</div>
 						<div class="m-portlet__foot m-portlet__foot--fit">

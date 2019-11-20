@@ -46,7 +46,7 @@ class AuthController extends Controller
 			session(['PRODI' => $userAttr['PRODI']['0']]);
 			session(['K_CABANG' => $userAttr['CABANG']['0']]);
 			session(['PRODI' => $userAttr['PRODI']['0']]);
-			
+
 			lebih lengkap bisa print_r($userAttr);
 			*/
 
@@ -142,25 +142,28 @@ class AuthController extends Controller
         $nim = $request->nim;
         $password = $request->password;
 
-        if ($nim == '0000' && $password == '0000') {
-            Session::put('nim', $nim);
-            Session::put('nama', 'Akun');
-            Session::put('prodi', 2);
-            Session::put('foto', 'https://dummyimage.com/200x200/000000/fff&text=+AKUN');
-            return redirect()->back()->with('alert', 'Anda berhasil login');
-        } else if (isset($nim) && isset($password) && isset($request->haloguys)) {
-            if (substr($nim, 0, 5) == '19515') {
-                $API_EM_APPS = 'https://em.ub.ac.id/redirect/login/loginApps/?nim=' . $nim . '&password=' . $password;
+        if (isset($nim) && isset($password)) {
+            if (substr($nim, 0, 5)) {
+                $cl = new Client;
+                $cr = $cl->request('GET', 'https://siam.ub.ac.id/');
+                $form = $cr->selectButton('Masuk')->form();
+                $cr = $cl->submit($form, array('username' => $nim, 'password' => $password));
 
-                $responseLogin = json_decode(file_get_contents($API_EM_APPS), true);
+                $cek = $cr->filter('small.error-code')->each(function ($result) {
+                    return $result->text();
+                });
 
-                if (!$responseLogin['status']) {
+                if (isset($cek[0])) {
                     return redirect()->back()->with('alert', 'NIM atau password salah');
                 } else {
-                    if (strtolower($responseLogin['fak']) == 'fakultas ilmu komputer') {
-                        $nim_login = $responseLogin['nim'];
-                        $nama_login = $responseLogin['nama'];
-                        switch (strtolower($responseLogin['prodi'])) {
+                    $data = $cr->filter('div[class="bio-info"] > div')->each(function ($result) {
+                        return $result->text();
+                    });
+
+                    if (strtolower(trim(substr($data[2], 19))) == 'ilmu komputer') {
+                        $nim_login = $data[0];
+                        $nama_login = $data[1];
+                        switch (strtolower(substr($data[4], 13))) {
                             case 'teknik informatika':
                                 $prodi_login = 2;
                                 break;
@@ -179,7 +182,6 @@ class AuthController extends Controller
                             default:
                                 $prodi_login = 0;
                         }
-                        $foto_login = $responseLogin['foto'];
 
                         // Cek sudah pernah isi data atau belum
                         $data_mahasiswa = Mahasiswa::where('nim', $nim)->exists();
@@ -214,14 +216,9 @@ class AuthController extends Controller
                         Session::put('nim', $nim_login);
                         Session::put('nama', $nama_login);
                         Session::put('prodi', $prodi_login);
-                        Session::put('foto', $foto_login);
 
                         if ($data_mahasiswa) {
-                            if ($request->redirectTo) {
-                                return redirect($request->redirectTo)->with('alert', 'Anda berhasil login');
-                            } else {
-                                return redirect()->route('index')->with('alert', 'Anda berhasil login');
-                            }
+                            return redirect()->route('index')->with('alert', 'Anda berhasil login');
                         } else {
                             return redirect()->route('mahasiswa.data-diri')->with('alert', 'Silahkan isi data diri Anda');
                         }
@@ -259,7 +256,7 @@ class AuthController extends Controller
         $data_mahasiswa->no_telepon = $request->no_telepon;
 
         $data_mahasiswa->save();
-        return redirect()->back()->with('alert', 'Pengisian data diri berhasil');
+        return redirect()->route('index')->with('alert', 'Pengisian data diri berhasil');
     }
 
     public function logout()

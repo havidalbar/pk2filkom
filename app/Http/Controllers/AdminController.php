@@ -21,6 +21,8 @@ class AdminController extends Controller
         'PENDAMPING',
         'PIT',
         'SQC',
+        'PERKAP',
+        'LEMBAGA'
     ];
 
     /**
@@ -169,7 +171,7 @@ class AdminController extends Controller
             $pengguna->password = Hash::make($request->password_baru);
             $pengguna->save();
 
-            return redirect()->back()->with('alert-success', 'Password berhasil diubah');
+            return redirect()->route('panel.dashboard')->with('alert-success', 'Password berhasil diubah');
         } else {
             return redirect()->back()->with('alert-error', 'Password salah');
         }

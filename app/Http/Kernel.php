@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'admin.login' => \App\Http\Middleware\CheckLoginAdmin::class,
         'admin.publikasi' => \App\Http\Middleware\AdminPublikasi::class,
         'admin.full' => \App\Http\Middleware\AdminFull::class,
+        'admin.internal' => \App\Http\Middleware\AdminInternal::class,
+        'admin.lembaga' => \App\Http\Middleware\AdminLembaga::class,
         'mahasiswa.loggedin' => \App\Http\Middleware\MahasiswaLoggedIn::class,
         'mahasiswa.tologin' => \App\Http\Middleware\MahasiswaToLogin::class,
         'mahasiswa.api' => \App\Http\Middleware\APIMahasiswa::class,

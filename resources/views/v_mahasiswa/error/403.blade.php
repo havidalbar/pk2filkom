@@ -5,12 +5,11 @@
 <div class="jumbotron jumbotron-fluid bg-halError">
     <div class="container error">
         <div class="textError">
-            <p class="errormsg">403</p>
-            <p>Page Not Authorized</p>
-            <p>Belum move on? Halaman ini aja udah :)</p>
+            <p>Anda tidak memiliki akses</p>
+            <p>Silahkan kembali ke halaman sebelumnya :)</p>
         </div>
-        <div class="card home" onclick="window.location.href='/'">
-            HOME
+        <div class="card home" onclick="window.history.back()">
+            KEMBALI
         </div>
     </div>
 </div>

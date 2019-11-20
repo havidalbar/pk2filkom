@@ -12,11 +12,20 @@ function submitTTS() {
         headers: {
             "Authorization": token
         },
+        beforeSend: function () {
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-spinner fa-spin"></i>');
+            $('#prosesSimpan span').text('Menyimpan jawaban');
+            $("#prosesSimpan").fadeIn(2000);
+        },
         success: function () {
-            console.log('submitted');
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-check"></i>');
+            $('#prosesSimpan span').text('Jawaban berhasil disimpan');
+            $("#prosesSimpan").fadeOut(2000);
         },
         error: function () {
-            console.log('error');
+            $('#prosesSimpan i').replaceWith('<i class="fas fa-times"></i>');
+            $('#prosesSimpan span').text('Jawaban gagal disimpan. Silahkan muat ulang halaman ini.');
+            $("#prosesSimpan").fadeOut(5000);
         }
     });
 
@@ -80,8 +89,8 @@ $(document).ready(function () {
         }
     }
 
-    let soalMendatar = ['<div class="col-md-6 col-sm-12"><h1>Menurun</h1><ol id="menurun">'];
-    let soalMenurun = ['<div class="col-md-6 col-sm-12"><h1>Mendatar</h1><ol id="mendatar">'];
+    let soalMenurun = ['<div class="col-md-6 col-sm-12"><h1>Menurun</h1><ol id="menurun">'];
+    let soalMendatar = ['<div class="col-md-6 col-sm-12"><h1>Mendatar</h1><ol id="mendatar">'];
     dataTts.menurun.forEach((soal, i) => {
         soalMenurun.push(`<li data-noSoal="` + soal.noSoal + `">` + soal.soal + `</li>`);
     });
@@ -92,4 +101,11 @@ $(document).ready(function () {
     soalMenurun.push('</div></ol>');
     const semuaSoal = soalMenurun.concat(soalMendatar);
     $('#tts-soal').append(semuaSoal.join(''));
+
+    $(window).keydown(function (event) {
+        if (event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
 });

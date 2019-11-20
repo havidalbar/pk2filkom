@@ -24,9 +24,10 @@
                     @if ($_GET['tipe_soal'] == 'pilgan')
                     @include('panel-admin.tugas.form-create-edit-pilgan', ['ketForm' => 'tambah'])
                     @elseif ($_GET['tipe_soal'] == 'instagram' || $_GET['tipe_soal'] == 'line' || $_GET['tipe_soal'] ==
-                    'youtube' || $_GET['tipe_soal'] == 'tts')
+                    'youtube' || $_GET['tipe_soal'] == 'tts' || $_GET['tipe_soal'] == 'link-umum-kelompok')
                     @include('panel-admin.tugas.form-create-edit-link', ['ketForm' => 'tambah'])
-                    @elseif ($_GET['tipe_soal'] == 'offline')
+                    @elseif ($_GET['tipe_soal'] == 'offline' || $_GET['tipe_soal'] == 'abstraksi' || $_GET['tipe_soal']
+                    == 'abstraksi-kelompok')
                     @include('panel-admin.tugas.form-create-edit-offline', ['ketForm' => 'tambah'])
                     @endif
                 </form>

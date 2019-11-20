@@ -37,6 +37,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -73,7 +74,7 @@
             <div class="float-right garis-sub-title"></div>
             <div class="row sub-pelajaran align-items-center text-right">
                 <div class="col-md-5 col-img">
-                    <img src="{{asset('img/teman-simaba/kampus/denah svg.svg')}}" class="sub-pelajaran-img">
+                    <img src="{{asset('img/teman-simaba/kampus/denah.svg')}}" class="sub-pelajaran-img">
                 </div>
                 <div class="col-md-7">
                     <div class="info">

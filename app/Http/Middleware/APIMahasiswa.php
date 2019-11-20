@@ -17,7 +17,7 @@ class APIMahasiswa
     public function handle($request, Closure $next)
     {
         try {
-            $payload = JWT::decode($request->header('Authorization'), env('SECRET_TOKEN_KEY'), ['HS256']);
+            $payload = JWT::decode($request->header('Authorization'), env('SECRET_TOKEN_KEY', 'test-server-simaba'), ['HS256']);
             $request->nim = $payload->nim;
 
             return $next($request);

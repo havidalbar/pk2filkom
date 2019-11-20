@@ -4,6 +4,17 @@
             Form {{ $ketForm }} data tugas.
         </div>
     </div>
+    @if (isset($penugasan) && $penugasan && $penugasan->id)
+    <div class="form-group m-form__group row align-items-center">
+        <label for="kode_penugasan" class="col-2 col-form-label">
+            Kode Penugasan
+        </label>
+        <div class="col-10">
+            <input id="kode_penugasan" class="form-control m-input" type="text" required disabled
+                value="{{ $penugasan->id }}">
+        </div>
+    </div>
+    @endif
     <div class="form-group m-form__group row align-items-center {{ $errors->has('judul') ? 'has-danger' : '' }}">
         <label for="judul_tugas" class="col-2 col-form-label">
             Judul Tugas
@@ -28,7 +39,7 @@
 
                 <!-- This container will become the editable. -->
                 <div id="deskripsi-editor" style="border: 1px solid grey">{!! old('deskripsi') ?
-                    urlencode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
+                    urldecode(old('deskripsi')) : ($penugasan->deskripsi ?? '') !!}</div>
             </div>
             <input id="deskripsi_input" name="deskripsi" type="hidden" required>
             {!! $errors->first('deskripsi', '<div class="form-control-feedback">:message</div>') !!}
@@ -46,7 +57,7 @@
 			    .catch(error => {
 			    	console.error(error);
                 });
-            
+
             function submitForm() {
                 $('#deskripsi_input').val(encodeURI($('#deskripsi-editor').html()));
                 $('#submitter').click();
@@ -89,13 +100,23 @@
             {!! $errors->first('waktu_akhir', '<div class="form-control-feedback">:message</div>') !!}
         </div>
     </div>
-    @php
+    <?php
     if (empty($penugasan) || $penugasan->jenis === NULL) {
-    $jenis = 5;
+        switch ($_GET['tipe_soal']) {
+            case 'offline':
+                $jenis = 5;
+                break;
+            case 'abstraksi':
+                $jenis = 7;
+                break;
+            case 'abstraksi-kelompok':
+                $jenis = 8;
+                break;
+        }
     } else {
-    $jenis = $penugasan->jenis;
+        $jenis = $penugasan->jenis;
     }
-    @endphp
+    ?>
     <input name="jenis" type="hidden" value="{{ $jenis ?? '' }}">
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">

@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-md-7">
                     <p class="txtQR">
-                        Tunjukkan QR Code sebagai tanda presensi Open House!
+                        Tunjukkan QR Code untuk pendataan di booth Open House!
                     </p>
                 </div>
             </div>

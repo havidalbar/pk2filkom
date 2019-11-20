@@ -15,7 +15,7 @@ class KomentarRequest extends FormRequest
      */
     public function authorize()
     {
-        return session('nim') || session('divisi');
+        return true;
     }
 
     /**
@@ -26,7 +26,7 @@ class KomentarRequest extends FormRequest
     public function rules()
     {
         return [
-            'isi' => 'required|string|max:65535',
+            'isi' => 'required|string|max:500',
             // 'komentar_ke' => [
             //     'sometimes',
             //     new ArtikelValid,

@@ -37,6 +37,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -253,6 +254,68 @@
                         Info beasiswa
                     </div>
                 </a>
+            </div>
+        </div>
+        <!-- SKM BUAT APA -->
+        <div class="sub-akademik">
+            <div class="text-right sub-title">
+                SKM, BUAT APA SIH?
+            </div>
+            <div class="float-right garis-sub-title"></div>
+            <div class="row sub-skm align-items-center text-left">
+                <div class="col-md-3">
+                    <img src="{{asset('img/teman-simaba/mahasiswa/skm.png')}}" class="mx-auto d-block img-skm">
+                </div>
+                <div class="col-md-9">
+                    <div class="skm-text">
+                        SKM atau Satuan Kegiatan Mahasiswa adalah sistem yang merekam aktivitas mahasiswa dan standar
+                        minimal alumni mahasiswa yang juga bisa menjadi CV ( Curriculum Vitae) mahasiswa selama
+                        menjadi mahasiswa Universitas Brawijaya <span class="bold-white">untuk dilampirkan pada saat
+                            ujian skripsi dan
+                            menjadi salah satu syaratnya lho!</span> Jadi kamu harus mulai mencari poin skm dari awal
+                        masuk
+                        kuliah yaa!
+                    </div>
+                </div>
+            </div>
+            <div class="row sub-skm sub-poin align-items-center text-left">
+                <div class="col-md-3">
+                    <img src="{{asset('img/teman-simaba/mahasiswa/poin.png')}}" class="mx-auto d-block img-skm">
+                </div>
+                <div class="col-md-9 order-first">
+                    <div class="skm-text">
+                        <h1 class="skm-title">POIN SKM</h1>
+                        <div class="skm-list">
+                            <div class="nomor-text">1.</div>
+                            <div class="text">Mahasiswa SAP (Seleksi Alih Program) Minimal poin 200</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">2.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2019 minimal poin 300</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">3.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2020 minimal poin 400</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">4.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2021 minimal poin 500</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">5.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2022 minimal poin 600</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">6.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2023 minimal poin 700</div>
+                        </div>
+                        <div class="skm-list">
+                            <div class="nomor-text">7.</div>
+                            <div class="text">Mahasiswa yang lulus tahun 2024 dan seterusnya minimal poin 800</div>
+                        </div>
+                        <div class="skm-text-file">Info lengkap nya bisa kamu lihat di panduan SKM pada <a href="{{asset('files/panduan-skm.pdf')}}" target="_blank">link ini</a></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
                         $nama = session('nama');
                         $splitNama = explode(' ', $nama);
                         if (count($splitNama) > 1) {
-                            $nama = $splitNama[0] . ' ' . $splitNama[1][0] . '.';
+                            $nama = $splitNama[0] . ' ' . (isset($splitNama[1][0]) ? $splitNama[1][0] . '.' : '');
                         }
                         echo $nama;
                         ?>
@@ -37,6 +37,7 @@
                         <a class="dropdown-item" href="{{ route('mahasiswa.penilaian') }}">Penilaian</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.qr-code') }}">QR Code</a>
                         <a class="dropdown-item" href="{{ route('mahasiswa.nametag') }}">Nametag</a>
+                        <a class="dropdown-item" href="{{ route('mahasiswa.penugasan-kelompok-pkm.index') }}">PKM KELOMPOK</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item logout" href="{{ route('mahasiswa.logout') }}">
                             <span><i class="fas fa-sign-out-alt"></i></span>
@@ -86,7 +87,7 @@
         <div class="row align-items-center">
             <div class="col-md-8 mtAfterMoviePk2Maba st2">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/FtZ7ecSekz4"
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ER9uQmqZjqw"
                         allowfullscreen></iframe>
                 </div>
             </div>
@@ -208,7 +209,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -231,7 +233,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pk2.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pk2.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -254,7 +257,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -277,7 +281,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/ki.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ki.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -299,7 +304,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/oh.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/oh.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -323,7 +329,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -346,7 +353,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/ob.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/ob.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -369,7 +377,8 @@
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
                                 <figure class="figure">
-                                    <img src="{{ asset('img/bg-section/pkm.svg') }}" class="figure-img img-fluid rounded">
+                                    <img src="{{ asset('img/bg-section/pkm.svg') }}"
+                                        class="figure-img img-fluid rounded">
                                 </figure>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -504,7 +513,7 @@
 </div>
 <!-- endBerita -->
 <script>
-    //loadBerita
+    // loadBerita
     $('#load-berita').click(function () {
         if ($('#extended-berita').css('display') === 'none') {
             $('#extended-berita').css('display', '');
@@ -514,7 +523,7 @@
             $('#load-berita').html('TAMPILKAN BERITA');
         }
     });
-    //endLoadBerita
+    // endLoadBerita
 </script>
 <!-- Footer -->
 @include('layouts.footer')

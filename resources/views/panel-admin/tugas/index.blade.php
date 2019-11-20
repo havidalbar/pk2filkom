@@ -43,17 +43,11 @@
                 <table class="m-datatable" id="html_table" width="100%">
                     <thead>
                         <tr>
-                            <th title="No">
-                                No
-                            </th>
                             <th title="Judul">
                                 Judul
                             </th>
                             <th title="Jumlah soal">
                                 Jumlah soal
-                            </th>
-                            <th title="Waktu ditampilkan">
-                                Waktu ditampilkan
                             </th>
                             <th title="Waktu mulai">
                                 Waktu mulai
@@ -69,10 +63,8 @@
                     <tbody>
                         @foreach ($penugasans as $index => $penugasan)
                         <tr>
-                            <td>{{ $index + 1 }}</td>
                             <td>{{ $penugasan->judul }}</td>
                             <td>{{ $penugasan->soal_count }}</td>
-                            <td>{{ $penugasan->waktu_tampil }}</td>
                             <td>{{ $penugasan->waktu_mulai }}</td>
                             <td>{{ $penugasan->waktu_akhir }}</td>
                             <td>
@@ -80,6 +72,10 @@
                                     <a href="{{ route('panel.penugasan.edit', ['slug' => $penugasan->slug]) }}"
                                         class="m-btn btn btn-warning">
                                         <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="{{ route('panel.penugasan.jawaban.view', ['slug' => $penugasan->slug]) }}"
+                                        class="m-btn btn btn-primary">
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                     <form id="delete-penugasan-form-{{ $penugasan->id }}"
                                         action="{{ route('panel.penugasan.destroy', ['slug' => $penugasan->slug]) }}"

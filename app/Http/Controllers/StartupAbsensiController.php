@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\AbsensiOH;
 use App\Mahasiswa;
 use App\StartupAbsensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PhpOffice\PhpSpreadsheet;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 
 class StartupAbsensiController extends Controller
 {
@@ -86,7 +90,7 @@ class StartupAbsensiController extends Controller
             } catch (\PDOException $e) {
                 // Woopsy
                 DB::rollBack();
-                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan!');
+                return redirect()->back()->with('alert-error', 'Terjadi kesalahan impor pada baris ' . $error_row . '. Impor dibatalkan! ' . $e->getMessage());
             }
         } else {
             return redirect()->back()->with('alert-error', 'Terjadi kesalahan format!');
@@ -153,23 +157,34 @@ class StartupAbsensiController extends Controller
     {
         try {
             if (isset($request->nim_key)) {
-                $decrypted = decrypt($request->nim_key);
-
-                $nim = $decrypted;
+                $nim = decrypt($request->nim_key);
             } else if (isset($request->nim)) {
                 $nim = $request->nim;
             } else {
-                return view('panel-admin.startup.absensi-open-house');
+                return view('panel-admin.startup.absensi-open-house', ['alert-success' => 'nim atau password tidak boleh dikosongi']);
             }
 
             if (is_numeric($nim)) {
                 $mahasiswa = Mahasiswa::find($nim);
+                $booth = session('username');
 
                 if ($mahasiswa) {
-                    $update = StartupAbsensi::where('nim', $nim)->update([
-                        'nilai_rangkaian4' => 100,
-                    ]);
-                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa' . $nim . 'berhasil dimasukkan');
+                    $absensiBooth = AbsensiOH::where([
+                        'nim' => $nim,
+                        'booth' => $booth
+                    ])->first();
+
+                    if (!$absensiBooth) {
+                        $absensiBooth = new AbsensiOH;
+                        $absensiBooth->nim = $nim;
+                        $absensiBooth->absensi = 100;
+                        $absensiBooth->booth = $booth;
+                        $absensiBooth->save();
+                        $update = StartupAbsensi::where('nim', $nim)->update([
+                            'nilai_rangkaian4' => 100,
+                        ]);
+                    }
+                    return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-success', 'Absensi mahasiswa ' . $nim . ' berhasil dimasukkan');
                 } else {
                     return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-error', 'Mahasiswa tidak ditemukan');
                 }
@@ -181,5 +196,37 @@ class StartupAbsensiController extends Controller
         } catch (Exception $e) {
             return redirect()->route('panel.kegiatan.startup.absensi.open-house')->with('alert-error', 'Kesalahan pengolahan data');
         }
+    }
+
+    public function viewHasilAbsensiOH()
+    {
+        $mahasiswas = Mahasiswa::with(['absensi_oh'])->get();
+
+        return view('panel-admin.startup.rank-open-house', compact('mahasiswas'));
+    }
+
+    public function exportHasilAbsensiOH()
+    {
+        $mahasiswas = Mahasiswa::with(['absensi_oh'])->get();
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'NIM');
+        $sheet->setCellValue('B1', 'Nama');
+        $sheet->setCellValue('C1', 'Jumlah Scan');
+
+        foreach ($mahasiswas as $index => $mahasiswa) {
+            $sheet->setCellValueExplicit('A' . ($index + 2), strval($mahasiswa->nim), DataType::TYPE_STRING);
+            $sheet->setCellValue('B' . ($index + 2), $mahasiswa->nama);
+            $sheet->setCellValue('C' . ($index + 2), count($mahasiswa->absensi_oh));
+        }
+
+        $filename = 'absensi_oh';
+        $writer = new Xlsx($spreadsheet);
+        // Set the content-type:
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+
+        return $writer->save('php://output'); // download file
     }
 }

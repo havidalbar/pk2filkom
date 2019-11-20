@@ -68,6 +68,7 @@
                                 <option value="pilgan">Pilihan Ganda</option>
                                 <option value="offline">Penugasan Offline</option>
                                 <option value="tts">Teka-Teki Silang</option>
+                                <option value="abstraksi">Abstraksi</option>
                             </select>
                             <br>
                             <div id="jumlah-soal-parent">
@@ -82,7 +83,7 @@
                     <script>
                         function triggerJumlahSoal() {
                             let jumlahSoalParent = $('#jumlah-soal-parent');
-                            if ($('#tipe_soal').val() == 'offline') {
+                            if ($('#tipe_soal').val() == 'offline' || $('#tipe_soal').val() == 'abstraksi') {
                                 jumlahSoalParent.empty();
                             } else if (!$('#jumlah_soal').length) {
                                 jumlahSoalParent.append(`
